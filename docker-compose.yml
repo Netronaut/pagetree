@@ -1,0 +1,24 @@
+version: "3"
+
+services:
+  api:
+    build: ./pb-backend
+    command: npm start
+    restart: unless-stopped
+    ports:
+      - "3002:3002"
+    environment:
+      - PORT=3002
+      - DB_CONNECTION_STRING=mongodb://api_db:27017/page-builder
+    depends_on:
+      - api_db
+
+  api_db:
+    image: mongo:latest
+
+  front:
+    build: ./pb-frontend
+    command: yarn start
+    restart: unless-stopped
+    ports:
+     - "3001:3000"

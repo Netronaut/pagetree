@@ -1,0 +1,183 @@
+@import 'src/theme';
+
+@media only screen and (max-width: 768px) {
+  .button {
+    font-size: 13px !important;
+  }
+}
+
+.button {
+  height: 50px;
+  min-height: 50px;
+  outline: none;
+  background: transparent;
+  color: $color-white;
+  border: none;
+  border-radius: 4px;
+  box-sizing: border-box;
+  padding: 11px 20px;
+  min-width: 160px;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+  font-family: 'Roboto', 'Helvetica', 'Arial', sans-serif;
+  cursor: pointer;
+  opacity: 0.9;
+  &.margin-top {
+    margin-top: 24px;
+  }
+  &.margin-bottom {
+    margin-bottom: 24px;
+  }
+  &.fullWidth {
+    width: 100%;
+  }
+  &:hover {
+    opacity: 0.8;
+  }
+  &:active {
+    opacity: 1;
+  }
+  &.filled {
+    box-shadow: $button-shadow;
+    &.disabled {
+      background: $color-grey;
+    }
+    &.purple {
+      background: $color-purple;
+    }
+    &.blue {
+      background: $color-accent-blue;
+    }
+    &.orange {
+      background: $color-orange;
+    }
+    &.red {
+      background: $color-red;
+    }
+    &.green {
+      background: $color-green;
+    }
+    &.black {
+      background: $color-black;
+    }
+    &.black-table {
+      background: $color-table-black;
+    }
+    &.grey {
+      background: $color-grey;
+    }
+    &.white {
+      background: $color-white;
+      color: $color-black;
+    }
+    &.dark-blue-text {
+      background: $color-dark-blue-text;
+    }
+    &.table-grey {
+      background: $color-table-grey;
+    }
+    &.icon-grey {
+      background: $color-icon-grey;
+      color: $color-black;
+    }
+  }
+  &.outline {
+    background: transparent;
+    &.disabled {
+      color: $color-grey;
+      border: 1px solid $color-grey;
+    }
+    &.purple {
+      color: $color-purple;
+      border: 1px solid $color-purple;
+    }
+    &.blue {
+      color: $color-accent-blue;
+      border: 1px solid $color-accent-blue;
+    }
+    &.orange {
+      color: $color-orange;
+      border: 1px solid $color-orange;
+    }
+    &.red {
+      color: $color-red;
+      border: 1px solid $color-red;
+    }
+    &.green {
+      color: $color-green;
+      border: 1px solid $color-green;
+    }
+    &.black {
+      color: $color-black;
+      border: 1px solid $color-black;
+    }
+    &.black-table {
+      color: $color-table-black;
+      border: 1px solid $color-table-black;
+    }
+    &.grey {
+      color: $color-grey;
+      border: 1px solid $color-grey;
+    }
+    &.white {
+      border: 1px solid $color-black;
+      color: $color-black;
+    }
+    &.dark-blue-text {
+      color: $color-dark-blue-text;
+      border: 1px solid $color-dark-blue-text;
+    }
+    &.table-grey {
+      color: $color-table-grey;
+      border: 1px solid $color-table-grey;
+    }
+    &.icon-grey {
+      border: 1px solid $color-black;
+      color: 1px solid $color-black;
+    }
+  }
+  &.transparent {
+    background: transparent;
+    &.disabled {
+      color: $color-grey;
+    }
+    &.purple {
+      color: $color-purple;
+    }
+    &.blue {
+      color: $color-accent-blue;
+    }
+    &.orange {
+      color: $color-orange;
+    }
+    &.red {
+      color: $color-red;
+    }
+    &.green {
+      color: $color-green;
+    }
+    &.black {
+      color: $color-black;
+    }
+    &.black-table {
+      color: $color-table-black;
+    }
+    &.grey {
+      color: $color-grey;
+    }
+    &.white {
+      color: $color-black;
+    }
+    &.dark-blue-text {
+      color: $color-dark-blue-text;
+    }
+    &.table-grey {
+      color: $color-table-grey;
+    }
+    &.icon-grey {
+      color: 1px solid $color-black;
+    }
+  }
+}

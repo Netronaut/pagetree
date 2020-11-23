@@ -1,0 +1,15 @@
+.list {
+  margin-top: 32px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+
+  .page-row {
+    width: 100%;
+    max-width: 500px;
+    display: flex;
+    justify-content: space-between;
+    font-size: 18px;
+    margin-bottom: 12px;
+  }
+}

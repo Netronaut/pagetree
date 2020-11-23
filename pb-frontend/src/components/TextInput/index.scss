@@ -1,0 +1,65 @@
+@import '../../theme/index';
+
+.text-input {
+  outline: none;
+  width: 100%;
+
+  border-radius: 4px;
+  font-size: 1rem;
+  background: transparent;
+  border: none;
+
+  padding: 0;
+}
+
+.prefilled-text {
+  font-size: 1rem;
+  padding: 0;
+  margin-top: 4px;
+  margin-right: 4px;
+}
+
+.error-text {
+  position: absolute;
+  bottom: -13px;
+  right: 0;
+  font-size: 10px;
+  color: $color-red;
+}
+
+.input-wrapper {
+  width: 100%;
+  margin-top: 16px;
+  margin-bottom: 8px;
+  position: relative;
+  flex-direction: row;
+  min-width: 80px;
+  vertical-align: top;
+  display: flex;
+  box-sizing: border-box;
+  justify-content: center;
+  align-content: center;
+  height: 50px;
+  padding: 10px 16px;
+  border: 1px solid $color-grey;
+  .label {
+    font-size: 18px;
+    font-weight: 600;
+    color: $color-accent-blue;
+    box-sizing: border-box;
+    padding: 8px 0;
+  }
+  &.name {
+    width: 43%;
+  }
+
+  &.error {
+    border-color: $color-red;
+  }
+  &:hover {
+    border-color: $color-accent-blue;
+  }
+  &:focus {
+    border-color: $color-accent-blue;
+  }
+}
