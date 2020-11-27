@@ -1,6 +1,5 @@
-import { useTypedSelector } from '../../../hooks/useTypedSelector';
 import { useMemo } from 'react';
-import useDispatchActions from '../../../hooks/useDispatchActions';
+import { useDispatchActions, useTypedSelector } from 'src/hooks';
 import { actions } from '../redux';
 
 const usePages = (id?: string) => {
