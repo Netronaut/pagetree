@@ -5,5 +5,5 @@ export const api = axios.create({
 });
 
 api.interceptors.response.use(undefined, (error) => {
-  throw error.response;
+  throw error.response || error;
 });
