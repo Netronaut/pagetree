@@ -12,10 +12,52 @@ html {
           overflow: scroll;
           width: 100%;
           height: calc(100% - 150px);
-          padding: 1vw;
+          padding: 25px;
           box-sizing: border-box;
           .separator-wrapper {
             padding: 10px 0;
+            &:hover {
+              .separator {
+                background-color: #58e6ec;
+                height: 1px;
+                border-radius: 10px;
+                width: 100%;
+                .add-prev-component {
+                  cursor: pointer;
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                  width: 10px;
+                  height: 10px;
+                  padding: 3px;
+                  border-radius: 20px;
+                  border: 2px solid #58e6ec;
+                  color: #58e6ec;
+                  font-weight: bold;
+                  background: #fff;
+                  z-index: 2;
+                }
+              }
+            }
+            .separator {
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              box-sizing: border-box;
+              .add-prev-component {
+                display: none;
+              }
+
+              &.first {
+                background-color: transparent;
+                height: 1px;
+                border-radius: 10px;
+                width: 100%;
+                .add-prev-component {
+                  display: none;
+                }
+              }
+            }
           }
           .component-container {
             width: 100%;
@@ -49,21 +91,21 @@ html {
           background: #f1f0f0;
           box-sizing: border-box;
           display: flex;
-          padding: 1vw;
+          padding: 25px;
           flex-direction: row;
           align-items: center;
           justify-content: flex-start;
           .droppable-component {
-            width: 20vw;
-            height: 5vw;
+            width: 500px;
+            height: 100px;
             margin: 0 10px;
-            border-radius: 0.5vw;
+            border-radius: 10px;
             background: white;
             color: #282c34;
             font-family: "Source Code Pro", "SF Mono", Monaco, Inconsolata, "Fira Mono", "Droid Sans Mono", monospace, monospace;
             font-weight: bolder;
             box-sizing: border-box;
-            padding: 1vw;
+            padding: 25px;
             border: 1px dashed;
             display: flex;
             align-items: center;
