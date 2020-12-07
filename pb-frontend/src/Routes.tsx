@@ -4,6 +4,7 @@ import React, { useEffect } from 'react';
 import usePages from './screens/Pages/hooks/usePages';
 import Page from './screens/Pages/screens/Page';
 import NotFound from './screens/NotFound';
+import { Constructor } from './screens/Constructor';
 
 const Routes = () => {
   const { pages, getPages } = usePages();
@@ -13,6 +14,7 @@ const Routes = () => {
   return (
     <Switch>
       <Route path="/" exact component={Pages} />
+      <Route path="/constructor" exact component={Constructor} />
       {pages.map(({ _id, route }) => (
         <Route
           key={route}
