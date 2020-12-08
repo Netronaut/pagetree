@@ -18,10 +18,7 @@ html {
             padding: 10px 0;
             &:hover {
               .separator {
-                background-color: #58e6ec;
-                height: 1px;
-                border-radius: 10px;
-                width: 100%;
+                background-color: #58e6ec !important;
                 .add-prev-component {
                   cursor: pointer;
                   display: flex;
@@ -40,6 +37,9 @@ html {
               }
             }
             .separator {
+              height: 4px;
+              border-radius: 10px;
+              width: 100%;
               display: flex;
               align-items: center;
               justify-content: center;
@@ -47,15 +47,8 @@ html {
               .add-prev-component {
                 display: none;
               }
-
               &.first {
-                background-color: transparent;
-                height: 1px;
-                border-radius: 10px;
-                width: 100%;
-                .add-prev-component {
-                  display: none;
-                }
+                display: none;
               }
             }
           }

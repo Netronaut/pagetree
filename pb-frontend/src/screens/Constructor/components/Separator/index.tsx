@@ -3,17 +3,16 @@ import * as React from 'react';
 type SeparatorProps = {
   id: string;
   addPrevComponent: (id: string) => void;
+  isDragging: boolean;
 };
 
-const Separator = ({ id, addPrevComponent }: SeparatorProps) => {
-  const firstSeparator = id === 'separator_0';
+const Separator = ({ id, addPrevComponent, isDragging }: SeparatorProps) => {
   return (
     <div className="separator-wrapper">
       <div
-        className={firstSeparator ? 'separator first' : 'separator'}
+        className={isDragging ? 'separator' : 'separator first'}
         key={`separator_${id}`}
         id={id}
-        style={{ height: 4, width: '100%', borderRadius: 10 }}
       >
         <div
           className="add-prev-component"
