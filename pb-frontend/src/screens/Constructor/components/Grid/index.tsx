@@ -1,24 +1,14 @@
 import * as React from 'react';
 import { Component } from '../../index';
-import { ChangeEvent } from 'react';
-import { useDraggable } from '../../hooks/useDraggable';
+import { ComponentContainer } from './componentsStyles';
 
 type GridProps = {
   key: string;
   element: Component;
 };
 
-const GridComponent = ({ key, element }: GridProps) => {
-  const { draggableProps } = useDraggable();
-
-  return (
-    <div
-      className="component-container"
-      id={element.id}
-      key={key}
-      {...draggableProps}
-    />
-  );
+const GridComponent = ({ key, element, ...rest }: GridProps) => {
+  return <ComponentContainer id={element.id} key={key} {...rest} />;
 };
 
 export default GridComponent;

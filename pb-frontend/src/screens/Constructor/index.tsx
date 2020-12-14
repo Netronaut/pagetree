@@ -1,13 +1,18 @@
 import * as React from 'react';
 import './styles.scss';
 import { ChangeEvent, useEffect, useRef, useState } from 'react';
-import { useDraggable } from './hooks/useDraggable';
 import TextComponent from './components/Text';
 import GridComponent from './components/Grid';
 import Separator from './components/Separator';
 import ComponentWrapper, {
   DroppableComponent,
 } from './components/ComponentWrapper';
+import {
+  ConstructorScreen,
+  DroppableComponentContainer,
+  DroppableContent,
+  Footer,
+} from './componentsStyles';
 
 const ComponentByType = {
   separator: Separator,
@@ -60,8 +65,30 @@ export const Constructor = () => {
   const [displayArr, setDisplayArr] = useState<Component[]>([]);
   const [isDragging, setDragging] = useState(false);
   const nearestSeparator = useRef<number>();
-  const { y, height, draggableProps } = useDraggable();
   const separators = useRef([0]);
+
+  const x = useRef(0);
+  const y = useRef(0);
+  const width = useRef(0);
+  const height = useRef(0);
+
+  const onMouseDown = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+    width.current = e.currentTarget.getBoundingClientRect().width;
+    height.current = e.currentTarget.getBoundingClientRect().height;
+    x.current = e.pageX - e.currentTarget.getBoundingClientRect().left;
+    y.current = e.pageY - e.currentTarget.getBoundingClientRect().top;
+  };
+
+  const onDragStart = (event: React.DragEvent<HTMLDivElement>) => {
+    event.dataTransfer.setData('itemId', event.currentTarget.id);
+    const element = arr.find(({ id }) => id === event.currentTarget.id);
+    if (element) {
+      const itemView = document.getElementById(element.type);
+      if (itemView) {
+        event.dataTransfer.setDragImage(itemView, 250, 70);
+      }
+    }
+  };
 
   useEffect(() => {
     const mixedArray: Component[] = [{ type: 'separator', id: 'separator_0' }];
@@ -109,10 +136,10 @@ export const Constructor = () => {
     });
   };
 
-  const onContentDrugOver = (e: React.DragEvent<HTMLDivElement>) => {
+  const onContentDragOver = (e: React.DragEvent<HTMLDivElement>) => {
     e.preventDefault();
     setDragging(true);
-    const top = e.pageY + getContainerScroll() - y + height / 2;
+    const top = e.pageY + getContainerScroll() - y.current + height.current / 2;
     const diffs = separators.current.map((separatorTop) =>
       Math.abs(separatorTop - top),
     );
@@ -150,7 +177,7 @@ export const Constructor = () => {
     });
   };
 
-  const onContentDrop = (
+  const onDropContent = (
     e: React.DragEvent<HTMLDivElement>,
     isDelete?: boolean,
   ) => {
@@ -185,22 +212,22 @@ export const Constructor = () => {
     }
   };
 
-  const onComponentDrugOver = (e: React.DragEvent<HTMLDivElement>) => {
+  const onFooterDragOver = (e: React.DragEvent<HTMLDivElement>) => {
     e.preventDefault();
     setSeparatorsStyles();
     nearestSeparator.current = undefined;
   };
 
   return (
-    <div className="test-screen">
-      <div
-        className="droppable-content"
+    <ConstructorScreen>
+      <DroppableContent
         id="droppable-content"
-        onDragOver={onContentDrugOver}
-        onDrop={onContentDrop}
+        onDragOver={onContentDragOver}
+        onDrop={onDropContent}
       >
         {displayArr?.map((element: Component) => {
           const { type, id } = element;
+          const isSeparator = isDragging || !!arr.length;
           return (
             <ComponentWrapper
               key={id}
@@ -209,29 +236,32 @@ export const Constructor = () => {
               element={element}
               addPrevComponent={addNextToComponent}
               handleInputChangeText={handleInputChangeText}
-              isDragging={isDragging ? isDragging : !!arr.length}
+              isSeparator={isSeparator}
+              {...{
+                draggable: true,
+                onMouseDown,
+                onDragStart,
+              }}
             />
           );
         })}
-      </div>
-      <div
-        className="footer"
-        onDragOver={onComponentDrugOver}
-        onDrop={(e) => onContentDrop(e, true)}
+      </DroppableContent>
+      <Footer
+        onDragOver={onFooterDragOver}
+        onDrop={(e) => onDropContent(e, true)}
       >
         {droppableComponents?.map((c, i) => {
           return (
-            <div
+            <DroppableComponentContainer
               id={c.type}
               key={`droppable-component-${i}`}
-              className="droppable-component"
-              {...draggableProps}
+              {...{ draggable: true, onMouseDown, onDragStart }}
             >
               {c.title}
-            </div>
+            </DroppableComponentContainer>
           );
         })}
-      </div>
-    </div>
+      </Footer>
+    </ConstructorScreen>
   );
 };

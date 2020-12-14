@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Component } from '../../index';
 import { ChangeEvent } from 'react';
-import { useDraggable } from '../../hooks/useDraggable';
+import { ComponentContainer, Input } from './componentsStyles';
 
 type TextProps = {
   key: string;
@@ -9,20 +9,21 @@ type TextProps = {
   handleInputChangeText: (e: ChangeEvent<HTMLInputElement>) => void;
 };
 
-const TextComponent = ({ element, handleInputChangeText }: TextProps) => {
-  const { draggableProps } = useDraggable();
-
+const TextComponent = ({
+  element,
+  handleInputChangeText,
+  ...rest
+}: TextProps) => {
   return (
-    <div className="component-container" id={element.id} {...draggableProps}>
-      <input
-        className="input-active"
+    <ComponentContainer id={element.id} {...rest}>
+      <Input
         id={element.id}
         type="text"
         value={element.text}
         readOnly
         onChange={handleInputChangeText}
       />
-    </div>
+    </ComponentContainer>
   );
 };
 

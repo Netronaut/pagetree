@@ -1,27 +1,27 @@
 import * as React from 'react';
+import {
+  AddPrevComponentButton,
+  SeparatorView,
+  SeparatorWrapper,
+} from './componentsStyles';
 
 type SeparatorProps = {
   id: string;
+  isSeparator: boolean;
   addPrevComponent: (id: string) => void;
-  isDragging: boolean;
 };
 
-const Separator = ({ id, addPrevComponent, isDragging }: SeparatorProps) => {
+const Separator = ({ id, addPrevComponent, isSeparator }: SeparatorProps) => {
   return (
-    <div className="separator-wrapper">
-      <div
-        className={isDragging ? 'separator' : 'separator first'}
-        key={`separator_${id}`}
-        id={id}
-      >
-        <div
-          className="add-prev-component"
-          onClick={() => addPrevComponent(id)}
-        >
-          +
-        </div>
-      </div>
-    </div>
+    <SeparatorWrapper>
+      {isSeparator && (
+        <SeparatorView key={`separator_${id}`} id={id} className="separator">
+          <AddPrevComponentButton onClick={() => addPrevComponent(id)}>
+            +
+          </AddPrevComponentButton>
+        </SeparatorView>
+      )}
+    </SeparatorWrapper>
   );
 };
 

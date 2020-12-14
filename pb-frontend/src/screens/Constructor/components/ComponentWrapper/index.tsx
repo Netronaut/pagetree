@@ -9,7 +9,7 @@ type ComponentWrapperProps = {
   handleInputChangeText?: (e: ChangeEvent<HTMLInputElement>) => void;
   element?: Component;
   key?: string;
-  isDragging: boolean;
+  isSeparator?: boolean;
 };
 
 type DroppableComponentProps = {
@@ -18,6 +18,7 @@ type DroppableComponentProps = {
   handleInputChangeText?: (e: ChangeEvent<HTMLInputElement>) => void;
   element?: Component;
   key?: string;
+  isSeparator?: boolean;
 };
 
 export type DroppableComponent = React.ComponentType<DroppableComponentProps>;
