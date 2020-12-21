@@ -1,13 +1,13 @@
 import styled from 'styled-components';
 
-export const ComponentContainer = styled.div({
-  width: '100%',
-  height: '100px',
-  borderRadius: '20px',
-  border: '1px solid',
-  boxSizing: 'border-box',
-  padding: '10px',
-});
+export const ComponentContainer = styled.div`
+  width: 100%;
+  height: 100px;
+  border: 1px solid;
+  box-sizing: border-box;
+  padding: 10px;
+  position: relative;
+`;
 
 export const Input = styled.input({
   textTransform: 'capitalize',

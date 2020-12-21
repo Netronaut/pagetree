@@ -1,28 +1,15 @@
-import * as React from 'react';
-import { Component } from '../../index';
-import { ChangeEvent } from 'react';
+import React from 'react';
 import { ComponentContainer, Input } from './componentsStyles';
+import { Component } from '../../types';
 
 type TextProps = {
-  key: string;
   element: Component;
-  handleInputChangeText: (e: ChangeEvent<HTMLInputElement>) => void;
 };
 
-const TextComponent = ({
-  element,
-  handleInputChangeText,
-  ...rest
-}: TextProps) => {
+const TextComponent = ({ element, ...rest }: TextProps) => {
   return (
     <ComponentContainer id={element.id} {...rest}>
-      <Input
-        id={element.id}
-        type="text"
-        value={element.text}
-        readOnly
-        onChange={handleInputChangeText}
-      />
+      <Input id={element.id} type="text" value={element.text} readOnly />
     </ComponentContainer>
   );
 };
