@@ -10,7 +10,7 @@ const components = [
 
 const Catalog = () => {
   const onDragStart = (e: React.DragEvent<HTMLDivElement>) => {
-    e.dataTransfer.setData('itemId', e.currentTarget.id);
+    e.dataTransfer.setData('newItemType', e.currentTarget.id);
 
     const itemView = document.getElementById(e.currentTarget.id);
     if (itemView) {

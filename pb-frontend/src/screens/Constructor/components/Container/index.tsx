@@ -9,8 +9,6 @@ type ContainerProps = {
   Component: DroppableComponent;
   id: string;
   element: Component;
-  path: number[];
-  parentDirection: 'row' | 'column';
 };
 
 type DroppableComponentProps = {
@@ -34,18 +32,12 @@ const getInsertion = ({ x, y, width, height }: Record<string, number>) => {
   return InsertTo.undetermined;
 };
 
-const Container: React.FC<ContainerProps> = ({
-  Component,
-  id,
-  element,
-  path,
-  parentDirection,
-}) => {
+const Container: React.FC<ContainerProps> = ({ Component, id, element }) => {
   const { add } = useContext(TreeContext);
   const [insertTo, setInsertTo] = useState<InsertTo>(InsertTo.undetermined);
 
   const onDragStart = (e: React.DragEvent<HTMLDivElement>) => {
-    e.dataTransfer.setData('pathFrom', path.join('-'));
+    e.dataTransfer.setData('fromId', id);
 
     const itemView = document.getElementById(element.type);
     if (itemView) {
@@ -76,42 +68,7 @@ const Container: React.FC<ContainerProps> = ({
   const onDrop = (e: React.DragEvent<HTMLDivElement>) => {
     e.stopPropagation();
 
-    console.log('parentDirection ==>', parentDirection);
-    let pathTo;
-    if (parentDirection === 'column') {
-      if (insertTo === InsertTo.top) {
-        pathTo = path;
-      }
-      if (insertTo === InsertTo.bottom) {
-        pathTo = path.map((pathNumber, i) =>
-          i === path.length - 1 ? pathNumber + 1 : pathNumber,
-        );
-      }
-      if (insertTo === InsertTo.left) {
-        pathTo = path.concat([0]);
-      }
-      if (insertTo === InsertTo.right) {
-        pathTo = path.concat([1]);
-      }
-    }
-    if (parentDirection === 'row') {
-      if (insertTo === InsertTo.left) {
-        pathTo = path;
-      }
-      if (insertTo === InsertTo.right) {
-        pathTo = path.map((pathNumber, i) =>
-          i === path.length - 1 ? pathNumber + 1 : pathNumber,
-        );
-      }
-      if (insertTo === InsertTo.top) {
-        pathTo = path.concat([0]);
-      }
-      if (insertTo === InsertTo.bottom) {
-        pathTo = path.concat([1]);
-      }
-    }
-
-    add(pathTo, e);
+    add(e, id, insertTo);
 
     setInsertTo(InsertTo.undetermined);
   };

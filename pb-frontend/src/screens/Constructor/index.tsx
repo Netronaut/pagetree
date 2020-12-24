@@ -1,12 +1,7 @@
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import './styles.scss';
 
 import Catalog from './components/Catalog';
-import {
-  Direction as DirectionType,
-  add as addToTree,
-  remove as removeFromTree,
-} from 'src/utils/tree';
 
 import {
   ConstructorScreen,
@@ -14,75 +9,46 @@ import {
   Footer,
 } from './componentsStyles';
 import { Direction } from './components/Direction';
-
-const testData = {
-  direction: 'column',
-  id: '0',
-  components: [
-    {
-      direction: 'row',
-      id: '0',
-      components: [
-        { id: '0-0', type: 'text' },
-        { id: '0-1', type: 'text' },
-        { id: '0-2', type: 'text' },
-      ],
-    },
-    {
-      direction: 'row',
-      id: '1',
-      components: [
-        { id: '1-0', type: 'text' },
-        { id: '1-1', type: 'text' },
-        {
-          direction: 'column',
-          id: '1-2',
-          components: [
-            { id: '1-2-0', type: 'text' },
-            { id: '1-2-1', type: 'text' },
-          ],
-        },
-      ],
-    },
-    {
-      direction: 'row',
-      id: '2',
-      components: [
-        { id: '2-0', type: 'text' },
-        { id: '2-1', type: 'text' },
-        {
-          direction: 'column',
-          id: '2-2',
-          components: [
-            { id: '2-2-0', type: 'text' },
-            { id: '2-2-1', type: 'text' },
-          ],
-        },
-      ],
-    },
-  ],
-};
+import { InsertTo } from './components/Container/componentsStyles';
+import { Tree, Item } from '../../utils/tree';
 
 export const TreeContext = React.createContext({} as any);
 
 const { Provider } = TreeContext;
 
 export const Constructor = () => {
-  const [arr, setArr] = useState<DirectionType>(testData as DirectionType);
+  const treeRef = useRef(new Tree());
+  const tree = treeRef.current;
+  const [root, setRoot] = useState(treeRef.current.getValue());
 
-  const add = (pathTo: number[], e: React.DragEvent<HTMLDivElement>) => {
-    const pathFrom = e.dataTransfer.getData('pathFrom');
-    console.log('pathFrom ==>', pathFrom, 'pathTo ==>', pathTo);
-    const newType = e.dataTransfer.getData('newType');
-    if (pathFrom) {
-      const { item, result, newPathTo = pathTo } = removeFromTree(
-        arr,
-        pathFrom.split('-').map(Number),
-      );
-      const newTree = addToTree(result, newPathTo, item);
-      setArr(newTree);
+  const add = (
+    e: React.DragEvent<HTMLDivElement>,
+    toId?: string,
+    side?: InsertTo,
+  ) => {
+    const fromId = e.dataTransfer.getData('fromId');
+    if (fromId === toId) {
+      return;
     }
-    // addToTree(arr, path, item);
+    if (!fromId) {
+      return addNew(e, toId, side);
+    }
+
+    const removedItem = tree.remove(fromId);
+    if (removedItem) {
+      tree.add(removedItem, toId, side);
+      setRoot(tree.getValue());
+    }
+  };
+
+  const addNew = (
+    e: React.DragEvent<HTMLDivElement>,
+    toId?: string,
+    side?: InsertTo,
+  ) => {
+    const type = e.dataTransfer.getData('newItemType');
+    tree.add(new Item({ type }), toId, side);
+    setRoot(tree.getValue());
   };
 
   return (
@@ -91,11 +57,9 @@ export const Constructor = () => {
         <DroppableContent
           id="droppable-content"
           onDragOver={(e) => e.preventDefault()}
+          onDrop={addNew}
         >
-          <Direction
-            direction={arr.direction as DirectionType['direction']}
-            components={arr.components}
-          />
+          <Direction direction={root.direction} components={root.components} />
         </DroppableContent>
         <Footer onDragOver={(e) => e.preventDefault()}>
           <Catalog />
