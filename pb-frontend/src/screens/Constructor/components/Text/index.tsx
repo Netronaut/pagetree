@@ -9,7 +9,7 @@ type TextProps = {
 const TextComponent = ({ element, ...rest }: TextProps) => {
   return (
     <ComponentContainer id={element.id} {...rest}>
-      <Input id={element.id} type="text" value={element.text} readOnly />
+      <Input id={element.id} type="text" value={element.id} readOnly />
     </ComponentContainer>
   );
 };

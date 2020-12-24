@@ -1,83 +1,106 @@
 import React, { useState } from 'react';
-import { v4 } from 'uuid';
 import './styles.scss';
 
 import Catalog from './components/Catalog';
-import Content from './components/Content';
-import { Component, ComponentType } from './types';
+import {
+  Direction as DirectionType,
+  add as addToTree,
+  remove as removeFromTree,
+} from 'src/utils/tree';
 
 import {
   ConstructorScreen,
   DroppableContent,
   Footer,
 } from './componentsStyles';
+import { Direction } from './components/Direction';
+
+const testData = {
+  direction: 'column',
+  id: '0',
+  components: [
+    {
+      direction: 'row',
+      id: '0',
+      components: [
+        { id: '0-0', type: 'text' },
+        { id: '0-1', type: 'text' },
+        { id: '0-2', type: 'text' },
+      ],
+    },
+    {
+      direction: 'row',
+      id: '1',
+      components: [
+        { id: '1-0', type: 'text' },
+        { id: '1-1', type: 'text' },
+        {
+          direction: 'column',
+          id: '1-2',
+          components: [
+            { id: '1-2-0', type: 'text' },
+            { id: '1-2-1', type: 'text' },
+          ],
+        },
+      ],
+    },
+    {
+      direction: 'row',
+      id: '2',
+      components: [
+        { id: '2-0', type: 'text' },
+        { id: '2-1', type: 'text' },
+        {
+          direction: 'column',
+          id: '2-2',
+          components: [
+            { id: '2-2-0', type: 'text' },
+            { id: '2-2-1', type: 'text' },
+          ],
+        },
+      ],
+    },
+  ],
+};
+
+export const TreeContext = React.createContext({} as any);
+
+const { Provider } = TreeContext;
 
 export const Constructor = () => {
-  const [arr, setArr] = useState<Component[]>([]);
+  const [arr, setArr] = useState<DirectionType>(testData as DirectionType);
 
-  const addContent = (index: number, isBefore?: boolean) => (item: string) => {
-    const oldIndex = arr.findIndex(({ id }) => id === item);
-    if (index !== oldIndex) {
-      const newArr = [...arr];
-      if (oldIndex >= 0) {
-        const removedItems = newArr.splice(oldIndex, 1);
-        newArr.splice(
-          index > oldIndex || isBefore ? index : index + 1,
-          0,
-          removedItems[0],
-        );
-      } else {
-        newArr.splice(isBefore ? index : index + 1, 0, {
-          text: `${item} ${newArr.length + 1}`,
-          id: v4(),
-          type: item as ComponentType,
-        });
-      }
-      setArr(newArr);
+  const add = (pathTo: number[], e: React.DragEvent<HTMLDivElement>) => {
+    const pathFrom = e.dataTransfer.getData('pathFrom');
+    console.log('pathFrom ==>', pathFrom, 'pathTo ==>', pathTo);
+    const newType = e.dataTransfer.getData('newType');
+    if (pathFrom) {
+      const { item, result, newPathTo = pathTo } = removeFromTree(
+        arr,
+        pathFrom.split('-').map(Number),
+      );
+      const newTree = addToTree(result, newPathTo, item);
+      setArr(newTree);
     }
-  };
-
-  const addComponent = (e: React.DragEvent<HTMLDivElement>) => {
-    const itemId: string = e.dataTransfer.getData('itemId');
-    if (['text'].includes(itemId)) {
-      setArr((prev) => [
-        ...prev,
-        {
-          text: `${itemId} ${prev.length + 1}`,
-          id: v4(),
-          type: itemId as ComponentType,
-        },
-      ]);
-    }
-  };
-
-  const deleteComponent = (e: React.DragEvent<HTMLDivElement>) => {
-    const itemId: string = e.dataTransfer.getData('itemId');
-    setArr((prev) => {
-      return prev.filter(({ id }) => id !== itemId);
-    });
-  };
-
-  const onContentDragOver = (e: React.DragEvent<HTMLDivElement>) => {
-    e.preventDefault();
-  };
-
-  const onFooterDragOver = (e: React.DragEvent<HTMLDivElement>) => {
-    e.preventDefault();
+    // addToTree(arr, path, item);
   };
 
   return (
-    <ConstructorScreen>
-      <DroppableContent
-        id="droppable-content"
-        onDrop={addComponent}
-        onDragOver={onContentDragOver}
-      >
-        <Content content={arr} addContent={addContent} />
-      </DroppableContent>
-      <Footer onDrop={deleteComponent} onDragOver={onFooterDragOver}>
-        <Catalog />
-      </Footer>
-    </ConstructorScreen>
+    <Provider value={{ add }}>
+      <ConstructorScreen>
+        <DroppableContent
+          id="droppable-content"
+          onDragOver={(e) => e.preventDefault()}
+        >
+          <Direction
+            direction={arr.direction as DirectionType['direction']}
+            components={arr.components}
+          />
+        </DroppableContent>
+        <Footer onDragOver={(e) => e.preventDefault()}>
+          <Catalog />
+        </Footer>
+      </ConstructorScreen>
+    </Provider>
   );
 };
