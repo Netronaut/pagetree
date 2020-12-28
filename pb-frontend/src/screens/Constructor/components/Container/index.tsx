@@ -81,7 +81,6 @@ const Container: React.FC<ContainerProps> = ({ Component, id, element }) => {
     <MainContainer
       {...{
         draggable: true,
-        resizable: true,
         onDragStart,
         onDragLeave,
         onDragOver,

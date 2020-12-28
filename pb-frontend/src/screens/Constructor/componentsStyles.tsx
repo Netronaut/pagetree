@@ -18,7 +18,7 @@ export const Footer = styled.div({
   position: 'absolute',
   bottom: 0,
   width: '100%',
-  height: '150px',
+  height: '10%',
   background: '#f1f0f0',
   boxSizing: 'border-box',
   display: 'flex',

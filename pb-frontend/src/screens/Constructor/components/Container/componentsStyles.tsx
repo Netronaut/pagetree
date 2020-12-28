@@ -10,18 +10,13 @@ export enum InsertTo {
 }
 
 export const MainContainer = styled.div<Props>`
-  /*  resize: both;
-  overflow: auto;
-  min-height: 50px;
-  min-width: 50px;*/
   flex-grow: 1;
-
   position: relative;
   display: flex;
   flex-direction: column;
-  border: 1px solid;
   justify-content: center;
   align-content: center;
+  border: 1px solid;
   ${({ horizontal }) => {
     if (horizontal) {
       return `
@@ -39,23 +34,17 @@ export const Indicator = styled.div<{
   border-radius: 10px;
   background: #098edf;
   display: none;
-
+  z-index: -1;
   ${({ position }) => {
-    if (position === 'top' || position === 'bottom') {
+    if (position !== 'undetermined') {
       return `
          display: flex;
-         width: 100%;
-         height: 5px;
+         width: ${position === 'top' || position === 'bottom' ? '100%' : '5px'};
+         height: ${
+           position === 'left' || position === 'right' ? '100%' : '5px'
+         };
          ${position}: 0px;
           `;
-    }
-    if (position === 'left' || position === 'right') {
-      return `
-        display: flex;
-        width: 5px;
-        height: 100%;
-        ${position}: 0px;
-    `;
     }
   }}
 `;

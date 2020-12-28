@@ -144,7 +144,11 @@ export class Tree {
     const itemToAdd = this.find((node) => node.id === toId);
     if (itemToAdd) {
       if (itemToAdd.direction) {
-        itemToAdd.add(item);
+        if (itemToAdd.parent) {
+          itemToAdd.parent.add(item, itemToAdd, side);
+        } else {
+          itemToAdd.add(item);
+        }
       } else {
         itemToAdd.add(item, side);
       }
