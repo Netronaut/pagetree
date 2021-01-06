@@ -141,7 +141,9 @@ export class Tree {
   }
 
   add(item, toId = '0', side) {
-    const itemToAdd = this.find((node) => node.id === toId);
+    const itemToAdd = this.find((node) => {
+      return node.id === toId;
+    });
     if (itemToAdd) {
       if (itemToAdd.direction) {
         if (itemToAdd.parent) {

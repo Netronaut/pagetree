@@ -1,5 +1,6 @@
 import React from 'react';
 import { DroppableComponentContainer } from './componentsStyles';
+import useDragAndDrop from '../../../../hooks/useDragAndDrop';
 
 const components = [
   {
@@ -9,15 +10,7 @@ const components = [
 ];
 
 const Catalog = () => {
-  const onDragStart = (e: React.DragEvent<HTMLDivElement>) => {
-    e.dataTransfer.setData('newItemType', e.currentTarget.id);
-
-    const itemView = document.getElementById(e.currentTarget.id);
-    if (itemView) {
-      e.dataTransfer.setDragImage(itemView, 0, 0);
-    }
-  };
-
+  const { onDragStart } = useDragAndDrop({});
   return (
     <>
       {components?.map((c, i) => (

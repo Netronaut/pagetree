@@ -9,11 +9,10 @@ import {
   Footer,
 } from './componentsStyles';
 import { Direction } from './components/Direction';
+import { Item, Tree } from '../../utils/tree';
 import { InsertTo } from './components/Container/componentsStyles';
-import { Tree, Item } from '../../utils/tree';
 
 export const TreeContext = React.createContext({} as any);
-
 const { Provider } = TreeContext;
 
 export const Constructor = () => {
