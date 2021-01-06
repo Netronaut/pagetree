@@ -1,13 +1,6 @@
 import styled from 'styled-components';
+import { TSide } from 'src/utils/tree';
 type Props = { horizontal?: boolean };
-
-export enum InsertTo {
-  undetermined = 'undetermined',
-  top = 'top',
-  right = 'right',
-  bottom = 'bottom',
-  left = 'left',
-}
 
 export const MainContainer = styled.div<Props>`
   flex-grow: 1;
@@ -28,7 +21,7 @@ export const MainContainer = styled.div<Props>`
 `;
 
 export const Indicator = styled.div<{
-  position: InsertTo;
+  position?: TSide;
 }>`
   position: absolute;
   border-radius: 10px;

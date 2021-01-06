@@ -1,12 +1,12 @@
 import React from 'react';
-import { Component, ComponentByType } from '../../types';
-import Container from '../Container';
-import { Indicator } from '../Container/componentsStyles';
+import { ComponentRenderer } from '../ComponentRenderer';
+import { Indicator } from '../ComponentRenderer/componentsStyles';
 import { DirectionWrapper } from './componentsStyles';
-import useDragAndDrop from '../../../../hooks/useDragAndDrop';
+import { useDragAndDrop } from 'src/hooks/useDragAndDrop';
+import { TDirection } from 'src/utils/tree';
 
 type Props = {
-  direction: 'row' | 'column';
+  direction: TDirection;
   components: Array<any>;
   id?: string;
 };
@@ -21,35 +21,20 @@ export const Direction: React.FC<Props> = ({ direction, components, id }) => {
     <DirectionWrapper
       direction={direction}
       style={{ flexDirection: direction, flexGrow: 1 }}
-      {...{
-        onDragLeave,
-        onDragOver,
-        onDrop,
-      }}
+      {...(id
+        ? {
+            onDragLeave,
+            onDragOver,
+            onDrop,
+          }
+        : {})}
     >
       <Indicator position={insertTo} />
       {components.map((component) => {
         if (component.direction) {
-          return (
-            <Direction
-              key={component.id}
-              components={component.components}
-              direction={component.direction}
-              id={component.id}
-            />
-          );
+          return <Direction key={component.id} {...component} />;
         }
-        const Component = ComponentByType[component.type as 'text'];
-        return (
-          <Container
-            id={component.id}
-            key={component.id}
-            element={component}
-            Component={ComponentByType[component.type as 'text']}
-          >
-            <Component element={component} />
-          </Container>
-        );
+        return <ComponentRenderer key={component.id} component={component} />;
       })}
     </DirectionWrapper>
   );

@@ -1,17 +1,14 @@
 import React from 'react';
 import { ComponentContainer, Input } from './componentsStyles';
-import { Component } from '../../types';
 
-type TextProps = {
-  element: Component;
+type Props = {
+  id: string;
 };
 
-const TextComponent = ({ element, ...rest }: TextProps) => {
+export const Text = ({ id }: Props) => {
   return (
-    <ComponentContainer id={element.id} {...rest}>
-      <Input type="text" value={element.id} readOnly />
+    <ComponentContainer id={id}>
+      <Input type="text" value={id} readOnly />
     </ComponentContainer>
   );
 };
-
-export default TextComponent;

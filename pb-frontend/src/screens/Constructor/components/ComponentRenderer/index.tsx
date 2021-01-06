@@ -1,21 +1,18 @@
 import React from 'react';
-import { Component } from '../../types';
 import { Indicator, MainContainer } from './componentsStyles';
-import useDragAndDrop from '../../../../hooks/useDragAndDrop';
-
-export type DroppableComponent = React.ComponentType<DroppableComponentProps>;
+import { useDragAndDrop } from 'src/hooks/useDragAndDrop';
+import { Item } from 'src/utils/tree';
+import { componentByType } from '../../../../utils/componentTypes';
 
 type ContainerProps = {
-  Component: DroppableComponent;
-  id: string;
-  element: Component;
+  component: Item;
 };
 
-type DroppableComponentProps = {
-  element: Component;
-};
+export const ComponentRenderer: React.FC<ContainerProps> = ({ component }) => {
+  const { id, type } = component;
 
-const Container: React.FC<ContainerProps> = ({ Component, id, element }) => {
+  const Component = componentByType[type];
+
   const {
     onDragLeave,
     onDragStart,
@@ -35,9 +32,7 @@ const Container: React.FC<ContainerProps> = ({ Component, id, element }) => {
       }}
     >
       <Indicator position={insertTo} />
-      <Component element={element} />
+      <Component id={id} />
     </MainContainer>
   );
 };
-
-export default Container;

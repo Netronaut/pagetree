@@ -1,39 +1,36 @@
-import { InsertTo } from '../screens/Constructor/components/Container/componentsStyles';
 import React, { useContext, useState } from 'react';
 import { TreeContext } from '../screens/Constructor';
+import { sidesByDirection, TDirection, TSide } from '../utils/tree';
 
 const getInsertion = ({ x, y, width, height }: Record<string, number>) => {
   if (x < 20) {
-    return InsertTo.left;
+    return TSide.left;
   }
   if (width - 20 < x) {
-    return InsertTo.right;
+    return TSide.right;
   }
   if (y < height / 2) {
-    return InsertTo.top;
+    return TSide.top;
   }
   if (y > height / 2) {
-    return InsertTo.bottom;
+    return TSide.bottom;
   }
 
-  return InsertTo.undetermined;
-};
-
-const sidesForDirections = {
-  column: ['top', 'bottom'],
-  row: ['left', 'right'],
+  return TSide.undetermined;
 };
 
 type DragAndDropProps = {
-  direction?: 'row' | 'column';
+  direction?: TDirection;
   id?: string;
 };
 
-const useDragAndDrop = ({ direction, id }: DragAndDropProps) => {
+export const useDragAndDrop = ({ direction, id }: DragAndDropProps) => {
   const { add } = useContext(TreeContext);
-  const [insertTo, setInsertTo] = useState<InsertTo>(InsertTo.undetermined);
+  const [insertTo, setInsertTo] = useState<TSide>(TSide.undetermined);
 
   const onDragStart = (e: React.DragEvent<HTMLDivElement>) => {
+    e.stopPropagation();
+    console.log(direction, id, e);
     e.dataTransfer.setData(
       e.currentTarget.id ? 'newItemType' : 'fromId',
       id ? id : e.currentTarget.id,
@@ -62,7 +59,7 @@ const useDragAndDrop = ({ direction, id }: DragAndDropProps) => {
     const newInsertTo = getInsertion({ x, y, width, height });
 
     if (newInsertTo !== insertTo) {
-      if (direction && !sidesForDirections[direction].includes(newInsertTo)) {
+      if (direction && !sidesByDirection[direction].includes(newInsertTo)) {
         setInsertTo(newInsertTo);
       } else setInsertTo(newInsertTo);
     }
@@ -72,11 +69,11 @@ const useDragAndDrop = ({ direction, id }: DragAndDropProps) => {
     e.stopPropagation();
     add(e, id, insertTo);
 
-    setInsertTo(InsertTo.undetermined);
+    setInsertTo(TSide.undetermined);
   };
 
   const onDragLeave = () => {
-    setInsertTo(InsertTo.undetermined);
+    setInsertTo(TSide.undetermined);
   };
 
   return {
@@ -87,5 +84,3 @@ const useDragAndDrop = ({ direction, id }: DragAndDropProps) => {
     insertTo,
   };
 };
-
-export default useDragAndDrop;

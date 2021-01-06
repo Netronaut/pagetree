@@ -12,11 +12,11 @@ export const DirectionWrapper = styled.div<{
   ${({ direction }) => {
     if (direction === 'row') {
       return `
-          padding: 10px 0;
+          padding: 5px 0;
           `;
     } else if (direction === 'column') {
       return `
-        padding: 0 10px;
+        padding: 0 5px;
           `;
     }
   }}

@@ -1,6 +1,6 @@
 import React from 'react';
 import { DroppableComponentContainer } from './componentsStyles';
-import useDragAndDrop from '../../../../hooks/useDragAndDrop';
+import { useDragAndDrop } from 'src/hooks/useDragAndDrop';
 
 const components = [
   {

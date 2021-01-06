@@ -9,10 +9,11 @@ import {
   Footer,
 } from './componentsStyles';
 import { Direction } from './components/Direction';
-import { Item, Tree } from '../../utils/tree';
-import { InsertTo } from './components/Container/componentsStyles';
+import { Item, Tree, TSide } from '../../utils/tree';
+import { ComponentType } from '../../utils/componentTypes';
 
 export const TreeContext = React.createContext({} as any);
+
 const { Provider } = TreeContext;
 
 export const Constructor = () => {
@@ -23,7 +24,7 @@ export const Constructor = () => {
   const add = (
     e: React.DragEvent<HTMLDivElement>,
     toId?: string,
-    side?: InsertTo,
+    side?: TSide,
   ) => {
     const fromId = e.dataTransfer.getData('fromId');
     if (fromId === toId) {
@@ -43,10 +44,13 @@ export const Constructor = () => {
   const addNew = (
     e: React.DragEvent<HTMLDivElement>,
     toId?: string,
-    side?: InsertTo,
+    side?: TSide,
   ) => {
     const type = e.dataTransfer.getData('newItemType');
-    tree.add(new Item({ type }), toId, side);
+    if (!type) {
+      return;
+    }
+    tree.add(new Item(type as ComponentType), toId, side);
     setRoot(tree.getValue());
   };
 
