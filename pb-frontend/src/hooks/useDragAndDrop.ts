@@ -93,9 +93,11 @@ export const useDragAndDrop = (id?: string) => {
   };
 
   const onDragLeave = () => {
-    if (insertTo !== TSide.undetermined) {
-      setInsertTo(TSide.undetermined);
-    }
+    setTimeout(() => {
+      if (insertTo !== TSide.undetermined) {
+        setInsertTo(TSide.undetermined);
+      }
+    }, 10);
   };
 
   return {

@@ -1,8 +1,8 @@
 import styled from 'styled-components';
 import { TSide } from 'src/utils/tree';
 
-const getDimensions = (position: TSide) => {
-  const dimensions = ['5px', '100%'];
+const getDimensions = (position: TSide, inDirection?: boolean) => {
+  const dimensions = ['10px', `calc(100% + ${!inDirection ? 2 : 0}px)`];
   let offset = TSide.bottom;
   if ([TSide.top, TSide.bottom].includes(position)) {
     dimensions.reverse();
@@ -37,17 +37,17 @@ export const Indicator = styled.div<{
   border-radius: 10px;
   background: #098edf;
   display: none;
-  z-index: ${({ inDirection }) => (inDirection ? -1 : 0)};
-  ${({ position }) => {
+  z-index: 100;
+  ${({ position, inDirection }) => {
     if (position && position !== TSide.undetermined) {
-      const { width, height, offset } = getDimensions(position);
+      const { width, height, offset } = getDimensions(position, inDirection);
 
       return `
          display: flex;
          width: ${width};
          height: ${height};
-         ${position}: 0px;
-         ${offset}: 0px;
+         ${position}: -5.5px;
+         ${offset}: ${inDirection ? 0 : -1}px;
          pointer-events: none;
           `;
     }
