@@ -10,7 +10,7 @@ const components = [
 ];
 
 const Catalog = () => {
-  const { onDragStart } = useDragAndDrop({});
+  const { onDragStart } = useDragAndDrop();
   return (
     <>
       {components?.map((c, i) => (

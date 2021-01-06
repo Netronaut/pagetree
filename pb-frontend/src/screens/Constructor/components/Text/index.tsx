@@ -1,14 +1,18 @@
 import React from 'react';
-import { ComponentContainer, Input } from './componentsStyles';
+import { Input } from './componentsStyles';
 
 type Props = {
   id: string;
+  pointerEventsDisabled: boolean;
 };
 
-export const Text = ({ id }: Props) => {
+export const Text = ({ id, pointerEventsDisabled }: Props) => {
   return (
-    <ComponentContainer id={id}>
-      <Input type="text" value={id} readOnly />
-    </ComponentContainer>
+    <Input
+      type="text"
+      value={id}
+      readOnly
+      pointerEventsDisabled={pointerEventsDisabled}
+    />
   );
 };

@@ -34,9 +34,16 @@ export const Constructor = () => {
       return addNew(e, toId, side);
     }
 
-    const removedItem = tree.remove(fromId);
+    const { removedItem, lastComponentId, removedContainerId } = tree.remove(
+      fromId,
+    );
+
     if (removedItem) {
-      tree.add(removedItem, toId, side);
+      tree.add(
+        removedItem,
+        removedContainerId === toId ? lastComponentId : toId,
+        side,
+      );
       setRoot(tree.getValue());
     }
   };

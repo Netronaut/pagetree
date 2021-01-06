@@ -1,8 +1,8 @@
 import React from 'react';
-import { Indicator, MainContainer } from './componentsStyles';
+import { Indicator, Container } from './componentsStyles';
 import { useDragAndDrop } from 'src/hooks/useDragAndDrop';
-import { Item } from 'src/utils/tree';
-import { componentByType } from '../../../../utils/componentTypes';
+import { Item, TSide } from 'src/utils/tree';
+import { componentByType } from 'src/utils/componentTypes';
 
 type ContainerProps = {
   component: Item;
@@ -19,10 +19,12 @@ export const ComponentRenderer: React.FC<ContainerProps> = ({ component }) => {
     onDragOver,
     onDrop,
     insertTo,
-  } = useDragAndDrop({ id });
+  } = useDragAndDrop(id);
 
   return (
-    <MainContainer
+    <Container
+      id={id}
+      insertTo={insertTo}
       {...{
         draggable: true,
         onDragStart,
@@ -32,7 +34,10 @@ export const ComponentRenderer: React.FC<ContainerProps> = ({ component }) => {
       }}
     >
       <Indicator position={insertTo} />
-      <Component id={id} />
-    </MainContainer>
+      <Component
+        id={id}
+        pointerEventsDisabled={insertTo && insertTo !== TSide.undetermined}
+      />
+    </Container>
   );
 };

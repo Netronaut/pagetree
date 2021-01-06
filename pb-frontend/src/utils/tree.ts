@@ -114,16 +114,25 @@ class Container {
 
     const [removedItem] = this.components.splice(index, 1);
 
+    let lastComponentId;
+    let removedContainerId;
+
     if (this.components.length === 1 && this.parent) {
       const lastComponent = this.components[0] as Container;
       if (lastComponent.direction === this.parent.direction) {
         this.parent.replace(this, ...lastComponent.components);
       } else {
+        removedContainerId = this.id;
+        lastComponentId = lastComponent.id;
         this.parent.replace(this, lastComponent);
       }
     }
 
-    return removedItem as Item;
+    return { removedItem, lastComponentId, removedContainerId } as {
+      removedItem: Item;
+      lastComponentId?: string;
+      removedContainerId?: string;
+    };
   }
 
   replace(item: Container, ...items: TNode[]) {

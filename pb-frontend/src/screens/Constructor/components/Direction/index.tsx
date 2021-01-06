@@ -12,10 +12,7 @@ type Props = {
 };
 
 export const Direction: React.FC<Props> = ({ direction, components, id }) => {
-  const { onDragLeave, onDragOver, insertTo, onDrop } = useDragAndDrop({
-    direction,
-    id,
-  });
+  const { onDragLeave, onDragOver, insertTo, onDrop } = useDragAndDrop(id);
 
   return (
     <DirectionWrapper
@@ -29,7 +26,7 @@ export const Direction: React.FC<Props> = ({ direction, components, id }) => {
           }
         : {})}
     >
-      <Indicator position={insertTo} />
+      <Indicator position={insertTo} inDirection />
       {components.map((component) => {
         if (component.direction) {
           return <Direction key={component.id} {...component} />;
