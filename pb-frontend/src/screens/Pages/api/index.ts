@@ -1,5 +1,5 @@
-import { TBasePage, TPage, TPages } from '../../../types';
-import { api } from '../../../api';
+import { TBasePage, TPage, TPages } from 'src/types';
+import { api } from 'src/api';
 
 export const getPages = () => {
   return api.get<TPages>('/page/all').then((res) => res.data);

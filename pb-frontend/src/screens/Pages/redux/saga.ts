@@ -1,7 +1,7 @@
 import { all } from 'redux-saga/effects';
 import actions from './actions';
 import * as PagesAPI from '../api';
-import makeApiCall from '../../../redux/makeApiCall';
+import makeApiCall from 'src/redux/makeApiCall';
 
 export default function* () {
   yield all([
