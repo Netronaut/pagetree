@@ -17,7 +17,6 @@ export const Direction: React.FC<Props> = ({ direction, components, id }) => {
   return (
     <DirectionWrapper
       direction={direction}
-      style={{ flexDirection: direction, flexGrow: 1 }}
       {...(id
         ? {
             onDragLeave,

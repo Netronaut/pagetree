@@ -8,7 +8,7 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "types": "tsc --noEmit",
-    "lint": "eslint '*/**/*.{ts,tsx}' --quiet --fix"
+    "lint": "eslint '*/**/*.{ts,tsx}' --fix --max-warnings=0"
   },
   "dependencies": {
     "axios": "^0.21.0",
