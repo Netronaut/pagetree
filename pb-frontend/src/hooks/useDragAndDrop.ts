@@ -77,15 +77,6 @@ export const useDragAndDrop = (id?: string) => {
   };
 
   const onDrop = (e: React.DragEvent<HTMLDivElement>) => {
-    const itemId = e.dataTransfer.getData('fromId');
-
-    if (itemId) {
-      const draggedItem = document.getElementById(itemId);
-      if (draggedItem) {
-        draggedItem.style.opacity = '1';
-      }
-    }
-
     e.stopPropagation();
     add(e, id, insertTo);
 

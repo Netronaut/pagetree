@@ -16,6 +16,15 @@ export const TreeContext = React.createContext({} as any);
 
 const { Provider } = TreeContext;
 
+const makeElementVisible = (elementId: string) => {
+  if (elementId) {
+    const draggedItem = document.getElementById(elementId);
+    if (draggedItem) {
+      draggedItem.style.opacity = '1';
+    }
+  }
+};
+
 export const Constructor = () => {
   const treeRef = useRef(new Tree());
   const tree = treeRef.current;
@@ -27,6 +36,9 @@ export const Constructor = () => {
     side?: TSide,
   ) => {
     const fromId = e.dataTransfer.getData('fromId');
+
+    makeElementVisible(fromId);
+
     if (fromId === toId) {
       return;
     }
@@ -55,6 +67,8 @@ export const Constructor = () => {
   ) => {
     const type = e.dataTransfer.getData('newItemType');
     if (!type) {
+      const fromId = e.dataTransfer.getData('fromId');
+      makeElementVisible(fromId);
       return;
     }
     tree.add(new Item(type as ComponentType), toId, side);
