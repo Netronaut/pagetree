@@ -61,6 +61,13 @@ export const Constructor = () => {
     setRoot(tree.getValue());
   };
 
+  const remove = (id: string) => {
+    if (id) {
+      tree.remove(id);
+      setRoot(tree.getValue());
+    }
+  };
+
   return (
     <Provider value={{ add }}>
       <ConstructorScreen>
@@ -71,7 +78,10 @@ export const Constructor = () => {
         >
           <Direction direction={root.direction} components={root.components} />
         </DroppableContent>
-        <Footer onDragOver={(e) => e.preventDefault()}>
+        <Footer
+          onDragOver={(e) => e.preventDefault()}
+          onDrop={(e) => remove(e.dataTransfer.getData('fromId'))}
+        >
           <Catalog />
         </Footer>
       </ConstructorScreen>
