@@ -1,5 +1,4 @@
 import * as React from 'react';
-import './styles.scss';
 import { ChangeEvent, useEffect, useRef, useState } from 'react';
 import TextComponent from './components/Text';
 import GridComponent from './components/Grid';
