@@ -3,15 +3,13 @@ import { ComponentRenderer } from '../ComponentRenderer';
 import { Indicator } from '../ComponentRenderer/componentsStyles';
 import { DirectionWrapper } from './componentsStyles';
 import { useDragAndDrop } from 'src/hooks/useDragAndDrop';
-import { TDirection } from 'src/utils/tree';
+import { ChildDirection } from 'src/utils/tree';
 
-type Props = {
-  direction: TDirection;
-  components: Array<any>;
-  id?: string;
-};
-
-export const Direction: React.FC<Props> = ({ direction, components, id }) => {
+export const Direction: React.FC<ChildDirection> = ({
+  direction,
+  components,
+  id,
+}) => {
   const { onDragLeave, onDragOver, insertTo, onDrop } = useDragAndDrop(id);
 
   return (

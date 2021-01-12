@@ -28,6 +28,18 @@ const getItemsOrder = (item1: TNode, item2: TNode, side: TSide) => {
 
 export type TNode = Container | Item;
 
+export type ChildDirection = {
+  id?: string;
+  direction: TDirection;
+  components: Array<ChildComponent | ChildDirection>;
+};
+
+export type ChildComponent = {
+  id: string;
+  type: ComponentType;
+  direction: undefined;
+};
+
 type TParent = Container | null;
 
 export class Item {

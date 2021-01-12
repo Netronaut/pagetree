@@ -1,14 +1,14 @@
 import React from 'react';
 import { Indicator, Container } from './componentsStyles';
 import { useDragAndDrop } from 'src/hooks/useDragAndDrop';
-import { Item, TSide } from 'src/utils/tree';
+import { TSide, ChildComponent } from 'src/utils/tree';
 import { componentByType } from 'src/utils/componentTypes';
 
-type ContainerProps = {
-  component: Item;
+type Props = {
+  component: ChildComponent;
 };
 
-export const ComponentRenderer: React.FC<ContainerProps> = ({ component }) => {
+export const ComponentRenderer: React.FC<Props> = ({ component }) => {
   const { id, type } = component;
 
   const Component = componentByType[type];

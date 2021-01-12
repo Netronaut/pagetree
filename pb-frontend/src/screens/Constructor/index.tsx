@@ -1,5 +1,4 @@
 import React, { useRef, useState } from 'react';
-import './styles.scss';
 
 import Catalog from './components/Catalog';
 
@@ -12,7 +11,15 @@ import { Direction } from './components/Direction';
 import { Item, Tree, TSide } from '../../utils/tree';
 import { ComponentType } from '../../utils/componentTypes';
 
-export const TreeContext = React.createContext({} as any);
+type TreeContextValue = {
+  add: (
+    e: React.DragEvent<HTMLDivElement>,
+    toId?: string,
+    side?: TSide,
+  ) => void;
+};
+
+export const TreeContext = React.createContext({} as TreeContextValue);
 
 const { Provider } = TreeContext;
 
