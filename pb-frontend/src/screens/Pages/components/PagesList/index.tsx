@@ -11,7 +11,7 @@ const PagesList = () => {
       {pages.map(({ title, route, _id }) => (
         <div key={_id} className="page-row">
           {title}
-          <Link to={`/${route}/constructor`}>{route}</Link>
+          <Link to={`/constructor/${_id}`}>{route}</Link>
         </div>
       ))}
     </div>

@@ -14,14 +14,7 @@ const Routes = () => {
   return (
     <Switch>
       <Route path="/" exact component={Pages} />
-      {pages.map(({ _id, route }) => (
-        <Route
-          key={_id}
-          path={`/${route}/constructor`}
-          exact
-          component={() => <Constructor _id={_id} />}
-        />
-      ))}
+      <Route path={`/constructor/:id`} exact component={Constructor} />
       {pages.map(({ _id, route }) => (
         <Route
           key={route}

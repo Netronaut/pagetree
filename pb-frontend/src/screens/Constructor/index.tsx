@@ -7,10 +7,12 @@ import {
   DroppableContent,
   Footer,
 } from './componentsStyles';
+import { useParams } from 'react-router-dom';
 import { Direction } from './components/Direction';
 import { Item, Tree, TSide } from '../../utils/tree';
 import { ComponentType } from '../../utils/componentTypes';
 import usePages from '../Pages/hooks/usePages';
+import { usePrevious } from '../../hooks/usePrevious';
 
 type TreeContextValue = {
   add: (
@@ -33,21 +35,33 @@ const makeElementVisible = (elementId: string) => {
   }
 };
 
-type ConstructorProps = {
-  _id: string;
-};
+export const Constructor: React.FC = () => {
+  const location = useParams<{ id: string }>();
+  const _id = location.id;
 
-export const Constructor: React.FC<ConstructorProps> = ({ _id }) => {
-  const { changePage } = usePages();
+  const { changePage, page } = usePages(_id);
+  const prevPage = usePrevious(page);
 
-  const treeRef = useRef(new Tree());
+  const treeRef = useRef(new Tree(page?.structure));
   const tree = treeRef.current;
 
   const [root, setRoot] = useState(tree.getValue());
 
+  const isFirstRun = useRef(true);
   useEffect(() => {
+    if (isFirstRun.current) {
+      isFirstRun.current = false;
+      return;
+    }
     changePage({ _id, structure: root });
   }, [root]);
+
+  useEffect(() => {
+    if (!prevPage && page) {
+      treeRef.current = new Tree(page.structure);
+      setRoot(treeRef.current.getValue());
+    }
+  }, [page]);
 
   const add = (
     e: React.DragEvent<HTMLDivElement>,
@@ -90,7 +104,7 @@ export const Constructor: React.FC<ConstructorProps> = ({ _id }) => {
       makeElementVisible(fromId);
       return;
     }
-    tree.add(new Item(type as ComponentType), toId, side);
+    tree.add(new Item({ type } as { type: ComponentType }), toId, side);
     setRoot(tree.getValue());
   };
 
