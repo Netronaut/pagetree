@@ -7,10 +7,11 @@ const usePages = (id?: string) => {
 
   const getPages = useDispatchActions(actions.getPages.request);
   const deletePage = useDispatchActions(actions.deletePage.request);
+  const changePage = useDispatchActions(actions.changePage.request);
 
   const page = useMemo(() => pages.find(({ _id: i }) => id === i), [pages, id]);
 
-  return { pages, page, getPages, deletePage };
+  return { pages, page, getPages, deletePage, changePage };
 };
 
 export default usePages;
