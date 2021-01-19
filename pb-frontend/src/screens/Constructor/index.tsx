@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 
 import Catalog from './components/Catalog';
 
@@ -10,6 +10,7 @@ import {
 import { Direction } from './components/Direction';
 import { Item, Tree, TSide } from '../../utils/tree';
 import { ComponentType } from '../../utils/componentTypes';
+import usePages from '../Pages/hooks/usePages';
 
 type TreeContextValue = {
   add: (
@@ -32,10 +33,21 @@ const makeElementVisible = (elementId: string) => {
   }
 };
 
-export const Constructor = () => {
+type ConstructorProps = {
+  _id: string;
+};
+
+export const Constructor: React.FC<ConstructorProps> = ({ _id }) => {
+  const { changePage } = usePages();
+
   const treeRef = useRef(new Tree());
   const tree = treeRef.current;
-  const [root, setRoot] = useState(treeRef.current.getValue());
+
+  const [root, setRoot] = useState(tree.getValue());
+
+  useEffect(() => {
+    changePage({ _id, structure: root });
+  }, [root]);
 
   const add = (
     e: React.DragEvent<HTMLDivElement>,
