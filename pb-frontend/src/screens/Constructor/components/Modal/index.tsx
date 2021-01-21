@@ -1,21 +1,16 @@
 import React, { createRef } from 'react';
 import { ModalContainer, Close } from './componentsStyles';
 
-type Props = {
+type State = {
+  visible: boolean;
   id: string;
 };
 
-type State = {
-  visible: boolean;
-};
-
-export class Modal extends React.Component<Props, State> {
-  constructor(props: Props) {
-    super(props);
-    this.state = {
-      visible: false,
-    };
-  }
+export class Modal extends React.Component<unknown, State> {
+  state = {
+    visible: false,
+    id: '',
+  };
 
   onModalShow = () => {
     this.setState({
@@ -30,6 +25,7 @@ export class Modal extends React.Component<Props, State> {
   };
 
   render() {
+    const { children } = this.props;
     const { visible } = this.state;
     const modalRef = createRef<HTMLDivElement>();
 
@@ -43,10 +39,12 @@ export class Modal extends React.Component<Props, State> {
     };
 
     window.addEventListener('click', handleClickOutside, true);
+    window.addEventListener('mousedown', handleClickOutside, true);
+
     return (
       <ModalContainer visible={visible} ref={modalRef}>
         <Close onClick={() => this.onModalClose()}>X</Close>
-        {this.props.id && <div>{this.props.id}</div>}
+        {children}
       </ModalContainer>
     );
   }
