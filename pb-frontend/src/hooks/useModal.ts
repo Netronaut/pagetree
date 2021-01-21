@@ -1,14 +1,11 @@
 import { Modal } from '../screens/Constructor/components/Modal';
+import { useRef } from 'react';
 
 export const useModal = () => {
-  let ref: Modal;
-
-  const modalRef = (initialRef: Modal) => {
-    ref = initialRef;
-  };
+  const modalRef = useRef<Modal>(null);
 
   const show = () => {
-    if (ref) ref.onModalShow();
+    modalRef.current?.onModalShow();
   };
 
   return {

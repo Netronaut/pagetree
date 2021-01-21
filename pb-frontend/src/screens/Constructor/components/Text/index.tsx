@@ -18,7 +18,9 @@ export const Text = ({ id, pointerEventsDisabled }: Props) => {
         readOnly
         pointerEventsDisabled={pointerEventsDisabled}
       />
-      <Modal ref={modalRef} id={id} />
+      <Modal ref={modalRef}>
+        <div>{id}</div>
+      </Modal>
       <Configure onClick={show}>Configure</Configure>
     </TextContainer>
   );
