@@ -1,18 +1,10 @@
 import { TBasePage, TPage } from 'src/types';
 import * as api from 'src/api/localStorage';
-import { Optional } from '../../../types/helpers';
+import { Optional } from 'src/types/helpers';
 
 export const getPages = async () => {
   return api.getPages();
 };
-
-// export const createPage = (page: TBasePage) => {
-//   return api.post<TPage>('/page', page).then((res) => res.data);
-// };
-//
-// export const deletePage = (id: string) => {
-//   return api.delete<string>(`/page/${id}`).then(() => id);
-// };
 
 export const createPage = async (page: TBasePage) => {
   const newPage: TPage = {
