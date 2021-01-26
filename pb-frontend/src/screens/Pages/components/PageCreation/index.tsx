@@ -25,7 +25,7 @@ const PageCreation = () => {
 
   const checkErrors = () => {
     const errors = Object.entries(values).reduce((acc, [key, value]) => {
-      acc[key] = validatePageField(key as keyof TBasePage, value);
+      acc[key] = validatePageField(key as keyof TBasePage, value as string);
       return acc;
     }, {} as Errors);
 
