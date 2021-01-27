@@ -1,6 +1,6 @@
 import { v4 } from 'uuid';
 import { ComponentType } from './componentTypes';
-import { Optional } from '../types/helpers';
+import { Optional } from 'src/types/helpers';
 
 export enum TDirection {
   row = 'row',

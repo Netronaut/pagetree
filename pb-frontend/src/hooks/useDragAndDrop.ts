@@ -1,7 +1,7 @@
 import React, { useContext, useState } from 'react';
-import { TreeContext } from '../screens/Constructor';
-import { TSide } from '../utils/tree';
-import { componentTypes } from '../utils/componentTypes';
+import { TreeContext } from 'src/screens/Constructor';
+import { TSide } from 'src/utils/tree';
+import { componentTypes } from 'src/utils/componentTypes';
 
 const getInsertion = ({ x, y, width, height }: Record<string, number>) => {
   if (x < 20) {
