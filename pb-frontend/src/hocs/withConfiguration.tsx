@@ -1,11 +1,11 @@
 import React, { useContext } from 'react';
-import { Modal } from '../screens/Constructor/components/Modal';
-import { useModal } from '../hooks/useModal';
+import { Modal } from 'src/screens/Constructor/components/Modal';
+import { useModal } from 'src/hooks/useModal';
 import styled from 'styled-components';
-import TextInput from '../components/TextInput';
-import { TreeContext } from '../screens/Constructor';
+import TextInput from 'src/components/TextInput';
+import { TreeContext } from 'src/screens/Constructor';
 import { useParams } from 'react-router-dom';
-import usePages from '../screens/Pages/hooks/usePages';
+import usePages from 'src/screens/Pages/hooks/usePages';
 
 const Configure = styled.div`
   box-sizing: border-box;
