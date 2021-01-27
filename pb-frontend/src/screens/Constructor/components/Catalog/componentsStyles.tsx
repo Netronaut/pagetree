@@ -11,4 +11,5 @@ export const DroppableComponentContainer = styled.div({
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'center',
+  margin: '0 10px',
 });

@@ -16,7 +16,6 @@ const getInsertion = ({ x, y, width, height }: Record<string, number>) => {
   if (y >= height / 2) {
     return TSide.bottom;
   }
-
   return TSide.undetermined;
 };
 
