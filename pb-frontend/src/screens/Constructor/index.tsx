@@ -58,7 +58,7 @@ export const Constructor: React.FC = () => {
 
   useEffect(() => {
     if (!prevPage && page) {
-      treeRef.current = new Tree(page.structure);
+      treeRef.current = new Tree(page?.structure);
       setRoot(treeRef.current.getValue());
     }
   }, [page]);
