@@ -1,7 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-
-import Catalog from './components/Catalog';
-
+import { Catalog } from './components/Catalog';
 import {
   ConstructorScreen,
   DroppableContent,
@@ -20,6 +18,7 @@ type TreeContextValue = {
     toId?: string,
     side?: TSide,
   ) => void;
+  onConfigChange: (id: string, field: string, value: string) => void;
 };
 
 export const TreeContext = React.createContext({} as TreeContextValue);
@@ -93,6 +92,22 @@ export const Constructor: React.FC = () => {
     }
   };
 
+  const onConfigChange = (id: string, field: string, value: string) => {
+    if (page) {
+      const newPage = {
+        ...page,
+        config: {
+          ...(page.config || {}),
+          [id]: {
+            ...(page.config?.[id] || {}),
+            [field]: value,
+          },
+        },
+      };
+      changePage(newPage);
+    }
+  };
+
   const addNew = (
     e: React.DragEvent<HTMLDivElement>,
     toId?: string,
@@ -114,9 +129,8 @@ export const Constructor: React.FC = () => {
       setRoot(tree.getValue());
     }
   };
-
   return (
-    <Provider value={{ add }}>
+    <Provider value={{ add, onConfigChange }}>
       <ConstructorScreen>
         <DroppableContent
           id="droppable-content"

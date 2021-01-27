@@ -1,8 +1,8 @@
-import { Text } from '../screens/Constructor/components/Text';
+import * as catalog from '../catalog';
 
-export const componentByType = {
-  text: Text,
-};
+export const componentByType = catalog;
+
+export const components = Object.values(catalog);
 
 export const componentTypes = Object.keys(componentByType);
 
