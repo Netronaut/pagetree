@@ -1,6 +1,6 @@
 import React from 'react';
 import { ComponentRenderer } from '../ComponentRenderer';
-import { Indicator } from '../ComponentRenderer/componentsStyles';
+import { Indicator } from 'src/screens/Constructor/components/ComponentRenderer/componentsStyles';
 import { DirectionWrapper } from './componentsStyles';
 import { useDragAndDrop } from 'src/hooks/useDragAndDrop';
 import { ChildDirection } from 'src/utils/tree';

@@ -1,4 +1,4 @@
-import { Modal } from '../screens/Constructor/components/Modal';
+import { Modal } from 'src/screens/Constructor/components/Modal';
 import { useRef } from 'react';
 
 export const useModal = () => {

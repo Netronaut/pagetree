@@ -1,7 +1,7 @@
 import React, { useCallback } from 'react';
 import { useHistory } from 'react-router-dom';
 import './index.scss';
-import usePages from '../../hooks/usePages';
+import usePages from 'src/screens/Pages/hooks/usePages';
 import Button from 'src/components/Button';
 import { confirmAlert } from 'react-confirm-alert';
 import { Helmet } from 'react-helmet';

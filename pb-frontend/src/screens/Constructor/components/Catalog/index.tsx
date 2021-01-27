@@ -1,7 +1,7 @@
 import React from 'react';
 import { DroppableComponentContainer } from './componentsStyles';
 import { useDragAndDrop } from 'src/hooks/useDragAndDrop';
-import { components } from '../../../../utils/componentTypes';
+import { components } from 'src/utils/componentTypes';
 
 export const Catalog = () => {
   const { onDragStart } = useDragAndDrop();
