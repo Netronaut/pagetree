@@ -1,15 +1,9 @@
 import React from 'react';
 import { DroppableComponentContainer } from './componentsStyles';
 import { useDragAndDrop } from 'src/hooks/useDragAndDrop';
+import { components } from '../../../../utils/componentTypes';
 
-const components = [
-  {
-    text: 'Text',
-    type: 'text',
-  },
-];
-
-const Catalog = () => {
+export const Catalog = () => {
   const { onDragStart } = useDragAndDrop();
   return (
     <>
@@ -22,11 +16,9 @@ const Catalog = () => {
             onDragStart,
           }}
         >
-          {c.text}
+          {c.componentName}
         </DroppableComponentContainer>
       ))}
     </>
   );
 };
-
-export default Catalog;

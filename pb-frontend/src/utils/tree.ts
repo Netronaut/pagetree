@@ -1,5 +1,6 @@
 import { v4 } from 'uuid';
 import { ComponentType } from './componentTypes';
+import { Optional } from '../types/helpers';
 
 export enum TDirection {
   row = 'row',
@@ -47,12 +48,16 @@ export class Item {
   type: ComponentType;
   parent: TParent;
 
-  constructor(type: ComponentType) {
+  constructor({ id = v4(), type }: { id?: string; type: ComponentType }) {
     this.type = type;
     this.parent = null;
-    this.id = v4();
+    this.id = id;
   }
 }
+
+type ContainerConstructor = Optional<ChildDirection> & {
+  parentDirection?: TDirection;
+};
 
 class Container {
   id: string;
@@ -60,14 +65,24 @@ class Container {
   direction: TDirection;
   components: TNode[];
 
-  constructor(parentDirection: TDirection, id = v4()) {
+  constructor({
+    parentDirection,
+    direction,
+    id = v4(),
+    components = [],
+  }: ContainerConstructor) {
     this.direction =
-      parentDirection === TDirection.column
+      direction ||
+      (parentDirection === TDirection.column
         ? TDirection.row
-        : TDirection.column;
+        : TDirection.column);
     this.id = id;
     this.parent = null;
-    this.components = [];
+    this.components = components.map((c) => {
+      const component = c.direction ? new Container(c) : new Item(c);
+      component.parent = this;
+      return component;
+    });
   }
 
   findIndex(item: TNode) {
@@ -107,7 +122,7 @@ class Container {
   transform(newItem: Item, itemToTransform: TNode, side: TSide) {
     const index = this.findIndex(itemToTransform);
 
-    const container = new Container(this.direction);
+    const container = new Container({ parentDirection: this.direction });
 
     container.parent = this;
 
@@ -174,8 +189,10 @@ const getCircularReplacer = () => {
 export class Tree {
   root: Container;
 
-  constructor(container = new Container(TDirection.row, '0')) {
-    this.root = container;
+  constructor(container?: ChildDirection) {
+    this.root = new Container(
+      container || { parentDirection: TDirection.row, id: '0' },
+    );
   }
 
   find(predicate: (node: TNode) => boolean) {

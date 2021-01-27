@@ -8,5 +8,6 @@ export default function* () {
     makeApiCall(actions.createPage, PagesAPI.createPage),
     makeApiCall(actions.getPages, PagesAPI.getPages),
     makeApiCall(actions.deletePage, PagesAPI.deletePage),
+    makeApiCall(actions.changePage, PagesAPI.changePage),
   ]);
 }

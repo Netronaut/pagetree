@@ -13,6 +13,14 @@ const pages = createReducer<State, Action>([])
   .handleAction(actions.getPages.success, (_, { payload }) => payload)
   .handleAction(actions.deletePage.success, (state, { payload }) =>
     state.filter(({ _id }) => _id !== payload),
+  )
+  .handleAction(actions.changePage.success, (state, { payload }) =>
+    state.map((p) => {
+      if (payload._id === p._id) {
+        return payload;
+      }
+      return p;
+    }),
   );
 
 export default pages;

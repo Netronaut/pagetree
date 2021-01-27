@@ -1,15 +1,17 @@
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 
-import Catalog from './components/Catalog';
-
+import { Catalog } from './components/Catalog';
 import {
   ConstructorScreen,
   DroppableContent,
   Footer,
 } from './componentsStyles';
+import { useParams } from 'react-router-dom';
 import { Direction } from './components/Direction';
 import { Item, Tree, TSide } from '../../utils/tree';
 import { ComponentType } from '../../utils/componentTypes';
+import usePages from '../Pages/hooks/usePages';
+import { usePrevious } from '../../hooks/usePrevious';
 
 type TreeContextValue = {
   add: (
@@ -17,6 +19,7 @@ type TreeContextValue = {
     toId?: string,
     side?: TSide,
   ) => void;
+  onConfigChange: (id: string, field: string, value: string) => void;
 };
 
 export const TreeContext = React.createContext({} as TreeContextValue);
@@ -32,10 +35,33 @@ const makeElementVisible = (elementId: string) => {
   }
 };
 
-export const Constructor = () => {
-  const treeRef = useRef(new Tree());
+export const Constructor: React.FC = () => {
+  const location = useParams<{ id: string }>();
+  const _id = location.id;
+
+  const { changePage, page } = usePages(_id);
+  const prevPage = usePrevious(page);
+
+  const treeRef = useRef(new Tree(page?.structure));
   const tree = treeRef.current;
-  const [root, setRoot] = useState(treeRef.current.getValue());
+
+  const [root, setRoot] = useState(tree.getValue());
+
+  const isFirstRun = useRef(true);
+  useEffect(() => {
+    if (isFirstRun.current) {
+      isFirstRun.current = false;
+      return;
+    }
+    changePage({ _id, structure: root });
+  }, [root]);
+
+  useEffect(() => {
+    if (!prevPage && page) {
+      treeRef.current = new Tree(page.structure);
+      setRoot(treeRef.current.getValue());
+    }
+  }, [page]);
 
   const add = (
     e: React.DragEvent<HTMLDivElement>,
@@ -67,6 +93,22 @@ export const Constructor = () => {
     }
   };
 
+  const onConfigChange = (id: string, field: string, value: string) => {
+    if (page) {
+      const newPage = {
+        ...page,
+        config: {
+          ...(page.config || {}),
+          [id]: {
+            ...(page.config?.[id] || {}),
+            [field]: value,
+          },
+        },
+      };
+      changePage(newPage);
+    }
+  };
+
   const addNew = (
     e: React.DragEvent<HTMLDivElement>,
     toId?: string,
@@ -78,7 +120,8 @@ export const Constructor = () => {
       makeElementVisible(fromId);
       return;
     }
-    tree.add(new Item(type as ComponentType), toId, side);
+
+    tree.add(new Item({ type } as { type: ComponentType }), toId, side);
     setRoot(tree.getValue());
   };
 
@@ -88,9 +131,8 @@ export const Constructor = () => {
       setRoot(tree.getValue());
     }
   };
-
   return (
-    <Provider value={{ add }}>
+    <Provider value={{ add, onConfigChange }}>
       <ConstructorScreen>
         <DroppableContent
           id="droppable-content"
