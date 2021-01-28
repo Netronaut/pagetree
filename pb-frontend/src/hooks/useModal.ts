@@ -5,7 +5,7 @@ export const useModal = () => {
   const modalRef = useRef<Modal>(null);
 
   const show = () => {
-    modalRef.current?.onModalShow();
+    modalRef.current?.showModal();
   };
 
   return {

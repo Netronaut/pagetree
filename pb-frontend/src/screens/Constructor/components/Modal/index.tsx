@@ -19,11 +19,11 @@ export class Modal extends React.Component<unknown, State> {
       this.modalRef.current &&
       !this.modalRef.current.contains(event.target as Node)
     ) {
-      this.onModalClose();
+      this.closeModal();
     }
   };
 
-  onModalShow = () => {
+  showModal = () => {
     this.setState({
       visible: true,
     });
@@ -31,7 +31,7 @@ export class Modal extends React.Component<unknown, State> {
     window.addEventListener('mousedown', this.handleClickOutside, true);
   };
 
-  onModalClose = () => {
+  closeModal = () => {
     this.setState({
       visible: false,
     });
@@ -45,7 +45,7 @@ export class Modal extends React.Component<unknown, State> {
 
     return (
       <ModalContainer visible={visible} ref={this.modalRef}>
-        <Close onClick={() => this.onModalClose()}>X</Close>
+        <Close onClick={this.closeModal}>X</Close>
         {children}
       </ModalContainer>
     );
