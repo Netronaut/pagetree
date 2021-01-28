@@ -1,5 +1,5 @@
 import React, { createRef } from 'react';
-import { ModalContainer, Close } from './componentsStyles';
+import { ModalContainer } from './componentsStyles';
 
 type State = {
   visible: boolean;
@@ -39,15 +39,26 @@ export class Modal extends React.Component<unknown, State> {
     window.removeEventListener('mousedown', this.handleClickOutside);
   };
 
+  onDragStart = (e: React.DragEvent<HTMLDivElement>) => {
+    e.preventDefault();
+    e.stopPropagation();
+  };
+
   render() {
     const { children } = this.props;
     const { visible } = this.state;
 
     return (
-      <ModalContainer visible={visible} ref={this.modalRef}>
-        <Close onClick={this.closeModal}>X</Close>
-        {children}
-      </ModalContainer>
+      visible && (
+        <ModalContainer
+          visible={visible}
+          ref={this.modalRef}
+          draggable="true"
+          onDragStart={this.onDragStart}
+        >
+          {children}
+        </ModalContainer>
+      )
     );
   }
 }
