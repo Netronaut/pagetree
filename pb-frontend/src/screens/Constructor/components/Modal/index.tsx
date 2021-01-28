@@ -12,37 +12,39 @@ export class Modal extends React.Component<unknown, State> {
     id: '',
   };
 
+  modalRef = createRef<HTMLDivElement>();
+
+  handleClickOutside = (event: Event) => {
+    if (
+      this.modalRef.current &&
+      !this.modalRef.current.contains(event.target as Node)
+    ) {
+      this.onModalClose();
+    }
+  };
+
   onModalShow = () => {
     this.setState({
       visible: true,
     });
+    window.addEventListener('click', this.handleClickOutside, true);
+    window.addEventListener('mousedown', this.handleClickOutside, true);
   };
 
   onModalClose = () => {
     this.setState({
       visible: false,
     });
+    window.removeEventListener('click', this.handleClickOutside);
+    window.removeEventListener('mousedown', this.handleClickOutside);
   };
 
   render() {
     const { children } = this.props;
     const { visible } = this.state;
-    const modalRef = createRef<HTMLDivElement>();
-
-    const handleClickOutside = (event: Event) => {
-      if (
-        modalRef.current &&
-        !modalRef.current.contains(event.target as Node)
-      ) {
-        this.onModalClose();
-      }
-    };
-
-    window.addEventListener('click', handleClickOutside, true);
-    window.addEventListener('mousedown', handleClickOutside, true);
 
     return (
-      <ModalContainer visible={visible} ref={modalRef}>
+      <ModalContainer visible={visible} ref={this.modalRef}>
         <Close onClick={() => this.onModalClose()}>X</Close>
         {children}
       </ModalContainer>
