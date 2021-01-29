@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const ModalContainer = styled.div<{ visible: boolean }>`
+export const ModalContainer = styled.div`
   display: flex;
   border: 1px solid;
   position: absolute;

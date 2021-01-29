@@ -42,7 +42,7 @@ const withConfiguration = (
 ) => {
   const component = function (props: { type: string; id: string }) {
     const { id, type } = props;
-    const { modalRef, show } = useModal();
+    const { modalShown, show, onModalClose } = useModal();
     const { onConfigChange } = useContext(TreeContext);
     const location = useParams<{ id: string }>();
     const _id = location.id;
@@ -67,18 +67,20 @@ const withConfiguration = (
       <>
         <WrappedComponent {...props} />
         <Type inside>{type}</Type>
-        <Modal ref={modalRef}>
-          <Type>{type}</Type>
-          {configurations?.map(({ field, value, label }) => (
-            <TextInput
-              required
-              placeholder={`Enter ${label}`}
-              key={field}
-              value={value}
-              onChange={(event) => onChange(event, field)}
-            />
-          ))}
-        </Modal>
+        {modalShown && (
+          <Modal onClose={onModalClose}>
+            <Type>{type}</Type>
+            {configurations?.map(({ field, value, label }) => (
+              <TextInput
+                required
+                placeholder={`Enter ${label}`}
+                key={field}
+                value={value}
+                onChange={(event) => onChange(event, field)}
+              />
+            ))}
+          </Modal>
+        )}
         <Configure onClick={show}>Configure</Configure>
       </>
     );
