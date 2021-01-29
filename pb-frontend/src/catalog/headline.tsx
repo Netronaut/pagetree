@@ -6,7 +6,7 @@ const TextContainer = styled.div`
   box-sizing: border-box;
   outline: none;
   position: relative;
-  height: 3vw;
+  height: 50px;
 `;
 
 export default withConfiguration(
