@@ -13,8 +13,8 @@ export default withConfiguration(
   () => <TextContainer />,
   [{ fieldName: 'articleId', label: 'articleId' }],
   {
-    type: 'article',
-    componentName: 'Article',
+    type: 'article-teaser',
+    componentName: 'Article Teaser',
     background: 'rgba(255,0,0,0.05)',
   },
 );
