@@ -1,64 +1,38 @@
-import React, { createRef } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { ModalContainer } from './componentsStyles';
 
-type State = {
-  visible: boolean;
-  id: string;
+type Props = {
+  onClose: () => void;
 };
 
-export class Modal extends React.Component<unknown, State> {
-  state = {
-    visible: false,
-    id: '',
-  };
+export const Modal: React.FC<Props> = ({ children, onClose }) => {
+  const modalRef = useRef<HTMLDivElement>(null);
 
-  modalRef = createRef<HTMLDivElement>();
-
-  handleClickOutside = (event: Event) => {
-    if (
-      this.modalRef.current &&
-      !this.modalRef.current.contains(event.target as Node)
-    ) {
-      this.closeModal();
-    }
-  };
-
-  showModal = () => {
-    this.setState({
-      visible: true,
-    });
-    window.addEventListener('click', this.handleClickOutside, true);
-    window.addEventListener('mousedown', this.handleClickOutside, true);
-  };
-
-  closeModal = () => {
-    this.setState({
-      visible: false,
-    });
-    window.removeEventListener('click', this.handleClickOutside);
-    window.removeEventListener('mousedown', this.handleClickOutside);
-  };
-
-  onDragStart = (e: React.DragEvent<HTMLDivElement>) => {
+  const onDragStart = (e: React.DragEvent<HTMLDivElement>) => {
     e.preventDefault();
     e.stopPropagation();
   };
 
-  render() {
-    const { children } = this.props;
-    const { visible } = this.state;
+  useEffect(() => {
+    const handleClickOutside = (event: Event) => {
+      if (
+        modalRef.current &&
+        !modalRef.current.contains(event.target as Node)
+      ) {
+        onClose();
+      }
+    };
+    window.addEventListener('click', handleClickOutside, true);
+    window.addEventListener('mousedown', handleClickOutside, true);
+    return () => {
+      window.removeEventListener('click', handleClickOutside);
+      window.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, []);
 
-    return (
-      visible && (
-        <ModalContainer
-          visible={visible}
-          ref={this.modalRef}
-          draggable="true"
-          onDragStart={this.onDragStart}
-        >
-          {children}
-        </ModalContainer>
-      )
-    );
-  }
-}
+  return (
+    <ModalContainer ref={modalRef} draggable="true" onDragStart={onDragStart}>
+      {children}
+    </ModalContainer>
+  );
+};
