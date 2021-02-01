@@ -1,5 +1,5 @@
-import { TPage, TPages } from '../types';
-import { Optional } from '../types/helpers';
+import { TPage, TPages } from 'types';
+import { Optional } from 'types/helpers';
 
 type lsFieldNames = 'pages';
 

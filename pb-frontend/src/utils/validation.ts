@@ -1,4 +1,4 @@
-import { TBasePage } from 'src/types';
+import { TBasePage } from 'types';
 
 export const validatePageField = (
   fieldName: keyof TBasePage,

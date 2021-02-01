@@ -3,7 +3,7 @@ import { applyMiddleware, combineReducers, createStore } from 'redux';
 import { spawn } from 'redux-saga/effects';
 import { composeWithDevTools } from 'redux-devtools-extension/developmentOnly';
 
-import * as Pages from 'src/screens/Pages/redux';
+import * as Pages from 'screens/Pages/redux';
 
 function* rootSaga() {
   yield spawn(Pages.saga);

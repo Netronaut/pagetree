@@ -1,4 +1,4 @@
-import { ChildDirection } from 'src/utils/tree';
+import { ChildDirection } from 'utils/tree';
 
 export type TBasePage = {
   title: string;

@@ -1,5 +1,5 @@
 import React from 'react';
-import withConfiguration from 'src/hocs/withConfiguration';
+import withConfiguration from 'hocs/withConfiguration';
 import styled from 'styled-components';
 
 const TextContainer = styled.div`

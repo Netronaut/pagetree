@@ -1,10 +1,10 @@
-import TextInput from 'src/components/TextInput';
-import Button from 'src/components/Button';
 import React, { ChangeEvent, FormEvent, useState } from 'react';
-import usePageCreation from 'src/screens/Pages/hooks/usePageCreation';
-import { TBasePage, TPage } from 'src/types';
-import { validatePageField } from 'src/utils/validation';
 import { Helmet } from 'react-helmet';
+import { TBasePage, TPage } from 'types';
+import { validatePageField } from 'utils/validation';
+import TextInput from 'components/TextInput';
+import Button from 'components/Button';
+import usePageCreation from '../../hooks/usePageCreation';
 
 type Errors = Record<string, string>;
 
