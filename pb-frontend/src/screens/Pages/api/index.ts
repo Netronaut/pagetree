@@ -1,6 +1,6 @@
-import { TBasePage, TPage } from 'src/types';
-import * as api from 'src/api/localStorage';
-import { Optional } from 'src/types/helpers';
+import { TBasePage, TPage } from 'types';
+import * as api from 'api/localStorage';
+import { Optional } from 'types/helpers';
 
 export const getPages = async () => {
   return api.getPages();

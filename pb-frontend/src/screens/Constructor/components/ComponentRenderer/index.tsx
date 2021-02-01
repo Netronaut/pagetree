@@ -1,8 +1,8 @@
 import React from 'react';
 import { Indicator, Container } from './componentsStyles';
-import { useDragAndDrop } from 'src/hooks/useDragAndDrop';
-import { ChildComponent } from 'src/utils/tree';
-import { componentByType } from 'src/utils/componentTypes';
+import { useDragAndDrop } from 'hooks';
+import { ChildComponent } from 'utils/tree';
+import { componentByType } from 'utils/componentTypes';
 
 type Props = {
   component: ChildComponent;

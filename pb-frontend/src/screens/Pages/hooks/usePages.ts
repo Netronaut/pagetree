@@ -1,5 +1,5 @@
 import { useMemo } from 'react';
-import { useDispatchActions, useTypedSelector } from 'src/hooks';
+import { useDispatchActions, useTypedSelector } from 'hooks';
 import { actions } from '../redux';
 
 const usePages = (id?: string) => {

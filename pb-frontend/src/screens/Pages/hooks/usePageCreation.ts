@@ -1,5 +1,5 @@
 import { actions } from '../redux';
-import { useDispatchActions, useTypedSelector } from 'src/hooks';
+import { useDispatchActions, useTypedSelector } from 'hooks';
 import { useCallback } from 'react';
 
 const usePageCreation = () => {

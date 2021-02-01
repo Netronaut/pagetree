@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { TDirection } from 'src/utils/tree';
+import { TDirection } from 'utils/tree';
 
 const getStylesFromDirection = (direction: TDirection) => {
   const padding = ['5px', '0'];
