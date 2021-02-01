@@ -38,21 +38,19 @@ export const deletePage = (id: string) => {
   set('pages', pages);
 };
 
-export const changePage = ({ _id, structure, config }: Optional<TPage>) => {
-  let page;
+export const changePage = (page: Optional<TPage>) => {
+  let newPage;
   const pages = getPages();
   const newPages = pages.map((p) => {
-    if (_id === p._id) {
-      const newPage = {
+    if (page._id === p._id) {
+      newPage = {
         ...p,
-        structure,
-        config,
+        ...page,
       };
-      page = newPage;
       return newPage;
     }
     return p;
   });
   set('pages', newPages);
-  return (page as unknown) as TPage;
+  return (newPage as unknown) as TPage;
 };
