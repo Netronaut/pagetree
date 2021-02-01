@@ -1,6 +1,6 @@
 import { ActionType, createReducer } from 'typesafe-actions';
 import actions from './actions';
-import { TPages } from 'src/types';
+import { TPages } from 'types';
 
 export type State = TPages;
 

@@ -1,7 +1,7 @@
-import getAsyncTypes from 'src/redux/getAsyncTypes';
+import getAsyncTypes from 'redux/getAsyncTypes';
 import { createAsyncAction } from 'typesafe-actions';
-import { TBasePage, TPage, TPages } from 'src/types';
-import { Optional } from 'src/types/helpers';
+import { TBasePage, TPage, TPages } from 'types';
+import { Optional } from 'types/helpers';
 
 export default {
   getPages: createAsyncAction(...getAsyncTypes('GET_PAGES'))<

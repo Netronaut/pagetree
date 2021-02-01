@@ -2,8 +2,8 @@ import React from 'react';
 import { ComponentRenderer } from '../ComponentRenderer';
 import { Indicator } from '../ComponentRenderer/componentsStyles';
 import { DirectionWrapper } from './componentsStyles';
-import { useDragAndDrop } from 'src/hooks/useDragAndDrop';
-import { ChildDirection } from 'src/utils/tree';
+import { useDragAndDrop } from 'hooks/useDragAndDrop';
+import { ChildDirection } from 'utils/tree';
 
 export const Direction: React.FC<ChildDirection> = ({
   direction,

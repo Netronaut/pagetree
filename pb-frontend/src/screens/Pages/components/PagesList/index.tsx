@@ -1,5 +1,5 @@
 import React from 'react';
-import usePages from 'src/screens/Pages/hooks/usePages';
+import usePages from '../../hooks/usePages';
 import { Link } from 'react-router-dom';
 import './index.scss';
 
