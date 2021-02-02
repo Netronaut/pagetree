@@ -1,16 +1,24 @@
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 
 export const ConstructorScreen = styled.div({
   height: '100%',
   width: '100%',
+  paddingTop: '10px',
   boxSizing: 'border-box',
+});
+
+export const NavLink = styled(Link)({
+  margin: '14px 0 0 20px',
+  textDecoration: 'none',
+  textTransform: 'uppercase',
 });
 
 export const DroppableContent = styled.div({
   overflow: 'scroll',
   width: '100%',
-  height: 'calc(100% - 100px)',
-  padding: '25px',
+  height: 'calc(100% - 120px)',
+  padding: '15px',
   boxSizing: 'border-box',
 });
 
