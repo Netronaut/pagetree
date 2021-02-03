@@ -11,14 +11,16 @@ const Configure = styled.div`
   box-sizing: border-box;
   outline: none;
   position: absolute;
-  right: 0;
-  top: 0;
-  border: 1px solid;
-  padding: 5px;
+  right: 5px;
+  top: -5px;
   cursor: pointer;
+  font-weight: bold;
+  font-size: 20px;
+  color: grey;
 `;
 
-const Type = styled.div<{ inside?: boolean }>`
+const Type = styled.p<{ inside?: boolean }>`
+  width: ${({ inside }) => (inside ? '100%' : '')};
   outline: none;
   position: absolute;
   left: 10px;
@@ -29,6 +31,9 @@ const Type = styled.div<{ inside?: boolean }>`
   padding: 5px;
   box-sizing: border-box;
   text-transform: uppercase;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
 `;
 
 const withConfiguration = (
@@ -81,7 +86,7 @@ const withConfiguration = (
             ))}
           </Modal>
         )}
-        <Configure onClick={show}>Configure</Configure>
+        <Configure onClick={show}>...</Configure>
       </>
     );
   };
