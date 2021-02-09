@@ -13,48 +13,9 @@ import { ChildDirection } from 'utils/tree';
 import { useModal } from '../../../../hooks';
 import { Modal } from '../Modal';
 
-type Ratio = {
-  title: string;
-  value: string[];
-};
-
-const initialPossibleRatios: { [key: number]: Ratio[] } = {
-  2: [
-    {
-      title: '1:1',
-      value: ['50%', '50%'],
-    },
-    {
-      title: '1:2',
-      value: ['34%', '66%'],
-    },
-    {
-      title: '2:1',
-      value: ['66%', '34%'],
-    },
-  ],
-  3: [
-    {
-      title: '1:1:1',
-      value: [
-        '33.333333333333336%',
-        '33.333333333333336%',
-        '33.333333333333336%',
-      ],
-    },
-    {
-      title: '1:2:1',
-      value: ['25%', '50%', '25%'],
-    },
-    {
-      title: '2:1:1',
-      value: ['50%', '25%', '25%'],
-    },
-    {
-      title: '1:1:2',
-      value: ['25%', '25%', '50%'],
-    },
-  ],
+const ratios: Record<number, string[]> = {
+  2: ['2:1', '1:1', '1:2'],
+  3: ['2:1:1', '1:1:1', '1:2:1', '1:1:2'],
 };
 
 export const Direction: React.FC<ChildDirection> = ({
@@ -65,31 +26,18 @@ export const Direction: React.FC<ChildDirection> = ({
   const { onDragLeave, onDragOver, insertTo, onDrop } = useDragAndDrop(id);
   const { modalShown, show, onModalClose } = useModal();
 
-  const initialRatioValue = new Array(components.length).fill(
-    `${100 / components.length}%`,
-  );
-  const initialRatio = [
-    {
-      title: new Array(components.length).fill(1).join(':'),
-      value: initialRatioValue,
-    },
-  ];
+  const initialRatio = new Array(components.length).fill(1).join(':');
 
-  const [ratio, setRatio] = useState(initialRatioValue);
-  const [possibleRatios, setPossibleRatios] = useState(initialPossibleRatios);
+  const [ratio, setRatio] = useState(initialRatio);
 
   useEffect(() => {
     if (direction === 'row') {
-      setRatio(initialRatioValue);
-      setPossibleRatios({
-        [components.length]: initialRatio,
-        ...possibleRatios,
-      });
+      setRatio(initialRatio);
     }
   }, [components.length]);
 
   const onRatioSelect = (index: number) => {
-    return setRatio(possibleRatios[components.length][index].value);
+    return setRatio(ratios[components.length][index]);
   };
 
   return (
@@ -111,15 +59,13 @@ export const Direction: React.FC<ChildDirection> = ({
           <Ratios>
             {direction === 'row' &&
               components.length &&
-              possibleRatios[components.length]?.map(
-                (r: Ratio, index: number) => {
-                  return (
-                    <Ratio key={r.title} onClick={() => onRatioSelect(index)}>
-                      {r.title}
-                    </Ratio>
-                  );
-                },
-              )}
+              ratios[components.length]?.map((r: string, index: number) => {
+                return (
+                  <Ratio key={r} onClick={() => onRatioSelect(index)}>
+                    {r}
+                  </Ratio>
+                );
+              })}
           </Ratios>
         </Modal>
       )}

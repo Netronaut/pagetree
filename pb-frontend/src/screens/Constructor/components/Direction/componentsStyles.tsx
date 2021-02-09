@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { TDirection } from 'utils/tree';
 
-const getStylesFromDirection = (direction: TDirection, ratio: string[]) => {
+const getStylesFromDirection = (direction: TDirection, ratio: string) => {
   const padding = ['15px', '0', '0', '0'];
 
   if (direction === TDirection.column) {
@@ -10,7 +10,10 @@ const getStylesFromDirection = (direction: TDirection, ratio: string[]) => {
     return `
       display: grid;
       grid-auto-flow: column;
-      grid-template-columns: ${ratio.join('')};
+      grid-template-columns: ${ratio
+        .split(':')
+        .map((value) => `${value}fr`)
+        .join(' ')};
       flex-direction: ${direction};
       padding: ${padding.join(' ')};
     `;
@@ -22,7 +25,7 @@ const getStylesFromDirection = (direction: TDirection, ratio: string[]) => {
 
 export const DirectionWrapper = styled.div<{
   direction: TDirection;
-  ratio: string[];
+  ratio: string;
 }>`
   flex-grow: 1;
   position: relative;
