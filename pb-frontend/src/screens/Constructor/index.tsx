@@ -4,6 +4,8 @@ import {
   ConstructorScreen,
   DroppableContent,
   Footer,
+  Header,
+  NavLink,
 } from './componentsStyles';
 import { useParams } from 'react-router-dom';
 import { Direction } from './components/Direction';
@@ -134,6 +136,9 @@ export const Constructor: React.FC = () => {
   return (
     <Provider value={{ add, onConfigChange }}>
       <ConstructorScreen>
+        <Header>
+          <NavLink to={``}>‹ Home</NavLink>
+        </Header>
         <DroppableContent
           id="droppable-content"
           onDragOver={(e) => e.preventDefault()}
