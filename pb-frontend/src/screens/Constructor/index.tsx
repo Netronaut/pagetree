@@ -4,6 +4,8 @@ import {
   ConstructorScreen,
   DroppableContent,
   Footer,
+  Header,
+  NavLink,
 } from './componentsStyles';
 import { useParams } from 'react-router-dom';
 import { Direction } from './components/Direction';
@@ -119,6 +121,7 @@ export const Constructor: React.FC = () => {
       makeElementVisible(fromId);
       return;
     }
+
     tree.add(new Item({ type } as { type: ComponentType }), toId, side);
     setRoot(tree.getValue());
   };
@@ -129,9 +132,13 @@ export const Constructor: React.FC = () => {
       setRoot(tree.getValue());
     }
   };
+
   return (
     <Provider value={{ add, onConfigChange }}>
       <ConstructorScreen>
+        <Header>
+          <NavLink to={``}>‹ Home</NavLink>
+        </Header>
         <DroppableContent
           id="droppable-content"
           onDragOver={(e) => e.preventDefault()}

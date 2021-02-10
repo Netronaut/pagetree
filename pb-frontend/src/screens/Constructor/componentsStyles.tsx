@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 
 export const ConstructorScreen = styled.div({
   height: '100%',
@@ -6,11 +7,24 @@ export const ConstructorScreen = styled.div({
   boxSizing: 'border-box',
 });
 
+export const NavLink = styled(Link)({
+  textDecoration: 'none',
+  textTransform: 'uppercase',
+});
+
+export const Header = styled.div`
+  height: 44px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding-left: 20px;
+`;
+
 export const DroppableContent = styled.div({
   overflow: 'scroll',
   width: '100%',
-  height: 'calc(100% - 100px)',
-  padding: '25px',
+  height: 'calc(100% - 120px)',
+  padding: '15px',
   boxSizing: 'border-box',
 });
 
