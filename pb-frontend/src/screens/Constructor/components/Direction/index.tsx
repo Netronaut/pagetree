@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
 import { ComponentRenderer } from '../ComponentRenderer';
 import {
   Configure,
@@ -10,7 +11,9 @@ import {
 import { DirectionWrapper } from './componentsStyles';
 import { useDragAndDrop } from 'hooks/useDragAndDrop';
 import { ChildDirection } from 'utils/tree';
-import { useModal } from '../../../../hooks';
+import { useModal, usePrevious } from '../../../../hooks';
+import usePages from '../../../Pages/hooks/usePages';
+import { TreeContext } from '../../index';
 import { Modal } from '../Modal';
 
 const ratios: Record<number, string[]> = {
@@ -25,25 +28,34 @@ export const Direction: React.FC<ChildDirection> = ({
 }) => {
   const { onDragLeave, onDragOver, insertTo, onDrop } = useDragAndDrop(id);
   const { modalShown, show, onModalClose } = useModal();
+  const { onConfigChange } = useContext(TreeContext);
+  const location = useParams<{ id: string }>();
+  const _id = location.id;
+  const { page } = usePages(_id);
 
-  const initialRatio = new Array(components.length).fill(1).join(':');
-
-  const [ratio, setRatio] = useState(initialRatio);
+  const prevComponentsLength = usePrevious(components.length);
 
   useEffect(() => {
-    if (direction === 'row') {
-      setRatio(initialRatio);
+    if (direction === 'row' && prevComponentsLength !== components.length) {
+      onConfigChange(
+        id as string,
+        'ratio',
+        new Array(components.length).fill(1).join(':'),
+      );
     }
   }, [components.length]);
 
   const onRatioSelect = (index: number) => {
-    return setRatio(ratios[components.length][index]);
+    onConfigChange(id as string, 'ratio', ratios[components.length][index]);
   };
 
   return (
     <DirectionWrapper
       direction={direction}
-      ratio={ratio}
+      ratio={
+        page?.config?.[id as string]?.ratio ||
+        new Array(components.length).fill(1).join(':')
+      }
       {...(id
         ? {
             onDragLeave,
