@@ -12,7 +12,7 @@ export const ModalContainer = styled.div`
   font-weight: lighter;
   z-index: 2;
   right: 0;
-  top: 35px;
+  top: 15px;
   flex-direction: column;
   align-content: center;
   justify-content: flex-start;

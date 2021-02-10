@@ -11,10 +11,10 @@ export const Direction: React.FC<ChildDirection> = ({
   id,
 }) => {
   const { onDragLeave, onDragOver, insertTo, onDrop } = useDragAndDrop(id);
-
   return (
     <DirectionWrapper
       direction={direction}
+      componentsCount={components.length}
       {...(id
         ? {
             onDragLeave,
