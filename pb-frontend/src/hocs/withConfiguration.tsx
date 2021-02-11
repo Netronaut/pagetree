@@ -55,10 +55,7 @@ const withConfiguration = (
 
     const configurations = config.map(({ fieldName, label }) => {
       return {
-        value:
-          page?.config && page?.config?.[id] && page?.config?.[id]?.[fieldName]
-            ? page?.config[id][fieldName]
-            : '',
+        value: page?.config?.[id]?.[fieldName] || '',
         label: label,
         field: fieldName,
       };
