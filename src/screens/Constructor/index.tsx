@@ -9,10 +9,10 @@ import {
 } from './componentsStyles';
 import { useParams } from 'react-router-dom';
 import { Direction } from './components/Direction';
-import usePages from '../Pages/hooks/usePages';
-import { usePrevious } from '../../hooks';
-import { Item, Tree, TSide } from '../../utils/tree';
-import { ComponentType } from '../../utils/componentTypes';
+import { Item, Tree, TSide } from 'utils/tree';
+import { ComponentType } from 'utils/componentTypes';
+import usePages from 'screens/Pages/hooks/usePages';
+import { usePrevious } from 'hooks/usePrevious';
 
 type TreeContextValue = {
   add: (

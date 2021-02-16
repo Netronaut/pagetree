@@ -1,6 +1,6 @@
 import React from 'react';
-import styled from 'styled-components';
 import withConfiguration from '../hocs/withConfiguration';
+import styled from 'styled-components';
 
 const TextContainer = styled.div`
   box-sizing: border-box;
