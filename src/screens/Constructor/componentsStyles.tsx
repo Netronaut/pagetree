@@ -23,7 +23,7 @@ export const Header = styled.div`
 export const DroppableContent = styled.div({
   overflow: 'scroll',
   width: '100%',
-  height: 'calc(100% - 120px)',
+  height: 'calc(100% - 145px)',
   padding: '15px',
   boxSizing: 'border-box',
 });
