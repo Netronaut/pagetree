@@ -1,6 +1,6 @@
 import { v4 } from 'uuid';
 import { ComponentType } from './componentTypes';
-import { Optional } from 'types/helpers';
+import { Optional } from '../types/helpers';
 
 export enum TDirection {
   row = 'row',
@@ -40,6 +40,11 @@ export type ChildComponent = {
   type: ComponentType;
   direction: undefined;
 };
+
+export type Page = {
+  structure: ChildDirection;
+  config: Record<string, any>
+}
 
 type TParent = Container | null;
 
@@ -175,7 +180,7 @@ class Container {
 
 const getCircularReplacer = () => {
   const seen = new WeakSet();
-  return (key: string, value: TNode) => {
+  return (_: string, value: TNode) => {
     if (typeof value === 'object' && value !== null) {
       if (seen.has(value)) {
         return;
@@ -199,7 +204,7 @@ export class Tree {
     let data = undefined;
     (function recurse(currentNode: TNode) {
       if (!(currentNode instanceof Item)) {
-        currentNode.components.forEach((item, index) => {
+        currentNode.components.forEach((_, index) => {
           recurse(currentNode.components[index]);
         });
       }

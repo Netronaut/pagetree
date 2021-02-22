@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react';
-import { TreeContext } from '../screens/Constructor';
+import { TreeContext } from '../utils/context';
 import { TSide } from '../utils/tree';
 import { componentTypes } from '../utils/componentTypes';
 

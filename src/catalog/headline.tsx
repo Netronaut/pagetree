@@ -1,8 +1,9 @@
 import React from 'react';
-import withConfiguration from 'hocs/withConfiguration';
 import styled from 'styled-components';
 
-const TextContainer = styled.div`
+import { withConfiguration } from '../hocs/withConfiguration';
+
+const Container = styled.div`
   box-sizing: border-box;
   outline: none;
   position: relative;
@@ -10,7 +11,7 @@ const TextContainer = styled.div`
 `;
 
 export default withConfiguration(
-  () => <TextContainer />,
+  () => <Container />,
   [{ fieldName: 'headline', label: 'Headline' }],
   {
     type: 'headline',
