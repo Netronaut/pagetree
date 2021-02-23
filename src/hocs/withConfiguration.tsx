@@ -42,7 +42,7 @@ export const withConfiguration = (
     background,
   }: { type: string; componentName: string; background: string },
 ) => {
-  const component = function(props: { type: string; id: string }) {
+  const Component = function(props: { type: string; id: string }) {
     const { id, type } = props;
     const { modalShown, show, onModalClose } = useModal();
     const { onConfigChange, config: pageConfig } = useContext(TreeContext);
@@ -82,9 +82,9 @@ export const withConfiguration = (
     );
   };
 
-  component.type = type;
-  component.componentName = componentName;
-  component.background = background;
+  Component.type = type;
+  Component.componentName = componentName;
+  Component.background = background;
 
-  return component;
+  return Component;
 };

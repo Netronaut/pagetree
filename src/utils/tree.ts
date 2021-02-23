@@ -43,8 +43,8 @@ export type ChildComponent = {
 
 export type Page = {
   structure: ChildDirection;
-  config: Record<string, any>
-}
+  config: Record<string, any>;
+};
 
 type TParent = Container | null;
 
@@ -83,7 +83,7 @@ class Container {
         : TDirection.column);
     this.id = id;
     this.parent = null;
-    this.components = components.map((c) => {
+    this.components = components.map(c => {
       const component = c.direction ? new Container(c) : new Item(c);
       component.parent = this;
       return component;
@@ -219,7 +219,7 @@ export class Tree {
   }
 
   add(item: Item, toId = '0', side: TSide = TSide.undetermined) {
-    const toItem = this.find((node) => node.id === toId);
+    const toItem = this.find(node => node.id === toId);
     if (toItem) {
       const target = (toItem.parent || toItem) as Container;
       target.addOrTransform(item, toItem, side);
@@ -229,7 +229,7 @@ export class Tree {
   }
 
   remove(id: string) {
-    const itemToRemove = this.find((node) => node.id === id);
+    const itemToRemove = this.find(node => node.id === id);
     if (itemToRemove && itemToRemove.parent) {
       return itemToRemove.parent.remove(itemToRemove as Item);
     } else {

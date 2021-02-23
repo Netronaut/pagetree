@@ -52,5 +52,13 @@
       "path": "dist/builder.esm.js",
       "limit": "10 KB"
     }
-  ]
+  ],
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  }
 }
