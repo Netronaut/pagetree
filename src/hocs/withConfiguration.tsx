@@ -1,11 +1,8 @@
 import React, { useContext } from 'react';
-import { Modal } from 'screens/Constructor/components/Modal';
-import { useModal } from 'hooks/useModal';
+import { Modal } from '../components/Modal';
+import { useModal } from '../hooks';
 import styled from 'styled-components';
-import TextInput from 'components/TextInput';
-import { TreeContext } from 'screens/Constructor';
-import { useParams } from 'react-router-dom';
-import usePages from 'screens/Pages/hooks/usePages';
+import { TreeContext } from '../utils/context';
 
 const Configure = styled.div`
   box-sizing: border-box;
@@ -36,7 +33,7 @@ const Type = styled.p<{ inside?: boolean }>`
   overflow: hidden;
 `;
 
-const withConfiguration = (
+export const withConfiguration = (
   WrappedComponent: React.FC<{ id: string }>,
   config: { fieldName: string; label: string }[],
   {
@@ -45,17 +42,14 @@ const withConfiguration = (
     background,
   }: { type: string; componentName: string; background: string },
 ) => {
-  const component = function (props: { type: string; id: string }) {
+  const Component = function(props: { type: string; id: string }) {
     const { id, type } = props;
     const { modalShown, show, onModalClose } = useModal();
-    const { onConfigChange } = useContext(TreeContext);
-    const location = useParams<{ id: string }>();
-    const _id = location.id;
-    const { page } = usePages(_id);
+    const { onConfigChange, config: pageConfig } = useContext(TreeContext);
 
     const configurations = config.map(({ fieldName, label }) => {
       return {
-        value: page?.config?.[id]?.[fieldName] || '',
+        value: pageConfig?.[id]?.[fieldName] || '',
         label: label,
         field: fieldName,
       };
@@ -73,12 +67,12 @@ const withConfiguration = (
           <Modal onClose={onModalClose}>
             <Type>{type}</Type>
             {configurations?.map(({ field, value, label }) => (
-              <TextInput
+              <input
                 required
                 placeholder={`Enter ${label}`}
                 key={field}
                 value={value}
-                onChange={(event) => onChange(event, field)}
+                onChange={event => onChange(event, field)}
               />
             ))}
           </Modal>
@@ -88,11 +82,9 @@ const withConfiguration = (
     );
   };
 
-  component.type = type;
-  component.componentName = componentName;
-  component.background = background;
+  Component.type = type;
+  Component.componentName = componentName;
+  Component.background = background;
 
-  return component;
+  return Component;
 };
-
-export default withConfiguration;
