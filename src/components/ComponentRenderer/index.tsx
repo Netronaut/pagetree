@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useContext, useMemo } from 'react';
 import { Indicator, Container } from './componentsStyles';
 import { useDragAndDrop } from '../../hooks';
 import { ChildComponent } from '../../utils/tree';
-import { componentByType } from '../../utils/componentTypes';
+import { TreeContext } from '../../utils/context';
+import { CatalogComponent } from '../../hocs/createCatalogComponent';
 
 type Props = {
   component: ChildComponent;
@@ -10,7 +11,6 @@ type Props = {
 
 export const ComponentRenderer: React.FC<Props> = ({ component }) => {
   const { id, type } = component;
-  const Component = componentByType[type];
   const {
     onDragLeave,
     onDragStart,
@@ -19,11 +19,25 @@ export const ComponentRenderer: React.FC<Props> = ({ component }) => {
     insertTo,
   } = useDragAndDrop(id);
 
+  const { production, components } = useContext(TreeContext);
+
+  const componentByType = useMemo(() => {
+    return (components || []).reduce((acc, component) => {
+      acc[component.type] = component;
+      return acc;
+    }, {} as Record<string, CatalogComponent>);
+  }, [components]);
+
+  const Component = componentByType[type];
+
+  if (production) {
+    return <Component id={id} type={type} />;
+  }
+
   return (
     <Container
       id={id}
       insertTo={insertTo}
-      background={Component.background}
       {...{
         draggable: true,
         onDragStart,

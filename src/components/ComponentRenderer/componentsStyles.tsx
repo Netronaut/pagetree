@@ -19,12 +19,10 @@ const getDimensions = (position: TSide, inDirection?: boolean) => {
 
 export const Container = styled.div<{
   insertTo: TSide;
-  background: string;
 }>`
   flex-grow: 1;
   position: relative;
   border: 1px solid;
-  background: ${({ background }) => (background ? background : '#ffffff')};
   box-sizing: border-box;
   display: flex;
   align-items: center;

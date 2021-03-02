@@ -7,10 +7,12 @@ import {
 } from './componentsStyles';
 import { Direction } from './components/Direction';
 import { Item, Tree, TSide } from './utils/tree';
-import { ComponentType } from './utils/componentTypes';
 import { Optional } from './types/helpers';
 import { TPage } from './types';
 import { TreeContext } from './utils/context';
+import { Components } from './hocs/createCatalogComponent';
+
+export * from './hocs/createCatalogComponent';
 
 const { Provider } = TreeContext;
 
@@ -23,10 +25,19 @@ const makeElementVisible = (elementId: string) => {
   }
 };
 
-export const Builder: React.FC<{
+type Props = {
   value: TPage;
   onChange: (val: TPage) => void;
-}> = ({ value, onChange }) => {
+  production?: boolean;
+  components?: Components;
+};
+
+export const Builder: React.FC<Props> = ({
+  value,
+  onChange,
+  production,
+  components,
+}) => {
   const setValue = (newValue: Optional<TPage>) => {
     onChange({ ...value, ...newValue });
   };
@@ -45,7 +56,7 @@ export const Builder: React.FC<{
 
     const tree = new Tree(value.structure);
 
-    tree.add(new Item({ type } as { type: ComponentType }), toId, side);
+    tree.add(new Item({ type } as { type: string }), toId, side);
     setValue({ structure: tree.getValue() });
   };
 
@@ -103,27 +114,43 @@ export const Builder: React.FC<{
     }
   };
 
+  const content = !!value.structure ? (
+    <Direction
+      direction={value.structure.direction}
+      components={value.structure.components}
+    />
+  ) : null;
+
   return (
-    <Provider value={{ add, onConfigChange, config: value.config }}>
+    <Provider
+      value={{
+        add,
+        onConfigChange,
+        config: value.config,
+        production,
+        components,
+      }}
+    >
       <ConstructorScreen>
-        <DroppableContent
-          id="droppable-content"
-          onDragOver={e => e.preventDefault()}
-          onDrop={addNew}
-        >
-          {!!value.structure && (
-            <Direction
-              direction={value.structure.direction}
-              components={value.structure.components}
-            />
-          )}
-        </DroppableContent>
-        <Footer
-          onDragOver={e => e.preventDefault()}
-          onDrop={e => remove(e.dataTransfer.getData('fromId'))}
-        >
-          <Catalog />
-        </Footer>
+        {production ? (
+          content
+        ) : (
+          <>
+            <DroppableContent
+              id="droppable-content"
+              onDragOver={e => e.preventDefault()}
+              onDrop={addNew}
+            >
+              {content}
+            </DroppableContent>
+            <Footer
+              onDragOver={e => e.preventDefault()}
+              onDrop={e => remove(e.dataTransfer.getData('fromId'))}
+            >
+              <Catalog components={components} />
+            </Footer>
+          </>
+        )}
       </ConstructorScreen>
     </Provider>
   );

@@ -4,14 +4,22 @@ import * as ReactDOM from 'react-dom';
 import { Builder } from '@pagio/builder';
 import { useState } from 'react';
 import { GlobalStyle } from './globalStyle';
+import { components } from './catalog';
 
 const App = () => {
+  const [production, setProduction] = useState(false);
   const [value, setValue] = useState({});
 
   return (
     <>
       <GlobalStyle />
-      <Builder value={value} onChange={setValue} />
+      <div onClick={() => setProduction(prev => !prev)}>Toggle Production</div>
+      <Builder
+        value={value}
+        onChange={setValue}
+        production={production}
+        components={components}
+      />
     </>
   );
 };
