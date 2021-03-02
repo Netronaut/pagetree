@@ -25,7 +25,7 @@ export const Direction: React.FC<ChildDirection> = ({
 }) => {
   const { onDragLeave, onDragOver, insertTo, onDrop } = useDragAndDrop(id);
   const { modalShown, show, onModalClose } = useModal();
-  const { onConfigChange, config } = useContext(TreeContext);
+  const { onConfigChange, config, production } = useContext(TreeContext);
 
   const prevComponentsLength = usePrevious(components.length);
 
@@ -46,6 +46,7 @@ export const Direction: React.FC<ChildDirection> = ({
   return (
     <DirectionWrapper
       direction={direction}
+      production={production}
       ratio={
         config?.[id as string]?.ratio ||
         new Array(components.length).fill(1).join(':')
@@ -58,25 +59,30 @@ export const Direction: React.FC<ChildDirection> = ({
           }
         : {})}
     >
-      {modalShown && (
-        <Modal onClose={onModalClose}>
-          <Type>Row settings</Type>
-          Possible ratios:
-          <Ratios>
-            {direction === 'row' &&
-              components.length &&
-              ratios[components.length]?.map((r: string, index: number) => {
-                return (
-                  <Ratio key={r} onClick={() => onRatioSelect(index)}>
-                    {r}
-                  </Ratio>
-                );
-              })}
-          </Ratios>
-        </Modal>
+      {!production && (
+        <>
+          {modalShown && (
+            <Modal onClose={onModalClose}>
+              <Type>Row settings</Type>
+              Possible ratios:
+              <Ratios>
+                {direction === 'row' &&
+                  components.length &&
+                  ratios[components.length]?.map((r: string, index: number) => {
+                    return (
+                      <Ratio key={r} onClick={() => onRatioSelect(index)}>
+                        {r}
+                      </Ratio>
+                    );
+                  })}
+              </Ratios>
+            </Modal>
+          )}
+          {direction === 'row' && <Configure onClick={show}>...</Configure>}
+          <Indicator position={insertTo} inDirection />
+        </>
       )}
-      {direction === 'row' && <Configure onClick={show}>...</Configure>}
-      <Indicator position={insertTo} inDirection />
+
       {components.map(component => {
         if (component.direction) {
           return <Direction key={component.id} {...component} />;

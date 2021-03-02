@@ -1,5 +1,4 @@
 import { v4 } from 'uuid';
-import { ComponentType } from './componentTypes';
 import { Optional } from '../types/helpers';
 
 export enum TDirection {
@@ -37,7 +36,7 @@ export type ChildDirection = {
 
 export type ChildComponent = {
   id: string;
-  type: ComponentType;
+  type: string;
   direction: undefined;
 };
 
@@ -50,10 +49,10 @@ type TParent = Container | null;
 
 export class Item {
   id: string;
-  type: ComponentType;
+  type: string;
   parent: TParent;
 
-  constructor({ id = v4(), type }: { id?: string; type: ComponentType }) {
+  constructor({ id = v4(), type }: { id?: string; type: string }) {
     this.type = type;
     this.parent = null;
     this.id = id;

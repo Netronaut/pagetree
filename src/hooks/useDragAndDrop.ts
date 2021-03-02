@@ -1,7 +1,6 @@
 import React, { useContext, useState } from 'react';
 import { TreeContext } from '../utils/context';
 import { TSide } from '../utils/tree';
-import { componentTypes } from '../utils/componentTypes';
 
 const getInsertion = ({ x, y, width, height }: Record<string, number>) => {
   if (x < 20) {
@@ -20,13 +19,13 @@ const getInsertion = ({ x, y, width, height }: Record<string, number>) => {
 };
 
 export const useDragAndDrop = (id?: string) => {
-  const { add } = useContext(TreeContext);
+  const { add, components } = useContext(TreeContext);
   const [insertTo, setInsertTo] = useState<TSide>(TSide.undetermined);
 
   const onDragStart = (e: React.DragEvent<HTMLDivElement>) => {
     e.stopPropagation();
     const itemId = e.currentTarget.id;
-    const isNew = componentTypes.includes(itemId);
+    const isNew = components?.find(({ type }) => type === itemId);
 
     e.dataTransfer.setData(isNew ? 'newItemType' : 'fromId', itemId);
 
