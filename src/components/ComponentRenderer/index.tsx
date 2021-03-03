@@ -19,7 +19,7 @@ export const ComponentRenderer: React.FC<Props> = ({ component }) => {
     insertTo,
   } = useDragAndDrop(id);
 
-  const { production, components } = useContext(TreeContext);
+  const { showPreview, components } = useContext(TreeContext);
 
   const componentByType = useMemo(() => {
     return (components || []).reduce((acc, component) => {
@@ -30,7 +30,7 @@ export const ComponentRenderer: React.FC<Props> = ({ component }) => {
 
   const Component = componentByType[type];
 
-  if (production) {
+  if (showPreview) {
     return <Component id={id} type={type} />;
   }
 

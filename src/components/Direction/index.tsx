@@ -25,7 +25,7 @@ export const Direction: React.FC<ChildDirection> = ({
 }) => {
   const { onDragLeave, onDragOver, insertTo, onDrop } = useDragAndDrop(id);
   const { modalShown, show, onModalClose } = useModal();
-  const { onConfigChange, config, production } = useContext(TreeContext);
+  const { onConfigChange, config, showPreview } = useContext(TreeContext);
 
   const prevComponentsLength = usePrevious(components.length);
 
@@ -46,7 +46,7 @@ export const Direction: React.FC<ChildDirection> = ({
   return (
     <DirectionWrapper
       direction={direction}
-      production={production}
+      production={showPreview}
       ratio={
         config?.[id as string]?.ratio ||
         new Array(components.length).fill(1).join(':')
@@ -59,7 +59,7 @@ export const Direction: React.FC<ChildDirection> = ({
           }
         : {})}
     >
-      {!production && (
+      {!showPreview && (
         <>
           {modalShown && (
             <Modal onClose={onModalClose}>

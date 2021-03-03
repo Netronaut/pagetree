@@ -11,7 +11,7 @@ type TreeContextValue = {
   ) => void;
   onConfigChange: (id: string, field: string, value: string) => void;
   config: TPage['config'];
-  production?: boolean;
+  showPreview?: boolean;
   components?: Components;
 };
 

@@ -33,5 +33,5 @@ const Production: React.FC<ProductionComponentProps> = ({ config }) => {
 export default createCatalogComponent(Container, Production, {
   type: 'article-teaser',
   componentName: 'Article Teaser',
-  values: [{ fieldName: 'articleId', label: 'articleId' }],
+  props: [{ fieldName: 'articleId', label: 'articleId' }],
 });

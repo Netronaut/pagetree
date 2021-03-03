@@ -28,5 +28,5 @@ const Production: React.FC<ProductionComponentProps> = ({ config }) => {
 export default createCatalogComponent(Container, Production, {
   type: 'headline',
   componentName: 'Headline',
-  values: [{ fieldName: 'headline', label: 'Headline' }],
+  props: [{ fieldName: 'headline', label: 'Headline' }],
 });
