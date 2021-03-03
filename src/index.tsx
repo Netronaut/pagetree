@@ -14,8 +14,6 @@ import { Components } from './hocs/createCatalogComponent';
 
 export * from './hocs/createCatalogComponent';
 
-const { Provider } = TreeContext;
-
 const makeElementVisible = (elementId: string) => {
   if (elementId) {
     const draggedItem = document.getElementById(elementId);
@@ -26,20 +24,20 @@ const makeElementVisible = (elementId: string) => {
 };
 
 type Props = {
-  value: TPage;
+  pageContent: TPage;
   onChange: (val: TPage) => void;
-  production?: boolean;
+  showPreview?: boolean;
   components?: Components;
 };
 
 export const Builder: React.FC<Props> = ({
-  value,
+  pageContent,
   onChange,
-  production,
+  showPreview,
   components,
 }) => {
   const setValue = (newValue: Optional<TPage>) => {
-    onChange({ ...value, ...newValue });
+    onChange({ ...pageContent, ...newValue });
   };
 
   const addNew = (
@@ -54,7 +52,7 @@ export const Builder: React.FC<Props> = ({
       return;
     }
 
-    const tree = new Tree(value.structure);
+    const tree = new Tree(pageContent.structure);
 
     tree.add(new Item({ type } as { type: string }), toId, side);
     setValue({ structure: tree.getValue() });
@@ -76,7 +74,7 @@ export const Builder: React.FC<Props> = ({
       return addNew(e, toId, side);
     }
 
-    const tree = new Tree(value.structure);
+    const tree = new Tree(pageContent.structure);
 
     const { removedItem, lastComponentId, removedContainerId } = tree.remove(
       fromId,
@@ -93,12 +91,12 @@ export const Builder: React.FC<Props> = ({
   };
 
   const onConfigChange = (id: string, field: string, newValue: string) => {
-    if (value) {
+    if (pageContent) {
       setValue({
         config: {
-          ...(value.config || {}),
+          ...(pageContent.config || {}),
           [id]: {
-            ...(value.config?.[id] || {}),
+            ...(pageContent.config?.[id] || {}),
             [field]: newValue,
           },
         },
@@ -108,31 +106,31 @@ export const Builder: React.FC<Props> = ({
 
   const remove = (id: string) => {
     if (id) {
-      const tree = new Tree(value.structure);
+      const tree = new Tree(pageContent.structure);
       tree.remove(id);
       setValue({ structure: tree.getValue() });
     }
   };
 
-  const content = !!value.structure ? (
+  const content = !!pageContent.structure ? (
     <Direction
-      direction={value.structure.direction}
-      components={value.structure.components}
+      direction={pageContent.structure.direction}
+      components={pageContent.structure.components}
     />
   ) : null;
 
   return (
-    <Provider
+    <TreeContext.Provider
       value={{
         add,
         onConfigChange,
-        config: value.config,
-        production,
+        config: pageContent.config,
+        showPreview,
         components,
       }}
     >
       <ConstructorScreen>
-        {production ? (
+        {showPreview ? (
           content
         ) : (
           <>
@@ -152,6 +150,6 @@ export const Builder: React.FC<Props> = ({
           </>
         )}
       </ConstructorScreen>
-    </Provider>
+    </TreeContext.Provider>
   );
 };

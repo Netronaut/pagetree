@@ -8,16 +8,16 @@ import { components } from './catalog';
 
 const App = () => {
   const [production, setProduction] = useState(false);
-  const [value, setValue] = useState({});
+  const [pageContent, setPageContent] = useState({});
 
   return (
     <>
       <GlobalStyle />
       <div onClick={() => setProduction(prev => !prev)}>Toggle Production</div>
       <Builder
-        value={value}
-        onChange={setValue}
-        production={production}
+        pageContent={pageContent}
+        onChange={setPageContent}
+        showPreview={production}
         components={components}
       />
     </>

@@ -44,23 +44,23 @@ export const createCatalogComponent = (
   configuration: {
     type: string;
     componentName: string;
-    values: { fieldName: string; label: string }[];
+    props: { fieldName: string; label: string }[];
   },
 ) => {
   const Component = function(props: { type: string; id: string }) {
     const { id, type } = props;
     const { modalShown, show, onModalClose } = useModal();
-    const { onConfigChange, config: pageConfig, production } = useContext(
+    const { onConfigChange, config: pageConfig, showPreview } = useContext(
       TreeContext,
     );
 
-    if (production) {
+    if (showPreview) {
       return (
         <ProductionWrappedComponent {...props} config={pageConfig?.[id]} />
       );
     }
 
-    const configurations = configuration.values.map(({ fieldName, label }) => {
+    const configurations = configuration.props.map(({ fieldName, label }) => {
       return {
         value: pageConfig?.[id]?.[fieldName] || '',
         label: label,
