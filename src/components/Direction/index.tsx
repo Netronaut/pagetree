@@ -46,7 +46,7 @@ export const Direction: React.FC<ChildDirection> = ({
   return (
     <DirectionWrapper
       direction={direction}
-      production={showPreview}
+      showPreview={showPreview}
       ratio={
         config?.[id as string]?.ratio ||
         new Array(components.length).fill(1).join(':')

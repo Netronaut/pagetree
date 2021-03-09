@@ -26,7 +26,7 @@ const getStylesFromDirection = (direction: TDirection, ratio: string) => {
 export const DirectionWrapper = styled.div<{
   direction: TDirection;
   ratio: string;
-  production?: boolean;
+  showPreview?: boolean;
 }>`
   flex-grow: 1;
   position: relative;
@@ -34,5 +34,5 @@ export const DirectionWrapper = styled.div<{
   justify-content: center;
   align-content: center;
   ${({ direction, ratio }) => getStylesFromDirection(direction, ratio)}
-  ${({ production }) => (production ? `padding: 0` : '')}
+  ${({ showPreview }) => (showPreview ? `padding: 0` : '')}
 `;
