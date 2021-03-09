@@ -7,17 +7,17 @@ import { GlobalStyle } from './globalStyle';
 import { components } from './catalog';
 
 const App = () => {
-  const [production, setProduction] = useState(false);
+  const [showPreview, setShowPreview] = useState(false);
   const [pageContent, setPageContent] = useState({});
 
   return (
     <>
       <GlobalStyle />
-      <div onClick={() => setProduction(prev => !prev)}>Toggle Production</div>
+      <div onClick={() => setShowPreview(prev => !prev)}>Toggle Preview</div>
       <Builder
         pageContent={pageContent}
         onChange={setPageContent}
-        showPreview={production}
+        showPreview={showPreview}
         components={components}
       />
     </>

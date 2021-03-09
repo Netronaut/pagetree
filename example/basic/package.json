@@ -8,17 +8,17 @@
     "build": "parcel build index.html"
   },
   "dependencies": {
+    "@pagio/builder": "../../.",
     "react": ">= 16.8.0",
     "react-app-polyfill": "^1.0.0",
     "react-dom": ">= 16.8.0",
-    "react-is": ">= 16.8.0",
-    "styled-components": "^5.2.1",
-    "@pagio/builder": "../../."
+    "react-is": ">= 16.8.0"
   },
   "alias": {
     "react": "../../node_modules/react",
     "react-dom": "../../node_modules/react-dom/profiling",
-    "scheduler/tracing": "../../node_modules/scheduler/tracing-profiling"
+    "scheduler/tracing": "../../node_modules/scheduler/tracing-profiling",
+    "styled-components": "../../node_modules/styled-components"
   },
   "devDependencies": {
     "@types/react": "^16.9.11",
