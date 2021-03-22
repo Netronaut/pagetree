@@ -59,5 +59,20 @@
     "hooks": {
       "pre-commit": "lint-staged"
     }
-  }
+  },
+  "description": "This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).",
+  "directories": {
+    "example": "example"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Netronaut/pagebuilder.git"
+  },
+  "keywords": [
+    "pagebuilder"
+  ],
+  "bugs": {
+    "url": "https://github.com/Netronaut/pagebuilder/issues"
+  },
+  "homepage": "https://github.com/Netronaut/pagebuilder#readme"
 }
