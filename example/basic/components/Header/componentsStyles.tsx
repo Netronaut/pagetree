@@ -2,13 +2,14 @@ import styled from 'styled-components';
 
 export const HeadWrapper = styled.header`
   display: grid;
-  grid-template: 1fr / 1fr minmax(auto, 200px) minmax(auto, 600px) 1fr;
+  grid-template: 1fr / 1fr minmax(auto, 200px) minmax(auto, 1600px) 1fr;
   background: #282C39;
   color: white;
   font-family: 'Roboto';
   font-weight: 400;
   font-size: 16px;
-  line-height: 18.75px
+  line-height: 18.75px;
+  padding: 0 15px;
 `;
 export const HeadContent = styled.div`
   grid-column: 3 / 4;
