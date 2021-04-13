@@ -17,5 +17,5 @@
     "baseUrl": "./src",
     "noFallthroughCasesInSwitch": true
   },
-  "include": ["src"]
+  "include": ["src", "example/basic/components/Header"]
 }
