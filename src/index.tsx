@@ -6,6 +6,7 @@ import {
   Footer,
 } from './componentsStyles';
 import { Direction } from './components/Direction';
+import { AddComponents } from './components/AddComponents';
 import { Item, Tree, TSide } from './utils/tree';
 import { Optional } from './types/helpers';
 import { TPage } from './types';
@@ -150,6 +151,7 @@ export const Builder: React.FC<Props> = ({
           </>
         )}
       </ConstructorScreen>
+      <AddComponents />
     </TreeContext.Provider>
   );
 };
