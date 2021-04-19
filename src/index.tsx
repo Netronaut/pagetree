@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Catalog } from './components/Catalog';
 import {
   ConstructorScreen,
@@ -120,6 +120,8 @@ export const Builder: React.FC<Props> = ({
     />
   ) : null;
 
+  const [isTheComponentsWindowOpen, setIsTheComponentsWindowOpen] = useState(false);
+
   return (
     <TreeContext.Provider
       value={{
@@ -148,10 +150,13 @@ export const Builder: React.FC<Props> = ({
             >
               <Catalog components={components} />
             </Footer>
+            <AddComponents
+              isOpen={isTheComponentsWindowOpen}
+              setIsOpen={setIsTheComponentsWindowOpen}
+            />
           </>
         )}
       </ConstructorScreen>
-      <AddComponents />
     </TreeContext.Provider>
   );
 };
