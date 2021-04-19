@@ -12,7 +12,7 @@ export const AddComponents: React.FC<Props> = ({
 }) => {
   return (
     <AddComponentsWrapper>
-      <button onClick={() => setIsOpen(!isOpen)}>{!isOpen ? '+' : 'close'}</button>
+      <button onClick={() => setIsOpen(true)}>+</button>
       <p>Add components</p>
     </AddComponentsWrapper>
   );
