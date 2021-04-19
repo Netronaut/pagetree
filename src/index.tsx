@@ -7,6 +7,7 @@ import {
 } from './componentsStyles';
 import { Direction } from './components/Direction';
 import { AddComponents } from './components/AddComponents';
+import { ModalComponents } from './components/ModalComponents';
 import { Item, Tree, TSide } from './utils/tree';
 import { Optional } from './types/helpers';
 import { TPage } from './types';
@@ -144,16 +145,23 @@ export const Builder: React.FC<Props> = ({
             >
               {content}
             </DroppableContent>
-            <Footer
+            {/* <Footer
               onDragOver={e => e.preventDefault()}
               onDrop={e => remove(e.dataTransfer.getData('fromId'))}
             >
               <Catalog components={components} />
-            </Footer>
-            <AddComponents
-              isOpen={isTheComponentsWindowOpen}
-              setIsOpen={setIsTheComponentsWindowOpen}
-            />
+            </Footer> */}
+            {isTheComponentsWindowOpen
+              ?
+              <ModalComponents onClose={setIsTheComponentsWindowOpen}>
+                <Catalog components={components} />
+              </ModalComponents>
+              :
+              <AddComponents
+                isOpen={isTheComponentsWindowOpen}
+                setIsOpen={setIsTheComponentsWindowOpen}
+              />
+            }
           </>
         )}
       </ConstructorScreen>
