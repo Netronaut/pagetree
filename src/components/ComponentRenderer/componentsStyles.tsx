@@ -20,12 +20,13 @@ const getDimensions = (position: TSide, inDirection?: boolean) => {
 export const Container = styled.div<{
   insertTo: TSide;
 }>`
+  margin: 15px;
   flex-grow: 1;
   position: relative;
-  border: 1px solid;
+  border: 2px solid #9d9d9d;
+  border-radius: 15px;
   box-sizing: border-box;
   display: flex;
-  align-items: center;
 `;
 
 export const Type = styled.p<{ inside?: boolean }>`

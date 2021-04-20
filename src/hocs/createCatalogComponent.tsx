@@ -22,20 +22,21 @@ const Configure = styled.div`
 `;
 
 const Type = styled.span<{ inside?: boolean }>`
-  width: ${({ inside }) => (inside ? '100%' : '')};
   outline: none;
   position: absolute;
-  left: 10px;
-  font-size: ${({ inside }) => (inside ? '20px' : '15px')};
-  top: ${({ inside }) => (inside ? '' : '-15px')};
-  background: ${({ inside }) => (inside ? 'transparent' : 'white')};
-  border-radius: 20px;
-  padding: 5px;
+  left: 32px;
+  font-size: ${({ inside }) => (inside ? '19px' : '15px')};
+  top: ${({ inside }) => (inside ? '-10px' : '-8px')};
+  background: #fff;
+  padding: 0 6px 0;
   box-sizing: border-box;
-  text-transform: uppercase;
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
+  color: #9D9D9D;
+  font-family: 'Gotham Pro';
+  font-weight: 400;
+  line-height: 15px;
 `;
 
 export const createCatalogComponent = (
@@ -47,7 +48,7 @@ export const createCatalogComponent = (
     props: { fieldName: string; label: string }[];
   },
 ) => {
-  const Component = function(props: { type: string; id: string }) {
+  const Component = function (props: { type: string; id: string }) {
     const { id, type } = props;
     const { modalShown, show, onModalClose } = useModal();
     const { onConfigChange, config: pageConfig, showPreview } = useContext(

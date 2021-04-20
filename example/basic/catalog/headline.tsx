@@ -12,7 +12,6 @@ const Container = styled.div`
   outline: none;
   position: relative;
   height: 50px;
-  background: rgba(0, 0, 255, 0.05);
   width: 100%;
 `;
 
@@ -27,7 +26,7 @@ const Production: React.FC<ProductionComponentProps> = ({ config }) => {
 };
 
 export default createCatalogComponent(Container, Production, {
-  type: 'headline',
+  type: 'Headline',
   componentName: 'Headline',
   props: [{ fieldName: 'headline', label: 'Headline' }],
 });
