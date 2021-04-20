@@ -25,6 +25,7 @@
     "react": ">=16"
   },
   "dependencies": {
+    "components": "^0.1.0",
     "styled-components": "^5.2.1",
     "uuid": "^8.3.2"
   },
