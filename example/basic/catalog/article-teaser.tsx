@@ -13,7 +13,6 @@ const Container = styled.div`
   position: relative;
   height: 200px;
   width: 100%;
-  background: rgba(255, 0, 0, 0.05);
 `;
 
 const ProductionContainer = styled.div`
@@ -32,7 +31,7 @@ const Production: React.FC<ProductionComponentProps> = ({ config }) => {
 };
 
 export default createCatalogComponent(Container, Production, {
-  type: 'article-teaser',
+  type: 'Article-teaser',
   componentName: 'Article Teaser',
   props: [{ fieldName: 'articleId', label: 'articleId' }],
 });
