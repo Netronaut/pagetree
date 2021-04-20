@@ -4,7 +4,8 @@ import styled from 'styled-components';
 import {
   createCatalogComponent,
   ProductionComponentProps,
-} from '@pagio/builder';
+// } from '@pagio/builder';
+} from '../../../src';
 
 const Container = styled.div`
   box-sizing: border-box;
