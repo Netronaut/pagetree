@@ -4,6 +4,7 @@ export const ConstructorScreen = styled.div({
   height: '100%',
   width: '100%',
   boxSizing: 'border-box',
+  fontFamily: 'Arial',
 });
 
 export const DroppableContent = styled.div({
