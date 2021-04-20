@@ -8,21 +8,22 @@ export const ConstructorScreen = styled.div({
 });
 
 export const DroppableContent = styled.div({
-  overflow: 'scroll',
+  // overflow: 'scroll',
   width: '100%',
-  height: 'calc(100% - 100px)',
+  // height: 'calc(100% - 100px)',
+  height: '100%',
   padding: '15px',
   boxSizing: 'border-box',
 });
 
-export const Footer = styled.div({
-  width: '100%',
-  height: '100px',
-  background: '#f1f0f0',
-  boxSizing: 'border-box',
-  display: 'flex',
-  padding: '25px',
-  flexDirection: 'row',
-  alignItems: 'center',
-  justifyContent: 'flex-start',
-});
+// export const Footer = styled.div({
+//   width: '100%',
+//   height: '100px',
+//   background: '#f1f0f0',
+//   boxSizing: 'border-box',
+//   display: 'flex',
+//   padding: '25px',
+//   flexDirection: 'row',
+//   alignItems: 'center',
+//   justifyContent: 'flex-start',
+// });
