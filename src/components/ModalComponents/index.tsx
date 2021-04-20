@@ -36,8 +36,8 @@ export const ModalComponents: React.FC<Props> = ({ children, onClose }) => {
   return (
     <Modal ref={modalRef} draggable="true" onDragStart={onDragStart}>
       <ModalHeader>
-        <ModalButton onClick={() => alert('info')}><img src={infoIcon} alt="info Icon"/></ModalButton>
-        <ModalButton onClick={() => onClose(false)}><img src={cross} alt="test"/></ModalButton>
+        <ModalButton onClick={() => alert('info')}><img src={infoIcon} alt="info Icon" /></ModalButton>
+        <ModalButton onClick={() => onClose(false)}><img src={cross} alt="test" /></ModalButton>
       </ModalHeader>
       {children}
     </Modal>

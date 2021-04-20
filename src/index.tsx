@@ -13,6 +13,8 @@ import { Optional } from './types/helpers';
 import { TPage } from './types';
 import { TreeContext } from './utils/context';
 import { Components } from './hocs/createCatalogComponent';
+import { ModalButton, ModalH2, SearchBox } from './components/ModalComponents/componentsStyles';
+import search from '../images/search.svg';
 
 export * from './hocs/createCatalogComponent';
 
@@ -121,7 +123,7 @@ export const Builder: React.FC<Props> = ({
     />
   ) : null;
 
-  const [isTheComponentsWindowOpen, setIsTheComponentsWindowOpen] = useState(false);
+  const [isTheComponentsWindowOpen, setIsTheComponentsWindowOpen] = useState(true); //need to set false
 
   return (
     <TreeContext.Provider
@@ -154,6 +156,11 @@ export const Builder: React.FC<Props> = ({
             {isTheComponentsWindowOpen
               ?
               <ModalComponents onClose={setIsTheComponentsWindowOpen}>
+                <ModalH2>Components</ModalH2>
+                <SearchBox>
+                  <input type="text" />
+                  <ModalButton><img src={search} alt="search" /></ModalButton>
+                </SearchBox>
                 <Catalog components={components} />
               </ModalComponents>
               :
