@@ -1,7 +1,6 @@
 import React, { useContext, useEffect } from 'react';
 import { ComponentRenderer } from '../ComponentRenderer';
 import {
-  Configure,
   Indicator,
   Type,
   Ratios,
@@ -53,10 +52,10 @@ export const Direction: React.FC<ChildDirection> = ({
       }
       {...(id
         ? {
-            onDragLeave,
-            onDragOver,
-            onDrop,
-          }
+          onDragLeave,
+          onDragOver,
+          onDrop,
+        }
         : {})}
     >
       {!showPreview && (
@@ -78,7 +77,6 @@ export const Direction: React.FC<ChildDirection> = ({
               </Ratios>
             </Modal>
           )}
-          {direction === 'row' && <Configure onClick={show}>...</Configure>}
           <Indicator position={insertTo} inDirection />
         </>
       )}
@@ -87,7 +85,13 @@ export const Direction: React.FC<ChildDirection> = ({
         if (component.direction) {
           return <Direction key={component.id} {...component} />;
         }
-        return <ComponentRenderer key={component.id} component={component} />;
+        return <ComponentRenderer
+          key={component.id}
+          component={component}
+          direction={direction}
+          ratios={ratios}
+          onRatioSelect={onRatioSelect}
+        />;
       })}
     </DirectionWrapper>
   );

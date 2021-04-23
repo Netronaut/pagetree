@@ -16,10 +16,11 @@ const getStylesFromDirection = (direction: TDirection, ratio: string) => {
         .join(' ')};
       flex-direction: ${direction};
       padding: ${padding.join(' ')};
+      position: relative;
     `;
   }
   return `
-      flex-direction: ${direction};
+    flex-direction: ${direction};
   `;
 };
 
