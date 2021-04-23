@@ -1,15 +1,20 @@
 import React, { useContext, useMemo } from 'react';
-import { Indicator, Container } from './componentsStyles';
-import { useDragAndDrop } from '../../hooks';
+import { Indicator, Container, Configure, Type, Ratios, Ratio } from './componentsStyles';
+import { useDragAndDrop, useModal } from '../../hooks';
 import { ChildComponent } from '../../utils/tree';
 import { TreeContext } from '../../utils/context';
 import { CatalogComponent } from '../../hocs/createCatalogComponent';
+import { Modal } from '../Modal';
+
 
 type Props = {
   component: ChildComponent;
+  direction: string;
+  ratios: Record<number, string[]>;
+  onRatioSelect: (val: number) => void;
 };
 
-export const ComponentRenderer: React.FC<Props> = ({ component }) => {
+export const ComponentRenderer: React.FC<Props> = ({ component, direction, ratios, onRatioSelect }) => {
   const { id, type } = component;
   const {
     onDragLeave,
@@ -34,6 +39,26 @@ export const ComponentRenderer: React.FC<Props> = ({ component }) => {
     return <Component id={id} type={type} />;
   }
 
+  const { modalShown, show, onModalClose } = useModal();
+
+  const ModalCondition = modalShown && (
+    <Modal onClose={onModalClose}>
+      <Type>Row settings</Type>
+      Possible ratios:
+      <Ratios>
+        {direction === 'row' &&
+          components?.length &&
+          ratios[components.length]?.map((r: string, index: number) => {
+            return (
+              <Ratio key={r} onClick={() => onRatioSelect(index)}>
+                {r}
+              </Ratio>
+            );
+          })}
+      </Ratios>
+    </Modal>
+  )
+
   return (
     <Container
       id={id}
@@ -46,8 +71,10 @@ export const ComponentRenderer: React.FC<Props> = ({ component }) => {
         onDrop,
       }}
     >
+      {ModalCondition}
       <Indicator position={insertTo} />
       <Component id={id} type={type} />
+      {direction === 'row' && <Configure onClick={show} />}
     </Container>
   );
 };

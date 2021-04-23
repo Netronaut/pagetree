@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { TSide } from '../../utils/tree';
+import slider from '../../../images/slider.svg';
 
 const getDimensions = (position: TSide, inDirection?: boolean) => {
   const dimensions = ['10px', `calc(100% + ${!inDirection ? 2 : 0}px)`];
@@ -27,6 +28,16 @@ export const Container = styled.div<{
   border-radius: 15px;
   box-sizing: border-box;
   display: flex;
+  &:after {
+    content: '';
+    align-self: center;
+    height: 75%;
+    width: 2px;
+    background: #9d9d9d;
+    position: relative;
+    left: 17px;
+    z-index: 0;
+  }
 `;
 
 export const Type = styled.p<{ inside?: boolean }>`
@@ -47,15 +58,15 @@ export const Type = styled.p<{ inside?: boolean }>`
 `;
 
 export const Configure = styled.div`
-  box-sizing: border-box;
-  outline: none;
-  position: absolute;
-  right: 6px;
-  top: -8px;
-  cursor: pointer;
-  font-weight: bold;
-  font-size: 20px;
-  color: grey;
+  width: calc(9px * 2);
+  height: calc(34px * 2);
+  display: block;
+  background: #fff url(/slider.e3ab518a.svg) 50% no-repeat;
+  position: relative;
+  left: 27px;
+  cursor: w-resize;
+  z-index: 1;
+  align-self: center;
 `;
 
 export const Ratios = styled.div`
