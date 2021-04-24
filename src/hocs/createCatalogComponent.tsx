@@ -13,12 +13,13 @@ const Configure = styled.div`
   box-sizing: border-box;
   outline: none;
   position: absolute;
-  right: 5px;
-  top: -5px;
+  right: 23px;
+  top: 12px;
   cursor: pointer;
   font-weight: bold;
   font-size: 20px;
-  color: grey;
+  color: #9D9D9D;
+  font-family: auto;
 `;
 
 const Type = styled.span<{ inside?: boolean }>`

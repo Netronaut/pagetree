@@ -10,7 +10,7 @@ import {
 const Container = styled.div`
   box-sizing: border-box;
   outline: none;
-  position: relative;
+  /* position: relative; */
   height: 200px;
   width: 100%;
 `;
