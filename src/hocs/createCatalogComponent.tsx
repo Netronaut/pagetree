@@ -24,20 +24,32 @@ const Configure = styled.div`
 
 const Type = styled.span<{ inside?: boolean }>`
   outline: none;
-  position: absolute;
-  left: 32px;
-  font-size: ${({ inside }) => (inside ? '19px' : '15px')};
-  top: ${({ inside }) => (inside ? '-10px' : '-8px')};
-  background: #fff;
-  padding: 0 6px 0;
   box-sizing: border-box;
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
-  color: #9D9D9D;
-  font-family: 'Gotham Pro';
-  font-weight: 400;
-  line-height: 15px;
+  ${({ inside }) => (
+    inside ? `
+      position: absolute;
+      left: 32px;
+      top: -10px;
+      padding: 0 6px 0;
+      background: #fff;
+      font-family: 'Gotham Pro';
+      font-weight: 400;
+      font-size: 19px;
+      line-height: 15px;
+      color: #9D9D9D;
+    ` : `
+      font-family: 'Gotham Pro', serif;
+      font-weight: 700;
+      font-size: 22px;
+      line-height: 21.05px;
+      color: #fff;
+      text-align: center;
+      margin-bottom: 21px;
+    `
+  )};
 `;
 
 export const createCatalogComponent = (
@@ -79,7 +91,7 @@ export const createCatalogComponent = (
         <WrappedComponent>
           <Type inside>{type}</Type>
           {modalShown && (
-            <Modal onClose={onModalClose}>
+            <Modal onOpenClose={onModalClose}>
               <Type>{type}</Type>
               {configurations?.map(({ field, value, label }) => (
                 <input
