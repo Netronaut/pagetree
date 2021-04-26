@@ -1,6 +1,5 @@
 import styled from 'styled-components';
 import { TSide } from '../../utils/tree';
-import slider from '../../../images/slider.svg';
 
 const getDimensions = (position: TSide, inDirection?: boolean) => {
   const dimensions = ['10px', `calc(100% + ${!inDirection ? 2 : 0}px)`];
