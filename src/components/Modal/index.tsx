@@ -1,11 +1,14 @@
 import React, { useEffect, useRef } from 'react';
-import { ModalContainer } from './componentsStyles';
+import { ModalContainer, ModalHeader, ModalButton } from './componentsStyles';
+import infoIcon from '../../../images/infoAboutComponents.svg';
+import cross from '../../../images/cross.svg';
 
 type Props = {
-  onClose: () => void;
+  onOpenClose: (val: boolean) => void;
+  isAddComponents?: boolean;
 };
 
-export const Modal: React.FC<Props> = ({ children, onClose }) => {
+export const Modal: React.FC<Props> = ({ children, onOpenClose, isAddComponents }) => {
   const modalRef = useRef<HTMLDivElement>(null);
 
   const onDragStart = (e: React.DragEvent<HTMLDivElement>) => {
@@ -19,7 +22,7 @@ export const Modal: React.FC<Props> = ({ children, onClose }) => {
         modalRef.current &&
         !modalRef.current.contains(event.target as Node)
       ) {
-        onClose();
+        onOpenClose(false);
       }
     };
     window.addEventListener('click', handleClickOutside, true);
@@ -31,7 +34,16 @@ export const Modal: React.FC<Props> = ({ children, onClose }) => {
   }, []);
 
   return (
-    <ModalContainer ref={modalRef} draggable="true" onDragStart={onDragStart}>
+    <ModalContainer
+      ref={modalRef}
+      draggable="true"
+      onDragStart={onDragStart}
+      isAddComponents={isAddComponents}
+    >
+      <ModalHeader>
+        <ModalButton onClick={() => alert('info')}><img src={infoIcon} alt="info Icon" /></ModalButton>
+        <ModalButton onClick={() => onOpenClose(false)}><img src={cross} alt="test" /></ModalButton>
+      </ModalHeader>
       {children}
     </ModalContainer>
   );

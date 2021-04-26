@@ -3,17 +3,17 @@ import { Catalog } from './components/Catalog';
 import {
   ConstructorScreen,
   DroppableContent,
-  Footer,
+  // Footer,
 } from './componentsStyles';
 import { Direction } from './components/Direction';
 import { AddComponents } from './components/AddComponents';
-import { ModalComponents } from './components/ModalComponents';
+import { Modal } from './components/Modal';
+import { ModalButton, ModalH2, SearchBox } from './components/Modal/componentsStyles';
 import { Item, Tree, TSide } from './utils/tree';
 import { Optional } from './types/helpers';
 import { TPage } from './types';
 import { TreeContext } from './utils/context';
 import { Components } from './hocs/createCatalogComponent';
-import { ModalButton, ModalH2, SearchBox } from './components/ModalComponents/componentsStyles';
 import search from '../images/search.svg';
 
 export * from './hocs/createCatalogComponent';
@@ -123,7 +123,7 @@ export const Builder: React.FC<Props> = ({
     />
   ) : null;
 
-  const [isTheComponentsWindowOpen, setIsTheComponentsWindowOpen] = useState(true); //need to set false
+  const [isOpen, setIsOpen] = useState(false);
 
   return (
     <TreeContext.Provider
@@ -153,20 +153,20 @@ export const Builder: React.FC<Props> = ({
             >
               <Catalog components={components} />
             </Footer> */}
-            {isTheComponentsWindowOpen
+            {isOpen
               ?
-              <ModalComponents onClose={setIsTheComponentsWindowOpen}>
+              <Modal onOpenClose={setIsOpen} isAddComponents>
                 <ModalH2>Components</ModalH2>
                 <SearchBox>
                   <input type="text" />
                   <ModalButton><img src={search} alt="search" /></ModalButton>
                 </SearchBox>
                 <Catalog components={components} />
-              </ModalComponents>
+              </Modal>
               :
               <AddComponents
-                isOpen={isTheComponentsWindowOpen}
-                setIsOpen={setIsTheComponentsWindowOpen}
+                isOpen={isOpen}
+                setIsOpen={setIsOpen}
               />
             }
           </>

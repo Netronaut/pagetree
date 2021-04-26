@@ -61,7 +61,7 @@ export const Direction: React.FC<ChildDirection> = ({
       {!showPreview && (
         <>
           {modalShown && (
-            <Modal onClose={onModalClose}>
+            <Modal onOpenClose={onModalClose}>
               <Type>Row settings</Type>
               Possible ratios:
               <Ratios>
