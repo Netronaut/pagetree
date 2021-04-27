@@ -1,10 +1,20 @@
-import React from 'react';
-import { StyledGroupWrapper } from './componentsStyles';
+import React, { useState} from 'react';
+import { StyledGroupWrapper, DropdownButton } from './componentsStyles';
 
-export const GroupWrapper: React.FC = ({ children }) => {
+type Props = {
+  groupName?: string;
+};
+
+export const GroupWrapper: React.FC<Props> = ({ children, groupName='group name' }) => {
+  const [isOpen, setIsOpen] = useState(false);
   return (
-    <StyledGroupWrapper>
-      <header>Group name</header>
+    <StyledGroupWrapper isOpen={isOpen}>
+      <header>
+        {groupName}
+        <DropdownButton onClick={() => setIsOpen(!isOpen)} isOpen={isOpen}>
+          <img src='/arrow.2ff401d5.svg' alt='arrow'/>
+        </DropdownButton>
+      </header>
       <section>
         {children}
       </section>
