@@ -158,7 +158,7 @@ export const Builder: React.FC<Props> = ({
               <Modal onOpenClose={setIsOpen} isAddComponents>
                 <ModalH2>Components</ModalH2>
                 <SearchBox>
-                  <input type="text" />
+                  <input type="text" placeholder="Search"/>
                   <ModalButton><img src={search} alt="search" /></ModalButton>
                 </SearchBox>
                 <Catalog components={components} />

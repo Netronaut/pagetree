@@ -30,6 +30,14 @@ export const ModalContainer = styled.div<{
       width: 331px;
     `
   }}
+
+  input {
+    background: transparent;
+    color: #fff;
+    &::placeholder {
+      color: #fff;
+    }
+  }
 `;
 
 export const ModalButton = styled.button<{
@@ -65,9 +73,10 @@ export const ModalH2 = styled.h2`
 `;
 
 export const SearchBox = styled.div`
+  position: relative;
   border: 1px solid #fff;
   border-radius: 10px;
-  padding: 6px 14px;
+  padding: 7px 44px 7px 14px;
   margin-bottom: 25px;
   * {
     color: #fff;
@@ -75,8 +84,16 @@ export const SearchBox = styled.div`
     border: none;
   }
   input {
+    width: 100%;
+    padding: 0;
     font-size: 16px;
     line-height: 18.75px;
+  }
+  button {
+    position: absolute;
+    right: 14px;
+    top: calc(50% - 8.5px);
+    padding: 0;
   }
 `
 
@@ -84,9 +101,4 @@ export const ModalInput = styled.input`
   border: 1px solid #fff;
   border-radius: 10px;
   padding: 10px 15px;
-  background: transparent;
-  color: #fff;
-  &::placeholder {
-    color: #fff;
-  }
 `;

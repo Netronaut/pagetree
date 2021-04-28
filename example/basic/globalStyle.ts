@@ -9,12 +9,20 @@ export const GlobalStyle = createGlobalStyle`
       font-family: 'Gotham Pro';
       #root {
         height: 100%;
-        button {
-          font-family: 'Gotham Pro';
-          font-size: 16px;
-          font-weight: 400;
-          line-height: 15px;
-        }
+      }
+    }
+    button {
+      font-family: 'Gotham Pro';
+      font-size: 16px;
+      font-weight: 400;
+      line-height: 15px;
+      cursor: pointer;
+      transition: transform 0.2s;
+      &:hover, &:focus-visible {
+        transform: scale(1.2);
+      }
+      &:focus {
+        outline: none;
       }
     }
   }
