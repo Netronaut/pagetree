@@ -4,7 +4,6 @@ export const ConstructorScreen = styled.div({
   height: '100%',
   width: '100%',
   boxSizing: 'border-box',
-  fontFamily: 'Arial',
 });
 
 export const DroppableContent = styled.div({
@@ -27,3 +26,13 @@ export const DroppableContent = styled.div({
 //   alignItems: 'center',
 //   justifyContent: 'flex-start',
 // });
+
+export const Flex = styled.section<{
+  px?: number;
+  mt?: number;
+}>`
+  ${({ mt }) => (mt ? `margin-top: ${mt}px` : '')};
+  display: flex;
+  padding-left: ${({ px }) => (px ? `${px}px` : '15px')};
+  padding-right: ${({ px }) => (px ? `${px}px` : '15px')};
+`;
