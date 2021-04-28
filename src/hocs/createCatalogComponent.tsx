@@ -3,6 +3,8 @@ import { Modal } from '../components/Modal';
 import { useModal } from '../hooks';
 import styled from 'styled-components';
 import { TreeContext } from '../utils/context';
+import { ModalButton } from '../components/Modal/componentsStyles';
+import { Flex } from '../componentsStyles';
 
 export type ProductionComponentProps = {
   id: string;
@@ -103,6 +105,10 @@ export const createCatalogComponent = (
                   onChange={event => onChange(event, field)}
                 />
               ))}
+              <Flex mt={16} px={50}>
+                <ModalButton mainStream>Cancel</ModalButton>
+                <ModalButton mainStream whiteBg>OK</ModalButton>
+              </Flex>
             </Modal>
           )}
           <Configure onClick={show}>...</Configure>
