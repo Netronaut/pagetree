@@ -12,7 +12,7 @@ export const GroupWrapper: React.FC<Props> = ({ children, groupName='group name'
       <header onClick={() => setIsOpen(!isOpen)}>
         {groupName}
         <DropdownButton onClick={() => setIsOpen(!isOpen)} isOpen={isOpen}>
-          <img src='/arrow.2ff401d5.svg' alt='arrow'/>
+          <img src='arrow.2ff401d5.svg' alt='arrow'/>
         </DropdownButton>
       </header>
       <section>

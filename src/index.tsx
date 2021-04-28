@@ -13,7 +13,6 @@ import { Optional } from './types/helpers';
 import { TPage } from './types';
 import { TreeContext } from './utils/context';
 import { Components } from './hocs/createCatalogComponent';
-import search from '../images/search.svg';
 
 export * from './hocs/createCatalogComponent';
 
@@ -152,7 +151,7 @@ export const Builder: React.FC<Props> = ({
                 <ModalH2>Components</ModalH2>
                 <SearchBox>
                   <input type="text" placeholder="Search"/>
-                  <ModalButton><img src={search} alt="search" /></ModalButton>
+                  <ModalButton><img src="search.7845d0e5.svg" alt="search" /></ModalButton>
                 </SearchBox>
                 <Catalog components={components} />
               </Modal>
