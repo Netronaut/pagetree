@@ -19,6 +19,7 @@ const getDimensions = (position: TSide, inDirection?: boolean) => {
 
 export const Container = styled.div<{
   insertTo: TSide;
+  lastIndex: boolean;
 }>`
   margin: 15px;
   flex-grow: 1;
@@ -27,16 +28,18 @@ export const Container = styled.div<{
   border-radius: 15px;
   box-sizing: border-box;
   display: flex;
-  &:after {
-    content: '';
-    align-self: center;
-    height: 75%;
-    width: 2px;
-    background: #9d9d9d;
-    position: relative;
-    left: 17px;
-    z-index: 0;
-  }
+  ${({ lastIndex }) => (!lastIndex && `
+    &:after {
+      content: '';
+      align-self: center;
+      height: 75%;
+      width: 2px;
+      background: #9d9d9d;
+      position: relative;
+      left: 17px;
+      z-index: 0;
+    }
+  `)}
 `;
 
 export const Type = styled.p<{ inside?: boolean }>`

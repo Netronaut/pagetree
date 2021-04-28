@@ -81,7 +81,7 @@ export const Direction: React.FC<ChildDirection> = ({
         </>
       )}
 
-      {components.map(component => {
+      {components.map((component, index) => {
         if (component.direction) {
           return <Direction key={component.id} {...component} />;
         }
@@ -91,6 +91,7 @@ export const Direction: React.FC<ChildDirection> = ({
           direction={direction}
           ratios={ratios}
           onRatioSelect={onRatioSelect}
+          lastIndex={components.length - 1 === index}
         />;
       })}
     </DirectionWrapper>
