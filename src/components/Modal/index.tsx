@@ -1,7 +1,5 @@
 import React, { useEffect, useRef } from 'react';
 import { ModalContainer, ModalHeader, ModalButton } from './componentsStyles';
-import infoIcon from '../../../images/infoAboutComponents.svg';
-import cross from '../../../images/cross.svg';
 
 type Props = {
   onOpenClose: (val: boolean) => void;
@@ -41,8 +39,8 @@ export const Modal: React.FC<Props> = ({ children, onOpenClose, isAddComponents 
       isAddComponents={isAddComponents}
     >
       <ModalHeader>
-        <ModalButton onClick={() => alert('info')}><img src={infoIcon} alt="info Icon" /></ModalButton>
-        <ModalButton onClick={() => onOpenClose(false)}><img src={cross} alt="test" /></ModalButton>
+        <ModalButton onClick={() => alert('info')}><img src="infoAboutComponents.20c6aad0.svg" alt="info Icon" /></ModalButton>
+        <ModalButton onClick={() => onOpenClose(false)}><img src="cross.d7c6ba61.svg" alt="test" /></ModalButton>
       </ModalHeader>
       {children}
     </ModalContainer>
