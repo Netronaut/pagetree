@@ -9,7 +9,7 @@ export const GroupWrapper: React.FC<Props> = ({ children, groupName='group name'
   const [isOpen, setIsOpen] = useState(false);
   return (
     <StyledGroupWrapper isOpen={isOpen}>
-      <header>
+      <header onClick={() => setIsOpen(!isOpen)}>
         {groupName}
         <DropdownButton onClick={() => setIsOpen(!isOpen)} isOpen={isOpen}>
           <img src='/arrow.2ff401d5.svg' alt='arrow'/>
