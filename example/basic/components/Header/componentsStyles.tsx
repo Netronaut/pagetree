@@ -2,14 +2,14 @@ import styled from 'styled-components';
 
 export const HeadWrapper = styled.header`
   display: grid;
-  grid-template: 1fr / 1fr minmax(auto, 200px) minmax(auto, 1600px) 1fr;
+  grid-template: 1fr / 1fr minmax(auto, 238px) minmax(auto, 1600px) 1fr;
   background: #282C39;
   color: white;
   font-family: 'Roboto';
   font-weight: 400;
   font-size: 16px;
   line-height: 18.75px;
-  padding: 0 15px;
+  padding: 20px 15px;
 `;
 export const HeadContent = styled.div`
   grid-column: 3 / 4;
@@ -20,9 +20,20 @@ export const HeadContent = styled.div`
   grid-template-columns: auto 60px;
 `;
 
-export const Logo = styled.img`
-  width: 174px;
+export const Logo = styled.div`
   grid-column: 2 / 3;
+  display: flex;
+  align-items: center;
+  img {
+    width: 42px;
+  }
+  span {
+    margin-bottom: -33px;
+    margin-left: 11px;
+    height: 100%;
+    font-size: 45px;
+    font-weight: 700;
+  }
 `;
 
 export const Label = styled.label`

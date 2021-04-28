@@ -1,5 +1,4 @@
-import React, { useContext, useMemo } from 'react';
-import logo from '../../../../images/logo.png';
+import React from 'react';
 import { HeadWrapper, Logo, HeadContent, ToggleButton, Label } from './componentsStyles';
 
 type Props = {
@@ -10,7 +9,10 @@ export const Header: React.FC<Props> = ({ setShowPreview }) => {
 
   return (
     <HeadWrapper>
-      <Logo src={logo} alt='logo' />
+      <Logo>
+        <img src='logo.a4892b0f.svg' alt='logo' />
+        <span>Pagio</span>
+      </Logo>
       <HeadContent >
         <Label htmlFor='toggle-button'>Preview mode</Label>
         <ToggleButton
