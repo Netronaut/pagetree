@@ -62,13 +62,6 @@ export const DropdownButton = styled.button<{ isOpen: boolean }>`
   height: 7px;
   padding: 0;
   background: transparent;
-  cursor: pointer;
-  &:hover, &:focus-visible {
-    transform: scale(1.2);
-  }
-  &:focus {
-    outline: none;
-  }
   img {
     position: absolute;
     top: 0;
