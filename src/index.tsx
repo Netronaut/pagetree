@@ -3,7 +3,6 @@ import { Catalog } from './components/Catalog';
 import {
   ConstructorScreen,
   DroppableContent,
-  // Footer,
 } from './componentsStyles';
 import { Direction } from './components/Direction';
 import { AddComponents } from './components/AddComponents';
@@ -147,12 +146,6 @@ export const Builder: React.FC<Props> = ({
             >
               {content}
             </DroppableContent>
-            {/* <Footer
-              onDragOver={e => e.preventDefault()}
-              onDrop={e => remove(e.dataTransfer.getData('fromId'))}
-            >
-              <Catalog components={components} />
-            </Footer> */}
             {isOpen
               ?
               <Modal onOpenClose={setIsOpen} isAddComponents>
