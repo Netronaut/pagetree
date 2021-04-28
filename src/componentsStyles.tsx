@@ -15,18 +15,6 @@ export const DroppableContent = styled.div({
   boxSizing: 'border-box',
 });
 
-// export const Footer = styled.div({
-//   width: '100%',
-//   height: '100px',
-//   background: '#f1f0f0',
-//   boxSizing: 'border-box',
-//   display: 'flex',
-//   padding: '25px',
-//   flexDirection: 'row',
-//   alignItems: 'center',
-//   justifyContent: 'flex-start',
-// });
-
 export const Flex = styled.section<{
   px?: number;
   mt?: number;
