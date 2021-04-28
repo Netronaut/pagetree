@@ -3,7 +3,7 @@ import { Modal } from '../components/Modal';
 import { useModal } from '../hooks';
 import styled from 'styled-components';
 import { TreeContext } from '../utils/context';
-import { ModalButton } from '../components/Modal/componentsStyles';
+import { ModalButton, ModalInput } from '../components/Modal/componentsStyles';
 import { Flex } from '../componentsStyles';
 
 export type ProductionComponentProps = {
@@ -97,7 +97,7 @@ export const createCatalogComponent = (
             <Modal onOpenClose={onModalClose}>
               <Type>{type}</Type>
               {configurations?.map(({ field, value, label }) => (
-                <input
+                <ModalInput
                   required
                   placeholder={`Enter ${label}`}
                   key={field}

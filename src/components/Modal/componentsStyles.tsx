@@ -79,3 +79,14 @@ export const SearchBox = styled.div`
     line-height: 18.75px;
   }
 `
+
+export const ModalInput = styled.input`
+  border: 1px solid #fff;
+  border-radius: 10px;
+  padding: 10px 15px;
+  background: transparent;
+  color: #fff;
+  &::placeholder {
+    color: #fff;
+  }
+`;
