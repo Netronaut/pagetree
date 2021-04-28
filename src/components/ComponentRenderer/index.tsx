@@ -12,9 +12,16 @@ type Props = {
   direction: string;
   ratios: Record<number, string[]>;
   onRatioSelect: (val: number) => void;
+  lastIndex: boolean;
 };
 
-export const ComponentRenderer: React.FC<Props> = ({ component, direction, ratios, onRatioSelect }) => {
+export const ComponentRenderer: React.FC<Props> = ({
+  component,
+  direction,
+  ratios,
+  onRatioSelect,
+  lastIndex,
+}) => {
   const { id, type } = component;
   const {
     onDragLeave,
@@ -70,11 +77,12 @@ export const ComponentRenderer: React.FC<Props> = ({ component, direction, ratio
         onDragOver,
         onDrop,
       }}
+      lastIndex={lastIndex}
     >
       {ModalCondition}
       <Indicator position={insertTo} />
       <Component id={id} type={type} />
-      {direction === 'row' && <Configure onClick={show} />}
+      {direction === 'row' && !lastIndex && <Configure onClick={show} />}
     </Container>
   );
 };
