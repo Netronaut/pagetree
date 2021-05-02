@@ -28,6 +28,7 @@ export const Container = styled.div<{
   border-radius: 15px;
   box-sizing: border-box;
   display: flex;
+  padding: 12px 50px 11px 32px;
   ${({ lastIndex }) => (!lastIndex && `
     &:after {
       content: '';

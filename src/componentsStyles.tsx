@@ -24,3 +24,9 @@ export const Flex = styled.section<{
   padding-left: ${({ px }) => (px ? `${px}px` : '15px')};
   padding-right: ${({ px }) => (px ? `${px}px` : '15px')};
 `;
+
+export const H1 = styled.h1`
+  margin: 0;
+  font-size: 63px;
+  color: #3D3D3D;
+`;
