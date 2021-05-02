@@ -4,7 +4,7 @@ import { useModal } from '../hooks';
 import styled from 'styled-components';
 import { TreeContext } from '../utils/context';
 import { ModalButton, ModalInput } from '../components/Modal/componentsStyles';
-import { Flex } from '../componentsStyles';
+import { Flex, H1 } from '../componentsStyles';
 
 export type ProductionComponentProps = {
   id: string;
@@ -90,30 +90,29 @@ export const createCatalogComponent = (
       onConfigChange(id, field, value);
     };
     return (
-      <>
-        <WrappedComponent>
-          <Type inside>{type}</Type>
-          {modalShown && (
-            <Modal onOpenClose={onModalClose}>
-              <Type>{type}</Type>
-              {configurations?.map(({ field, value, label }) => (
-                <ModalInput
-                  required
-                  placeholder={`Enter ${label}`}
-                  key={field}
-                  value={value}
-                  onChange={event => onChange(event, field)}
-                />
-              ))}
-              <Flex mt={16} px={50}>
-                <ModalButton mainStream>Cancel</ModalButton>
-                <ModalButton mainStream whiteBg>OK</ModalButton>
-              </Flex>
-            </Modal>
-          )}
-          <Configure onClick={show}>...</Configure>
-        </WrappedComponent>
-      </>
+      <WrappedComponent>
+        <Type inside>{type}</Type>
+        {modalShown && (
+          <Modal onOpenClose={onModalClose}>
+            <Type>{type}</Type>
+            {configurations?.map(({ field, value, label }) => (
+              <ModalInput
+                required
+                placeholder={`Enter ${label}`}
+                key={field}
+                value={value}
+                onChange={event => onChange(event, field)}
+              />
+            ))}
+            <Flex mt={16} px={50}>
+              <ModalButton mainStream>Cancel</ModalButton>
+              <ModalButton mainStream whiteBg>OK</ModalButton>
+            </Flex>
+          </Modal>
+        )}
+        {configurations?.map(({ value }) => (<H1>{value}</H1>))}
+        <Configure onClick={show}>...</Configure>
+      </WrappedComponent>
     );
   };
 

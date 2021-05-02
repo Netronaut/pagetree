@@ -58,29 +58,6 @@ export const Direction: React.FC<ChildDirection> = ({
         }
         : {})}
     >
-      {!showPreview && (
-        <>
-          {modalShown && (
-            <Modal onOpenClose={onModalClose}>
-              <Type>Row settings</Type>
-              Possible ratios:
-              <Ratios>
-                {direction === 'row' &&
-                  components.length &&
-                  ratios[components.length]?.map((r: string, index: number) => {
-                    return (
-                      <Ratio key={r} onClick={() => onRatioSelect(index)}>
-                        {r}
-                      </Ratio>
-                    );
-                  })}
-              </Ratios>
-            </Modal>
-          )}
-          <Indicator position={insertTo} inDirection />
-        </>
-      )}
-
       {components.map((component, index) => {
         if (component.direction) {
           return <Direction key={component.id} {...component} />;
