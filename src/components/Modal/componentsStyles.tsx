@@ -5,7 +5,7 @@ export const ModalContainer = styled.div<{
 }>`
   position: absolute;
   top: 15px;
-  left: 15px;
+  z-index: 2;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -19,13 +19,13 @@ export const ModalContainer = styled.div<{
     if (isAddComponents)
       return `
         position: fixed;
-        z-index: 2;
+        left: 15px;
         border-radius: 10px;
         width: 300px;
         padding: 40px 24px 24px;
       `
     return `
-      z-index: 1;
+      right: 15px;
       border-radius: 5px;
       width: 331px;
     `
@@ -49,7 +49,7 @@ export const ModalButton = styled.button<{
   background: ${({ whiteBg }) => (whiteBg ? '#f9f9f9' : 'none')};
   color: ${({ whiteBg }) => (whiteBg ? '#3D3D3D' : '#fff')};
   ${({ mainStream }) => {
-    if(mainStream) {
+    if (mainStream) {
       return `
         width: 100%;
         border-radius: 10px;
