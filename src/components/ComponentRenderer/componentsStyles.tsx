@@ -37,7 +37,7 @@ export const Container = styled.div<{
       width: 2px;
       background: #9d9d9d;
       position: relative;
-      left: 17px;
+      left: 68px;
       z-index: 0;
     }
   `)}
@@ -66,7 +66,7 @@ export const Configure = styled.div`
   display: block;
   background: #fff url(/slider.e3ab518a.svg) 50% no-repeat;
   position: relative;
-  left: 27px;
+  left: 78px;
   cursor: w-resize;
   z-index: 1;
   align-self: center;
