@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { Modal } from '../components/Modal';
 import { useModal } from '../hooks';
 import styled from 'styled-components';
@@ -85,32 +85,45 @@ export const createCatalogComponent = (
       };
     });
 
-    const onChange = (e: React.FormEvent<HTMLInputElement>, field: string) => {
-      const value = e.currentTarget.value;
-      onConfigChange(id, field, value);
+    let keyName = '';
+    for (const key in pageConfig?.[id]) {
+      if (Object.prototype.hasOwnProperty.call(pageConfig?.[id], key)) {
+        keyName = key;
+      }
+    }
+    const [inputValue, setInputValue] = useState(pageConfig?.[id]?.[keyName] || '');
+
+    const onChange = (e: React.FormEvent<HTMLInputElement>) => {
+      const { value } = e.currentTarget;
+      setInputValue(value);
     };
+
+    const onSave = (field: string) => {
+      onConfigChange(id, field, inputValue);
+      onModalClose();
+    };
+
     return (
       <WrappedComponent>
         <Type inside>{type}</Type>
-        {modalShown && (
-          <Modal onOpenClose={onModalClose}>
+        {modalShown && configurations?.map(({ field, label }) => (
+          <Modal key={id} onOpenClose={onModalClose}>
             <Type>{type}</Type>
-            {configurations?.map(({ field, value, label }) => (
+            <>
               <ModalInput
                 required
                 placeholder={`Enter ${label}`}
-                key={field}
-                value={value}
-                onChange={event => onChange(event, field)}
+                value={inputValue}
+                onChange={event => onChange(event)}
               />
-            ))}
-            <Flex mt={16} px={50}>
-              <ModalButton mainStream>Cancel</ModalButton>
-              <ModalButton mainStream whiteBg>OK</ModalButton>
-            </Flex>
+              <Flex mt={16} px={50}>
+                <ModalButton mainStream>Cancel</ModalButton>
+                <ModalButton mainStream whiteBg onClick={() => onSave(field)}>OK</ModalButton>
+              </Flex>
+            </>
           </Modal>
-        )}
-        {configurations?.map(({ value }) => (<H1>{value}</H1>))}
+        ))}
+        {configurations?.map(({ value }) => (<H1 key={id}>{value}</H1>))}
         <Configure onClick={show}>...</Configure>
       </WrappedComponent>
     );
