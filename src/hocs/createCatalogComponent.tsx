@@ -91,7 +91,8 @@ export const createCatalogComponent = (
         keyName = key;
       }
     }
-    const [inputValue, setInputValue] = useState(pageConfig?.[id]?.[keyName] || '');
+    const defaultValue = pageConfig?.[id]?.[keyName] || '';
+    const [inputValue, setInputValue] = useState(defaultValue);
 
     const onChange = (e: React.FormEvent<HTMLInputElement>) => {
       const { value } = e.currentTarget;
@@ -103,24 +104,27 @@ export const createCatalogComponent = (
       onModalClose();
     };
 
+    const onCancel = () => {
+      setInputValue(defaultValue);
+      onModalClose();
+    };
+
     return (
       <WrappedComponent>
         <Type inside>{type}</Type>
         {modalShown && configurations?.map(({ field, label }) => (
           <Modal key={id} onOpenClose={onModalClose}>
             <Type>{type}</Type>
-            <>
-              <ModalInput
-                required
-                placeholder={`Enter ${label}`}
-                value={inputValue}
-                onChange={event => onChange(event)}
-              />
-              <Flex mt={16} px={50}>
-                <ModalButton mainStream>Cancel</ModalButton>
-                <ModalButton mainStream whiteBg onClick={() => onSave(field)}>OK</ModalButton>
-              </Flex>
-            </>
+            <ModalInput
+              required
+              placeholder={`Enter ${label}`}
+              value={inputValue}
+              onChange={event => onChange(event)}
+            />
+            <Flex mt={16} px={50}>
+              <ModalButton mainStream onClick={onCancel}>Cancel</ModalButton>
+              <ModalButton mainStream whiteBg onClick={() => onSave(field)}>OK</ModalButton>
+            </Flex>
           </Modal>
         ))}
         {configurations?.map(({ value }) => (<H1 key={id}>{value}</H1>))}
