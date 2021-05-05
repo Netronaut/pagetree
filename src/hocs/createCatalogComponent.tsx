@@ -120,6 +120,7 @@ export const createCatalogComponent = (
               placeholder={`Enter ${label}`}
               value={inputValue}
               onChange={event => onChange(event)}
+              autoFocus
             />
             <Flex mt={16} px={50}>
               <ModalButton mainStream onClick={onCancel}>Cancel</ModalButton>
