@@ -5,7 +5,7 @@ import * as ReactDOM from 'react-dom';
 import { Builder } from '../../src';
 import { useState } from 'react';
 import { GlobalStyle } from './globalStyle';
-import { components } from './catalog';
+import { components, componentGroups } from './catalog';
 import { Header } from './components/Header';
 
 const App = () => {
@@ -21,6 +21,7 @@ const App = () => {
         onChange={setPageContent}
         showPreview={showPreview}
         components={components}
+        componentGroups={componentGroups}
       />
     </>
   );

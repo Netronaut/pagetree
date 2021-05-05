@@ -60,7 +60,7 @@ export const createCatalogComponent = (
   configuration: {
     type: string;
     componentName: string;
-    props: { fieldName: string; label: string; groupName: string }[];
+    props: { fieldName: string; label: string; }[];
   },
 ) => {
   const Component = function (props: { type: string; id: string }) {
@@ -76,12 +76,11 @@ export const createCatalogComponent = (
       );
     }
 
-    const configurations = configuration.props.map(({ fieldName, label, groupName }) => {
+    const configurations = configuration.props.map(({ fieldName, label }) => {
       return {
         value: pageConfig?.[id]?.[fieldName] || '',
-        label: label,
+        label,
         field: fieldName,
-        groupName: groupName,
       };
     });
 
@@ -136,11 +135,16 @@ export const createCatalogComponent = (
 
   Component.type = configuration.type;
   Component.componentName = configuration.componentName;
-  Component.groupName = configuration.props[0].groupName;
 
   return Component;
 };
 
 export type CatalogComponent = ReturnType<typeof createCatalogComponent>;
+export type TComponentGroup = {
+  name: string;
+  components: CatalogComponent[];
+};
 
 export type Components = CatalogComponent[];
+export type ComponentGroups = TComponentGroup[];
+

@@ -1,29 +1,15 @@
 import React from 'react';
-import { DroppableComponentContainer } from './componentsStyles';
 import { GroupWrapper } from './GroupWrapper';
-import { useDragAndDrop } from '../../hooks';
-import { Components } from '../../hocs/createCatalogComponent';
+import { ComponentGroups } from '../../hocs/createCatalogComponent';
 
 type Props = {
-  components?: Components;
+  componentGroups?: ComponentGroups;
 };
 
-export const Catalog: React.FC<Props> = ({ components }) => {
-  const { onDragStart } = useDragAndDrop();
+export const Catalog: React.FC<Props> = ({ componentGroups }) => {
   return (
-    <GroupWrapper>
-      {components?.map((c, i) => (
-        <DroppableComponentContainer
-          id={c.type}
-          key={`droppable-component-${i}`}
-          {...{
-            draggable: true,
-            onDragStart,
-          }}
-        >
-          {c.componentName}
-        </DroppableComponentContainer>
-      ))}
-    </GroupWrapper>
+    componentGroups?.map(group =>
+      <GroupWrapper key={group.name} group={group} />
+    )
   );
 };
