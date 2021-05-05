@@ -16,7 +16,6 @@ const App = () => {
     <>
       <GlobalStyle />
       <Header setShowPreview={setShowPreview} />
-      {/* <div onClick={() => setShowPreview(prev => !prev)}>Toggle Preview</div> */}
       <Builder
         pageContent={pageContent}
         onChange={setPageContent}
