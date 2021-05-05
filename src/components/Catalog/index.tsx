@@ -6,7 +6,7 @@ type Props = {
   componentGroups?: ComponentGroups;
 };
 
-export const Catalog: React.FC<Props> = ({ componentGroups }) => {
+export const Catalog = ({ componentGroups }: Props) => {
   return (
     componentGroups?.map(group =>
       <GroupWrapper key={group.name} group={group} />
