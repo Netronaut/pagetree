@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { Catalog } from './components/Catalog';
 import {
   ConstructorScreen,
   DroppableContent,
@@ -13,6 +12,7 @@ import { Optional } from './types/helpers';
 import { TPage } from './types';
 import { TreeContext } from './utils/context';
 import { Components, ComponentGroups } from './hocs/createCatalogComponent';
+import { CatalogItem } from './components/CatalogItem';
 
 export * from './hocs/createCatalogComponent';
 
@@ -152,10 +152,12 @@ export const Builder: React.FC<Props> = ({
               <Modal onOpenClose={setIsOpen} isAddComponents>
                 <ModalH2>Components</ModalH2>
                 <SearchBox>
-                  <input type="text" placeholder="Search"/>
+                  <input type="text" placeholder="Search" />
                   <ModalButton><img src="search.7845d0e5.svg" alt="search" /></ModalButton>
                 </SearchBox>
-                <Catalog componentGroups={componentGroups} />
+                {componentGroups?.map(group =>
+                  <CatalogItem key={group.name} group={group} />
+                )}
               </Modal>
               :
               <AddComponents

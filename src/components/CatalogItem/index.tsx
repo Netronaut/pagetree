@@ -8,7 +8,7 @@ type Props = {
   group: TComponentGroup
 };
 
-export const GroupWrapper: React.FC<Props> = ({ children, group }) => {
+export const CatalogItem: React.FC<Props> = ({ group }) => {
   const { onDragStart } = useDragAndDrop();
   const [isOpen, setIsOpen] = useState(false);
   return (
@@ -20,21 +20,18 @@ export const GroupWrapper: React.FC<Props> = ({ children, group }) => {
         </DropdownButton>
       </header>
       <section>
-        {group.components?.map((component, i) => {
-          console.log(component)
-          return (
-            <DroppableComponentContainer
-              id={component.type}
-              key={`droppable-component-${i}`}
-              {...{
-                draggable: true,
-                onDragStart,
-              }}
-            >
-              {component.componentName}
-            </DroppableComponentContainer>
-          )
-        }
+        {group.components?.map((component, i) => (
+          <DroppableComponentContainer
+            id={component.type}
+            key={`droppable-component-${i}`}
+            {...{
+              draggable: true,
+              onDragStart,
+            }}
+          >
+            {component.componentName}
+          </DroppableComponentContainer>
+        )
         )}
       </section>
     </StyledGroupWrapper>
