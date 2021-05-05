@@ -1,15 +1,13 @@
 import styled from 'styled-components';
 
 export const ConstructorScreen = styled.div({
-  height: '100%',
+  height: 'calc(100% - 86px)',
   width: '100%',
   boxSizing: 'border-box',
 });
 
 export const DroppableContent = styled.div({
-  // overflow: 'scroll',
   width: '100%',
-  // height: 'calc(100% - 100px)',
   height: '100%',
   padding: '15px',
   boxSizing: 'border-box',
