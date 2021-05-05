@@ -28,9 +28,13 @@ export const DroppableComponentContainer = styled.div({
 `);
 
 export const StyledGroupWrapper = styled.div<{ isOpen: boolean }>`
-  border: 1px solid #F9F9F9;
+  margin-bottom: 16px;
+  border: ${({ isOpen }) => isOpen ? '1px solid #F9F9F9' : 'none'};
   border-radius: 20px;
   overflow: hidden;
+  &:last-child {
+    margin-bottom: 0;
+  }
   header {
     position: relative;
     background: #f9f9f9;
@@ -40,13 +44,17 @@ export const StyledGroupWrapper = styled.div<{ isOpen: boolean }>`
     font-size: 16px;
     font-weight: 500;
     line-height: 19px;
+    ${({ isOpen }) => !isOpen && `
+      background: #69BBFD;
+      color: #F9F9F9;
+    `}
   }
   section {
     padding: 16px;
     overflow: hidden;
     transition: all 0.2s;
     height: 100%;
-    ${({ isOpen }) => isOpen && `
+    ${({ isOpen }) => !isOpen && `
       height: 0;
       padding: 0;
     `}
@@ -62,7 +70,7 @@ export const DropdownButton = styled.button<{ isOpen: boolean }>`
   height: 7px;
   padding: 0;
   background: transparent;
-  img {
+  svg {
     position: absolute;
     top: 0;
     left: 0;
