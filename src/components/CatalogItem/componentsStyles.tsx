@@ -27,6 +27,18 @@ export const DroppableComponentContainer = styled.div({
   }
 `);
 
+export const StyledCatalogWrapper = styled.div`
+  overflow-y: scroll;
+  padding-right: 7px;
+  ::-webkit-scrollbar {
+    width: 4px;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #69BBFD;
+    border-radius: 3px;
+  }
+`;
+
 export const StyledGroupWrapper = styled.div<{ isOpen: boolean }>`
   margin-bottom: 16px;
   border: ${({ isOpen }) => isOpen ? '1px solid #F9F9F9' : 'none'};
