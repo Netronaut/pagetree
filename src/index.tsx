@@ -12,7 +12,7 @@ import { Optional } from './types/helpers';
 import { TPage } from './types';
 import { TreeContext } from './utils/context';
 import { Components, ComponentGroups } from './hocs/createCatalogComponent';
-import { CatalogItem } from './components/CatalogItem';
+import { Catalog, CatalogItem } from './components/CatalogItem';
 
 export * from './hocs/createCatalogComponent';
 
@@ -155,9 +155,11 @@ export const Builder: React.FC<Props> = ({
                   <input type="text" placeholder="Search" />
                   <ModalButton><img src="search.7845d0e5.svg" alt="search" /></ModalButton>
                 </SearchBox>
-                {componentGroups?.map(group =>
-                  <CatalogItem key={group.name} group={group} />
-                )}
+                <Catalog>
+                  {componentGroups?.map(group =>
+                    <CatalogItem key={group.name} group={group} />
+                  )}
+                </Catalog>
               </Modal>
               :
               <AddComponents

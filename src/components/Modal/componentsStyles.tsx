@@ -6,6 +6,7 @@ export const ModalContainer = styled.div<{
   position: absolute;
   top: 15px;
   z-index: 2;
+  max-height: 95vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
