@@ -12,7 +12,7 @@ import { Item, Tree, TSide } from './utils/tree';
 import { Optional } from './types/helpers';
 import { TPage } from './types';
 import { TreeContext } from './utils/context';
-import { Components } from './hocs/createCatalogComponent';
+import { Components, ComponentGroups } from './hocs/createCatalogComponent';
 
 export * from './hocs/createCatalogComponent';
 
@@ -30,6 +30,7 @@ type Props = {
   onChange: (val: TPage) => void;
   showPreview?: boolean;
   components?: Components;
+  componentGroups?: ComponentGroups;
 };
 
 export const Builder: React.FC<Props> = ({
@@ -37,6 +38,7 @@ export const Builder: React.FC<Props> = ({
   onChange,
   showPreview,
   components,
+  componentGroups,
 }) => {
   const setValue = (newValue: Optional<TPage>) => {
     onChange({ ...pageContent, ...newValue });
@@ -153,7 +155,7 @@ export const Builder: React.FC<Props> = ({
                   <input type="text" placeholder="Search"/>
                   <ModalButton><img src="search.7845d0e5.svg" alt="search" /></ModalButton>
                 </SearchBox>
-                <Catalog components={components} />
+                <Catalog componentGroups={componentGroups} />
               </Modal>
               :
               <AddComponents

@@ -1,22 +1,41 @@
-import React, { useState} from 'react';
+import React, { useState } from 'react';
 import { StyledGroupWrapper, DropdownButton } from './componentsStyles';
+import { DroppableComponentContainer } from './componentsStyles';
+import { TComponentGroup } from '../../hocs/createCatalogComponent';
+import { useDragAndDrop } from '../../hooks';
 
 type Props = {
-  groupName?: string;
+  group: TComponentGroup
 };
 
-export const GroupWrapper: React.FC<Props> = ({ children, groupName='group name' }) => {
+export const GroupWrapper: React.FC<Props> = ({ children, group }) => {
+  const { onDragStart } = useDragAndDrop();
   const [isOpen, setIsOpen] = useState(false);
   return (
     <StyledGroupWrapper isOpen={isOpen}>
       <header onClick={() => setIsOpen(!isOpen)}>
-        {groupName}
+        {group.name}
         <DropdownButton onClick={() => setIsOpen(!isOpen)} isOpen={isOpen}>
-          <img src='arrow.2ff401d5.svg' alt='arrow'/>
+          <img src='arrow.2ff401d5.svg' alt='arrow' />
         </DropdownButton>
       </header>
       <section>
-        {children}
+        {group.components?.map((component, i) => {
+          console.log(component)
+          return (
+            <DroppableComponentContainer
+              id={component.type}
+              key={`droppable-component-${i}`}
+              {...{
+                draggable: true,
+                onDragStart,
+              }}
+            >
+              {component.componentName}
+            </DroppableComponentContainer>
+          )
+        }
+        )}
       </section>
     </StyledGroupWrapper>
   );

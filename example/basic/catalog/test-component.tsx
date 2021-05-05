@@ -15,7 +15,7 @@ const Container = styled.div`
 `;
 
 const ProductionContainer = styled.div`
-  background: no-repeat url('https://picsum.photos/480/600');
+  background: #fde;
   background-size: cover;
   height: 200px;
   color: white;
@@ -30,7 +30,7 @@ const Production: React.FC<ProductionComponentProps> = ({ config }) => {
 };
 
 export default createCatalogComponent(Container, Production, {
-  type: 'Article-teaser',
-  componentName: 'Article Teaser',
-  props: [{ fieldName: 'articleId', label: 'articleId' }],
+  type: 'Test-component',
+  componentName: 'Test Component',
+  props: [{ fieldName: 'testComponent', label: 'testComponent' }],
 });
