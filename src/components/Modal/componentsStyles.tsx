@@ -2,9 +2,11 @@ import styled from 'styled-components';
 
 export const ModalContainer = styled.div<{
   isAddComponents?: boolean;
+  prohibitGoingBeyondTheScreen?: boolean;
 }>`
   position: absolute;
   top: 15px;
+  ${({ prohibitGoingBeyondTheScreen }) => prohibitGoingBeyondTheScreen && 'left: 15px'};
   z-index: 2;
   max-height: 95vh;
   display: flex;
