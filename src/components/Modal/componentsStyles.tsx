@@ -103,3 +103,13 @@ export const ModalInput = styled.input`
   border-radius: 10px;
   padding: 10px 15px;
 `;
+
+export const Sel = styled.div`
+  border: 1px solid #f9f9f9;
+  border-radius: 10px;
+  padding: 20px 13px;
+  &:hover {
+    background: #f9f9f9;
+    color: #3D3D3D;
+  }
+`;

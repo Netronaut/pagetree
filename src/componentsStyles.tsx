@@ -13,14 +13,16 @@ export const DroppableContent = styled.div({
   boxSizing: 'border-box',
 });
 
-export const Flex = styled.section<{
+export const Flex = styled.section < {
   px?: number;
   mt?: number;
-}>`
+  justifyContent?: 'flex-start' | 'flex-end' | 'space-between' | 'space-around' | 'space-evenly';
+}> `
   ${({ mt }) => (mt ? `margin-top: ${mt}px` : '')};
   display: flex;
-  padding-left: ${({ px }) => (px ? `${px}px` : '15px')};
-  padding-right: ${({ px }) => (px ? `${px}px` : '15px')};
+  ${({ justifyContent }) => (justifyContent && `justify-content: ${justifyContent};`)}
+  padding-left: ${({ px }) => ((px && `${px}px`) ?? '15px')};
+  padding-right: ${({ px }) => ((px && `${px}px`) ?? '15px')};
 `;
 
 export const H1 = styled.h1`

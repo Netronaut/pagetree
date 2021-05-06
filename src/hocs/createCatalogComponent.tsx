@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import { TreeContext } from '../utils/context';
 import { H1 } from '../componentsStyles';
 import { EditContent } from '../components/Modal/EditContent';
+import { EditId } from '../components/Modal/EditId';
 
 export type ProductionComponentProps = {
   id: string;
@@ -120,7 +121,7 @@ export const createCatalogComponent = (
       <WrappedComponent>
         <Type inside>{type}</Type>
         {modalShown && configurations?.map(({ field, label }) => (
-          <EditContent
+          <EditId
             field={field}
             label={label}
             {...editComponentProps}
