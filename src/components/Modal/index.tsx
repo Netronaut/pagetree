@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { ModalContainer, ModalHeader, ModalButton } from './componentsStyles';
 
 type Props = {
@@ -31,20 +31,12 @@ export const Modal: React.FC<Props> = ({ children, onOpenClose, isAddComponents 
     };
   }, []);
 
-  const [prohibitGoingBeyondTheScreen, setProhibitGoingBeyondTheScreen] = useState(false);
-  useEffect(() => {
-    if (modalRef.current?.offsetParent?.nextElementSibling && modalRef.current && modalRef.current.offsetLeft < 0) {
-      setProhibitGoingBeyondTheScreen(true);
-    }
-  }, [modalRef?.current?.offsetLeft]);
-
   return (
     <ModalContainer
       ref={modalRef}
       draggable="true"
       onDragStart={onDragStart}
       isAddComponents={isAddComponents}
-      prohibitGoingBeyondTheScreen={prohibitGoingBeyondTheScreen}
     >
       <ModalHeader>
         {isAddComponents &&
