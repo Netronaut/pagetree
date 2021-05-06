@@ -1,17 +1,17 @@
-import React, { useContext, useState } from 'react';
+import React from 'react';
 import { Modal } from './index';
 import { ModalButton, ModalInput } from './componentsStyles';
 import { Flex } from '../../componentsStyles';
 
 type Props = {
-  field: string,
-  label: string,
-  type: string,
-  onChange: (e: React.FormEvent<HTMLInputElement>) => void,
-  onSave: any,
-  onCancel: any,
-  onModalClose: () => void,
-  inputValue: string,
+  field: string;
+  label: string;
+  type: string;
+  onChange: (e: React.FormEvent<HTMLInputElement>) => void;
+  onSave: (field: string) => void;
+  onCancel: () => void;
+  onModalClose: () => void;
+  inputValue: string;
 }
 export const EditContent: React.FC<Props> = ({
   field,
