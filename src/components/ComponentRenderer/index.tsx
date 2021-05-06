@@ -13,6 +13,7 @@ type Props = {
   ratios: Record<number, string[]>;
   onRatioSelect: (val: number) => void;
   lastIndex: boolean;
+  componentsInTheRow: number;
 };
 
 export const ComponentRenderer: React.FC<Props> = ({
@@ -21,6 +22,7 @@ export const ComponentRenderer: React.FC<Props> = ({
   ratios,
   onRatioSelect,
   lastIndex,
+  componentsInTheRow,
 }) => {
   const { id, type } = component;
   const {
@@ -53,8 +55,8 @@ export const ComponentRenderer: React.FC<Props> = ({
       Possible ratios:
       <Ratios>
         {direction === 'row' &&
-          components?.length &&
-          ratios[components.length]?.map((r: string, index: number) => {
+          componentsInTheRow &&
+          ratios[componentsInTheRow].map((r: string, index: number) => {
             return (
               <Ratio key={r} onClick={() => onRatioSelect(index)}>
                 {r}
