@@ -1,6 +1,6 @@
 import React from 'react';
 import { Modal } from './index';
-import { ModalButton, ModalInput, Sel } from './componentsStyles';
+import { ModalButton, ModalInput, Sel, ModalH3, Hr } from './componentsStyles';
 import { Flex } from '../../componentsStyles';
 
 type Props = {
@@ -25,7 +25,7 @@ export const EditId: React.FC<Props> = ({
 }) => {
   return (
     <Modal onOpenClose={onModalClose}>
-      <h3>{type} ID</h3>
+      <ModalH3>{type} ID</ModalH3>
       <ModalInput
         required
         placeholder={`Enter ${label}`}
@@ -37,13 +37,17 @@ export const EditId: React.FC<Props> = ({
         <ModalButton mainStream onClick={onCancel}>Cancel</ModalButton>
         <ModalButton mainStream whiteBg onClick={() => onSave(field)}>OK</ModalButton>
       </Flex>
-      <hr />
-      <h3>Select</h3>
+      <Hr />
+      <ModalH3>Select</ModalH3>
       <Flex px={0} justifyContent='space-between'>
         <Sel>Sel.1</Sel>
         <Sel>Sel.2</Sel>
         <Sel>Sel.3</Sel>
         <Sel>Sel.4</Sel>
+      </Flex>
+      <Flex mt={16} px={50}>
+        <ModalButton mainStream onClick={onCancel}>Cancel</ModalButton>
+        <ModalButton mainStream whiteBg>OK</ModalButton>
       </Flex>
     </Modal>
   );

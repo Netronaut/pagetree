@@ -72,6 +72,11 @@ export const ModalH2 = styled.h2`
   line-height: 37.5px;
   text-align: center;
 `;
+export const ModalH3 = styled.h3`
+  font-size: 22px;
+  line-height: 21px;
+  text-align: center;
+`;
 
 export const SearchBox = styled.div`
   position: relative;
@@ -112,4 +117,12 @@ export const Sel = styled.div`
     background: #f9f9f9;
     color: #3D3D3D;
   }
+`;
+
+export const Hr = styled.hr`
+  margin-top: 32px;
+  width: 95%;
+  height: 1px;
+  border: none;
+  background: #f9f9f9;
 `;
