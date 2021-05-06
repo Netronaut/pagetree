@@ -2,11 +2,8 @@ import styled from 'styled-components';
 
 export const ModalContainer = styled.div<{
   isAddComponents?: boolean;
-  prohibitGoingBeyondTheScreen?: boolean;
 }>`
-  position: absolute;
-  top: 15px;
-  ${({ prohibitGoingBeyondTheScreen }) => prohibitGoingBeyondTheScreen && 'left: 15px'};
+  position: fixed;
   z-index: 2;
   max-height: 95vh;
   display: flex;
@@ -21,14 +18,15 @@ export const ModalContainer = styled.div<{
   ${({ isAddComponents }) => {
     if (isAddComponents)
       return `
-        position: fixed;
+        top: 15px;
         left: 15px;
         border-radius: 10px;
         width: 300px;
         padding: 40px 24px 24px;
       `
     return `
-      right: 15px;
+      top: 64px;
+      left: calc(50% - 150px);
       border-radius: 5px;
       width: 331px;
     `
