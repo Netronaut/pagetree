@@ -1,20 +1,14 @@
 import React, { useContext, useEffect } from 'react';
 import { ComponentRenderer } from '../ComponentRenderer';
-import {
-  Indicator,
-  Type,
-  Ratios,
-  Ratio,
-} from '../ComponentRenderer/componentsStyles';
 import { DirectionWrapper } from './componentsStyles';
 import { ChildDirection } from '../../utils/tree';
 import { useModal, usePrevious, useDragAndDrop } from '../../hooks';
 import { TreeContext } from '../../utils/context';
-import { Modal } from '../Modal';
 
 const ratios: Record<number, string[]> = {
   2: ['2:1', '1:1', '1:2'],
   3: ['2:1:1', '1:1:1', '1:2:1', '1:1:2'],
+  4: ['2:1:1:1', '1:1:1:1', '1:2:1:1', '1:1:2:1', '1:1:1:2'],
 };
 
 export const Direction: React.FC<ChildDirection> = ({
@@ -23,7 +17,6 @@ export const Direction: React.FC<ChildDirection> = ({
   id,
 }) => {
   const { onDragLeave, onDragOver, insertTo, onDrop } = useDragAndDrop(id);
-  const { modalShown, show, onModalClose } = useModal();
   const { onConfigChange, config, showPreview } = useContext(TreeContext);
 
   const prevComponentsLength = usePrevious(components.length);
@@ -69,6 +62,7 @@ export const Direction: React.FC<ChildDirection> = ({
           ratios={ratios}
           onRatioSelect={onRatioSelect}
           lastIndex={components.length - 1 === index}
+          componentsInTheRow={components.length}
         />;
       })}
     </DirectionWrapper>
