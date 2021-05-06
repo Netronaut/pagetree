@@ -1,10 +1,9 @@
 import React, { useContext, useState } from 'react';
-import { Modal } from '../components/Modal';
 import { useModal } from '../hooks';
 import styled from 'styled-components';
 import { TreeContext } from '../utils/context';
-import { ModalButton, ModalInput } from '../components/Modal/componentsStyles';
-import { Flex, H1 } from '../componentsStyles';
+import { H1 } from '../componentsStyles';
+import { EditContent } from '../components/Modal/EditContent';
 
 export type ProductionComponentProps = {
   id: string;
@@ -108,24 +107,25 @@ export const createCatalogComponent = (
       onModalClose();
     };
 
+    const editComponentProps = {
+      type,
+      onChange,
+      onSave,
+      onCancel,
+      onModalClose,
+      inputValue,
+    };
+
     return (
       <WrappedComponent>
         <Type inside>{type}</Type>
         {modalShown && configurations?.map(({ field, label }) => (
-          <Modal key={id} onOpenClose={onModalClose}>
-            <Type>{type}</Type>
-            <ModalInput
-              required
-              placeholder={`Enter ${label}`}
-              value={inputValue}
-              onChange={event => onChange(event)}
-              autoFocus
-            />
-            <Flex mt={16} px={50}>
-              <ModalButton mainStream onClick={onCancel}>Cancel</ModalButton>
-              <ModalButton mainStream whiteBg onClick={() => onSave(field)}>OK</ModalButton>
-            </Flex>
-          </Modal>
+          <EditContent
+            field={field}
+            label={label}
+            {...editComponentProps}
+            key={id}
+          />
         ))}
         {configurations?.map(({ value }) => (<H1 key={id}>{value}</H1>))}
         <Configure onClick={show}>...</Configure>
