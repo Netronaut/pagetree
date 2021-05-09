@@ -28,7 +28,7 @@ export const EditContent: React.FC<Props> = ({
         required
         placeholder={`Enter ${label}`}
         value={inputValue}
-        onChange={event => onChange(event)}
+        onChange={onChange}
         autoFocus
       />
       <Flex mt={16} px={50}>
