@@ -9,7 +9,7 @@ type TreeContextValue = {
     toId?: string,
     side?: TSide,
   ) => void;
-  onConfigChange: (id: string, field: string, value: string, userControlledIdentifier?: string | undefined) => void;
+  onConfigChange: (id: string, field: string, value: string, userControlledId?: string) => void;
   config: TPage['config'];
   showPreview?: boolean;
   components?: Components;
