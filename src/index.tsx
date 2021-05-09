@@ -13,6 +13,8 @@ import { TPage } from './types';
 import { TreeContext } from './utils/context';
 import { Components, ComponentGroups } from './hocs/createCatalogComponent';
 import { Catalog, CatalogItem } from './components/CatalogItem';
+import { DroppableComponentContainer } from './components/CatalogItem/componentsStyles';
+import { useDragAndDrop } from './hooks';
 
 export * from './hocs/createCatalogComponent';
 
@@ -117,6 +119,35 @@ export const Builder: React.FC<Props> = ({
     }
   };
 
+  const [searchValue, setSearchValue] = useState('');
+  const handleSearch = (e: React.FormEvent<HTMLInputElement>) => {
+    const { value } = e.currentTarget;
+    setSearchValue(value);
+  }
+
+  const { onDragStart } = useDragAndDrop();
+  const SearchList = () => {
+    const filtered = components?.filter((component) => {
+      const { componentName } = component;
+      const serachCondition = componentName.toLocaleLowerCase().includes(searchValue.toLocaleLowerCase());
+      if (searchValue == '') return component;
+      else if (serachCondition) return component;
+    });
+    const maped = filtered?.map(({ componentName, type }, i) => (
+      <DroppableComponentContainer
+        id={type}
+        key={`droppable-component-${i}`}
+        {...{
+          draggable: true,
+          onDragStart,
+        }}
+      >
+        {componentName}
+      </DroppableComponentContainer>
+    ));
+    return <>{maped}</>;
+  };
+
   const content = !!pageContent.structure ? (
     <Direction
       direction={pageContent.structure.direction}
@@ -153,13 +184,14 @@ export const Builder: React.FC<Props> = ({
               <Modal onOpenClose={setIsOpen} isAddComponents>
                 <ModalH2>Components</ModalH2>
                 <SearchBox>
-                  <input type="text" placeholder="Search" />
+                  <input type="text" placeholder="Search" value={searchValue} onChange={handleSearch} />
                   <ModalButton><img src="search.7845d0e5.svg" alt="search" /></ModalButton>
                 </SearchBox>
                 <Catalog>
-                  {componentGroups?.map(group =>
-                    <CatalogItem key={group.name} group={group} />
-                  )}
+                  {searchValue ? <SearchList /> :
+                    componentGroups?.map(group =>
+                      <CatalogItem key={group.name} group={group} />
+                    )}
                 </Catalog>
               </Modal>
               :
