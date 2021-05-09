@@ -94,7 +94,7 @@ export const Builder: React.FC<Props> = ({
     }
   };
 
-  const onConfigChange = (id: string, field: string, newValue: string, userControlledIdentifier: string) => {
+  const onConfigChange = (id: string, field: string, newValue: string, userControlledId?: string) => {
     if (pageContent) {
       setValue({
         config: {
@@ -102,7 +102,7 @@ export const Builder: React.FC<Props> = ({
           [id]: {
             ...(pageContent.config?.[id] || {}),
             [field]: newValue,
-            userControlledIdentifier,
+            userControlledId: userControlledId ?? '',
           },
         },
       });

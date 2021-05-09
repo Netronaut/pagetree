@@ -87,17 +87,17 @@ export const createCatalogComponent = (
 
     let keyName = configuration.props[0].fieldName;
     const defaultValue = pageConfig?.[id]?.[keyName] || '';
-    const defaultId = pageConfig?.[id]?.userControlledIdentifier || '';
+    const defaultIdUserControlledId = pageConfig?.[id]?.userControlledId || '';
     const [inputValue, setInputValue] = useState(defaultValue);
-    const [idByUser, setIdByUser] = useState(defaultId);
+    const [idByUser, setIdByUser] = useState(defaultIdUserControlledId);
 
     const onChangeId = (e: React.FormEvent<HTMLInputElement>) => {
       const { value } = e.currentTarget;
       setIdByUser(value);
     };
 
-    const onSaveId = (field: string, userControlledIdentifier?: string | undefined) => {
-      onConfigChange(id, field, inputValue, userControlledIdentifier);
+    const onSaveId = (field: string, userControlledId: string) => {
+      onConfigChange(id, field, inputValue, userControlledId);
       onModalClose();
     };
 
@@ -107,13 +107,13 @@ export const createCatalogComponent = (
     };
 
     const onSave = (field: string) => {
-      onConfigChange(id, field, inputValue, defaultId);
+      onConfigChange(id, field, inputValue, defaultIdUserControlledId);
       onModalClose();
     };
 
     const onCancel = () => {
       setInputValue(defaultValue);
-      setIdByUser(defaultId)
+      setIdByUser(defaultIdUserControlledId)
       onModalClose();
       onModalOpen('');
     };
@@ -180,7 +180,7 @@ export const createCatalogComponent = (
           </Modal>
         ))}
         {configurations?.map(({ value }) => {return(<H1 key={id}>{value}</H1>)})}
-        <span>{defaultId}</span>
+        <span>{defaultIdUserControlledId}</span>
         <Configure onClick={show}>...</Configure>
         <button onClick={() => onModalOpen('edit id')}>edit id</button>
         <button onClick={() => onModalOpen('edit content')}>edit content</button>
