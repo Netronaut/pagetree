@@ -5,6 +5,7 @@ import { TreeContext } from '../utils/context';
 import { H1 } from '../componentsStyles';
 import { EditContent } from '../components/Modal/EditContent';
 import { EditId } from '../components/Modal/EditId';
+import { Modal } from '../components/Modal';
 
 export type ProductionComponentProps = {
   id: string;
@@ -84,14 +85,21 @@ export const createCatalogComponent = (
       };
     });
 
-    let keyName = '';
-    for (const key in pageConfig?.[id]) {
-      if (Object.prototype.hasOwnProperty.call(pageConfig?.[id], key)) {
-        keyName = key;
-      }
-    }
+    let keyName = configuration.props[0].fieldName;
     const defaultValue = pageConfig?.[id]?.[keyName] || '';
+    const defaultId = pageConfig?.[id]?.userControlledIdentifier || '';
     const [inputValue, setInputValue] = useState(defaultValue);
+    const [idByUser, setIdByUser] = useState(defaultId);
+
+    const onChangeId = (e: React.FormEvent<HTMLInputElement>) => {
+      const { value } = e.currentTarget;
+      setIdByUser(value);
+    };
+
+    const onSaveId = (field: string, userControlledIdentifier?: string | undefined) => {
+      onConfigChange(id, field, inputValue, userControlledIdentifier);
+      onModalClose();
+    };
 
     const onChange = (e: React.FormEvent<HTMLInputElement>) => {
       const { value } = e.currentTarget;
@@ -99,16 +107,18 @@ export const createCatalogComponent = (
     };
 
     const onSave = (field: string) => {
-      onConfigChange(id, field, inputValue);
+      onConfigChange(id, field, inputValue, defaultId);
       onModalClose();
     };
 
     const onCancel = () => {
       setInputValue(defaultValue);
+      setIdByUser(defaultId)
       onModalClose();
+      onModalOpen('');
     };
 
-    const editComponentProps = {
+    const editContentProps = {
       type,
       onChange,
       onSave,
@@ -117,19 +127,63 @@ export const createCatalogComponent = (
       inputValue,
     };
 
+    const editIdProps = {
+      type,
+      onChangeId,
+      onSaveId,
+      onCancel,
+      onModalClose,
+      idByUser,
+    };
+
+    const [modalList, setStateOfModalList] = useState([
+      { name: 'edit id', isOpen: false },
+      { name: 'edit content', isOpen: false },
+      { name: 'edit ratio', isOpen: false },
+    ]);
+    const onModalOpen = (nameOfModal: string) => {
+      const newState = modalList.map(item => {
+        if (nameOfModal === item.name) {
+          item.isOpen = true;
+          return item
+        }
+        item.isOpen = false;
+        return item;
+      })
+      setStateOfModalList(newState);
+      show();
+    };
+
     return (
       <WrappedComponent>
         <Type inside>{type}</Type>
         {modalShown && configurations?.map(({ field, label }) => (
-          <EditId
-            field={field}
-            label={label}
-            {...editComponentProps}
-            key={id}
-          />
+          <Modal onOpenClose={onModalClose} key={id}>
+            {modalList.map(({ name, isOpen }) => {
+              if (isOpen && name === 'edit id') {
+                return <EditId
+                  field={field}
+                  label={label}
+                  {...editIdProps}
+                  key={name}
+                />
+              }
+              if (isOpen && name === 'edit content') {
+                return <EditContent
+                  field={field}
+                  label={label}
+                  {...editContentProps}
+                  key={name}
+                />
+              }
+            })}
+          </Modal>
         ))}
-        {configurations?.map(({ value }) => (<H1 key={id}>{value}</H1>))}
+        {configurations?.map(({ value }) => {return(<H1 key={id}>{value}</H1>)})}
+        <span>{defaultId}</span>
         <Configure onClick={show}>...</Configure>
+        <button onClick={() => onModalOpen('edit id')}>edit id</button>
+        <button onClick={() => onModalOpen('edit content')}>edit content</button>
       </WrappedComponent>
     );
   };
