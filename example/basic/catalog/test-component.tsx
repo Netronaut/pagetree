@@ -26,7 +26,7 @@ const ProductionContainer = styled.div`
 `;
 
 const Production: React.FC<ProductionComponentProps> = ({ config }) => {
-  return <ProductionContainer>{config?.articleId}</ProductionContainer>;
+  return <ProductionContainer>{config?.testComponent}</ProductionContainer>;
 };
 
 export default createCatalogComponent(Container, Production, {

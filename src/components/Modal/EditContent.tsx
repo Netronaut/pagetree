@@ -24,7 +24,7 @@ export const EditContent: React.FC<Props> = ({
   inputValue,
 }) => {
   return (
-    <Modal onOpenClose={onModalClose}>
+    <>
       <h3>{type}</h3>
       <ModalInput
         required
@@ -37,6 +37,6 @@ export const EditContent: React.FC<Props> = ({
         <ModalButton mainStream onClick={onCancel}>Cancel</ModalButton>
         <ModalButton mainStream whiteBg onClick={() => onSave(field)}>OK</ModalButton>
       </Flex>
-    </Modal>
+    </>
   );
 };

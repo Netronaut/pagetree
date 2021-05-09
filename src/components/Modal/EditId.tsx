@@ -7,35 +7,33 @@ type Props = {
   field: string;
   label: string;
   type: string;
-  onChange: (e: React.FormEvent<HTMLInputElement>) => void;
-  onSave: (field: string) => void;
+  onChangeId: (e: React.FormEvent<HTMLInputElement>) => void;
+  onSaveId: (field: string, testIdByUser: string) => void;
   onCancel: () => void;
-  onModalClose: () => void;
-  inputValue: string;
+  idByUser: string;
 }
 export const EditId: React.FC<Props> = ({
   field,
   label,
   type,
-  onChange,
-  onSave,
+  onChangeId,
+  onSaveId,
   onCancel,
-  onModalClose,
-  inputValue,
+  idByUser,
 }) => {
   return (
-    <Modal onOpenClose={onModalClose}>
+    <>
       <ModalH3>{type} ID</ModalH3>
       <ModalInput
         required
-        placeholder={`Enter ${label}`}
-        value={inputValue}
-        onChange={event => onChange(event)}
+        placeholder={`Enter ${label} ID`}
+        value={idByUser}
+        onChange={event => onChangeId(event)}
         autoFocus
       />
       <Flex mt={16} px={50}>
         <ModalButton mainStream onClick={onCancel}>Cancel</ModalButton>
-        <ModalButton mainStream whiteBg onClick={() => onSave(field)}>OK</ModalButton>
+        <ModalButton mainStream whiteBg onClick={() => onSaveId(field, idByUser)}>OK</ModalButton>
       </Flex>
       <Hr />
       <ModalH3>Select</ModalH3>
@@ -49,6 +47,6 @@ export const EditId: React.FC<Props> = ({
         <ModalButton mainStream onClick={onCancel}>Cancel</ModalButton>
         <ModalButton mainStream whiteBg>OK</ModalButton>
       </Flex>
-    </Modal>
+    </>
   );
 };
