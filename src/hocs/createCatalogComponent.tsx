@@ -87,18 +87,19 @@ export const createCatalogComponent = (
 
     let keyName = configuration.props[0].fieldName;
     const defaultValue = pageConfig?.[id]?.[keyName] || '';
-    const defaultIdUserControlledId = pageConfig?.[id]?.userControlledId || '';
+    const defaultUserControlledId = pageConfig?.[id]?.userControlledId || '';
     const [inputValue, setInputValue] = useState(defaultValue);
-    const [idByUser, setIdByUser] = useState(defaultIdUserControlledId);
+    const [idByUser, setIdByUser] = useState(defaultUserControlledId);
 
     const onChangeId = (e: React.FormEvent<HTMLInputElement>) => {
       const { value } = e.currentTarget;
       setIdByUser(value);
     };
 
-    const onSaveId = (field: string, userControlledId: string) => {
+    const onSaveId = (e: React.MouseEvent, field: string, userControlledId: string) => {
       onConfigChange(id, field, inputValue, userControlledId);
       onModalClose();
+      e.stopPropagation();
     };
 
     const onChange = (e: React.FormEvent<HTMLInputElement>) => {
@@ -106,16 +107,17 @@ export const createCatalogComponent = (
       setInputValue(value);
     };
 
-    const onSave = (field: string) => {
-      onConfigChange(id, field, inputValue, defaultIdUserControlledId);
+    const onSave = (e: React.MouseEvent, field: string) => {
+      onConfigChange(id, field, inputValue, defaultUserControlledId);
       onModalClose();
+      e.stopPropagation();
     };
 
-    const onCancel = () => {
+    const onCancel = (e: React.MouseEvent) => {
       setInputValue(defaultValue);
-      setIdByUser(defaultIdUserControlledId)
+      setIdByUser(defaultUserControlledId)
       onModalClose();
-      onModalOpen('');
+      e.stopPropagation();
     };
 
     const editContentProps = {
@@ -141,7 +143,7 @@ export const createCatalogComponent = (
       { name: 'edit content', isOpen: false },
       { name: 'edit ratio', isOpen: false },
     ]);
-    const onModalOpen = (nameOfModal: string) => {
+    const onModalOpen = (e: React.MouseEvent, nameOfModal: string) => {
       const newState = modalList.map(item => {
         if (nameOfModal === item.name) {
           item.isOpen = true;
@@ -152,10 +154,11 @@ export const createCatalogComponent = (
       })
       setStateOfModalList(newState);
       show();
+      e.stopPropagation();
     };
 
     return (
-      <WrappedComponent>
+      <WrappedComponent onClick={(e) => onModalOpen(e, 'edit content')}>
         <Type inside>{type}</Type>
         {modalShown && configurations?.map(({ field, label }) => (
           <Modal onOpenClose={onModalClose} key={id}>
@@ -179,11 +182,9 @@ export const createCatalogComponent = (
             })}
           </Modal>
         ))}
-        {configurations?.map(({ value }) => {return(<H1 key={id}>{value}</H1>)})}
-        <span>{defaultIdUserControlledId}</span>
-        <Configure onClick={show}>...</Configure>
-        <button onClick={() => onModalOpen('edit id')}>edit id</button>
-        <button onClick={() => onModalOpen('edit content')}>edit content</button>
+        {configurations?.map(({ value }) => (<H1 key={id}>{value}</H1>))}
+        <span>{defaultUserControlledId}</span>
+        <Configure onClick={(e) => onModalOpen(e, 'edit id')}>...</Configure>
       </WrappedComponent>
     );
   };
