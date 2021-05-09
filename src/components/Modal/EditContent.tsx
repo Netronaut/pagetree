@@ -1,5 +1,4 @@
 import React from 'react';
-import { Modal } from './index';
 import { ModalButton, ModalInput } from './componentsStyles';
 import { Flex } from '../../componentsStyles';
 
@@ -8,8 +7,8 @@ type Props = {
   label: string;
   type: string;
   onChange: (e: React.FormEvent<HTMLInputElement>) => void;
-  onSave: (field: string) => void;
-  onCancel: () => void;
+  onSave: (e: React.MouseEvent, field: string) => void;
+  onCancel: (e: React.MouseEvent) => void;
   onModalClose: () => void;
   inputValue: string;
 }
@@ -20,7 +19,6 @@ export const EditContent: React.FC<Props> = ({
   onChange,
   onSave,
   onCancel,
-  onModalClose,
   inputValue,
 }) => {
   return (
@@ -35,7 +33,7 @@ export const EditContent: React.FC<Props> = ({
       />
       <Flex mt={16} px={50}>
         <ModalButton mainStream onClick={onCancel}>Cancel</ModalButton>
-        <ModalButton mainStream whiteBg onClick={() => onSave(field)}>OK</ModalButton>
+        <ModalButton mainStream whiteBg onClick={(e) => onSave(e, field)}>OK</ModalButton>
       </Flex>
     </>
   );
