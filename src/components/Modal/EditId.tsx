@@ -28,7 +28,7 @@ export const EditId: React.FC<Props> = ({
         required
         placeholder={`Enter ${label} ID`}
         value={idByUser}
-        onChange={event => onChangeId(event)}
+        onChange={onChangeId}
         autoFocus
       />
       <Flex mt={16} px={50}>
