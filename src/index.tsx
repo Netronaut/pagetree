@@ -13,8 +13,7 @@ import { TPage } from './types';
 import { TreeContext } from './utils/context';
 import { Components } from './hocs/createCatalogComponent';
 import { Catalog } from './components/CatalogItem';
-import { DroppableComponentContainer } from './components/CatalogItem/componentsStyles';
-import { useDragAndDrop } from './hooks';
+import { useModal } from './hooks';
 
 export * from './hocs/createCatalogComponent';
 
@@ -46,6 +45,8 @@ export const Builder: React.FC<Props> = ({
     onChange({ ...pageContent, ...newValue });
   };
 
+  const { modalShown, show, onModalClose } = useModal();
+
   const addNew = (
     e: React.DragEvent<HTMLDivElement>,
     toId?: string,
@@ -62,6 +63,7 @@ export const Builder: React.FC<Props> = ({
 
     tree.add(new Item({ type } as { type: string }), toId, side);
     setValue({ structure: tree.getValue() });
+    onModalClose();
   };
 
   const add = (
@@ -132,8 +134,6 @@ export const Builder: React.FC<Props> = ({
     />
   ) : null;
 
-  const [isOpen, setIsOpen] = useState(false);
-
   return (
     <TreeContext.Provider
       value={{
@@ -157,9 +157,9 @@ export const Builder: React.FC<Props> = ({
             >
               {content}
             </DroppableContent>
-            {isOpen
+            {modalShown
               ?
-              <Modal onOpenClose={setIsOpen} isAddComponents>
+              <Modal onClose={onModalClose} isAddComponents>
                 <ModalH2>Components</ModalH2>
                 <SearchBox>
                   <input type="text" placeholder="Search" value={searchValue} onChange={handleSearch} />
@@ -169,8 +169,7 @@ export const Builder: React.FC<Props> = ({
               </Modal>
               :
               <AddComponents
-                isOpen={isOpen}
-                setIsOpen={setIsOpen}
+                setIsModalOpen={show}
               />
             }
           </>

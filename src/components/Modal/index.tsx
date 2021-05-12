@@ -2,11 +2,11 @@ import React, { useEffect, useRef } from 'react';
 import { ModalContainer, ModalHeader, ModalButton } from './componentsStyles';
 
 type Props = {
-  onOpenClose: (val: boolean) => void;
+  onClose: () => void;
   isAddComponents?: boolean;
 };
 
-export const Modal: React.FC<Props> = ({ children, onOpenClose, isAddComponents }) => {
+export const Modal: React.FC<Props> = ({ children, onClose, isAddComponents }) => {
   const modalRef = useRef<HTMLDivElement>(null);
 
   const onDragStart = (e: React.DragEvent<HTMLDivElement>) => {
@@ -20,7 +20,7 @@ export const Modal: React.FC<Props> = ({ children, onOpenClose, isAddComponents 
         modalRef.current &&
         !modalRef.current.contains(event.target as Node)
       ) {
-        onOpenClose(false);
+        onClose();
       }
     };
     window.addEventListener('click', handleClickOutside, true);
@@ -44,7 +44,7 @@ export const Modal: React.FC<Props> = ({ children, onOpenClose, isAddComponents 
             <img src="infoAboutComponents.20c6aad0.svg" alt="info Icon" />
           </ModalButton>
         }
-        <ModalButton onClick={() => onOpenClose(false)}>
+        <ModalButton onClick={onClose}>
           <img src="cross.d7c6ba61.svg" alt="test" />
         </ModalButton>
       </ModalHeader>
