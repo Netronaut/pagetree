@@ -11,8 +11,8 @@ import { Item, Tree, TSide } from './utils/tree';
 import { Optional } from './types/helpers';
 import { TPage } from './types';
 import { TreeContext } from './utils/context';
-import { Components, ComponentGroups } from './hocs/createCatalogComponent';
-import { Catalog, CatalogItem } from './components/CatalogItem';
+import { Components } from './hocs/createCatalogComponent';
+import { Catalog } from './components/CatalogItem';
 import { DroppableComponentContainer } from './components/CatalogItem/componentsStyles';
 import { useDragAndDrop } from './hooks';
 
@@ -32,7 +32,7 @@ type Props = {
   onChange: (val: TPage) => void;
   showPreview?: boolean;
   components?: Components;
-  componentGroups?: ComponentGroups;
+  componentGroups?: string[];
 };
 
 export const Builder: React.FC<Props> = ({
@@ -165,6 +165,7 @@ export const Builder: React.FC<Props> = ({
         config: pageContent.config,
         showPreview,
         components,
+        componentGroups,
       }}
     >
       <ConstructorScreen>
@@ -187,12 +188,13 @@ export const Builder: React.FC<Props> = ({
                   <input type="text" placeholder="Search" value={searchValue} onChange={handleSearch} />
                   <ModalButton><img src="search.7845d0e5.svg" alt="search" /></ModalButton>
                 </SearchBox>
-                <Catalog>
+                {/* <Catalog>
                   {searchValue ? <SearchList /> :
-                    componentGroups?.map(group =>
+                    components?.map(group =>
                       <CatalogItem key={group.name} group={group} />
                     )}
-                </Catalog>
+                </Catalog> */}
+                <Catalog />
               </Modal>
               :
               <AddComponents

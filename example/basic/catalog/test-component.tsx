@@ -32,5 +32,6 @@ const Production: React.FC<ProductionComponentProps> = ({ config }) => {
 export default createCatalogComponent(Container, Production, {
   type: 'Test-component',
   componentName: 'Test Component',
+  groupName: 'Component group 2',
   props: [{ fieldName: 'testComponent', label: 'testComponent' }],
 });
