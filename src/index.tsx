@@ -125,29 +125,6 @@ export const Builder: React.FC<Props> = ({
     setSearchValue(value);
   }
 
-  const { onDragStart } = useDragAndDrop();
-  const SearchList = () => {
-    const filtered = components?.filter((component) => {
-      const { componentName } = component;
-      const serachCondition = componentName.toLocaleLowerCase().includes(searchValue.toLocaleLowerCase());
-      if (searchValue == '') return component;
-      else if (serachCondition) return component;
-    });
-    const maped = filtered?.map(({ componentName, type }, i) => (
-      <DroppableComponentContainer
-        id={type}
-        key={`droppable-component-${i}`}
-        {...{
-          draggable: true,
-          onDragStart,
-        }}
-      >
-        {componentName}
-      </DroppableComponentContainer>
-    ));
-    return <>{maped}</>;
-  };
-
   const content = !!pageContent.structure ? (
     <Direction
       direction={pageContent.structure.direction}
@@ -188,13 +165,7 @@ export const Builder: React.FC<Props> = ({
                   <input type="text" placeholder="Search" value={searchValue} onChange={handleSearch} />
                   <ModalButton><img src="search.7845d0e5.svg" alt="search" /></ModalButton>
                 </SearchBox>
-                {/* <Catalog>
-                  {searchValue ? <SearchList /> :
-                    components?.map(group =>
-                      <CatalogItem key={group.name} group={group} />
-                    )}
-                </Catalog> */}
-                <Catalog />
+                <Catalog searchValue={searchValue} />
               </Modal>
               :
               <AddComponents
