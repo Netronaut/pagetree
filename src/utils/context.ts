@@ -13,6 +13,7 @@ type TreeContextValue = {
   config: TPage['config'];
   showPreview?: boolean;
   components?: Components;
+  componentGroups?: string[];
 };
 
 export const TreeContext = React.createContext({} as TreeContextValue);

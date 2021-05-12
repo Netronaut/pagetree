@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { StyledGroupWrapper, DropdownButton, StyledCatalogWrapper } from './componentsStyles';
 import { DroppableComponentContainer } from './componentsStyles';
-import { TComponentGroup } from '../../hocs/createCatalogComponent';
 import { useDragAndDrop } from '../../hooks';
+import { TreeContext } from '../../utils/context';
 
 const ArrowSvg: React.FC<{ isOpen: boolean }> = ({ isOpen }) => (
   <svg
@@ -22,22 +22,29 @@ const ArrowSvg: React.FC<{ isOpen: boolean }> = ({ isOpen }) => (
 );
 
 type Props = {
-  group: TComponentGroup
+  groupName?: string;
 };
 
-export const CatalogItem: React.FC<Props> = ({ group }) => {
+export const CatalogItem: React.FC<Props> = ({ groupName }) => {
   const { onDragStart } = useDragAndDrop();
   const [isOpen, setIsOpen] = useState(false);
+  const { components } = useContext(TreeContext);
+
+  const filtered = components?.filter((component) => {
+    const { groupName: groupNameFromFilter } = component;
+    if (groupName === groupNameFromFilter) return component;
+  });
+
   return (
     <StyledGroupWrapper isOpen={isOpen}>
       <header onClick={() => setIsOpen(!isOpen)}>
-        {group.name}
+        {groupName}
         <DropdownButton onClick={() => setIsOpen(!isOpen)} isOpen={isOpen}>
           <ArrowSvg isOpen={isOpen} />
         </DropdownButton>
       </header>
       <section>
-        {group.components?.map((component, i) => (
+        {filtered?.map((component, i) => (
           <DroppableComponentContainer
             id={component.type}
             key={`droppable-component-${i}`}
@@ -48,15 +55,19 @@ export const CatalogItem: React.FC<Props> = ({ group }) => {
           >
             {component.componentName}
           </DroppableComponentContainer>
-        )
-        )}
+        ))}
       </section>
     </StyledGroupWrapper>
   );
 };
 
-export const Catalog: React.FC = ({ children }) => (
-  <StyledCatalogWrapper>
-    {children}
-  </StyledCatalogWrapper>
-);
+export const Catalog: React.FC = () => {
+  const { componentGroups } = useContext(TreeContext);
+  return (
+    <StyledCatalogWrapper>
+      {componentGroups?.map(groupName =>
+        <CatalogItem key={groupName} groupName={groupName} />
+      )}
+    </StyledCatalogWrapper>
+  );
+}

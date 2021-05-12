@@ -61,6 +61,7 @@ export const createCatalogComponent = (
   configuration: {
     type: string;
     componentName: string;
+    groupName?: string;
     props: { fieldName: string; label: string; }[];
   },
 ) => {
@@ -191,16 +192,11 @@ export const createCatalogComponent = (
 
   Component.type = configuration.type;
   Component.componentName = configuration.componentName;
+  Component.groupName = configuration.groupName;
 
   return Component;
 };
 
 export type CatalogComponent = ReturnType<typeof createCatalogComponent>;
-export type TComponentGroup = {
-  name: string;
-  components: CatalogComponent[];
-};
 
 export type Components = CatalogComponent[];
-export type ComponentGroups = TComponentGroup[];
-
