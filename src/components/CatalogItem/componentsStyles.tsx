@@ -29,7 +29,7 @@ export const DroppableComponentContainer = styled.div({
 
 export const StyledCatalogWrapper = styled.div`
   overflow-y: scroll;
-  padding-right: 7px;
+  padding-right: 11px;
   ::-webkit-scrollbar {
     width: 4px;
   }
