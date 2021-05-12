@@ -11,7 +11,6 @@ export const ModalContainer = styled.div<{
   justify-content: center;
   box-sizing: border-box;
   background: #39A7FF;
-  padding: 37px 16px 24px;
   outline: none;
   color: #fff;
 
@@ -22,13 +21,14 @@ export const ModalContainer = styled.div<{
         left: 15px;
         border-radius: 10px;
         width: 300px;
-        padding: 40px 24px 24px;
+        padding: 40px 9px 24px 24px;
       `
     return `
       top: 64px;
       left: calc(50% - 150px);
       border-radius: 5px;
       width: 331px;
+      padding: 37px 16px 24px;
     `
   }}
 
@@ -68,6 +68,7 @@ export const ModalHeader = styled.header({
 });
 
 export const ModalH2 = styled.h2`
+  margin-right: 15px;
   font-size: 32px;
   line-height: 37.5px;
   text-align: center;
@@ -84,6 +85,7 @@ export const SearchBox = styled.div`
   border-radius: 10px;
   padding: 7px 44px 7px 14px;
   margin-bottom: 25px;
+  margin-right: 15px;
   * {
     color: #fff;
     background: transparent;
