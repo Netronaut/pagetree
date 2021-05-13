@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { ModalButton, ModalH2, SearchBox } from './componentsStyles';
-import { Catalog } from '../CatalogItem';
+import { Catalog } from '../Catalog';
 import { Modal } from '.';
 
 type Props = {
