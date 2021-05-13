@@ -51,7 +51,7 @@ export const ComponentRenderer: React.FC<Props> = ({
   const { modalShown, show, onModalClose } = useModal();
 
   const ModalCondition = modalShown && (
-    <Modal onOpenClose={onModalClose}>
+    <Modal onClose={onModalClose}>
       Possible ratios:
       <Ratios>
         {direction === 'row' &&
