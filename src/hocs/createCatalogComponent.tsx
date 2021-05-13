@@ -162,7 +162,7 @@ export const createCatalogComponent = (
       <WrappedComponent onClick={(e) => onModalOpen(e, 'edit content')}>
         <Type inside>{type}</Type>
         {modalShown && configurations?.map(({ field, label }) => (
-          <Modal onOpenClose={onModalClose} key={id}>
+          <Modal onClose={onModalClose} key={id}>
             {modalList.map(({ name, isOpen }) => {
               if (isOpen && name === 'edit id') {
                 return <EditId
