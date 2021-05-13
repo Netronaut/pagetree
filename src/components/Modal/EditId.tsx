@@ -1,5 +1,4 @@
 import React from 'react';
-import { Modal } from './index';
 import { ModalButton, ModalInput, Sel, ModalH3, Hr } from './componentsStyles';
 import { Flex } from '../../componentsStyles';
 
@@ -21,6 +20,11 @@ export const EditId: React.FC<Props> = ({
   onCancel,
   idByUser,
 }) => {
+
+  const handleKeyPress = (e: React.FormEvent<HTMLInputElement>) => {
+    e.key === 'Enter' && onSaveId(e, field, idByUser);
+  };
+
   return (
     <>
       <ModalH3>{type} ID</ModalH3>
@@ -29,6 +33,7 @@ export const EditId: React.FC<Props> = ({
         placeholder={`Enter ${label} ID`}
         value={idByUser}
         onChange={onChangeId}
+        onKeyPress={handleKeyPress}
         autoFocus
       />
       <Flex mt={16} px={50}>
