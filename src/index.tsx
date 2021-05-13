@@ -43,7 +43,7 @@ export const Builder: React.FC<Props> = ({
     onChange({ ...pageContent, ...newValue });
   };
 
-  const { modalShown, show, onModalClose } = useModal();
+  const { isModalShown, onModalShow, onModalClose } = useModal();
 
   const addNew = (
     e: React.DragEvent<HTMLDivElement>,
@@ -149,9 +149,9 @@ export const Builder: React.FC<Props> = ({
             >
               {content}
             </DroppableContent>
-            {modalShown
+            {isModalShown
               ? <CatalogModal onModalClose={onModalClose} />
-              : <AddComponents showCatalog={show} />
+              : <AddComponents onModalShow={onModalShow} />
             }
           </>
         )}

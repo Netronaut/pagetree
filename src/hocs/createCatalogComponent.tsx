@@ -67,7 +67,7 @@ export const createCatalogComponent = (
 ) => {
   const Component = function (props: { type: string; id: string }) {
     const { id, type } = props;
-    const { modalShown, show, onModalClose } = useModal();
+    const { isModalShown, onModalShow, onModalClose } = useModal();
     const { onConfigChange, config: pageConfig, showPreview } = useContext(
       TreeContext,
     );
@@ -142,7 +142,7 @@ export const createCatalogComponent = (
     return (
       <WrappedComponent>
         <Type inside>{type}</Type>
-        {modalShown && configurations?.map(({ field, label }) => (
+        {isModalShown && configurations?.map(({ field, label }) => (
           <Modal onClose={onModalClose} key={id}>
             {configuration.props[0].fieldName === 'articleId' ?
               <EditId
@@ -163,7 +163,7 @@ export const createCatalogComponent = (
         ))}
         {configurations?.map(({ value }) => (<H1 key={id}>{value}</H1>))}
         {defaultUserControlledId && <span>id: {defaultUserControlledId}</span>}
-        <Configure onClick={show}>...</Configure>
+        <Configure onClick={onModalShow}>...</Configure>
       </WrappedComponent>
     );
   };

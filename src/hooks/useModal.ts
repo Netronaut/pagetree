@@ -3,7 +3,7 @@ import { useState } from 'react';
 export const useModal = () => {
   const [visible, setVisible] = useState(false);
 
-  const show = () => {
+  const onModalShow = () => {
     setVisible(true);
   };
 
@@ -12,8 +12,8 @@ export const useModal = () => {
   };
 
   return {
-    show,
-    modalShown: visible,
+    onModalShow,
     onModalClose,
+    isModalShown: visible,
   };
 };
