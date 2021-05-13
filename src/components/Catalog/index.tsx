@@ -3,6 +3,7 @@ import { StyledGroupWrapper, DropdownButton, StyledCatalogWrapper } from './comp
 import { DroppableComponentContainer } from './componentsStyles';
 import { useDragAndDrop } from '../../hooks';
 import { TreeContext } from '../../utils/context';
+import { SearchList } from './SearchList';
 
 const ArrowSvg: React.FC<{ isOpen: boolean }> = ({ isOpen }) => (
   <svg
@@ -76,32 +77,3 @@ export const Catalog: React.FC<CatalogProps> = ({ searchValue }) => {
     </StyledCatalogWrapper>
   );
 }
-
-type SearchListProps = {
-  searchValue: string;
-}
-
-const SearchList: React.FC<SearchListProps> = ({ searchValue }) => {
-  const { components } = useContext(TreeContext);
-  const { onDragStart } = useDragAndDrop();
-
-  const filtered = components?.filter((component) => {
-    const { componentName } = component;
-    const serachCondition = componentName.toLocaleLowerCase().includes(searchValue.toLocaleLowerCase());
-    if (searchValue == '') return component;
-    else if (serachCondition) return component;
-  });
-  const maped = filtered?.map(({ componentName, type }, i) => (
-    <DroppableComponentContainer
-      id={type}
-      key={`droppable-component-${i}`}
-      {...{
-        draggable: true,
-        onDragStart,
-      }}
-    >
-      {componentName}
-    </DroppableComponentContainer>
-  ));
-  return <>{maped}</>;
-};
