@@ -139,53 +139,31 @@ export const createCatalogComponent = (
       idByUser,
     };
 
-    const [modalList, setStateOfModalList] = useState([
-      { name: 'edit id', isOpen: false },
-      { name: 'edit content', isOpen: false },
-      { name: 'edit ratio', isOpen: false },
-    ]);
-    const onModalOpen = (e: React.MouseEvent, nameOfModal: string) => {
-      const newState = modalList.map(item => {
-        if (nameOfModal === item.name) {
-          item.isOpen = true;
-          return item
-        }
-        item.isOpen = false;
-        return item;
-      })
-      setStateOfModalList(newState);
-      show();
-      e.stopPropagation();
-    };
-
     return (
-      <WrappedComponent onClick={(e) => onModalOpen(e, 'edit content')}>
+      <WrappedComponent>
         <Type inside>{type}</Type>
         {modalShown && configurations?.map(({ field, label }) => (
           <Modal onClose={onModalClose} key={id}>
-            {modalList.map(({ name, isOpen }) => {
-              if (isOpen && name === 'edit id') {
-                return <EditId
-                  field={field}
-                  label={label}
-                  {...editIdProps}
-                  key={name}
-                />
-              }
-              if (isOpen && name === 'edit content') {
-                return <EditContent
-                  field={field}
-                  label={label}
-                  {...editContentProps}
-                  key={name}
-                />
-              }
-            })}
+            {configuration.props[0].fieldName === 'articleId' ?
+              <EditId
+                field={field}
+                label={label}
+                {...editIdProps}
+                key={configuration.componentName}
+              />
+              :
+              <EditContent
+                field={field}
+                label={label}
+                {...editContentProps}
+                key={configuration.componentName}
+              />
+            }
           </Modal>
         ))}
         {configurations?.map(({ value }) => (<H1 key={id}>{value}</H1>))}
-        <span>{defaultUserControlledId}</span>
-        <Configure onClick={(e) => onModalOpen(e, 'edit id')}>...</Configure>
+        {defaultUserControlledId && <span>id: {defaultUserControlledId}</span>}
+        <Configure onClick={show}>...</Configure>
       </WrappedComponent>
     );
   };
