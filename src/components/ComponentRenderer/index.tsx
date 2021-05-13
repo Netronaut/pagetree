@@ -48,9 +48,9 @@ export const ComponentRenderer: React.FC<Props> = ({
     return <Component id={id} type={type} />;
   }
 
-  const { modalShown, show, onModalClose } = useModal();
+  const { isModalShown, onModalShow, onModalClose } = useModal();
 
-  const ModalCondition = modalShown && (
+  const ModalCondition = isModalShown && (
     <Modal onClose={onModalClose}>
       Possible ratios:
       <Ratios>
@@ -83,7 +83,7 @@ export const ComponentRenderer: React.FC<Props> = ({
       {ModalCondition}
       <Indicator position={insertTo} />
       <Component id={id} type={type} />
-      {direction === 'row' && !lastIndex && <Configure onClick={show} />}
+      {direction === 'row' && !lastIndex && <Configure onClick={onModalShow} />}
     </Container>
   );
 };

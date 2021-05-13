@@ -2,15 +2,15 @@ import React from 'react';
 import { AddComponentsWrapper } from './componentsStyles';
 
 type Props = {
-  showCatalog: () => void,
+  onModalShow: () => void,
 };
 
 export const AddComponents: React.FC<Props> = ({
-  showCatalog,
+  onModalShow,
 }) => {
   return (
     <AddComponentsWrapper>
-      <button onClick={showCatalog}>+</button>
+      <button onClick={onModalShow}>+</button>
       <p>Add components</p>
     </AddComponentsWrapper>
   );
