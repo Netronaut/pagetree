@@ -2,10 +2,12 @@ import React, { useState } from 'react';
 import { ModalButton, ModalH2, SearchBox } from './componentsStyles';
 import { Catalog } from '../CatalogItem';
 import { Modal } from '.';
-import { useModal } from '../../hooks';
 
-export const CatalogModal: React.FC = () => {
-  const { onModalClose } = useModal();
+type Props = {
+  onModalClose: () => void;
+};
+
+export const CatalogModal: React.FC<Props> = ({ onModalClose }) => {
   const [searchValue, setSearchValue] = useState('');
 
   const handleSearch = (e: React.FormEvent<HTMLInputElement>) => {
