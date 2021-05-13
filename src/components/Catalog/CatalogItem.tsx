@@ -22,24 +22,32 @@ const ArrowSvg: React.FC<{ isOpen: boolean }> = ({ isOpen }) => (
 );
 
 type Props = {
-  groupName?: string;
+  groupName: string;
+  onOpenGroup: (groupName: string) => void;
+  openedGroup: string;
 };
 
-export const CatalogItem: React.FC<Props> = ({ groupName }) => {
+export const CatalogItem: React.FC<Props> = ({
+  groupName, onOpenGroup, openedGroup,
+}) => {
   const { onDragStart } = useDragAndDrop();
-  const [isOpen, setIsOpen] = useState(false);
   const { components } = useContext(TreeContext);
+  const isOpen = groupName === openedGroup;
 
   const filtered = components?.filter((component) => {
     const { groupName: groupNameFromFilter } = component;
     if (groupName === groupNameFromFilter) return component;
   });
 
+  const handleToggle = (isOpen: boolean) => {
+    !isOpen ? onOpenGroup(groupName) : onOpenGroup('');
+  };
+
   return (
     <StyledGroupWrapper isOpen={isOpen}>
-      <header onClick={() => setIsOpen(!isOpen)}>
+      <header onClick={() => handleToggle(isOpen)}>
         {groupName}
-        <DropdownButton onClick={() => setIsOpen(!isOpen)} isOpen={isOpen}>
+        <DropdownButton isOpen={isOpen}>
           <ArrowSvg isOpen={isOpen} />
         </DropdownButton>
       </header>
