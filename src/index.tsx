@@ -150,12 +150,8 @@ export const Builder: React.FC<Props> = ({
               {content}
             </DroppableContent>
             {modalShown
-              ?
-              <CatalogModal />
-              :
-              <AddComponents
-                setIsModalOpen={show}
-              />
+              ? <CatalogModal />
+              : <AddComponents showCatalog={show} />
             }
           </>
         )}
