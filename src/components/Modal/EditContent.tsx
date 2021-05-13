@@ -21,6 +21,11 @@ export const EditContent: React.FC<Props> = ({
   onCancel,
   inputValue,
 }) => {
+
+  const handleKeyPress = (e: React.FormEvent<HTMLInputElement>) => {
+    e.key === 'Enter' && onSave(e, field);
+  };
+
   return (
     <>
       <h3>{type}</h3>
@@ -29,6 +34,7 @@ export const EditContent: React.FC<Props> = ({
         placeholder={`Enter ${label}`}
         value={inputValue}
         onChange={onChange}
+        onKeyPress={handleKeyPress}
         autoFocus
       />
       <Flex mt={16} px={50}>
