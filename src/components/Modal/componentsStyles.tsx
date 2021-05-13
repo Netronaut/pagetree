@@ -3,9 +3,8 @@ import styled from 'styled-components';
 export const ModalContainer = styled.div<{
   isAddComponents?: boolean;
 }>`
-  position: fixed;
   z-index: 2;
-  max-height: 95vh;
+  top: 15px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -17,15 +16,16 @@ export const ModalContainer = styled.div<{
   ${({ isAddComponents }) => {
     if (isAddComponents)
       return `
-        top: 15px;
+        position: fixed;
         left: 15px;
         border-radius: 10px;
         width: 300px;
+        max-height: 95vh;
         padding: 40px 9px 24px 24px;
       `
     return `
-      top: 64px;
-      left: calc(50% - 150px);
+      position: absolute;
+      right: 15px;
       border-radius: 5px;
       width: 331px;
       padding: 37px 16px 24px;
