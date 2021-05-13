@@ -26,6 +26,7 @@
   },
   "dependencies": {
     "components": "^0.1.0",
+    "hooks": "^0.3.2",
     "styled-components": "^5.2.1",
     "uuid": "^8.3.2"
   },

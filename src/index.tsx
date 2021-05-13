@@ -1,18 +1,16 @@
-import React, { useState } from 'react';
+import React from 'react';
 import {
   ConstructorScreen,
   DroppableContent,
 } from './componentsStyles';
 import { Direction } from './components/Direction';
 import { AddComponents } from './components/AddComponents';
-import { Modal } from './components/Modal';
-import { ModalButton, ModalH2, SearchBox } from './components/Modal/componentsStyles';
 import { Item, Tree, TSide } from './utils/tree';
 import { Optional } from './types/helpers';
 import { TPage } from './types';
 import { TreeContext } from './utils/context';
 import { Components } from './hocs/createCatalogComponent';
-import { Catalog } from './components/CatalogItem';
+import { CatalogModal } from './components/Modal/CatalogModal';
 import { useModal } from './hooks';
 
 export * from './hocs/createCatalogComponent';
@@ -121,12 +119,6 @@ export const Builder: React.FC<Props> = ({
     }
   };
 
-  const [searchValue, setSearchValue] = useState('');
-  const handleSearch = (e: React.FormEvent<HTMLInputElement>) => {
-    const { value } = e.currentTarget;
-    setSearchValue(value);
-  }
-
   const content = !!pageContent.structure ? (
     <Direction
       direction={pageContent.structure.direction}
@@ -159,20 +151,7 @@ export const Builder: React.FC<Props> = ({
             </DroppableContent>
             {modalShown
               ?
-              <Modal onClose={onModalClose} isAddComponents>
-                <ModalH2>Components</ModalH2>
-                <SearchBox>
-                  <input
-                    type="text"
-                    placeholder="Search"
-                    value={searchValue}
-                    onChange={handleSearch}
-                    autoFocus
-                  />
-                  <ModalButton><img src="search.7845d0e5.svg" alt="search" /></ModalButton>
-                </SearchBox>
-                <Catalog searchValue={searchValue} />
-              </Modal>
+              <CatalogModal />
               :
               <AddComponents
                 setIsModalOpen={show}
