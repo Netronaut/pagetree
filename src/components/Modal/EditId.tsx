@@ -7,7 +7,7 @@ type Props = {
   label: string;
   type: string;
   onChangeId: (e: React.FormEvent<HTMLInputElement>) => void;
-  onSaveId: (e: React.MouseEvent, field: string, testIdByUser: string) => void;
+  onSaveId: (e: React.MouseEvent | React.KeyboardEvent, field: string, testIdByUser: string) => void;
   onCancel: (e: React.MouseEvent) => void;
   idByUser: string;
 }
@@ -21,7 +21,7 @@ export const EditId: React.FC<Props> = ({
   idByUser,
 }) => {
 
-  const handleKeyPress = (e: React.FormEvent<HTMLInputElement>) => {
+  const handleKeyPress = (e: React.KeyboardEvent<HTMLInputElement>) => {
     e.key === 'Enter' && onSaveId(e, field, idByUser);
   };
 
