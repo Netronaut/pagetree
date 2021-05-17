@@ -7,8 +7,8 @@ type Props = {
   label: string;
   type: string;
   onChange: (e: React.FormEvent<HTMLInputElement>) => void;
-  onSave: (e: React.MouseEvent | React.KeyboardEvent, field: string) => void;
-  onCancel: (e: React.MouseEvent) => void;
+  onSave: (field: string) => void;
+  onCancel: () => void;
   onModalClose: () => void;
   inputValue: string;
 }
@@ -23,7 +23,7 @@ export const EditContent: React.FC<Props> = ({
 }) => {
 
   const handleKeyPress = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    e.key === 'Enter' && onSave(e, field);
+    e.key === 'Enter' && onSave(field);
   };
 
   return (
@@ -39,7 +39,7 @@ export const EditContent: React.FC<Props> = ({
       />
       <Flex mt={16} px={50}>
         <ModalButton mainStream onClick={onCancel}>Cancel</ModalButton>
-        <ModalButton mainStream whiteBg onClick={(e) => onSave(e, field)}>OK</ModalButton>
+        <ModalButton mainStream whiteBg onClick={() => onSave(field)}>OK</ModalButton>
       </Flex>
     </>
   );

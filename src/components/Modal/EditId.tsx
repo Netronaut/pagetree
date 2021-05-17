@@ -7,8 +7,8 @@ type Props = {
   label: string;
   type: string;
   onChangeId: (e: React.FormEvent<HTMLInputElement>) => void;
-  onSaveId: (e: React.MouseEvent | React.KeyboardEvent, field: string, testIdByUser: string) => void;
-  onCancel: (e: React.MouseEvent) => void;
+  onSaveId: (field: string, testIdByUser: string) => void;
+  onCancel: () => void;
   idByUser: string;
 }
 export const EditId: React.FC<Props> = ({
@@ -22,7 +22,7 @@ export const EditId: React.FC<Props> = ({
 }) => {
 
   const handleKeyPress = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    e.key === 'Enter' && onSaveId(e, field, idByUser);
+    e.key === 'Enter' && onSaveId(field, idByUser);
   };
 
   return (
@@ -38,7 +38,7 @@ export const EditId: React.FC<Props> = ({
       />
       <Flex mt={16} px={50}>
         <ModalButton mainStream onClick={onCancel}>Cancel</ModalButton>
-        <ModalButton mainStream whiteBg onClick={(e) => onSaveId(e, field, idByUser)}>OK</ModalButton>
+        <ModalButton mainStream whiteBg onClick={() => onSaveId(field, idByUser)}>OK</ModalButton>
       </Flex>
       <Hr />
       <ModalH3>Select</ModalH3>

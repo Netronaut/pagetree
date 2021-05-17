@@ -97,10 +97,12 @@ export const createCatalogComponent = (
       setIdByUser(value);
     };
 
-    const onSaveId = (e: React.MouseEvent, field: string, userControlledId: string) => {
+    const onSaveId = (
+      field: string,
+      userControlledId: string
+    ) => {
       onConfigChange(id, field, inputValue, userControlledId);
       onModalClose();
-      e.stopPropagation();
     };
 
     const onChange = (e: React.FormEvent<HTMLInputElement>) => {
@@ -108,17 +110,15 @@ export const createCatalogComponent = (
       setInputValue(value);
     };
 
-    const onSave = (e: React.MouseEvent, field: string) => {
+    const onSave = (field: string) => {
       onConfigChange(id, field, inputValue, defaultUserControlledId);
       onModalClose();
-      e.stopPropagation();
     };
 
-    const onCancel = (e: React.MouseEvent) => {
+    const onCancel = () => {
       setInputValue(defaultValue);
       setIdByUser(defaultUserControlledId)
       onModalClose();
-      e.stopPropagation();
     };
 
     const editContentProps = {
