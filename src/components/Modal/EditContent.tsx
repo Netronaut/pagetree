@@ -7,7 +7,7 @@ type Props = {
   label: string;
   type: string;
   onChange: (e: React.FormEvent<HTMLInputElement>) => void;
-  onSave: (e: React.MouseEvent, field: string) => void;
+  onSave: (e: React.MouseEvent | React.KeyboardEvent, field: string) => void;
   onCancel: (e: React.MouseEvent) => void;
   onModalClose: () => void;
   inputValue: string;
@@ -22,7 +22,7 @@ export const EditContent: React.FC<Props> = ({
   inputValue,
 }) => {
 
-  const handleKeyPress = (e: React.FormEvent<HTMLInputElement>) => {
+  const handleKeyPress = (e: React.KeyboardEvent<HTMLInputElement>) => {
     e.key === 'Enter' && onSave(e, field);
   };
 
