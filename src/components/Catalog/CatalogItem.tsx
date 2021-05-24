@@ -4,23 +4,6 @@ import { DroppableComponentContainer } from './componentsStyles';
 import { useDragAndDrop } from '../../hooks';
 import { TreeContext } from '../../utils/context';
 
-const ArrowSvg: React.FC<{ isOpen: boolean }> = ({ isOpen }) => (
-  <svg
-    width='12'
-    height='7'
-    viewBox='0 0 12 7'
-    fill='none'
-    xmlns='http://www.w3.org/2000/svg'
-  >
-    <path
-      d='M1 6L6 1L11 6'
-      stroke={isOpen ? '#6A6A6A' : '#F9F9F9'}
-      strokeLinecap='round'
-      strokeLinejoin='round'
-    />
-  </svg>
-);
-
 type Props = {
   groupName: string;
   onOpenGroup: (groupName: string) => void;
@@ -28,13 +11,15 @@ type Props = {
 };
 
 export const CatalogItem: React.FC<Props> = ({
-  groupName, onOpenGroup, openedGroup,
+  groupName,
+  onOpenGroup,
+  openedGroup,
 }) => {
   const { onDragStart } = useDragAndDrop();
   const { components } = useContext(TreeContext);
   const isOpen = groupName === openedGroup;
 
-  const filtered = components?.filter((component) => {
+  const filtered = components?.filter(component => {
     const { groupName: groupNameFromFilter } = component;
     if (groupName === groupNameFromFilter) return component;
   });
@@ -68,3 +53,20 @@ export const CatalogItem: React.FC<Props> = ({
     </StyledGroupWrapper>
   );
 };
+
+const ArrowSvg: React.FC<{ isOpen: boolean }> = ({ isOpen }) => (
+  <svg
+    width="12"
+    height="7"
+    viewBox="0 0 12 7"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <path
+      d="M1 6L6 1L11 6"
+      stroke={isOpen ? '#6A6A6A' : '#F9F9F9'}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+  </svg>
+);
