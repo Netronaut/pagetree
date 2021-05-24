@@ -6,7 +6,11 @@ type Props = {
   isAddComponents?: boolean;
 };
 
-export const Modal: React.FC<Props> = ({ children, onClose, isAddComponents }) => {
+export const Modal: React.FC<Props> = ({
+  children,
+  onClose,
+  isAddComponents,
+}) => {
   const modalRef = useRef<HTMLDivElement>(null);
 
   const onDragStart = (e: React.DragEvent<HTMLDivElement>) => {
@@ -39,16 +43,32 @@ export const Modal: React.FC<Props> = ({ children, onClose, isAddComponents }) =
       isAddComponents={isAddComponents}
     >
       <ModalHeader>
-        {isAddComponents &&
+        {isAddComponents && (
           <ModalButton onClick={() => alert('info')}>
             <img src="infoAboutComponents.20c6aad0.svg" alt="info Icon" />
           </ModalButton>
-        }
+        )}
         <ModalButton onClick={onClose}>
-          <img src="cross.d7c6ba61.svg" alt="test" />
+          <Cross />
         </ModalButton>
       </ModalHeader>
       {children}
     </ModalContainer>
   );
 };
+
+const Cross: React.FC = () => (
+  <svg
+    width="23"
+    height="23"
+    viewBox="0 0 23 23"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <path
+      d="M6.30327 16.9099L11.6066 11.6066M11.6066 11.6066L16.9099 6.3033M11.6066 11.6066L16.9099 16.9099M11.6066 11.6066L6.30327 6.3033"
+      stroke="white"
+      strokeLinecap="round"
+    />
+  </svg>
+);
