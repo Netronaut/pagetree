@@ -1,11 +1,16 @@
 import React, { useContext, useMemo } from 'react';
-import { Indicator, Container, Configure, Type, Ratios, Ratio } from './componentsStyles';
+import {
+  Indicator,
+  Container,
+  Configure,
+  Ratios,
+  Ratio,
+} from './componentsStyles';
 import { useDragAndDrop, useModal } from '../../hooks';
 import { ChildComponent } from '../../utils/tree';
 import { TreeContext } from '../../utils/context';
 import { CatalogComponent } from '../../hocs/createCatalogComponent';
 import { Modal } from '../Modal';
-
 
 type Props = {
   component: ChildComponent;
@@ -65,7 +70,7 @@ export const ComponentRenderer: React.FC<Props> = ({
           })}
       </Ratios>
     </Modal>
-  )
+  );
 
   return (
     <Container
@@ -83,7 +88,28 @@ export const ComponentRenderer: React.FC<Props> = ({
       {ModalCondition}
       <Indicator position={insertTo} />
       <Component id={id} type={type} />
-      {direction === 'row' && !lastIndex && <Configure onClick={onModalShow} />}
+      {direction === 'row' && !lastIndex && (
+        <Configure onClick={onModalShow}>
+          <Slide />
+        </Configure>
+      )}
     </Container>
   );
 };
+
+const Slide: React.FC = () => (
+  <svg
+    width="10"
+    height="34"
+    viewBox="0 0 10 34"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <path
+      d="M1 33L3 33L3 0.999999L0.999999 0.999999"
+      stroke="#9d9d9d"
+      strokeLinecap="round"
+    />
+    <path d="M9 1L7 1L7 33L9 33" stroke="#9d9d9d" stroke-linecap="round" />
+  </svg>
+);

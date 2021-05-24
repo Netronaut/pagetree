@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { TSide } from '../../utils/tree';
+import slider from '../../../images/slider.svg';
 
 const getDimensions = (position: TSide, inDirection?: boolean) => {
   const dimensions = ['10px', `calc(100% + ${!inDirection ? 2 : 0}px)`];
@@ -29,7 +30,9 @@ export const Container = styled.div<{
   box-sizing: border-box;
   display: flex;
   padding: 12px 50px 11px 32px;
-  ${({ lastIndex }) => (!lastIndex && `
+  ${({ lastIndex }) =>
+    !lastIndex &&
+    `
     &:after {
       content: '';
       align-self: center;
@@ -40,7 +43,7 @@ export const Container = styled.div<{
       left: 68px;
       z-index: 0;
     }
-  `)}
+  `}
 `;
 
 export const Type = styled.p<{ inside?: boolean }>`
@@ -63,8 +66,10 @@ export const Type = styled.p<{ inside?: boolean }>`
 export const Configure = styled.div`
   width: calc(9px * 2);
   height: calc(34px * 2);
-  display: block;
-  background: #fff url(/slider.e3ab518a.svg) 50% no-repeat;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #fff;
   position: relative;
   left: 78px;
   cursor: w-resize;
