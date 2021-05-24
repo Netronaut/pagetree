@@ -9,7 +9,7 @@ export const ModalContainer = styled.div<{
   flex-direction: column;
   justify-content: center;
   box-sizing: border-box;
-  background: #39A7FF;
+  background: #39a7ff;
   outline: none;
   color: #fff;
 
@@ -22,14 +22,14 @@ export const ModalContainer = styled.div<{
         width: 300px;
         max-height: 95vh;
         padding: 40px 9px 24px 24px;
-      `
+      `;
     return `
       position: absolute;
       right: 15px;
       border-radius: 5px;
       width: 331px;
       padding: 37px 16px 24px;
-    `
+    `;
   }}
 
   input {
@@ -55,7 +55,7 @@ export const ModalButton = styled.button<{
         width: 100%;
         border-radius: 10px;
         padding: 10px 15px;
-      `
+      `;
     }
   }}
 `;
@@ -97,13 +97,16 @@ export const SearchBox = styled.div`
     font-size: 16px;
     line-height: 18.75px;
   }
+  input:focus {
+    outline: none;
+  }
   button {
     position: absolute;
     right: 14px;
     top: calc(50% - 8.5px);
     padding: 0;
   }
-`
+`;
 
 export const ModalInput = styled.input`
   border: 1px solid #fff;
@@ -117,7 +120,7 @@ export const Sel = styled.div`
   padding: 20px 13px;
   &:hover {
     background: #f9f9f9;
-    color: #3D3D3D;
+    color: #3d3d3d;
   }
 `;
 
