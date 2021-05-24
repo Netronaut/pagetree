@@ -1,8 +1,7 @@
 import 'react-app-polyfill/ie11';
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
-// import { Builder } from '@pagio/builder';
-import { Builder } from '../../src';
+import { Builder } from '@pagio/builder';
 import { useState } from 'react';
 import { GlobalStyle } from './globalStyle';
 import { components, componentGroups } from './catalog';
