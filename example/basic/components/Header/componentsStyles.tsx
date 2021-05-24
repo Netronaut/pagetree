@@ -24,13 +24,12 @@ export const Logo = styled.div`
   grid-column: 2 / 3;
   display: flex;
   align-items: center;
-  img {
+  svg {
     width: 42px;
+    height: 42px;
   }
   span {
-    margin-bottom: -33px;
     margin-left: 11px;
-    height: 100%;
     font-size: 45px;
     font-weight: 700;
   }
