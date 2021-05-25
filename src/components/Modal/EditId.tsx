@@ -40,18 +40,6 @@ export const EditId: React.FC<Props> = ({
         <ModalButton mainStream onClick={onCancel}>Cancel</ModalButton>
         <ModalButton mainStream whiteBg onClick={() => onSaveId(field, idByUser)}>OK</ModalButton>
       </Flex>
-      <Hr />
-      <ModalH3>Select</ModalH3>
-      <Flex px={0} justifyContent='space-between'>
-        <Sel>Sel.1</Sel>
-        <Sel>Sel.2</Sel>
-        <Sel>Sel.3</Sel>
-        <Sel>Sel.4</Sel>
-      </Flex>
-      <Flex mt={16} px={50}>
-        <ModalButton mainStream onClick={onCancel}>Cancel</ModalButton>
-        <ModalButton mainStream whiteBg>OK</ModalButton>
-      </Flex>
     </>
   );
 };
