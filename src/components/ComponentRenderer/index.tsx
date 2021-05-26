@@ -110,6 +110,6 @@ const Slide: React.FC = () => (
       stroke="#9d9d9d"
       strokeLinecap="round"
     />
-    <path d="M9 1L7 1L7 33L9 33" stroke="#9d9d9d" stroke-linecap="round" />
+    <path d="M9 1L7 1L7 33L9 33" stroke="#9d9d9d" strokeLinecap="round" />
   </svg>
 );
