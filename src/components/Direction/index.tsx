@@ -1,16 +1,32 @@
 import React, { useContext, useEffect } from 'react';
 import { ComponentRenderer } from '../ComponentRenderer';
+import { Indicator } from '../ComponentRenderer/componentsStyles';
 import { DirectionWrapper } from './componentsStyles';
 import { ChildDirection } from '../../utils/tree';
-import { useModal, usePrevious, useDragAndDrop } from '../../hooks';
+import { usePrevious, useDragAndDrop } from '../../hooks';
 import { TreeContext } from '../../utils/context';
 
 const ratios: Record<number, string[]> = {
   2: ['2:1', '1:1', '1:2'],
   3: ['2:1:1', '1:1:1', '1:2:1', '1:1:2'],
   4: ['2:1:1:1', '1:1:1:1', '1:2:1:1', '1:1:2:1', '1:1:1:2'],
-  5: ['2:1:1:1:1', '1:1:1:1:1', '1:2:1:1:1', '1:1:2:1:1', '1:1:1:2:1', '1:1:1:1:2'],
-  6: ['2:1:1:1:1:1', '1:1:1:1:1:1', '1:2:1:1:1:1', '1:1:2:1:1', '1:1:1:2:1:1', '1:1:1:1:2:1', '1:1:1:1:1:2'],
+  5: [
+    '2:1:1:1:1',
+    '1:1:1:1:1',
+    '1:2:1:1:1',
+    '1:1:2:1:1',
+    '1:1:1:2:1',
+    '1:1:1:1:2',
+  ],
+  6: [
+    '2:1:1:1:1:1',
+    '1:1:1:1:1:1',
+    '1:2:1:1:1:1',
+    '1:1:2:1:1',
+    '1:1:1:2:1:1',
+    '1:1:1:1:2:1',
+    '1:1:1:1:1:2',
+  ],
 };
 
 export const Direction: React.FC<ChildDirection> = ({
@@ -47,25 +63,28 @@ export const Direction: React.FC<ChildDirection> = ({
       }
       {...(id
         ? {
-          onDragLeave,
-          onDragOver,
-          onDrop,
-        }
+            onDragLeave,
+            onDragOver,
+            onDrop,
+          }
         : {})}
     >
+      <Indicator position={insertTo} />
       {components.map((component, index) => {
         if (component.direction) {
           return <Direction key={component.id} {...component} />;
         }
-        return <ComponentRenderer
-          key={component.id}
-          component={component}
-          direction={direction}
-          ratios={ratios}
-          onRatioSelect={onRatioSelect}
-          lastIndex={components.length - 1 === index}
-          componentsInTheRow={components.length}
-        />;
+        return (
+          <ComponentRenderer
+            key={component.id}
+            component={component}
+            direction={direction}
+            ratios={ratios}
+            onRatioSelect={onRatioSelect}
+            lastIndex={components.length - 1 === index}
+            componentsInTheRow={components.length}
+          />
+        );
       })}
     </DirectionWrapper>
   );
