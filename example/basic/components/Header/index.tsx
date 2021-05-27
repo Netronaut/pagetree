@@ -1,10 +1,13 @@
 import React from 'react';
+
 import {
   HeadWrapper,
   Logo,
   HeadContent,
   ToggleButton,
   Label,
+  Nav,
+  StyledLink,
 } from './componentsStyles';
 
 type Props = {
@@ -18,6 +21,10 @@ export const Header: React.FC<Props> = ({ setShowPreview }) => {
         <LogoSvg />
         <span>Pagio</span>
       </Logo>
+      <Nav>
+        <StyledLink to="/">Home</StyledLink>
+        <StyledLink to="/create-article">Create Article</StyledLink>
+      </Nav>
       <HeadContent>
         <Label htmlFor="toggle-button">Preview mode</Label>
         <ToggleButton
@@ -31,11 +38,7 @@ export const Header: React.FC<Props> = ({ setShowPreview }) => {
 };
 
 const LogoSvg: React.FC = () => (
-  <svg
-    viewBox="0 0 180 198"
-    fill="none"
-    xmlns="http://www.w3.org/2000/svg"
-  >
+  <svg viewBox="0 0 180 198" fill="none" xmlns="http://www.w3.org/2000/svg">
     <g filter="url(#filter0_d)">
       <path
         d="M44.59 189.28H14.56C6.52 189.28 0 182.76 0 174.72V130.13H59.15V174.72C59.15 182.76 52.63 189.28 44.59 189.28Z"
