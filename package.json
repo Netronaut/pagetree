@@ -25,6 +25,7 @@
     "react": ">=16"
   },
   "dependencies": {
+    "axios": "^0.21.1",
     "components": "^0.1.0",
     "hooks": "^0.3.2",
     "styled-components": "^5.2.1",
