@@ -5,6 +5,7 @@ import { GlobalStyle } from './globalStyle';
 import { Route, Router, Switch } from 'react-router';
 import { createBrowserHistory } from 'history';
 import { Nav, StyledLink } from './components/Header/componentsStyles';
+import { ArticlePage } from './components/ArticlePage';
 
 const App = () => {
   const customHistory = createBrowserHistory();
@@ -13,18 +14,14 @@ const App = () => {
     <>
       <Router history={customHistory}>
         <Switch>
-          <Route path="/pagebuilder">
-            Pagebuilder Page
-            {/* <PagebuilderPage /> */}
-          </Route>
           <Route path="/management">
-            management
-            {/* <ArticlePage /> */}
+            <ArticlePage />
           </Route>
+          <Route path="/pagebuilder">PagebuilderPage</Route>
         </Switch>
         <Nav>
-          <StyledLink to="/pagebuilder">Pagebuilder</StyledLink>
           <StyledLink to="/management">Management</StyledLink>
+          <StyledLink to="/pagebuilder">Pagebuilder</StyledLink>
         </Nav>
       </Router>
       <GlobalStyle />
