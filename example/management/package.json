@@ -12,18 +12,22 @@
     "react": ">= 16.8.0",
     "react-app-polyfill": "^1.0.0",
     "react-dom": ">= 16.8.0",
-    "react-is": ">= 16.8.0"
+    "react-is": ">= 16.8.0",
+    "react-router": "^5.2.0",
+    "react-router-dom": "^5.2.0"
+  },
+  "devDependencies": {
+    "@types/react": "^16.9.11",
+    "@types/react-dom": "^16.8.4",
+    "@types/react-router": "^5.1.14",
+    "@types/react-router-dom": "^5.1.7",
+    "parcel": "^1.12.3",
+    "typescript": "^3.4.5"
   },
   "alias": {
     "react": "../../node_modules/react",
     "react-dom": "../../node_modules/react-dom/profiling",
     "scheduler/tracing": "../../node_modules/scheduler/tracing-profiling",
     "styled-components": "../../node_modules/styled-components"
-  },
-  "devDependencies": {
-    "@types/react": "^16.9.11",
-    "@types/react-dom": "^16.8.4",
-    "parcel": "^1.12.3",
-    "typescript": "^3.4.5"
   }
 }
