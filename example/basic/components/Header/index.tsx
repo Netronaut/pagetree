@@ -6,8 +6,6 @@ import {
   HeadContent,
   ToggleButton,
   Label,
-  Nav,
-  StyledLink,
 } from './componentsStyles';
 
 type Props = {
@@ -21,10 +19,6 @@ export const Header: React.FC<Props> = ({ setShowPreview }) => {
         <LogoSvg />
         <span>Pagio</span>
       </Logo>
-      <Nav>
-        <StyledLink to="/">Home</StyledLink>
-        <StyledLink to="/create-article">Create Article</StyledLink>
-      </Nav>
       <HeadContent>
         <Label htmlFor="toggle-button">Preview mode</Label>
         <ToggleButton
