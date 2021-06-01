@@ -17,4 +17,3 @@ export const StyledLink = styled(Link)`
   margin-right: 15px;
   text-decoration: none;
 `;
-

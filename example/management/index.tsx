@@ -4,7 +4,7 @@ import * as ReactDOM from 'react-dom';
 import { GlobalStyle } from './globalStyle';
 import { Route, Router, Switch } from 'react-router';
 import { createBrowserHistory } from 'history';
-import { Nav, StyledLink } from './components/Header/componentsStyles';
+import { Nav, StyledLink } from './components/ArticlePage/componentsStyles';
 import { ArticlePage } from './components/ArticlePage';
 
 const App = () => {
