@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import { Link } from 'react-router-dom';
 
 export const HeadWrapper = styled.header`
   display: grid;
@@ -19,18 +18,6 @@ export const HeadContent = styled.div`
   justify-items: end;
   align-items: center;
   grid-template-columns: auto 60px;
-`;
-
-export const Nav = styled.section`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-`;
-
-export const StyledLink = styled(Link)`
-  color: white;
-  margin-right: 15px;
-  text-decoration: none;
 `;
 
 export const Logo = styled.div`
