@@ -1,40 +1,29 @@
 import React, { useState } from 'react';
+import { createUrlFromText } from '../../utils';
 
 type Props = {
-  save: (value: string) => void;
+  save: (title: string, url: string) => void;
 };
 
 export const CreateArticleForm: React.FC<Props> = ({ save }) => {
-  const [linkValue, setLinkValue] = useState('');
+  const [title, setTitle] = useState('');
 
   const handleChange = (e: React.FormEvent<HTMLInputElement>) => {
     const { value } = e.currentTarget;
-    setLinkValue(value);
-  };
-
-  const createUrlFromText = (text: string) => {
-    return (
-      '/' +
-      text
-        .split('')
-        .map(littera => {
-          if (littera === ' ') return '-';
-          return littera;
-        })
-        .join('')
-        .toLowerCase()
-    );
+    setTitle(value);
   };
 
   const handleClick = () => {
-    save(linkValue, createUrlFromText(linkValue));
-    setLinkValue('');
+    const url = createUrlFromText(title);
+    save(title, url);
+    setTitle('');
   };
 
   const handleKeyDownEnter = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === 'Enter') {
-      save(linkValue, createUrlFromText(linkValue));
-      setLinkValue('');
+      const url = createUrlFromText(title);
+      save(title, url);
+      setTitle('');
     }
   };
 
@@ -44,7 +33,7 @@ export const CreateArticleForm: React.FC<Props> = ({ save }) => {
         type="text"
         name="new-link-name"
         placeholder="Enter the link name"
-        value={linkValue}
+        value={title}
         onChange={handleChange}
         onKeyDown={handleKeyDownEnter}
       />

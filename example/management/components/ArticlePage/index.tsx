@@ -3,13 +3,14 @@ import axios from 'axios';
 import { CreateArticleForm } from './CreateArticleForm';
 import { LinkList } from './LinkList';
 import { apiUrls } from '../../apiUrls';
+import { Modal } from './Modal';
+import { createUrlFromText } from '../../utils';
 
-type Props = {
-  prop?: (val: any) => void;
-};
-
-export const ArticlePage: React.FC<Props> = ({ prop }) => {
-  const [links, setLinks] = useState([]);
+export const ArticlePage: React.FC = () => {
+  const [editingLinkId, setEditingLinkId] = useState<number | undefined>(
+    undefined,
+  );
+  const [articles, setLinks] = useState([]);
   const getLinks = useCallback(async () => {
     try {
       const response = await axios.get(apiUrls.aricles);
@@ -30,6 +31,26 @@ export const ArticlePage: React.FC<Props> = ({ prop }) => {
         link,
       })
       .then(response => {
+        const copyArticles = articles.slice();
+        copyArticles.push(response.data);
+        setLinks(copyArticles);
+      });
+  };
+
+  const handleOpenEdit = (id: number) => setEditingLinkId(id);
+
+  const handleCloseEdit = () => {
+    setEditingLinkId(undefined);
+  };
+
+  const handleSaveEdit = (id, value) => {
+    setEditingLinkId(undefined);
+    axios
+      .put(apiUrls.aricles + '/' + id, {
+        title: value,
+        link: createUrlFromText(value),
+      })
+      .then(response => {
         console.log(response);
       });
   };
@@ -38,7 +59,17 @@ export const ArticlePage: React.FC<Props> = ({ prop }) => {
     <>
       <h1>Create Article</h1>
       <CreateArticleForm save={createArticle} />
-      {links.length && <LinkList links={links} />}
+      {articles.length && (
+        <LinkList articles={articles} openEdit={handleOpenEdit} />
+      )}
+      {editingLinkId && (
+        <Modal
+          articleId={editingLinkId}
+          articles={articles}
+          close={handleCloseEdit}
+          save={handleSaveEdit}
+        />
+      )}
     </>
   );
 };
