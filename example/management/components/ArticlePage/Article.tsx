@@ -9,7 +9,7 @@ type Props = {
   openEdit: (id: number) => void;
 };
 
-export const Link: React.FC<Props> = ({
+export const Article: React.FC<Props> = ({
   title,
   id,
   link,
@@ -17,16 +17,16 @@ export const Link: React.FC<Props> = ({
   openEdit,
 }) => {
   return (
-    <LinkBlock key={id}>
+    <ArticleBlock key={id}>
       <Flex width="80%">
         <Title>{title}</Title>
-        <LinkText>{link}</LinkText>
+        <Url>{link}</Url>
       </Flex>
       <Flex width="20%" justifyContent="flex-end">
         <Button onClick={() => remove(id)}>Remove</Button>
         <Button onClick={() => openEdit(id)}>Edit</Button>
       </Flex>
-    </LinkBlock>
+    </ArticleBlock>
   );
 };
 
@@ -35,7 +35,7 @@ export const Title = styled.h3`
   overflow: hidden;
 `;
 
-export const LinkText = styled.span`
+export const Url = styled.span`
   text-overflow: ellipsis;
   overflow: hidden;
   color: #978997;
@@ -46,7 +46,7 @@ export const Button = styled.button`
   margin-left: 5px;
 `;
 
-export const LinkBlock = styled.li`
+export const ArticleBlock = styled.li`
   display: flex;
   border: solid black 1px;
   padding: 5px;
