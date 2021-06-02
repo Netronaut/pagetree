@@ -1,10 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
-import { TLink } from '../../types';
+import { TArticle } from '../../types';
 import { Article } from './Article';
 
 type Props = {
-  articles: TLink[];
+  articles: TArticle[];
   check: (id: number) => void;
   remove: (id: number) => void;
   openEdit: (id: number) => void;

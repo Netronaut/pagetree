@@ -1,9 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
-import { TLink } from '../../types';
+import { TArticle } from '../../types';
 
 type Props = {
-  article: TLink;
+  article: TArticle;
   remove: (id: number) => void;
   openEdit: (id: number) => void;
 };
