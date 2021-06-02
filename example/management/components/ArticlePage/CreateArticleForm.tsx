@@ -12,13 +12,30 @@ export const CreateArticleForm: React.FC<Props> = ({ save }) => {
     setLinkValue(value);
   };
 
+  const createUrlFromText = (text: string) => {
+    return (
+      '/' +
+      text
+        .split('')
+        .map(littera => {
+          if (littera === ' ') return '-';
+          return littera;
+        })
+        .join('')
+        .toLowerCase()
+    );
+  };
+
   const handleClick = () => {
-    save(linkValue);
+    save(linkValue, createUrlFromText(linkValue));
     setLinkValue('');
   };
 
   const handleKeyDownEnter = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    if (e.key === 'Enter') save(linkValue);
+    if (e.key === 'Enter') {
+      save(linkValue, createUrlFromText(linkValue));
+      setLinkValue('');
+    }
   };
 
   return (

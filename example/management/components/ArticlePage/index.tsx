@@ -1,40 +1,44 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
+import axios from 'axios';
+import { CreateArticleForm } from './CreateArticleForm';
+import { LinkList } from './LinkList';
+import { apiUrls } from '../../apiUrls';
 
 type Props = {
   prop?: (val: any) => void;
 };
 
 export const ArticlePage: React.FC<Props> = ({ prop }) => {
-  const [value, setValue] = useState('');
-  const [link, setLInk] = useState('');
+  const [links, setLinks] = useState([]);
+  const getLinks = useCallback(async () => {
+    try {
+      const response = await axios.get(apiUrls.aricles);
+      setLinks(response.data);
+    } catch (error) {
+      setLinks(error);
+    }
+  }, []);
 
-  const handleChange = (e: React.FormEvent<HTMLInputElement>) => {
-    const { value } = e.currentTarget;
-    setValue(value);
-  };
+  useEffect(() => {
+    getLinks();
+  }, []);
 
-  const createUrlFromText = (text: string) => {
-    return (
-      '/' +
-      text
-        .split('')
-        .map(littera => {
-          if (littera === ' ') return '-';
-          return littera;
-        })
-        .join('')
-        .toLowerCase()
-    );
+  const createArticle = (title: string, link: string) => {
+    axios
+      .post(apiUrls.aricles, {
+        title,
+        link,
+      })
+      .then(response => {
+        console.log(response);
+      });
   };
 
   return (
     <>
       <h1>Create Article</h1>
-      <input onChange={handleChange} />
-      <button onClick={() => setLInk(createUrlFromText(value))}>
-        create link
-      </button>
-      <h3>{link}</h3>
+      <CreateArticleForm save={createArticle} />
+      {links.length && <LinkList links={links} />}
     </>
   );
 };
