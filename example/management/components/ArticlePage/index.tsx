@@ -5,6 +5,7 @@ import { ArticleList } from './ArticleList';
 import { apiUrls } from '../../apiUrls';
 import { Modal } from './Modal';
 import { createUrlFromText } from '../../utils';
+import { Flex } from './Article';
 
 export const ArticlePage: React.FC = () => {
   const [editingArticleId, setEditingArticleId] = useState<number | undefined>(
@@ -73,15 +74,17 @@ export const ArticlePage: React.FC = () => {
 
   return (
     <>
-      <h1>Create Article</h1>
-      <CreateArticleForm save={createArticle} />
-      {articles.length && (
-        <ArticleList
-          articles={articles}
-          openEdit={handleOpenEdit}
-          remove={handleRemove}
-        />
-      )}
+      <Flex flexDirection="column" alignItems="center" px={15}>
+        <h1>Create Article</h1>
+        <CreateArticleForm save={createArticle} />
+        {articles.length && (
+          <ArticleList
+            articles={articles}
+            openEdit={handleOpenEdit}
+            remove={handleRemove}
+          />
+        )}
+      </Flex>
       {editingArticleId && (
         <Modal
           articleId={editingArticleId}

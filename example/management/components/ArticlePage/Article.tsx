@@ -56,6 +56,7 @@ export const ArticleBlock = styled.li`
 
 export const Flex = styled.div<{
   flexDirection?: 'column' | 'row';
+  alignItems?: 'center' | 'flex-start' | 'flex-end' | 'stretch' | 'baseline';
   justifyContent?:
     | 'flex-start'
     | 'flex-end'
@@ -63,10 +64,13 @@ export const Flex = styled.div<{
     | 'space-around'
     | 'space-evenly';
   width?: string;
+  px?: number;
 }>`
   display: flex;
   ${({ justifyContent }) =>
     justifyContent && `justify-content: ${justifyContent};`}
   ${({ width }) => `width: ${width};`}
   ${({ flexDirection }) => `flex-direction: ${flexDirection};`}
+  ${({ alignItems }) => `align-items: ${alignItems};`}
+  ${({ px }) => `padding: 0 ${px}px;`}
 `;
