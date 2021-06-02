@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import { TSide } from './tree';
 import { TPage } from '../types';
 import { Components } from '../hocs/createCatalogComponent';
@@ -9,7 +9,12 @@ type TreeContextValue = {
     toId?: string,
     side?: TSide,
   ) => void;
-  onConfigChange: (id: string, field: string, value: string, userControlledId?: string) => void;
+  onConfigChange: (
+    id: string,
+    field: string,
+    value: string,
+    userControlledId?: string,
+  ) => void;
   config: TPage['config'];
   showPreview?: boolean;
   components?: Components;

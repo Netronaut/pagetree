@@ -11,7 +11,7 @@ type Props = {
   onCancel: () => void;
   onModalClose: () => void;
   inputValue: string;
-}
+};
 export const EditContent: React.FC<Props> = ({
   field,
   label,
@@ -21,7 +21,6 @@ export const EditContent: React.FC<Props> = ({
   onCancel,
   inputValue,
 }) => {
-
   const handleKeyPress = (e: React.KeyboardEvent<HTMLInputElement>) => {
     e.key === 'Enter' && onSave(field);
   };
@@ -38,8 +37,12 @@ export const EditContent: React.FC<Props> = ({
         autoFocus
       />
       <Flex mt={16} px={50}>
-        <ModalButton mainStream onClick={onCancel}>Cancel</ModalButton>
-        <ModalButton mainStream whiteBg onClick={() => onSave(field)}>OK</ModalButton>
+        <ModalButton mainStream onClick={onCancel}>
+          Cancel
+        </ModalButton>
+        <ModalButton mainStream whiteBg onClick={() => onSave(field)}>
+          OK
+        </ModalButton>
       </Flex>
     </>
   );
