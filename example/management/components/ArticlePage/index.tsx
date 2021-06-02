@@ -51,7 +51,12 @@ export const ArticlePage: React.FC = () => {
         link: createUrlFromText(value),
       })
       .then(response => {
-        console.log(response);
+        const copyArticles = articles.slice();
+        const findedIndex = copyArticles.findIndex(
+          article => article.id === response.data.id,
+        );
+        copyArticles.splice(findedIndex, 1, response.data);
+        setArticles(copyArticles);
       });
   };
 
