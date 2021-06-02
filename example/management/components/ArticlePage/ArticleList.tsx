@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { TLink } from '../../types';
-import { Link } from './Link';
+import { Article } from './Article';
 
 type Props = {
   articles: TLink[];
@@ -10,7 +10,7 @@ type Props = {
   openEdit: (id: number) => void;
 };
 
-export const LinkList: React.FC<Props> = ({
+export const ArticleList: React.FC<Props> = ({
   articles,
   remove,
   check,
@@ -19,7 +19,7 @@ export const LinkList: React.FC<Props> = ({
   <List>
     {articles.map(({ title, article, id }) => {
       const props = { title, article, id, remove, check, openEdit };
-      return <Link key={id} {...props} />;
+      return <Article key={id} {...props} />;
     })}
   </List>
 );

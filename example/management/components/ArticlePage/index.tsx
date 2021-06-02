@@ -1,27 +1,27 @@
 import React, { useEffect, useState, useCallback } from 'react';
 import axios from 'axios';
 import { CreateArticleForm } from './CreateArticleForm';
-import { LinkList } from './LinkList';
+import { ArticleList } from './ArticleList';
 import { apiUrls } from '../../apiUrls';
 import { Modal } from './Modal';
 import { createUrlFromText } from '../../utils';
 
 export const ArticlePage: React.FC = () => {
-  const [editingLinkId, setEditingLinkId] = useState<number | undefined>(
+  const [editingArticleId, setEditingArticleId] = useState<number | undefined>(
     undefined,
   );
-  const [articles, setLinks] = useState([]);
-  const getLinks = useCallback(async () => {
+  const [articles, setArticles] = useState([]);
+  const getArticles = useCallback(async () => {
     try {
       const response = await axios.get(apiUrls.aricles);
-      setLinks(response.data);
+      setArticles(response.data);
     } catch (error) {
-      setLinks(error);
+      setArticles(error);
     }
   }, []);
 
   useEffect(() => {
-    getLinks();
+    getArticles();
   }, []);
 
   const createArticle = (title: string, link: string) => {
@@ -33,18 +33,18 @@ export const ArticlePage: React.FC = () => {
       .then(response => {
         const copyArticles = articles.slice();
         copyArticles.push(response.data);
-        setLinks(copyArticles);
+        setArticles(copyArticles);
       });
   };
 
-  const handleOpenEdit = (id: number) => setEditingLinkId(id);
+  const handleOpenEdit = (id: number) => setEditingArticleId(id);
 
   const handleCloseEdit = () => {
-    setEditingLinkId(undefined);
+    setEditingArticleId(undefined);
   };
 
   const handleSaveEdit = (id, value) => {
-    setEditingLinkId(undefined);
+    setEditingArticleId(undefined);
     axios
       .put(apiUrls.aricles + '/' + id, {
         title: value,
@@ -60,11 +60,11 @@ export const ArticlePage: React.FC = () => {
       <h1>Create Article</h1>
       <CreateArticleForm save={createArticle} />
       {articles.length && (
-        <LinkList articles={articles} openEdit={handleOpenEdit} />
+        <ArticleList articles={articles} openEdit={handleOpenEdit} />
       )}
-      {editingLinkId && (
+      {editingArticleId && (
         <Modal
-          articleId={editingLinkId}
+          articleId={editingArticleId}
           articles={articles}
           close={handleCloseEdit}
           save={handleSaveEdit}
