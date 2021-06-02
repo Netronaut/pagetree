@@ -46,7 +46,7 @@ export const ArticlePage: React.FC = () => {
   const handleSaveEdit = (id, value) => {
     setEditingArticleId(undefined);
     axios
-      .put(apiUrls.aricles + '/' + id, {
+      .put(`${apiUrls.aricles}/${id}`, {
         title: value,
         link: createUrlFromText(value),
       })
@@ -60,12 +60,27 @@ export const ArticlePage: React.FC = () => {
       });
   };
 
+  const handleRemove = (id: number) => {
+    axios.delete(`${apiUrls.aricles}/${id}`).then(response => {
+      const copyArticles = articles.slice();
+      const findedIndex = copyArticles.findIndex(
+        article => article.id === response.data.id,
+      );
+      copyArticles.splice(findedIndex, 1);
+      setArticles(copyArticles);
+    });
+  };
+
   return (
     <>
       <h1>Create Article</h1>
       <CreateArticleForm save={createArticle} />
       {articles.length && (
-        <ArticleList articles={articles} openEdit={handleOpenEdit} />
+        <ArticleList
+          articles={articles}
+          openEdit={handleOpenEdit}
+          remove={handleRemove}
+        />
       )}
       {editingArticleId && (
         <Modal
