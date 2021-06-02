@@ -4,21 +4,21 @@ import { TLink } from '../../types';
 import { Link } from './Link';
 
 type Props = {
-  links: TLink[];
+  articles: TLink[];
   check: (id: number) => void;
   remove: (id: number) => void;
   openEdit: (id: number) => void;
 };
 
 export const LinkList: React.FC<Props> = ({
-  links,
+  articles,
   remove,
   check,
   openEdit,
 }) => (
   <List>
-    {links.map(({ title, link, id }) => {
-      const props = { title, link, id, remove, check, openEdit };
+    {articles.map(({ title, article, id }) => {
+      const props = { title, article, id, remove, check, openEdit };
       return <Link key={id} {...props} />;
     })}
   </List>
