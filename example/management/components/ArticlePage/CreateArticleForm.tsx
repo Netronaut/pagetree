@@ -31,13 +31,12 @@ export const CreateArticleForm: React.FC<Props> = ({ save }) => {
     <>
       <input
         type="text"
-        name="new-link-name"
-        placeholder="Enter the link name"
+        placeholder="Enter the article title"
         value={title}
         onChange={handleChange}
         onKeyDown={handleKeyDownEnter}
       />
-      <button onClick={handleClick}>Add link</button>
+      <button onClick={handleClick}>Add an article</button>
     </>
   );
 };
