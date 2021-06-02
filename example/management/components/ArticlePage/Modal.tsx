@@ -1,10 +1,10 @@
 import React, { useEffect, useRef, useState } from 'react';
 import styled from 'styled-components';
-import { TLink } from '../../types';
+import { TArticle } from '../../types';
 
 type Props = {
   articleId: number;
-  articles: TLink[];
+  articles: TArticle[];
   close: () => void;
   save: (id: number, v: string) => void;
 };
@@ -29,7 +29,7 @@ export const Modal: React.FC<Props> = ({
   close,
   save,
 }) => {
-  const [editingArticle, setEditingAricle] = useState<TLink | undefined>(
+  const [editingArticle, setEditingAricle] = useState<TArticle | undefined>(
     undefined,
   );
 
