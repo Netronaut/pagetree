@@ -1,24 +1,21 @@
 import React from 'react';
 import styled from 'styled-components';
+import { TLink } from '../../types';
 
 type Props = {
-  title: string;
-  link: string;
-  id: number;
+  article: TLink;
   remove: (id: number) => void;
   openEdit: (id: number) => void;
 };
 
 export const Article: React.FC<Props> = ({
-  title,
-  id,
-  link,
+  article: { title, link, id },
   remove,
   openEdit,
 }) => {
   return (
     <ArticleBlock key={id}>
-      <Flex width="80%">
+      <Flex width="80%" flexDirection="column">
         <Title>{title}</Title>
         <Url>{link}</Url>
       </Flex>
@@ -58,6 +55,7 @@ export const ArticleBlock = styled.li`
 `;
 
 export const Flex = styled.div<{
+  flexDirection?: 'column' | 'row';
   justifyContent?:
     | 'flex-start'
     | 'flex-end'
@@ -70,4 +68,5 @@ export const Flex = styled.div<{
   ${({ justifyContent }) =>
     justifyContent && `justify-content: ${justifyContent};`}
   ${({ width }) => `width: ${width};`}
+  ${({ flexDirection }) => `flex-direction: ${flexDirection};`}
 `;

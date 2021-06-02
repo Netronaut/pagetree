@@ -17,9 +17,9 @@ export const ArticleList: React.FC<Props> = ({
   openEdit,
 }) => (
   <List>
-    {articles.map(({ title, article, id }) => {
-      const props = { title, article, id, remove, check, openEdit };
-      return <Article key={id} {...props} />;
+    {articles.map(article => {
+      const props = { article, remove, check, openEdit };
+      return <Article key={article.id} {...props} />;
     })}
   </List>
 );
