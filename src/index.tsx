@@ -1,8 +1,5 @@
 import React from 'react';
-import {
-  ConstructorScreen,
-  DroppableContent,
-} from './componentsStyles';
+import { ConstructorScreen, DroppableContent } from './componentsStyles';
 import { Direction } from './components/Direction';
 import { AddComponents } from './components/AddComponents';
 import { Item, Tree, TSide } from './utils/tree';
@@ -96,7 +93,12 @@ export const Builder: React.FC<Props> = ({
     }
   };
 
-  const onConfigChange = (id: string, field: string, newValue: string, userControlledId?: string) => {
+  const onConfigChange = (
+    id: string,
+    field: string,
+    newValue: string,
+    userControlledId?: string,
+  ) => {
     if (pageContent) {
       setValue({
         config: {
@@ -149,10 +151,11 @@ export const Builder: React.FC<Props> = ({
             >
               {content}
             </DroppableContent>
-            {isModalShown
-              ? <CatalogModal onModalClose={onModalClose} />
-              : <AddComponents onModalShow={onModalShow} />
-            }
+            {isModalShown ? (
+              <CatalogModal onModalClose={onModalClose} />
+            ) : (
+              <AddComponents onModalShow={onModalShow} />
+            )}
           </>
         )}
       </ConstructorScreen>
