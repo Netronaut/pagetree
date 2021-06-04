@@ -5,7 +5,6 @@ import { Article } from './Article';
 
 type Props = {
   articles: TArticle[];
-  check: (id: number) => void;
   remove: (id: number) => void;
   openEdit: (id: number) => void;
 };
@@ -13,12 +12,11 @@ type Props = {
 export const ArticleList: React.FC<Props> = ({
   articles,
   remove,
-  check,
   openEdit,
 }) => (
   <List>
     {articles.map(article => {
-      const props = { article, remove, check, openEdit };
+      const props = { article, remove, openEdit };
       return <Article key={article.id} {...props} />;
     })}
   </List>
