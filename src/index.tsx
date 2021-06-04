@@ -1,4 +1,4 @@
-import React, { useCallback, useContext, useEffect } from 'react';
+import React, { useCallback, useContext, useEffect, useState } from 'react';
 import axios from 'axios';
 import { Optional } from './types/helpers';
 import { TPage } from './types';
@@ -49,6 +49,8 @@ export const Builder: React.FC<Props> = ({
     onChange({ ...pageContent, ...newValue });
   };
 
+  const [pageContentWasChange, setPageContentWasChange] = useState(false);
+
   useEffect(() => {
     const currentArticleTitle = location.pathname.split('/')[2];
     const currentArticle = articles.find(
@@ -69,13 +71,13 @@ export const Builder: React.FC<Props> = ({
           pageContent,
         })
         .then(response => {
-          console.log(response.data.title);
           const copyArticles = articles.slice();
           const findedIndex = copyArticles.findIndex(
             article => article.id === response.data.id,
           );
           copyArticles.splice(findedIndex, 1, response.data);
           changeArticles(copyArticles);
+          setPageContentWasChange(false);
         });
   }, [pageContent]);
 
@@ -97,6 +99,7 @@ export const Builder: React.FC<Props> = ({
 
     tree.add(new Item({ type } as { type: string }), toId, side);
     setValue({ structure: tree.getValue() });
+    setPageContentWasChange(true);
     onModalClose();
   };
 
@@ -130,6 +133,7 @@ export const Builder: React.FC<Props> = ({
       );
       setValue({ structure: tree.getValue() });
     }
+    setPageContentWasChange(true);
   };
 
   const onConfigChange = (
@@ -149,6 +153,7 @@ export const Builder: React.FC<Props> = ({
           },
         },
       });
+      setPageContentWasChange(true);
     }
   };
 
@@ -197,7 +202,10 @@ export const Builder: React.FC<Props> = ({
             )}
           </>
         )}
-        <SavePageContentBatton onClick={putPageContent}>
+        <SavePageContentBatton
+          onClick={putPageContent}
+          hidden={!pageContentWasChange}
+        >
           save
         </SavePageContentBatton>
       </ConstructorScreen>

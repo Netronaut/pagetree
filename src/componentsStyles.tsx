@@ -47,11 +47,12 @@ export const Button = styled.button`
   color: #fff;
 `;
 
-export const SavePageContentBatton = styled(Button)`
+export const SavePageContentBatton = styled(Button)<{ hidden?: boolean }>`
   position: fixed;
-  bottom: 3px;
+  bottom: ${({ hidden }) => (hidden ? '-50px' : '5px')};
   right: calc(50% - 90px);
   width: 180px;
   font-size: 19px;
   text-transform: capitalize;
+  transition: all 0.4s ease-out; // need to fix;
 `;
