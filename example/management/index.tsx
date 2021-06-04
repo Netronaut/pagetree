@@ -28,7 +28,9 @@ const App = () => {
   }, []);
 
   return (
-    <ManagementContext.Provider value={{ articles }}>
+    <ManagementContext.Provider
+      value={{ articles, changeArticles: setArticles }}
+    >
       <Router>
         <Switch>
           <Route path="/management">
