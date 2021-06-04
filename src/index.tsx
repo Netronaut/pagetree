@@ -1,14 +1,21 @@
-import React from 'react';
-import { ConstructorScreen, DroppableContent } from './componentsStyles';
-import { Direction } from './components/Direction';
-import { AddComponents } from './components/AddComponents';
-import { Item, Tree, TSide } from './utils/tree';
+import React, { useCallback, useContext, useEffect } from 'react';
+import axios from 'axios';
 import { Optional } from './types/helpers';
 import { TPage } from './types';
+import { Item, Tree, TSide } from './utils/tree';
 import { TreeContext } from './utils/context';
-import { Components } from './hocs/createCatalogComponent';
-import { CatalogModal } from './components/Modal/CatalogModal';
+import { ManagementContext } from '../example/management/utils/context';
+import { apiUrls } from '../example/management/apiUrls';
 import { useModal } from './hooks';
+import {
+  ConstructorScreen,
+  DroppableContent,
+  SavePageContentBatton,
+} from './componentsStyles';
+import { Components } from './hocs/createCatalogComponent';
+import { Direction } from './components/Direction';
+import { AddComponents } from './components/AddComponents';
+import { CatalogModal } from './components/Modal/CatalogModal';
 
 export * from './hocs/createCatalogComponent';
 
@@ -36,9 +43,41 @@ export const Builder: React.FC<Props> = ({
   components,
   componentGroups,
 }) => {
+  const { articles, changeArticles } = useContext(ManagementContext);
+
   const setValue = (newValue: Optional<TPage>) => {
     onChange({ ...pageContent, ...newValue });
   };
+
+  useEffect(() => {
+    const currentArticleTitle = location.pathname.split('/')[2];
+    const currentArticle = articles.find(
+      article => article.link === `/${currentArticleTitle}`,
+    );
+    currentArticle && setValue(currentArticle.pageContent);
+  }, [articles]);
+
+  const putPageContent = useCallback(() => {
+    const currentArticleTitle = location.pathname.split('/')[2];
+    const currentArticle = articles.find(
+      article => article.link === `/${currentArticleTitle}`,
+    );
+
+    currentArticle &&
+      axios
+        .put(`${apiUrls.aricles}/${currentArticle.id}`, {
+          pageContent,
+        })
+        .then(response => {
+          console.log(response.data.title);
+          const copyArticles = articles.slice();
+          const findedIndex = copyArticles.findIndex(
+            article => article.id === response.data.id,
+          );
+          copyArticles.splice(findedIndex, 1, response.data);
+          changeArticles(copyArticles);
+        });
+  }, [pageContent]);
 
   const { isModalShown, onModalShow, onModalClose } = useModal();
 
@@ -158,6 +197,9 @@ export const Builder: React.FC<Props> = ({
             )}
           </>
         )}
+        <SavePageContentBatton onClick={putPageContent}>
+          save
+        </SavePageContentBatton>
       </ConstructorScreen>
     </TreeContext.Provider>
   );
