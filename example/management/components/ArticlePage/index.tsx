@@ -1,29 +1,20 @@
-import React, { useEffect, useState, useCallback } from 'react';
+import * as React from 'react';
+import { useState, useContext } from 'react';
 import axios from 'axios';
 import { CreateArticleForm } from './CreateArticleForm';
 import { ArticleList } from './ArticleList';
-import { apiUrls } from '../../apiUrls';
 import { Modal } from './Modal';
-import { createUrlFromText } from '../../utils';
 import { Flex } from './Article';
+import { apiUrls } from '../../apiUrls';
+import { createUrlFromText } from '../../utils';
+import { ManagementContext } from '../../utils/context';
 
 export const ArticlePage: React.FC = () => {
+  const { articles, changeArticles } = useContext(ManagementContext);
+
   const [editingArticleId, setEditingArticleId] = useState<number | undefined>(
     undefined,
   );
-  const [articles, setArticles] = useState([]);
-  const getArticles = useCallback(async () => {
-    try {
-      const response = await axios.get(apiUrls.aricles);
-      setArticles(response.data);
-    } catch (error) {
-      setArticles(error);
-    }
-  }, []);
-
-  useEffect(() => {
-    getArticles();
-  }, []);
 
   const createArticle = (title: string, link: string) => {
     axios
@@ -34,7 +25,7 @@ export const ArticlePage: React.FC = () => {
       .then(response => {
         const copyArticles = articles.slice();
         copyArticles.push(response.data);
-        setArticles(copyArticles);
+        changeArticles(copyArticles);
       });
   };
 
@@ -57,7 +48,7 @@ export const ArticlePage: React.FC = () => {
           article => article.id === response.data.id,
         );
         copyArticles.splice(findedIndex, 1, response.data);
-        setArticles(copyArticles);
+        changeArticles(copyArticles);
       });
   };
 
@@ -68,7 +59,7 @@ export const ArticlePage: React.FC = () => {
         article => article.id === response.data.id,
       );
       copyArticles.splice(findedIndex, 1);
-      setArticles(copyArticles);
+      changeArticles(copyArticles);
     });
   };
 

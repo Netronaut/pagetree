@@ -1,6 +1,9 @@
 import { createContext } from 'react';
 import { TArticle } from '../types';
 
-export const ManagementContext = createContext({
-  articles: [] as TArticle[],
-});
+type ManagementContextValue = {
+  articles: TArticle[];
+  changeArticles: any;
+};
+
+export const ManagementContext = createContext({} as ManagementContextValue);
