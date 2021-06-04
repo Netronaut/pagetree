@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { TArticle } from '../../types';
 
@@ -14,10 +15,10 @@ export const Article: React.FC<Props> = ({
   openEdit,
 }) => {
   return (
-    <ArticleBlock key={id}>
+    <ArticleBlock>
       <Flex width="80%" flexDirection="column">
         <Title>{title}</Title>
-        <Url>{link}</Url>
+        <Link to={`pagebuilder${link}`}>{link}</Link>
       </Flex>
       <Flex width="20%" justifyContent="flex-end">
         <Button onClick={() => remove(id)}>Remove</Button>
