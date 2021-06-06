@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "@pagio/builder": "../../.",
+    "axios": "^0.21.1",
     "react": ">= 16.8.0",
     "react-app-polyfill": "^1.0.0",
     "react-dom": ">= 16.8.0",
