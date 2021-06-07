@@ -1,11 +1,11 @@
 import * as React from 'react';
 import { useEffect, useRef, useState } from 'react';
 import styled from 'styled-components';
-import { TArticle } from '../../types';
+import { TPageData } from '../../types';
 
 type Props = {
-  articleId: number;
-  articles: TArticle[];
+  pageId: number;
+  pages: TPageData[];
   close: () => void;
   save: (id: number, v: string) => void;
 };
@@ -24,21 +24,17 @@ const useClickOutsede = (
   }, [ref]);
 };
 
-export const Modal: React.FC<Props> = ({
-  articleId,
-  articles,
-  close,
-  save,
-}) => {
-  const [editingArticle, setEditingAricle] = useState<TArticle | undefined>(
+export const Modal: React.FC<Props> = ({ pageId, pages, close, save }) => {
+  const [editingPages, setEditingPage] = useState<TPageData | undefined>(
     undefined,
   );
 
   useEffect(() => {
-    const currentArticle = articles.find(article => article.id === articleId);
-    console.log(articleId, articles, currentArticle);
-    articleId && setEditingAricle(currentArticle);
-  }, [articleId]);
+    const currentPages = pages.find(page => {
+      return page.id === pageId;
+    });
+    pageId && setEditingPage(currentPages);
+  }, [pageId]);
 
   const [value, setValue] = useState('');
 
@@ -50,7 +46,7 @@ export const Modal: React.FC<Props> = ({
   };
 
   const handleKeyDownEnter = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    if (e.key === 'Enter') save(articleId, value);
+    if (e.key === 'Enter') save(pageId, value);
   };
 
   return (
@@ -62,12 +58,12 @@ export const Modal: React.FC<Props> = ({
       <input
         type="text"
         data-testid="edit-input"
-        defaultValue={editingArticle?.title}
+        defaultValue={editingPages?.title}
         onChange={handleChange}
         autoFocus
         onKeyDown={handleKeyDownEnter}
       />
-      <Save onClick={() => save(articleId, value)}>Save</Save>
+      <Save onClick={() => save(pageId, value)}>Save</Save>
     </StyledModal>
   );
 };

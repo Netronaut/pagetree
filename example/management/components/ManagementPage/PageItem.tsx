@@ -1,21 +1,21 @@
 import * as React from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
-import { TArticle } from '../../types';
+import { TPageData } from '../../types';
 
 type Props = {
-  article: TArticle;
+  page: TPageData;
   remove: (id: number) => void;
   openEdit: (id: number) => void;
 };
 
-export const Article: React.FC<Props> = ({
-  article: { title, link, id },
+export const PageItem: React.FC<Props> = ({
+  page: { title, link, id },
   remove,
   openEdit,
 }) => {
   return (
-    <ArticleBlock>
+    <Wrapper>
       <Flex width="80%" flexDirection="column">
         <Title>{title}</Title>
         <Link to={`pagebuilder${link}`}>{link}</Link>
@@ -24,7 +24,7 @@ export const Article: React.FC<Props> = ({
         <Button onClick={() => remove(id)}>Remove</Button>
         <Button onClick={() => openEdit(id)}>Edit</Button>
       </Flex>
-    </ArticleBlock>
+    </Wrapper>
   );
 };
 
@@ -44,7 +44,7 @@ export const Button = styled.button`
   margin-left: 5px;
 `;
 
-export const ArticleBlock = styled.li`
+export const Wrapper = styled.li`
   display: flex;
   border: solid black 1px;
   padding: 5px;

@@ -6,7 +6,7 @@ type Props = {
   save: (title: string, url: string) => void;
 };
 
-export const CreateArticleForm: React.FC<Props> = ({ save }) => {
+export const CreatePageForm: React.FC<Props> = ({ save }) => {
   const [title, setTitle] = useState('');
 
   const handleChange = (e: React.FormEvent<HTMLInputElement>) => {
@@ -32,12 +32,12 @@ export const CreateArticleForm: React.FC<Props> = ({ save }) => {
     <>
       <input
         type="text"
-        placeholder="Enter the article title"
+        placeholder="Enter the page name"
         value={title}
         onChange={handleChange}
         onKeyDown={handleKeyDownEnter}
       />
-      <button onClick={handleClick}>Add an article</button>
+      <button onClick={handleClick}>Add page</button>
     </>
   );
 };

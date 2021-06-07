@@ -7,37 +7,37 @@ import { Header } from '../Header';
 import { ManagementContext } from '../../utils/context';
 import axios from 'axios';
 import { apiUrls } from '../../apiUrls';
-import { TArticle } from '../../types';
+import { TPageData } from '../../types';
 
 export const PagebuilderPage = () => {
   const [showPreview, setShowPreview] = useState(false);
-  const { articles, changeArticles } = useContext(ManagementContext);
-  const [article, setArticle] = useState({} as TArticle);
+  const { pages, changePages } = useContext(ManagementContext);
+  const [page, setPage] = useState({} as TPageData);
   const [pageContent, setPageContent] = useState({});
 
   useEffect(() => {
-    const currentArticleTitle = location.pathname.split('/')[2];
-    const currentArticle = articles.find(
-      article => article.link === `/${currentArticleTitle}`,
+    const currentPageTitle = location.pathname.split('/')[2];
+    const currentPage = pages.find(
+      page => page.link === `/${currentPageTitle}`,
     );
-    setArticle(currentArticle);
-    currentArticle?.pageContent && setPageContent(currentArticle?.pageContent);
-  }, [articles]);
+    setPage(currentPage);
+    currentPage?.pageContent && setPageContent(currentPage?.pageContent);
+  }, [pages]);
 
   useEffect(() => {
-    JSON.stringify(article.pageContent) !== JSON.stringify(pageContent) &&
-      article?.id &&
+    JSON.stringify(page.pageContent) !== JSON.stringify(pageContent) &&
+      page?.id &&
       axios
-        .put(`${apiUrls.aricles}/${article?.id}`, {
+        .put(`${apiUrls.aricles}/${page?.id}`, {
           pageContent,
         })
         .then(response => {
-          const copyArticles = articles.slice();
-          const findedIndex = copyArticles.findIndex(
-            article => article.id === response.data.id,
+          const copyPages = pages.slice();
+          const findedIndex = copyPages.findIndex(
+            page => page.id === response.data.id,
           );
-          copyArticles.splice(findedIndex, 1, response.data);
-          changeArticles(copyArticles);
+          copyPages.splice(findedIndex, 1, response.data);
+          changePages(copyPages);
         });
   }, [pageContent]);
 

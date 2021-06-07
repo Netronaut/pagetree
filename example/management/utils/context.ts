@@ -1,9 +1,9 @@
 import { createContext } from 'react';
-import { TArticle } from '../types';
+import { TPageData } from '../types';
 
 type ManagementContextValue = {
-  articles: TArticle[];
-  changeArticles: any;
+  pages: TPageData[];
+  changePages: any;
 };
 
 export const ManagementContext = createContext({} as ManagementContextValue);

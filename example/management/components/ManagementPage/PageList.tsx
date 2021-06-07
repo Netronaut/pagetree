@@ -1,23 +1,23 @@
 import * as React from 'react';
 import styled from 'styled-components';
-import { TArticle } from '../../types';
-import { Article } from './Article';
+import { TPageData } from '../../types';
+import { PageItem } from './PageItem';
 
 type Props = {
-  articles: TArticle[];
+  pages: TPageData[];
   remove: (id: number) => void;
   openEdit: (id: number) => void;
 };
 
-export const ArticleList: React.FC<Props> = ({
-  articles,
+export const PageList: React.FC<Props> = ({
+  pages,
   remove,
   openEdit,
 }) => (
   <List>
-    {articles.map(article => {
-      const props = { article, remove, openEdit };
-      return <Article key={article.id} {...props} />;
+    {pages.map(page => {
+      const props = { page, remove, openEdit };
+      return <PageItem key={page.id} {...props} />;
     })}
   </List>
 );

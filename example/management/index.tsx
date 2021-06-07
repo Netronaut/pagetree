@@ -5,36 +5,34 @@ import { useCallback, useState, useEffect } from 'react';
 import axios from 'axios';
 import { GlobalStyle } from './globalStyle';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import { Nav, StyledLink } from './components/ArticlePage/componentsStyles';
-import { ArticlePage } from './components/ArticlePage';
+import { Nav, StyledLink } from './components/ManagementPage/componentsStyles';
+import { ManagementPage } from './components/ManagementPage';
 import { PagebuilderPage } from './components/PagebuilderPage';
 import { ManagementContext } from './utils/context';
 import { apiUrls } from './apiUrls';
 
 const App = () => {
-  const [articles, setArticles] = useState([]);
+  const [pages, setPages] = useState([]);
 
-  const getArticles = useCallback(async () => {
+  const getPages = useCallback(async () => {
     try {
       const response = await axios.get(apiUrls.aricles);
-      setArticles(response.data);
+      setPages(response.data);
     } catch (error) {
-      setArticles(error);
+      setPages(error);
     }
   }, []);
 
   useEffect(() => {
-    getArticles();
+    getPages();
   }, []);
 
   return (
-    <ManagementContext.Provider
-      value={{ articles, changeArticles: setArticles }}
-    >
+    <ManagementContext.Provider value={{ pages, changePages: setPages }}>
       <Router>
         <Switch>
           <Route path="/management">
-            <ArticlePage />
+            <ManagementPage />
           </Route>
           <Route path="/pagebuilder">
             <PagebuilderPage />

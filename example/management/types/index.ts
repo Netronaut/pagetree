@@ -1,6 +1,6 @@
 import { TPage } from '@pagio/builder/dist/types';
 
-export type TArticle = {
+export type TPageData = {
   title: string;
   link: string;
   id: number;
