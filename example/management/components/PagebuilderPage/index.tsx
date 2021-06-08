@@ -12,7 +12,7 @@ import { TPageData } from '../../types';
 export const PagebuilderPage = () => {
   const [showPreview, setShowPreview] = useState(false);
   const { pages, changePages } = useContext(ManagementContext);
-  const [page, setPage] = useState({} as TPageData);
+  const [page, setPage] = useState<TPageData | undefined>({} as TPageData);
   const [pageContent, setPageContent] = useState({});
 
   useEffect(() => {
@@ -25,7 +25,7 @@ export const PagebuilderPage = () => {
   }, [pages]);
 
   useEffect(() => {
-    JSON.stringify(page.pageContent) !== JSON.stringify(pageContent) &&
+    JSON.stringify(page?.pageContent) !== JSON.stringify(pageContent) &&
       page?.id &&
       axios
         .put(`${apiUrls.pages}/${page?.id}`, {
