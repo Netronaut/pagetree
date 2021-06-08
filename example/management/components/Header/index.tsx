@@ -15,7 +15,7 @@ type Props = {
 export const Header: React.FC<Props> = ({ setShowPreview }) => {
   return (
     <HeadWrapper>
-      <Logo>
+      <Logo to="/">
         <LogoSvg />
         <span>Pagio</span>
       </Logo>
