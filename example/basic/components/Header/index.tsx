@@ -9,7 +9,7 @@ import {
 } from './componentsStyles';
 
 type Props = {
-  setShowPreview: void;
+  setShowPreview: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
 export const Header: React.FC<Props> = ({ setShowPreview }) => {
