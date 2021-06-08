@@ -5,7 +5,6 @@ import { useCallback, useState, useEffect } from 'react';
 import axios from 'axios';
 import { GlobalStyle } from './globalStyle';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import { Nav, StyledLink } from './components/ManagementPage/componentsStyles';
 import { ManagementPage } from './components/ManagementPage';
 import { PagebuilderPage } from './components/PagebuilderPage';
 import { ManagementContext } from './utils/context';
@@ -31,16 +30,13 @@ const App = () => {
     <ManagementContext.Provider value={{ pages, changePages: setPages }}>
       <Router>
         <Switch>
-          <Route path="/management">
+          <Route path="/" exact>
             <ManagementPage />
           </Route>
           <Route path="/pagebuilder">
             <PagebuilderPage />
           </Route>
         </Switch>
-        <Nav>
-          <StyledLink to="/management">Management</StyledLink>
-        </Nav>
       </Router>
       <GlobalStyle />
     </ManagementContext.Provider>
