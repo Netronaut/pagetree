@@ -16,7 +16,7 @@ const App = () => {
 
   const getPages = useCallback(async () => {
     try {
-      const response = await axios.get(apiUrls.aricles);
+      const response = await axios.get(apiUrls.pages);
       setPages(response.data);
     } catch (error) {
       setPages(error);

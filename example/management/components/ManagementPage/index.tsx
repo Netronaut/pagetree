@@ -18,7 +18,7 @@ export const ManagementPage: React.FC = () => {
 
   const createPage = (title: string, link: string) => {
     axios
-      .post(apiUrls.aricles, {
+      .post(apiUrls.pages, {
         title,
         link,
       })
@@ -38,7 +38,7 @@ export const ManagementPage: React.FC = () => {
   const handleSaveEdit = (id, value) => {
     seteditingPageId(undefined);
     axios
-      .put(`${apiUrls.aricles}/${id}`, {
+      .put(`${apiUrls.pages}/${id}`, {
         title: value,
         link: createUrlFromText(value),
       })
@@ -53,7 +53,7 @@ export const ManagementPage: React.FC = () => {
   };
 
   const handleRemove = (id: number) => {
-    axios.delete(`${apiUrls.aricles}/${id}`).then(response => {
+    axios.delete(`${apiUrls.pages}/${id}`).then(response => {
       const copyPages = pages.slice();
       const findedIndex = copyPages.findIndex(
         page => page.id === response.data.id,

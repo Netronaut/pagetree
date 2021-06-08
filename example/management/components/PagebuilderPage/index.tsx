@@ -28,7 +28,7 @@ export const PagebuilderPage = () => {
     JSON.stringify(page.pageContent) !== JSON.stringify(pageContent) &&
       page?.id &&
       axios
-        .put(`${apiUrls.aricles}/${page?.id}`, {
+        .put(`${apiUrls.pages}/${page?.id}`, {
           pageContent,
         })
         .then(response => {
