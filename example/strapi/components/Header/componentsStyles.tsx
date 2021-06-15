@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 
 export const HeadWrapper = styled.header`
   display: grid;
@@ -20,10 +21,12 @@ export const HeadContent = styled.div`
   grid-template-columns: auto 60px;
 `;
 
-export const Logo = styled.div`
+export const Logo = styled(Link)`
   grid-column: 2 / 3;
   display: flex;
   align-items: center;
+  color: white;
+  text-decoration: none;
   svg {
     width: 42px;
     height: 42px;

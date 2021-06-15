@@ -13,7 +13,6 @@ const App = () => {
 
   return (
     <>
-      <GlobalStyle />
       <Header setShowPreview={setShowPreview} />
       <Builder
         pageContent={pageContent}
@@ -22,6 +21,7 @@ const App = () => {
         components={components}
         componentGroups={componentGroups}
       />
+      <GlobalStyle />
     </>
   );
 };

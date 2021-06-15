@@ -1,5 +1,5 @@
 import React from 'react';
-import { ModalButton, ModalInput, Sel, ModalH3, Hr } from './componentsStyles';
+import { ModalButton, ModalInput, ModalH3 } from './componentsStyles';
 import { Flex } from '../../componentsStyles';
 
 type Props = {
@@ -10,7 +10,7 @@ type Props = {
   onSaveId: (field: string, testIdByUser: string) => void;
   onCancel: () => void;
   idByUser: string;
-}
+};
 export const EditId: React.FC<Props> = ({
   field,
   label,
@@ -20,7 +20,6 @@ export const EditId: React.FC<Props> = ({
   onCancel,
   idByUser,
 }) => {
-
   const handleKeyPress = (e: React.KeyboardEvent<HTMLInputElement>) => {
     e.key === 'Enter' && onSaveId(field, idByUser);
   };
@@ -37,8 +36,16 @@ export const EditId: React.FC<Props> = ({
         autoFocus
       />
       <Flex mt={16} px={50}>
-        <ModalButton mainStream onClick={onCancel}>Cancel</ModalButton>
-        <ModalButton mainStream whiteBg onClick={() => onSaveId(field, idByUser)}>OK</ModalButton>
+        <ModalButton mainStream onClick={onCancel}>
+          Cancel
+        </ModalButton>
+        <ModalButton
+          mainStream
+          whiteBg
+          onClick={() => onSaveId(field, idByUser)}
+        >
+          OK
+        </ModalButton>
       </Flex>
     </>
   );
