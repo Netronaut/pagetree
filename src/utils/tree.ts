@@ -1,4 +1,4 @@
-import { v4 } from 'uuid';
+import { nanoid } from 'nanoid';
 import { Optional } from '../types/helpers';
 
 export enum TDirection {
@@ -52,7 +52,7 @@ export class Item {
   type: string;
   parent: TParent;
 
-  constructor({ id = v4(), type }: { id?: string; type: string }) {
+  constructor({ id = nanoid(), type }: { id?: string; type: string }) {
     this.type = type;
     this.parent = null;
     this.id = id;
@@ -72,7 +72,7 @@ class Container {
   constructor({
     parentDirection,
     direction,
-    id = v4(),
+    id = nanoid(),
     components = [],
   }: ContainerConstructor) {
     this.direction =
