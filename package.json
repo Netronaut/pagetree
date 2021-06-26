@@ -13,54 +13,23 @@
   "engines": {
     "node": ">=10"
   },
-  "scripts": {
-    "start": "tsdx watch",
-    "build": "tsdx build",
-    "lint": "tsdx lint --fix",
-    "prepare": "tsdx build",
-    "size": "size-limit",
-    "analyze": "size-limit --why"
-  },
+  "scripts": {},
   "peerDependencies": {
     "react": ">=16"
   },
   "dependencies": {
-    "components": "^0.1.0",
-    "hooks": "^0.3.2",
-    "styled-components": "^5.2.1",
-    "uuid": "^8.3.2"
+    "styled-components": "^5.2.1"
   },
   "devDependencies": {
-    "@size-limit/preset-small-lib": "^4.9.2",
     "@types/react": "^17.0.2",
     "@types/react-dom": "^17.0.1",
     "@types/styled-components": "^5.1.7",
-    "@types/uuid": "^8.3.0",
-    "husky": "^5.1.1",
-    "lint-staged": "^10.5.4",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
-    "size-limit": "^4.9.2",
-    "tsdx": "^0.14.1",
     "tslib": "^2.1.0",
     "typescript": "^4.1.5"
   },
-  "size-limit": [
-    {
-      "path": "dist/builder.cjs.production.min.js",
-      "limit": "10 KB"
-    },
-    {
-      "path": "dist/builder.esm.js",
-      "limit": "10 KB"
-    }
-  ],
   "eslintConfig": {
     "extends": "react-app"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
   }
 }
