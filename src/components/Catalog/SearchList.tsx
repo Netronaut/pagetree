@@ -13,7 +13,9 @@ export const SearchList: React.FC<Props> = ({ searchValue }) => {
 
   const filtered = components?.filter((component) => {
     const { componentName } = component;
-    const serachCondition = componentName.toLocaleLowerCase().includes(searchValue.toLocaleLowerCase());
+    const serachCondition = componentName
+      .toLocaleLowerCase()
+      .includes(searchValue.toLocaleLowerCase());
     if (searchValue == '') return component;
     else if (serachCondition) return component;
   });

@@ -1,6 +1,10 @@
-import { useState } from 'react';
+import { ReactEventHandler, useState } from 'react';
 
-export const useModal = () => {
+export const useModal = (): {
+  onModalShow: ReactEventHandler;
+  onModalClose: ReactEventHandler;
+  isModalShown: boolean;
+} => {
   const [visible, setVisible] = useState(false);
 
   const onModalShow = () => {

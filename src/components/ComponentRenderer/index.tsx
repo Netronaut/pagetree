@@ -1,11 +1,5 @@
 import React, { useContext, useMemo } from 'react';
-import {
-  Indicator,
-  Container,
-  Configure,
-  Ratios,
-  Ratio,
-} from './componentsStyles';
+import { Indicator, Container, Configure, Ratios, Ratio } from './componentsStyles';
 import { useDragAndDrop, useModal } from '../../hooks';
 import { ChildComponent } from '../../utils/tree';
 import { TreeContext } from '../../utils/context';
@@ -30,13 +24,7 @@ export const ComponentRenderer: React.FC<Props> = ({
   componentsInTheRow,
 }) => {
   const { id, type } = component;
-  const {
-    onDragLeave,
-    onDragStart,
-    onDragOver,
-    onDrop,
-    insertTo,
-  } = useDragAndDrop(id);
+  const { onDragLeave, onDragStart, onDragOver, onDrop, insertTo } = useDragAndDrop(id);
 
   const { showPreview, components } = useContext(TreeContext);
 
@@ -98,18 +86,8 @@ export const ComponentRenderer: React.FC<Props> = ({
 };
 
 const Slide: React.FC = () => (
-  <svg
-    width="10"
-    height="34"
-    viewBox="0 0 10 34"
-    fill="none"
-    xmlns="http://www.w3.org/2000/svg"
-  >
-    <path
-      d="M1 33L3 33L3 0.999999L0.999999 0.999999"
-      stroke="#9d9d9d"
-      strokeLinecap="round"
-    />
+  <svg width="10" height="34" viewBox="0 0 10 34" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M1 33L3 33L3 0.999999L0.999999 0.999999" stroke="#9d9d9d" strokeLinecap="round" />
     <path d="M9 1L7 1L7 33L9 33" stroke="#9d9d9d" strokeLinecap="round" />
   </svg>
 );

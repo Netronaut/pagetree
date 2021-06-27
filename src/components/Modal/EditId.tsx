@@ -39,11 +39,7 @@ export const EditId: React.FC<Props> = ({
         <ModalButton mainStream onClick={onCancel}>
           Cancel
         </ModalButton>
-        <ModalButton
-          mainStream
-          whiteBg
-          onClick={() => onSaveId(field, idByUser)}
-        >
+        <ModalButton mainStream whiteBg onClick={() => onSaveId(field, idByUser)}>
           OK
         </ModalButton>
       </Flex>

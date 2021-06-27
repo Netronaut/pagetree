@@ -18,9 +18,9 @@
     "lint": "eslint '{src,example}/**/*.ts{,x}'"
   },
   "peerDependencies": {
-    "nanoid": "^3.1.23",
-    "react": ">=16",
-    "styled-components": "^5.2.1"
+    "nanoid": ">=3",
+    "react": ">=17",
+    "styled-components": ">=5"
   },
   "devDependencies": {
     "@types/react": "^17.0.2",

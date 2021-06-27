@@ -10,14 +10,7 @@ const ratios: Record<number, string[]> = {
   2: ['2:1', '1:1', '1:2'],
   3: ['2:1:1', '1:1:1', '1:2:1', '1:1:2'],
   4: ['2:1:1:1', '1:1:1:1', '1:2:1:1', '1:1:2:1', '1:1:1:2'],
-  5: [
-    '2:1:1:1:1',
-    '1:1:1:1:1',
-    '1:2:1:1:1',
-    '1:1:2:1:1',
-    '1:1:1:2:1',
-    '1:1:1:1:2',
-  ],
+  5: ['2:1:1:1:1', '1:1:1:1:1', '1:2:1:1:1', '1:1:2:1:1', '1:1:1:2:1', '1:1:1:1:2'],
   6: [
     '2:1:1:1:1:1',
     '1:1:1:1:1:1',
@@ -29,11 +22,7 @@ const ratios: Record<number, string[]> = {
   ],
 };
 
-export const Direction: React.FC<ChildDirection> = ({
-  direction,
-  components,
-  id,
-}) => {
+export const Direction: React.FC<ChildDirection> = ({ direction, components, id }) => {
   const { onDragLeave, onDragOver, insertTo, onDrop } = useDragAndDrop(id);
   const { onConfigChange, config, showPreview } = useContext(TreeContext);
 
@@ -41,11 +30,7 @@ export const Direction: React.FC<ChildDirection> = ({
 
   useEffect(() => {
     if (direction === 'row' && prevComponentsLength !== components.length) {
-      onConfigChange(
-        id as string,
-        'ratio',
-        new Array(components.length).fill(1).join(':'),
-      );
+      onConfigChange(id as string, 'ratio', new Array(components.length).fill(1).join(':'));
     }
   }, [components.length]);
 
@@ -57,10 +42,7 @@ export const Direction: React.FC<ChildDirection> = ({
     <DirectionWrapper
       direction={direction}
       showPreview={showPreview}
-      ratio={
-        config?.[id as string]?.ratio ||
-        new Array(components.length).fill(1).join(':')
-      }
+      ratio={config?.[id as string]?.ratio || new Array(components.length).fill(1).join(':')}
       {...(id
         ? {
             onDragLeave,
