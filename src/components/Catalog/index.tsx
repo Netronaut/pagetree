@@ -19,14 +19,14 @@ export const Catalog: React.FC<Props> = ({ searchValue }) => {
   return (
     <StyledCatalogWrapper>
       {searchValue && <SearchList searchValue={searchValue} />}
-      {componentGroups?.map(groupName =>
+      {componentGroups?.map((groupName) => (
         <CatalogItem
           key={groupName}
           groupName={groupName}
           onOpenGroup={onOpenGroup}
           openedGroup={openedGroup}
         />
-      )}
+      ))}
     </StyledCatalogWrapper>
   );
 };

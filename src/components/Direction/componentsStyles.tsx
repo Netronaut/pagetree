@@ -8,7 +8,7 @@ const getStylesFromDirection = (direction: TDirection, ratio: string) => {
       grid-auto-flow: column;
       grid-template-columns: ${ratio
         .split(':')
-        .map(value => `${value}fr`)
+        .map((value) => `${value}fr`)
         .join(' ')};
       flex-direction: ${direction};
       position: relative;

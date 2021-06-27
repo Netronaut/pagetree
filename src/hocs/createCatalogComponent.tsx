@@ -56,6 +56,15 @@ const Type = styled.span<{ inside?: boolean }>`
     `};
 `;
 
+export type CatalogComponent = {
+  (props: { type: string; id: string }): JSX.Element;
+  type: string;
+  componentName: string;
+  groupName: string | undefined;
+};
+
+export type Components = CatalogComponent[];
+
 export const createCatalogComponent = (
   WrappedComponent: React.FC,
   ProductionWrappedComponent: React.FC<ProductionComponentProps>,
@@ -65,18 +74,14 @@ export const createCatalogComponent = (
     groupName?: string;
     props: { fieldName: string; label: string }[];
   },
-) => {
-  const Component = function(props: { type: string; id: string }) {
+): CatalogComponent => {
+  const Component = function (props: { type: string; id: string }) {
     const { id, type } = props;
     const { isModalShown, onModalShow, onModalClose } = useModal();
-    const { onConfigChange, config: pageConfig, showPreview } = useContext(
-      TreeContext,
-    );
+    const { onConfigChange, config: pageConfig, showPreview } = useContext(TreeContext);
 
     if (showPreview) {
-      return (
-        <ProductionWrappedComponent {...props} config={pageConfig?.[id]} />
-      );
+      return <ProductionWrappedComponent {...props} config={pageConfig?.[id]} />;
     }
 
     const configurations = configuration.props.map(({ fieldName, label }) => {
@@ -175,7 +180,3 @@ export const createCatalogComponent = (
 
   return Component;
 };
-
-export type CatalogComponent = ReturnType<typeof createCatalogComponent>;
-
-export type Components = CatalogComponent[];

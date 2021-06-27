@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { DragEventHandler, useContext, useState } from 'react';
 import { TreeContext } from '../utils/context';
 import { TSide } from '../utils/tree';
 
@@ -18,7 +18,15 @@ const getInsertion = ({ x, y, width, height }: Record<string, number>) => {
   return TSide.undetermined;
 };
 
-export const useDragAndDrop = (id?: string) => {
+export const useDragAndDrop = (
+  id?: string,
+): {
+  onDragLeave: DragEventHandler;
+  onDragStart: DragEventHandler;
+  onDragOver: DragEventHandler;
+  onDrop: DragEventHandler;
+  insertTo: TSide;
+} => {
   const { add, components } = useContext(TreeContext);
   const [insertTo, setInsertTo] = useState<TSide>(TSide.undetermined);
 
@@ -29,8 +37,7 @@ export const useDragAndDrop = (id?: string) => {
 
     e.dataTransfer.setData(isNew ? 'newItemType' : 'fromId', itemId);
 
-    const clone =
-      document.getElementById('ghostDiv') || document.createElement('div');
+    const clone = document.getElementById('ghostDiv') || document.createElement('div');
 
     const itemView = document.getElementById(itemId);
 
@@ -57,12 +64,7 @@ export const useDragAndDrop = (id?: string) => {
     e.preventDefault();
     e.stopPropagation();
 
-    const {
-      height,
-      width,
-      top,
-      left,
-    } = e.currentTarget.getBoundingClientRect();
+    const { height, width, top, left } = e.currentTarget.getBoundingClientRect();
 
     const y = e.pageY - top;
     const x = e.pageX - left;

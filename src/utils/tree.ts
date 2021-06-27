@@ -40,11 +40,6 @@ export type ChildComponent = {
   direction: undefined;
 };
 
-export type Page = {
-  structure: ChildDirection;
-  config: Record<string, any>;
-};
-
 type TParent = Container | null;
 
 export class Item {
@@ -63,6 +58,12 @@ type ContainerConstructor = Optional<ChildDirection> & {
   parentDirection?: TDirection;
 };
 
+interface RemovedItemResult {
+  removedItem: Item;
+  lastComponentId?: string;
+  removedContainerId?: string;
+}
+
 class Container {
   id: string;
   parent: TParent;
@@ -76,13 +77,10 @@ class Container {
     components = [],
   }: ContainerConstructor) {
     this.direction =
-      direction ||
-      (parentDirection === TDirection.column
-        ? TDirection.row
-        : TDirection.column);
+      direction || (parentDirection === TDirection.column ? TDirection.row : TDirection.column);
     this.id = id;
     this.parent = null;
-    this.components = components.map(c => {
+    this.components = components.map((c) => {
       const component = c.direction ? new Container(c) : new Item(c);
       component.parent = this;
       return component;
@@ -94,11 +92,7 @@ class Container {
   }
 
   addOrTransform(newItem: Item, toItem: TNode, side: TSide) {
-    if (
-      !side ||
-      side === TSide.undetermined ||
-      sidesByDirection[this.direction].includes(side)
-    ) {
+    if (!side || side === TSide.undetermined || sidesByDirection[this.direction].includes(side)) {
       this.add(newItem, toItem, side);
     } else {
       this.transform(newItem, toItem, side);
@@ -115,9 +109,7 @@ class Container {
     }
 
     this.components.splice(
-      [TSide.right, TSide.bottom].includes(side)
-        ? nextToIndex + 1
-        : nextToIndex,
+      [TSide.right, TSide.bottom].includes(side) ? nextToIndex + 1 : nextToIndex,
       0,
       newItem,
     );
@@ -140,10 +132,10 @@ class Container {
     this.components.splice(index, 1, container);
   }
 
-  remove(item: Item) {
+  remove(item: Item): RemovedItemResult {
     const index = this.findIndex(item);
 
-    const [removedItem] = this.components.splice(index, 1);
+    const [removedItem] = this.components.splice(index, 1) as Array<Item>;
 
     let lastComponentId;
     let removedContainerId;
@@ -159,11 +151,7 @@ class Container {
       }
     }
 
-    return { removedItem, lastComponentId, removedContainerId } as {
-      removedItem: Item;
-      lastComponentId?: string;
-      removedContainerId?: string;
-    };
+    return { removedItem, lastComponentId, removedContainerId };
   }
 
   replace(item: Container, ...items: TNode[]) {
@@ -194,12 +182,10 @@ export class Tree {
   root: Container;
 
   constructor(container?: ChildDirection) {
-    this.root = new Container(
-      container || { parentDirection: TDirection.row, id: '0' },
-    );
+    this.root = new Container(container || { parentDirection: TDirection.row, id: '0' });
   }
 
-  find(predicate: (node: TNode) => boolean) {
+  find(predicate: (node: TNode) => boolean): TNode | undefined {
     let data = undefined;
     (function recurse(currentNode: TNode) {
       if (!(currentNode instanceof Item)) {
@@ -217,8 +203,8 @@ export class Tree {
     return data;
   }
 
-  add(item: Item, toId = '0', side: TSide = TSide.undetermined) {
-    const toItem = this.find(node => node.id === toId);
+  add(item: Item, toId = '0', side: TSide = TSide.undetermined): void {
+    const toItem = this.find((node) => node.id === toId);
     if (toItem) {
       const target = (toItem.parent || toItem) as Container;
       target.addOrTransform(item, toItem, side);
@@ -227,8 +213,8 @@ export class Tree {
     }
   }
 
-  remove(id: string) {
-    const itemToRemove = this.find(node => node.id === id);
+  remove(id: string): RemovedItemResult {
+    const itemToRemove = this.find((node) => node.id === id);
     if (itemToRemove && itemToRemove.parent) {
       return itemToRemove.parent.remove(itemToRemove as Item);
     } else {
@@ -236,7 +222,7 @@ export class Tree {
     }
   }
 
-  getValue() {
+  getValue(): Container {
     return JSON.parse(JSON.stringify(this.root, getCircularReplacer(), '\t'));
   }
 }

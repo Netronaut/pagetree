@@ -20,7 +20,7 @@ export const AddComponentsWrapper = styled.div`
   button {
     width: 100%;
     height: 50px;
-    background: #39A7FF;
+    background: #39a7ff;
     border-radius: 5px;
     border: none;
     color: #fff;

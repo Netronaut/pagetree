@@ -33,7 +33,7 @@ export const Builder = ({
   showPreview,
   components,
   componentGroups,
-}: BuilderProps): ReactElement<any> | null => {
+}: BuilderProps): ReactElement | null => {
   if (!pageContent) {
     return null;
   }
@@ -97,14 +97,6 @@ export const Builder = ({
           },
         },
       });
-    }
-  };
-
-  const remove = (id: string) => {
-    if (id) {
-      const tree = new Tree(pageContent.structure);
-      tree.remove(id);
-      setValue({ structure: tree.getValue() });
     }
   };
 
