@@ -12,9 +12,7 @@ import { ManagementContext } from '../../utils/context';
 export const ManagementPage: React.FC = () => {
   const { pages, changePages } = useContext(ManagementContext);
 
-  const [editingPageId, seteditingPageId] = useState<number | undefined>(
-    undefined,
-  );
+  const [editingPageId, seteditingPageId] = useState<number | undefined>(undefined);
 
   const createPage = (title: string, link: string) => {
     axios
@@ -22,7 +20,7 @@ export const ManagementPage: React.FC = () => {
         title,
         link,
       })
-      .then(response => {
+      .then((response) => {
         const copyPages = pages.slice();
         copyPages.push(response.data);
         changePages(copyPages);
@@ -42,22 +40,18 @@ export const ManagementPage: React.FC = () => {
         title: value,
         link: createUrlFromText(value),
       })
-      .then(response => {
+      .then((response) => {
         const copyPages = pages.slice();
-        const findedIndex = copyPages.findIndex(
-          page => page.id === response.data.id,
-        );
+        const findedIndex = copyPages.findIndex((page) => page.id === response.data.id);
         copyPages.splice(findedIndex, 1, response.data);
         changePages(copyPages);
       });
   };
 
   const handleRemove = (id: number) => {
-    axios.delete(`${apiUrls.pages}/${id}`).then(response => {
+    axios.delete(`${apiUrls.pages}/${id}`).then((response) => {
       const copyPages = pages.slice();
-      const findedIndex = copyPages.findIndex(
-        page => page.id === response.data.id,
-      );
+      const findedIndex = copyPages.findIndex((page) => page.id === response.data.id);
       copyPages.splice(findedIndex, 1);
       changePages(copyPages);
     });
@@ -68,21 +62,10 @@ export const ManagementPage: React.FC = () => {
       <Flex flexDirection="column" alignItems="center" px={15}>
         <h1>Create Page</h1>
         <CreatePageForm save={createPage} />
-        {pages.length && (
-          <PageList
-            pages={pages}
-            openEdit={handleOpenEdit}
-            remove={handleRemove}
-          />
-        )}
+        {pages.length && <PageList pages={pages} openEdit={handleOpenEdit} remove={handleRemove} />}
       </Flex>
       {editingPageId && (
-        <Modal
-          pageId={editingPageId}
-          pages={pages}
-          close={handleCloseEdit}
-          save={handleSaveEdit}
-        />
+        <Modal pageId={editingPageId} pages={pages} close={handleCloseEdit} save={handleSaveEdit} />
       )}
     </>
   );

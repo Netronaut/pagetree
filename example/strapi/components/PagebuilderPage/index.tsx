@@ -1,6 +1,5 @@
-import 'react-app-polyfill/ie11';
-import * as React from 'react';
-import { Builder } from '@pagio/builder';
+import React, { ReactElement } from 'react';
+import { Builder, TPage } from '@pagio/builder';
 import { useState, useContext, useEffect } from 'react';
 import { components, componentGroups } from '../../catalog';
 import { Header } from '../Header';
@@ -9,17 +8,15 @@ import axios from 'axios';
 import { apiUrls } from '../../apiUrls';
 import { TPageData } from '../../types';
 
-export const PagebuilderPage = () => {
+export const PagebuilderPage = (): ReactElement => {
   const [showPreview, setShowPreview] = useState(false);
   const { pages, changePages } = useContext(ManagementContext);
   const [page, setPage] = useState<TPageData | undefined>({} as TPageData);
-  const [pageContent, setPageContent] = useState({});
+  const [pageContent, setPageContent] = useState<TPage>();
 
   useEffect(() => {
     const currentPageTitle = location.pathname.split('/')[2];
-    const currentPage = pages.find(
-      page => page.link === `/${currentPageTitle}`,
-    );
+    const currentPage = pages.find((page) => page.link === `/${currentPageTitle}`);
     setPage(currentPage);
     currentPage?.pageContent && setPageContent(currentPage?.pageContent);
   }, [pages]);
@@ -31,11 +28,9 @@ export const PagebuilderPage = () => {
         .put(`${apiUrls.pages}/${page?.id}`, {
           pageContent,
         })
-        .then(response => {
+        .then((response) => {
           const copyPages = pages.slice();
-          const findedIndex = copyPages.findIndex(
-            page => page.id === response.data.id,
-          );
+          const findedIndex = copyPages.findIndex((page) => page.id === response.data.id);
           copyPages.splice(findedIndex, 1, response.data);
           changePages(copyPages);
         });

@@ -1,9 +1,9 @@
-export const createUrlFromText = (text: string) => {
+export const createUrlFromText = (text: string): string => {
   return (
     '/' +
     text
       .split('')
-      .map(littera => {
+      .map((littera) => {
         if (littera === ' ') return '-';
         return littera;
       })
