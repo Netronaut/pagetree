@@ -4,4 +4,10 @@ import { default as testComponent } from './test-component';
 
 export const components = [headline, article, testComponent];
 
-export const componentGroups = Array.from(new Set(components.map(component => component.groupName))) ;
+export const componentGroups = Array.from(
+  new Set(
+    components
+      .map((component) => component.groupName)
+      .filter((componentName) => componentName !== undefined),
+  ),
+) as Array<string>;

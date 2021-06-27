@@ -1,10 +1,7 @@
-import * as React from 'react';
+import React from 'react';
 import styled from 'styled-components';
 
-import {
-  createCatalogComponent,
-  ProductionComponentProps,
-} from '@pagio/builder';
+import { createCatalogComponent, ProductionComponentProps } from '@pagio/builder';
 
 const Container = styled.div`
   box-sizing: border-box;
@@ -14,7 +11,7 @@ const Container = styled.div`
 `;
 
 const ProductionContainer = styled.div`
-  background: no-repeat url('https://picsum.photos/480/600');
+  background: #fde;
   background-size: cover;
   height: 200px;
   color: white;
@@ -25,12 +22,12 @@ const ProductionContainer = styled.div`
 `;
 
 const Production: React.FC<ProductionComponentProps> = ({ config }) => {
-  return <ProductionContainer>{config?.articleId}</ProductionContainer>;
+  return <ProductionContainer>{config?.testComponent}</ProductionContainer>;
 };
 
 export default createCatalogComponent(Container, Production, {
-  type: 'article-teaser',
-  componentName: 'Article Teaser',
-  groupName: 'Component group 1',
-  props: [{ fieldName: 'articleId', label: 'articleId' }],
+  type: 'Test-component',
+  componentName: 'Test Component',
+  groupName: 'Component group 2',
+  props: [{ fieldName: 'testComponent', label: 'testComponent' }],
 });
