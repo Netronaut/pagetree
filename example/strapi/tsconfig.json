@@ -1,18 +1,14 @@
 {
   "compilerOptions": {
-    "allowSyntheticDefaultImports": false,
-    "target": "es5",
-    "module": "commonjs",
+    "target": "esnext",
+    "module": "esnext",
+    "lib": ["esnext", "dom"],
+    "declaration": true,
+    "outDir": "./dist",
+    "strict": true,
     "jsx": "react",
     "moduleResolution": "node",
-    "noImplicitAny": false,
-    "noUnusedLocals": false,
-    "noUnusedParameters": false,
-    "removeComments": true,
-    "strictNullChecks": true,
-    "preserveConstEnums": true,
-    "sourceMap": true,
-    "lib": ["es2015", "es2016", "dom"],
-    "types": ["node"]
+    "allowSyntheticDefaultImports": true,
+    "sourceMap": true
   }
 }

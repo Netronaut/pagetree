@@ -9,11 +9,7 @@ type Props = {
   openEdit: (id: number) => void;
 };
 
-export const PageItem: React.FC<Props> = ({
-  page: { title, link, id },
-  remove,
-  openEdit,
-}) => {
+export const PageItem: React.FC<Props> = ({ page: { title, link, id }, remove, openEdit }) => {
   return (
     <Wrapper>
       <Flex width="80%" flexDirection="column">
@@ -58,18 +54,12 @@ export const Wrapper = styled.li`
 export const Flex = styled.div<{
   flexDirection?: 'column' | 'row';
   alignItems?: 'center' | 'flex-start' | 'flex-end' | 'stretch' | 'baseline';
-  justifyContent?:
-    | 'flex-start'
-    | 'flex-end'
-    | 'space-between'
-    | 'space-around'
-    | 'space-evenly';
+  justifyContent?: 'flex-start' | 'flex-end' | 'space-between' | 'space-around' | 'space-evenly';
   width?: string;
   px?: number;
 }>`
   display: flex;
-  ${({ justifyContent }) =>
-    justifyContent && `justify-content: ${justifyContent};`}
+  ${({ justifyContent }) => justifyContent && `justify-content: ${justifyContent};`}
   ${({ width }) => `width: ${width};`}
   ${({ flexDirection }) => `flex-direction: ${flexDirection};`}
   ${({ alignItems }) => `align-items: ${alignItems};`}

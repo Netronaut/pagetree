@@ -10,10 +10,7 @@ type Props = {
   save: (id: number, v: string) => void;
 };
 
-const useClickOutsede = (
-  ref: React.RefObject<HTMLInputElement>,
-  close: () => void,
-) => {
+const useClickOutsede = (ref: React.RefObject<HTMLInputElement>, close: () => void) => {
   useEffect(() => {
     const handleClickOutside = (e: MouseEvent) => {
       const target = e.target as HTMLDivElement;
@@ -25,12 +22,10 @@ const useClickOutsede = (
 };
 
 export const Modal: React.FC<Props> = ({ pageId, pages, close, save }) => {
-  const [editingPages, setEditingPage] = useState<TPageData | undefined>(
-    undefined,
-  );
+  const [editingPages, setEditingPage] = useState<TPageData | undefined>(undefined);
 
   useEffect(() => {
-    const currentPages = pages.find(page => {
+    const currentPages = pages.find((page) => {
       return page.id === pageId;
     });
     pageId && setEditingPage(currentPages);

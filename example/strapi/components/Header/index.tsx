@@ -1,12 +1,6 @@
 import * as React from 'react';
 
-import {
-  HeadWrapper,
-  Logo,
-  HeadContent,
-  ToggleButton,
-  Label,
-} from './componentsStyles';
+import { HeadWrapper, Logo, HeadContent, ToggleButton, Label } from './componentsStyles';
 
 type Props = {
   setShowPreview: React.Dispatch<React.SetStateAction<boolean>>;
@@ -24,7 +18,7 @@ export const Header: React.FC<Props> = ({ setShowPreview }) => {
         <ToggleButton
           id="toggle-button"
           type="checkbox"
-          onChange={() => setShowPreview(prev => !prev)}
+          onChange={() => setShowPreview((prev) => !prev)}
         />
       </HeadContent>
     </HeadWrapper>
@@ -65,21 +59,9 @@ const LogoSvg: React.FC = () => (
         />
         <feOffset dy="4" />
         <feGaussianBlur stdDeviation="2" />
-        <feColorMatrix
-          type="matrix"
-          values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0"
-        />
-        <feBlend
-          mode="normal"
-          in2="BackgroundImageFix"
-          result="effect1_dropShadow"
-        />
-        <feBlend
-          mode="normal"
-          in="SourceGraphic"
-          in2="effect1_dropShadow"
-          result="shape"
-        />
+        <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0" />
+        <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow" />
+        <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow" result="shape" />
       </filter>
     </defs>
   </svg>

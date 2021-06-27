@@ -9,13 +9,9 @@ type Props = {
   openEdit: (id: number) => void;
 };
 
-export const PageList: React.FC<Props> = ({
-  pages,
-  remove,
-  openEdit,
-}) => (
+export const PageList: React.FC<Props> = ({ pages, remove, openEdit }) => (
   <List>
-    {pages.map(page => {
+    {pages.map((page) => {
       const props = { page, remove, openEdit };
       return <PageItem key={page.id} {...props} />;
     })}
