@@ -9,9 +9,10 @@ import { ManagementPage } from './components/ManagementPage';
 import { PagebuilderPage } from './components/PagebuilderPage';
 import { ManagementContext } from './utils/context';
 import { apiUrls } from './apiUrls';
+import { TPageData } from './types';
 
 const App = () => {
-  const [pages, setPages] = useState([]);
+  const [pages, setPages] = useState<TPageData[]>([]);
 
   const getPages = useCallback(async () => {
     try {

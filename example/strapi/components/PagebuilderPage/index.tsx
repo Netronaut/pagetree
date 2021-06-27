@@ -39,13 +39,15 @@ export const PagebuilderPage = (): ReactElement => {
   return (
     <>
       <Header setShowPreview={setShowPreview} />
-      <Builder
-        pageContent={pageContent}
-        onChange={setPageContent}
-        showPreview={showPreview}
-        components={components}
-        componentGroups={componentGroups}
-      />
+      {pageContent && (
+        <Builder
+          pageContent={pageContent}
+          onChange={setPageContent}
+          showPreview={showPreview}
+          components={components}
+          componentGroups={componentGroups}
+        />
+      )}
     </>
   );
 };

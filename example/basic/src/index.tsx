@@ -9,7 +9,11 @@ import { Header } from './components/Header';
 
 const App = () => {
   const [showPreview, setShowPreview] = useState(false);
-  const [pageContent, setPageContent] = useState<TPage | undefined>();
+  const [pageContent, setPageContent] = useState<TPage>({
+    _id: 'test-id',
+    title: 'My test page',
+    route: '/test',
+  });
 
   return (
     <>

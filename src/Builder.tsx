@@ -20,7 +20,7 @@ const makeElementVisible = (elementId: string) => {
 };
 
 export interface BuilderProps {
-  pageContent: TPage | undefined;
+  pageContent: TPage;
   onChange: (val: TPage) => void;
   showPreview?: boolean;
   components?: Components;
@@ -34,9 +34,6 @@ export const Builder = ({
   components,
   componentGroups,
 }: BuilderProps): ReactElement | null => {
-  if (!pageContent) {
-    return null;
-  }
   const setValue = (newValue: Optional<TPage>) => {
     onChange({ ...pageContent, ...newValue });
   };
