@@ -1,10 +1,7 @@
-import * as React from 'react';
+import React from 'react';
 import styled from 'styled-components';
 
-import {
-  ProductionComponentProps,
-  createCatalogComponent,
-} from '@pagio/builder';
+import { ProductionComponentProps, createCatalogComponent } from '@pagio/builder';
 
 const Container = styled.div`
   box-sizing: border-box;

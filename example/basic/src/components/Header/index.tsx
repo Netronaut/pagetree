@@ -1,18 +1,13 @@
-import * as React from 'react';
+import type { ReactElement } from 'react';
+import React from 'react';
 
-import {
-  HeadWrapper,
-  Logo,
-  HeadContent,
-  ToggleButton,
-  Label,
-} from './componentsStyles';
+import { HeadWrapper, Logo, HeadContent, ToggleButton, Label } from './componentsStyles';
 
-type Props = {
+interface Props {
   setShowPreview: React.Dispatch<React.SetStateAction<boolean>>;
-};
+}
 
-export const Header: React.FC<Props> = ({ setShowPreview }) => {
+export const Header = ({ setShowPreview }: Props): ReactElement => {
   return (
     <HeadWrapper>
       <Logo>
@@ -24,14 +19,14 @@ export const Header: React.FC<Props> = ({ setShowPreview }) => {
         <ToggleButton
           id="toggle-button"
           type="checkbox"
-          onChange={() => setShowPreview(prev => !prev)}
+          onChange={() => setShowPreview((prev) => !prev)}
         />
       </HeadContent>
     </HeadWrapper>
   );
 };
 
-const LogoSvg: React.FC = () => (
+const LogoSvg = (): ReactElement => (
   <svg viewBox="0 0 180 198" fill="none" xmlns="http://www.w3.org/2000/svg">
     <g filter="url(#filter0_d)">
       <path
@@ -65,21 +60,9 @@ const LogoSvg: React.FC = () => (
         />
         <feOffset dy="4" />
         <feGaussianBlur stdDeviation="2" />
-        <feColorMatrix
-          type="matrix"
-          values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0"
-        />
-        <feBlend
-          mode="normal"
-          in2="BackgroundImageFix"
-          result="effect1_dropShadow"
-        />
-        <feBlend
-          mode="normal"
-          in="SourceGraphic"
-          in2="effect1_dropShadow"
-          result="shape"
-        />
+        <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0" />
+        <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow" />
+        <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow" result="shape" />
       </filter>
     </defs>
   </svg>
