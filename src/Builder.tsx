@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { ReactElement } from 'react';
 import { ConstructorScreen, DroppableContent } from './componentsStyles';
 import { Direction } from './components/Direction';
 import { AddComponents } from './components/AddComponents';
@@ -10,8 +10,6 @@ import { Components } from './hocs/createCatalogComponent';
 import { CatalogModal } from './components/Modal/CatalogModal';
 import { useModal } from './hooks';
 
-export * from './hocs/createCatalogComponent';
-
 const makeElementVisible = (elementId: string) => {
   if (elementId) {
     const draggedItem = document.getElementById(elementId);
@@ -21,32 +19,31 @@ const makeElementVisible = (elementId: string) => {
   }
 };
 
-type Props = {
-  pageContent: TPage;
+export interface BuilderProps {
+  pageContent: TPage | undefined;
   onChange: (val: TPage) => void;
   showPreview?: boolean;
   components?: Components;
-  componentGroups?: string[];
-};
+  componentGroups?: Array<string>;
+}
 
-export const Builder: React.FC<Props> = ({
+export const Builder = ({
   pageContent,
   onChange,
   showPreview,
   components,
   componentGroups,
-}) => {
+}: BuilderProps): ReactElement<any> | null => {
+  if (!pageContent) {
+    return null;
+  }
   const setValue = (newValue: Optional<TPage>) => {
     onChange({ ...pageContent, ...newValue });
   };
 
   const { isModalShown, onModalShow, onModalClose } = useModal();
 
-  const addNew = (
-    e: React.DragEvent<HTMLDivElement>,
-    toId?: string,
-    side?: TSide,
-  ) => {
+  const addNew = (e: React.DragEvent<HTMLDivElement>, toId?: string, side?: TSide) => {
     const type = e.dataTransfer.getData('newItemType');
     if (!type) {
       const fromId = e.dataTransfer.getData('fromId');
@@ -61,11 +58,7 @@ export const Builder: React.FC<Props> = ({
     onModalClose();
   };
 
-  const add = (
-    e: React.DragEvent<HTMLDivElement>,
-    toId?: string,
-    side?: TSide,
-  ) => {
+  const add = (e: React.DragEvent<HTMLDivElement>, toId?: string, side?: TSide) => {
     const fromId = e.dataTransfer.getData('fromId');
 
     makeElementVisible(fromId);
@@ -79,16 +72,10 @@ export const Builder: React.FC<Props> = ({
 
     const tree = new Tree(pageContent.structure);
 
-    const { removedItem, lastComponentId, removedContainerId } = tree.remove(
-      fromId,
-    );
+    const { removedItem, lastComponentId, removedContainerId } = tree.remove(fromId);
 
     if (removedItem) {
-      tree.add(
-        removedItem,
-        removedContainerId === toId ? lastComponentId : toId,
-        side,
-      );
+      tree.add(removedItem, removedContainerId === toId ? lastComponentId : toId, side);
       setValue({ structure: tree.getValue() });
     }
   };
@@ -121,7 +108,7 @@ export const Builder: React.FC<Props> = ({
     }
   };
 
-  const content = !!pageContent.structure ? (
+  const content = pageContent.structure ? (
     <Direction
       direction={pageContent.structure.direction}
       components={pageContent.structure.components}
@@ -146,7 +133,7 @@ export const Builder: React.FC<Props> = ({
           <>
             <DroppableContent
               id="droppable-content"
-              onDragOver={e => e.preventDefault()}
+              onDragOver={(e) => e.preventDefault()}
               onDrop={addNew}
             >
               {content}
