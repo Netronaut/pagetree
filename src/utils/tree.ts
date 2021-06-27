@@ -222,7 +222,7 @@ export class Tree {
     }
   }
 
-  getValue(): Container {
+  getValue(): ChildDirection {
     return JSON.parse(JSON.stringify(this.root, getCircularReplacer(), '\t'));
   }
 }
