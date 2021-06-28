@@ -16,7 +16,7 @@ export const CatalogModal: React.FC<Props> = ({ onModalClose }) => {
   };
 
   return (
-    <Modal onClose={onModalClose} isAddComponents>
+    <Modal onClose={onModalClose} position="left">
       <ModalH2>Components</ModalH2>
       <SearchBox>
         <input

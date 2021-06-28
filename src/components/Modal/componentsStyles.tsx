@@ -1,8 +1,10 @@
 import styled from 'styled-components';
 
-export const ModalContainer = styled.div<{
-  isAddComponents?: boolean;
-}>`
+interface ModalContainerProps {
+  position?: string;
+}
+
+export const ModalContainer = styled.div<ModalContainerProps>`
   z-index: 2;
   top: 15px;
   display: flex;
@@ -13,8 +15,8 @@ export const ModalContainer = styled.div<{
   outline: none;
   color: #fff;
 
-  ${({ isAddComponents }) => {
-    if (isAddComponents)
+  ${({ position }) => {
+    if (position === 'left')
       return `
         position: fixed;
         left: 15px;
