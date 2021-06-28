@@ -7,7 +7,7 @@ import { Optional } from './types/helpers';
 import { TPage } from './types';
 import { TreeContext } from './utils/context';
 import { Components } from './hocs/createCatalogComponent';
-import { CatalogModal } from './components/Modal/CatalogModal';
+import { Catalog } from './components/Catalog';
 import { useModal } from './hooks';
 
 const makeElementVisible = (elementId: string) => {
@@ -128,7 +128,7 @@ export const Builder = ({
               {content}
             </DroppableContent>
             {isModalShown ? (
-              <CatalogModal onModalClose={onModalClose} />
+              <Catalog onModalClose={onModalClose} />
             ) : (
               <AddComponents onModalShow={onModalShow} />
             )}

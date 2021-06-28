@@ -1,7 +1,7 @@
 import React, { ReactElement, useContext } from 'react';
 import { useDragAndDrop } from '../../hooks';
 import { TreeContext } from '../../utils/context';
-import { ArrowIcon } from './ArrowIcon';
+import { ArrowIcon } from '../icons';
 import S from './Catalog.styles';
 
 interface CatalogGroupProps {

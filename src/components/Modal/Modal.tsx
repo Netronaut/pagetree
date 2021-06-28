@@ -1,5 +1,7 @@
 import React, { useEffect, useRef } from 'react';
-import { ModalContainer, ModalHeader, ModalButton } from './componentsStyles';
+import { CrossIcon } from '../icons';
+import S from './Modal.styles';
+import { ModalButton } from './ModalButton';
 
 type Props = {
   onClose: () => void;
@@ -29,23 +31,13 @@ export const Modal: React.FC<Props> = ({ children, onClose, position }) => {
   }, []);
 
   return (
-    <ModalContainer ref={modalRef} draggable="true" onDragStart={onDragStart} position={position}>
-      <ModalHeader>
+    <S.ModalContainer ref={modalRef} draggable="true" onDragStart={onDragStart} position={position}>
+      <S.ModalHeader>
         <ModalButton onClick={onClose}>
-          <Cross />
+          <CrossIcon />
         </ModalButton>
-      </ModalHeader>
+      </S.ModalHeader>
       {children}
-    </ModalContainer>
+    </S.ModalContainer>
   );
 };
-
-const Cross: React.FC = () => (
-  <svg width="23" height="23" viewBox="0 0 23 23" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <path
-      d="M6.30327 16.9099L11.6066 11.6066M11.6066 11.6066L16.9099 6.3033M11.6066 11.6066L16.9099 16.9099M11.6066 11.6066L6.30327 6.3033"
-      stroke="white"
-      strokeLinecap="round"
-    />
-  </svg>
-);
