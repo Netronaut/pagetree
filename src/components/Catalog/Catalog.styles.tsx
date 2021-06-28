@@ -1,6 +1,18 @@
 import styled from 'styled-components';
 
-export const DroppableComponentContainer = styled.div(
+const Catalog = styled.div`
+  overflow-y: scroll;
+  padding-right: 11px;
+  ::-webkit-scrollbar {
+    width: 4px;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #69bbfd;
+    border-radius: 3px;
+  }
+`;
+
+const CatalogItem = styled.div(
   {
     borderRadius: '20px',
     background: '#69BBFD',
@@ -30,19 +42,7 @@ export const DroppableComponentContainer = styled.div(
 `,
 );
 
-export const StyledCatalogWrapper = styled.div`
-  overflow-y: scroll;
-  padding-right: 11px;
-  ::-webkit-scrollbar {
-    width: 4px;
-  }
-  ::-webkit-scrollbar-thumb {
-    background: #69bbfd;
-    border-radius: 3px;
-  }
-`;
-
-export const StyledGroupWrapper = styled.div<{ isOpen: boolean }>`
+const CatalogGroup = styled.div<{ isOpen: boolean }>`
   margin-bottom: 16px;
   border: ${({ isOpen }) => (isOpen ? '1px solid #F9F9F9' : 'none')};
   border-radius: 20px;
@@ -80,7 +80,7 @@ export const StyledGroupWrapper = styled.div<{ isOpen: boolean }>`
   }
 `;
 
-export const DropdownButton = styled.button<{ isOpen: boolean }>`
+const DropdownButton = styled.button<{ isOpen: boolean }>`
   position: absolute;
   top: calc(50% - 3.5px);
   right: 16px;
@@ -103,3 +103,10 @@ export const DropdownButton = styled.button<{ isOpen: boolean }>`
     `}
   }
 `;
+
+export default {
+  Catalog,
+  CatalogItem,
+  CatalogGroup,
+  DropdownButton,
+};
