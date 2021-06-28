@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
-interface ModalContainerProps {
-  position?: string;
+export interface ModalContainerProps {
+  position?: 'bottom-left';
 }
 
 const ModalContainer = styled.div<ModalContainerProps>`
@@ -14,23 +14,24 @@ const ModalContainer = styled.div<ModalContainerProps>`
   background: #39a7ff;
   outline: none;
   color: #fff;
+  padding: 24px;
 
   ${({ position }) => {
-    if (position === 'left')
+    if (position === 'bottom-left')
       return `
-        position: fixed;
+        position: absolute;
         left: 15px;
+        bottom: 15px;
+        top: auto;
         border-radius: 10px;
         width: 300px;
         max-height: 95vh;
-        padding: 40px 9px 24px 24px;
       `;
     return `
       position: absolute;
       right: 15px;
       border-radius: 5px;
       width: 331px;
-      padding: 37px 16px 24px;
     `;
   }}
 

@@ -25,7 +25,7 @@ export const Catalog = ({ onModalClose }: CatalogProps): ReactElement => {
   };
 
   return (
-    <Modal onClose={onModalClose} position="left">
+    <Modal onClose={onModalClose} position="bottom-left">
       <ModalHeadline>Components</ModalHeadline>
       <SearchBox>
         <input

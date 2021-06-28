@@ -10,11 +10,7 @@ export const AddComponentsWrapper = styled.div`
   border-radius: 10px;
   text-align: center;
   box-sizing: border-box;
-  font-family: Roboto;
   font-size: 12px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 14px;
   letter-spacing: 0em;
   box-shadow: 0 0 20px 0px #cecece;
   button {

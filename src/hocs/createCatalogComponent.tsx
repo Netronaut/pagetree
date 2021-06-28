@@ -22,7 +22,6 @@ const Configure = styled.div`
   font-weight: bold;
   font-size: 20px;
   color: #9d9d9d;
-  font-family: auto;
 `;
 
 const Type = styled.span<{ inside?: boolean }>`
@@ -39,15 +38,13 @@ const Type = styled.span<{ inside?: boolean }>`
       top: -10px;
       padding: 0 6px 0;
       background: #fff;
-      font-family: 'Gotham Pro';
-      font-weight: 400;
+      font-weight: normal;
       font-size: 19px;
       line-height: 15px;
       color: #9D9D9D;
     `
       : `
-      font-family: 'Gotham Pro', serif;
-      font-weight: 700;
+      font-weight: bold;
       font-size: 22px;
       line-height: 21.05px;
       color: #fff;

@@ -1,14 +1,15 @@
-import React, { useEffect, useRef } from 'react';
+import React, { ReactElement, ReactNode, useEffect, useRef } from 'react';
 import { CrossIcon } from '../icons';
-import S from './Modal.styles';
+import S, { ModalContainerProps } from './Modal.styles';
 import { ModalButton } from './ModalButton';
 
-type Props = {
+type ModalProps = ModalContainerProps & {
+  children?: ReactNode;
   onClose: () => void;
-  position?: 'left';
+  position?: 'bottom-left';
 };
 
-export const Modal: React.FC<Props> = ({ children, onClose, position }) => {
+export const Modal = ({ children, onClose, position }: ModalProps): ReactElement => {
   const modalRef = useRef<HTMLDivElement>(null);
 
   const onDragStart = (e: React.DragEvent<HTMLDivElement>) => {

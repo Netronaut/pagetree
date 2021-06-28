@@ -5,10 +5,7 @@ export const HeadWrapper = styled.header`
   grid-template: 1fr / 1fr minmax(auto, 238px) 4fr 2fr 1fr;
   background: #282c39;
   color: white;
-  font-family: 'Roboto';
-  font-weight: 400;
-  font-size: 16px;
-  line-height: 18.75px;
+  line-height: 1.2;
   padding: 20px 15px;
 `;
 export const HeadContent = styled.div`
@@ -31,7 +28,7 @@ export const Logo = styled.div`
   span {
     margin-left: 11px;
     font-size: 45px;
-    font-weight: 700;
+    font-weight: bold;
   }
 `;
 
