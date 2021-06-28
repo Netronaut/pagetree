@@ -13,6 +13,7 @@ export const AddComponentsWrapper = styled.div`
   font-size: 12px;
   letter-spacing: 0em;
   box-shadow: 0 0 20px 0px #cecece;
+
   button {
     width: 100%;
     height: 50px;
@@ -21,9 +22,11 @@ export const AddComponentsWrapper = styled.div`
     border: none;
     color: #fff;
     transition: all 300ms;
+
     &:hover {
       transform: scale(1.05);
     }
+
     &:active {
       box-shadow: 0 0 7px 3px #282c39 inset;
     }
