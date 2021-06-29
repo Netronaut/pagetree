@@ -6,16 +6,16 @@ export const GlobalStyle = createGlobalStyle`
     body {
       height: 100%;
       margin: 0;
-      font-family: 'Gotham Pro';
+      font-family: sans-serif;
+      font-size: 16px;
+      font-weight: normal;
+      line-height: .9;
+
       #root {
         height: 100%;
       }
     }
     button {
-      font-family: 'Gotham Pro';
-      font-size: 16px;
-      font-weight: 400;
-      line-height: 15px;
       cursor: pointer;
       transition: transform 0.2s;
       &:hover, &:focus-visible {

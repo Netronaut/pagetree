@@ -9,7 +9,7 @@ export const AddComponents: React.FC<Props> = ({ onModalShow }) => {
   return (
     <AddComponentsWrapper>
       <button onClick={onModalShow}>+</button>
-      <p>Add components</p>
+      <p>Add component</p>
     </AddComponentsWrapper>
   );
 };

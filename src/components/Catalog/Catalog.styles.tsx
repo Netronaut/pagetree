@@ -1,36 +1,6 @@
 import styled from 'styled-components';
 
-export const DroppableComponentContainer = styled.div(
-  {
-    borderRadius: '20px',
-    background: '#69BBFD',
-    boxSizing: 'border-box',
-    padding: '0 25px',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    margin: '0 0 15px',
-    height: '80px',
-    color: '#F9F9F9',
-    fontFamily: 'Gotham Pro',
-    fontSize: '16px',
-    lineHeight: '15px',
-    textAlign: 'center',
-  },
-  `
-  &:first-child {
-    border-radius: 20px 20px 0 0;
-    height: 50px;
-  }
-  &:last-child {
-    margin-bottom: 0;
-    border-radius: 0 0 10px 10px;
-    height: 150px;
-  }
-`,
-);
-
-export const StyledCatalogWrapper = styled.div`
+const Catalog = styled.div`
   overflow-y: scroll;
   padding-right: 11px;
   ::-webkit-scrollbar {
@@ -42,7 +12,32 @@ export const StyledCatalogWrapper = styled.div`
   }
 `;
 
-export const StyledGroupWrapper = styled.div<{ isOpen: boolean }>`
+const CatalogItem = styled.div`
+  border-radius: '20px';
+  background: '#69BBFD';
+  box-sizing: 'border-box';
+  padding: '0 25px';
+  display: 'flex';
+  align-items: 'center';
+  justify-content: 'center';
+  margin: '0 0 15px';
+  height: '80px';
+  color: '#F9F9F9';
+  text-align: 'center';
+
+  :first-child {
+    border-radius: 20px 20px 0 0;
+    height: 50px;
+  }
+
+  :last-child {
+    margin-bottom: 0;
+    border-radius: 0 0 10px 10px;
+    height: 150px;
+  }
+`;
+
+const CatalogGroup = styled.div<{ isOpen: boolean }>`
   margin-bottom: 16px;
   border: ${({ isOpen }) => (isOpen ? '1px solid #F9F9F9' : 'none')};
   border-radius: 20px;
@@ -55,7 +50,6 @@ export const StyledGroupWrapper = styled.div<{ isOpen: boolean }>`
     background: #f9f9f9;
     padding: 17px 44px 16px 16px;
     color: #6a6a6a;
-    font-family: Roboto;
     font-size: 16px;
     font-weight: 500;
     line-height: 19px;
@@ -80,7 +74,7 @@ export const StyledGroupWrapper = styled.div<{ isOpen: boolean }>`
   }
 `;
 
-export const DropdownButton = styled.button<{ isOpen: boolean }>`
+const DropdownButton = styled.button<{ isOpen: boolean }>`
   position: absolute;
   top: calc(50% - 3.5px);
   right: 16px;
@@ -103,3 +97,10 @@ export const DropdownButton = styled.button<{ isOpen: boolean }>`
     `}
   }
 `;
+
+export default {
+  Catalog,
+  CatalogItem,
+  CatalogGroup,
+  DropdownButton,
+};
