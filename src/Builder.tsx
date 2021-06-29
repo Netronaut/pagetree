@@ -1,5 +1,4 @@
 import React, { ReactElement } from 'react';
-import { ConstructorScreen, DroppableContent } from './componentsStyles';
 import { Direction } from './components/Direction';
 import { AddComponents } from './components/AddComponents';
 import { Item, Tree, TSide } from './utils/tree';
@@ -7,8 +6,10 @@ import { Optional } from './types/helpers';
 import { TPage } from './types';
 import { TreeContext } from './utils/context';
 import { Components } from './hocs/createCatalogComponent';
-import { CatalogModal } from './components/Modal/CatalogModal';
+import { Catalog } from './components/Catalog';
 import { useModal } from './hooks';
+import { ConstructorScreen, DroppableContent } from './componentsStyles';
+import { RemoveDropArea } from './components/RemoveDropArea';
 
 const makeElementVisible = (elementId: string) => {
   if (elementId) {
@@ -97,6 +98,13 @@ export const Builder = ({
     }
   };
 
+  const remove = (e: React.DragEvent<HTMLDivElement>) => {
+    const fromId = e.dataTransfer.getData('fromId');
+    const tree = new Tree(pageContent.structure);
+    tree.remove(fromId);
+    setValue({ structure: tree.getValue() });
+  };
+
   const content = pageContent.structure ? (
     <Direction
       direction={pageContent.structure.direction}
@@ -128,9 +136,12 @@ export const Builder = ({
               {content}
             </DroppableContent>
             {isModalShown ? (
-              <CatalogModal onModalClose={onModalClose} />
+              <Catalog onModalClose={onModalClose} />
             ) : (
-              <AddComponents onModalShow={onModalShow} />
+              <>
+                <AddComponents onModalShow={onModalShow} />
+                <RemoveDropArea onDrop={remove} />
+              </>
             )}
           </>
         )}

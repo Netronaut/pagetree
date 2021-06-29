@@ -15,12 +15,18 @@ const App = () => {
     route: '/test',
   });
 
+  const handleUpdate = (update: TPage) => {
+    // eslint-disable-next-line no-console
+    console.log(update);
+    setPageContent(update);
+  };
+
   return (
     <>
       <Header setShowPreview={setShowPreview} />
       <Builder
         pageContent={pageContent}
-        onChange={setPageContent}
+        onChange={handleUpdate}
         showPreview={showPreview}
         components={components}
         componentGroups={componentGroups}

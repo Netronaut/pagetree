@@ -6,12 +6,12 @@ export const ConstructorScreen = styled.div({
   boxSizing: 'border-box',
 });
 
-export const DroppableContent = styled.div({
-  width: '100%',
-  height: '100%',
-  padding: '15px',
-  boxSizing: 'border-box',
-});
+export const DroppableContent = styled.div`
+  width: 100%;
+  height: 100%;
+  padding: 15px;
+  box-sizing: border-box;
+`;
 
 export const Flex = styled.section<{
   px?: number;
