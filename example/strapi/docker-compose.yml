@@ -1,0 +1,6 @@
+version: '3'
+services:
+  strapi:
+    build: ./strapi
+    ports:
+      - '1337:1337'
