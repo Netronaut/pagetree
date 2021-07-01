@@ -12,7 +12,7 @@ export const PagebuilderPage = (): ReactElement => {
   const [showPreview, setShowPreview] = useState(false);
   const { pages, changePages } = useContext(ManagementContext);
   const [page, setPage] = useState<TPageData | undefined>({} as TPageData);
-  const [pageContent, setPageContent] = useState<TPage>();
+  const [pageContent, setPageContent] = useState<TPage | undefined>({} as TPage);
 
   useEffect(() => {
     const currentPageTitle = location.pathname.split('/')[2];

@@ -1,6 +1,5 @@
-import 'react-app-polyfill/ie11';
-import * as React from 'react';
-import * as ReactDOM from 'react-dom';
+import React from 'react';
+import ReactDOM from 'react-dom';
 import { useCallback, useState, useEffect } from 'react';
 import axios from 'axios';
 import { GlobalStyle } from './globalStyle';
