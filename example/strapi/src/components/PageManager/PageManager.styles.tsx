@@ -148,6 +148,8 @@ const PageManagerModal = styled.div`
     position: absolute;
     top: -10px;
     left: -10px;
+    width: 26px;
+    height: 26px;
     border: 2px solid hsla(201, 100%, 47%, 1);
     background: #fff;
     color: hsla(201, 100%, 47%, 1);
