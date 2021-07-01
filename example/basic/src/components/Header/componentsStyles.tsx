@@ -41,7 +41,7 @@ export const ToggleButton = styled.input`
   display: inline-block;
   margin: 0;
   vertical-align: top;
-  background: #b9e0ff;
+  background: #d5d7d8;
   box-shadow: inset 0px 1.24px 2.8px rgba(0, 0, 0, 0.25);
   outline: none;
   cursor: pointer;
@@ -50,19 +50,24 @@ export const ToggleButton = styled.input`
   border-radius: 62px;
   appearance: none;
   transition: all 0.3s cubic-bezier(0.2, 0.85, 0.32, 1.2);
-  &:after {
+  :after {
     content: '';
     display: inline-block;
     position: absolute;
     top: -2.5px;
     width: 27px;
     height: 27px;
-    background: #39a7ff;
+    background: #bdbdbd;
+    box-shadow: 0 0 4px 1px #322;
     border-radius: 50%;
     transition: all 0.3s cubic-bezier(0.2, 0.85, 0.32, 1.2);
     transform: translateX(0);
   }
-  &:checked:after {
+  :checked:after {
     transform: translateX(82%);
+    background: #b9e0ff;
+  }
+  :checked {
+    background: #39a7ff;
   }
 `;
