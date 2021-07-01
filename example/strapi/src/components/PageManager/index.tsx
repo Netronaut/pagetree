@@ -14,7 +14,7 @@ import S from './PageManager.styles';
 export const PageManager = (): ReactElement => {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [showPreview, setShowPreview] = useState(false);
-  const { pages, changePages } = useContext(ManagementContext);
+  const { pages, setPages } = useContext(ManagementContext);
   const [editingPageId, seteditingPageId] = useState<number | undefined>(undefined);
   const createPage = (title: string, link: string) => {
     axios
@@ -25,7 +25,7 @@ export const PageManager = (): ReactElement => {
       .then((response) => {
         const copyPages = pages.slice();
         copyPages.push(response.data);
-        changePages(copyPages);
+        setPages(copyPages);
       });
   };
 
@@ -46,7 +46,7 @@ export const PageManager = (): ReactElement => {
         const copyPages = pages.slice();
         const findedIndex = copyPages.findIndex((page) => page.id === response.data.id);
         copyPages.splice(findedIndex, 1, response.data);
-        changePages(copyPages);
+        setPages(copyPages);
       });
   };
 
@@ -55,7 +55,7 @@ export const PageManager = (): ReactElement => {
       const copyPages = pages.slice();
       const findedIndex = copyPages.findIndex((page) => page.id === response.data.id);
       copyPages.splice(findedIndex, 1);
-      changePages(copyPages);
+      setPages(copyPages);
     });
   };
 
@@ -68,16 +68,14 @@ export const PageManager = (): ReactElement => {
         {(pages.length > 0 && (
           <>
             <h3>Your pages</h3>
-            {pages.length > 0
-              ? pages.map((page: TPageData) => (
-                  <PageManagerRow
-                    remove={handleRemove}
-                    openEdit={handleOpenEdit}
-                    key={page.id}
-                    page={page}
-                  />
-                ))
-              : null}
+            {pages.map((page: TPageData) => (
+              <PageManagerRow
+                remove={handleRemove}
+                openEdit={handleOpenEdit}
+                key={page.id}
+                page={page}
+              />
+            ))}
 
             <p>{pages.length == 1 ? '1 page' : pages.length + ' pages'}</p>
           </>

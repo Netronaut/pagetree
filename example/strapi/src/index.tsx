@@ -27,7 +27,7 @@ const App = () => {
   }, []);
 
   return (
-    <ManagementContext.Provider value={{ pages, changePages: setPages }}>
+    <ManagementContext.Provider value={{ pages, setPages }}>
       <Router>
         <Switch>
           <Route path="/" exact>
