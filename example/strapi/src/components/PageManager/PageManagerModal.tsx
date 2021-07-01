@@ -41,7 +41,7 @@ export const PageManagerModal: React.FC<Props> = ({ pageId, pages, close, save }
   };
 
   const handleKeyDownEnter = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    if (e.currentTarget.value !== '' && e.key === 'Enter') save(pageId, value);
+    if (value !== '' && e.key === 'Enter') save(pageId, value);
     if (e.key === 'Escape') close();
   };
 
