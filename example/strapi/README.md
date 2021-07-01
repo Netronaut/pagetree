@@ -30,7 +30,6 @@ docker up strapi
 
 # install linked @pagio/builder rather than hard pagio-builder-*.tar.gz
 npm link @pagio/builder
-npm install @pagio/builder
 
 # run webpack-dev-server 
 npm start
