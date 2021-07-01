@@ -1,6 +1,8 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
+const { HOST, PORT, STRAPI_HOST, STRAPI_PORT } = process.env;
+
 module.exports = {
   entry: path.join(__dirname, 'src', 'index.tsx'),
   output: {
@@ -30,6 +32,19 @@ module.exports = {
   ],
   devtool: 'inline-source-map',
   devServer: {
-    port: process.env.PORT,
+    host: HOST || 'localhost',
+    port: PORT || 3000,
+    proxy: {
+      '/api': {
+        target: {
+          host: STRAPI_HOST,
+          protocol: 'http:',
+          port: STRAPI_PORT,
+        },
+        ignorePath: true,
+        changeOrigin: true,
+        secure: false,
+      },
+    },
   },
 };

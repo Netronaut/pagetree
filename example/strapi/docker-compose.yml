@@ -3,4 +3,12 @@ services:
   strapi:
     build: ./strapi
     ports:
-      - '1337:1337'
+      - 1337:1337
+  app:
+    build: .
+    ports:
+      - 3000:3000
+    environment:
+      HOST: 0.0.0.0
+      STRAPI_HOST: strapi
+      STRAPI_PORT: 1337
