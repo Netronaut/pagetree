@@ -83,20 +83,14 @@ const PageManagerRow = styled.div`
 
 const PageManagerRowTitle = styled.div`
   flex: 1 1 60%;
-  box-sizing: border-box;
-  box-sizing: border-box;
   min-width: 50vw;
   a {
     width: 100%;
     text-decoration: none;
     font-size: 12px;
-    border: 2px solid red;
-    box-sizing: border-box;
     color: #555;
     h4 {
       color: hsla(201, 100%, 47%, 1);
-      border: 2px solid purple;
-      box-sizing: border-box;
       font-size: 20px;
     }
     h4,
@@ -151,8 +145,16 @@ const PageManagerModal = styled.div`
   display: flex;
   place-items: center;
   button:first-child {
-    flex: 1;
-    background: transparent;
+    position: absolute;
+    top: -10px;
+    left: -10px;
+    border: 2px solid hsla(201, 100%, 47%, 1);
+    background: #fff;
+    color: hsla(201, 100%, 47%, 1);
+    border-radius: 50%;
+    display: grid;
+    place-content: center;
+    line-height: 12px;
   }
   input {
     border: 2px solid #dadada;
@@ -175,11 +177,18 @@ const PageManagerModal = styled.div`
   input:focus + button:not(:disabled) {
     background: hsla(201, 100%, 47%, 1);
   }
+  label {
+    flex: 1 0 calc(100% - 20ch);
+  }
+  label span {
+    color: #aaa;
+    font-size: 11px;
+  }
   button:last-child {
-    postition: absolute;
-    background: red;
+    margin-top: 14px;
+    flex: 1 0 20ch;
     right: 0;
-    top: 0;
+    height: 38px;
   }
 `;
 

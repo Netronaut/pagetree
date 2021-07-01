@@ -47,18 +47,21 @@ export const PageManagerModal: React.FC<Props> = ({ pageId, pages, close, save }
   return (
     <S.PageManagerModal ref={wrapperRef} data-testid="edit-modal">
       <button onClick={close}>x</button>
-      <strong>Edit title</strong>
-      <input
-        type="text"
-        data-testid="edit-input"
-        defaultValue={editingPages?.title}
-        onChange={handleChange}
-        autoFocus
-        onKeyDown={handleKeyDownEnter}
-      />
-      <button disabled={value == ''} onClick={() => save(pageId, value)}>
+      <label>
+        <span>Edit title</span>
+        <input
+          type="text"
+          placeholder="The title of your page"
+          data-testid="edit-input"
+          defaultValue={editingPages?.title}
+          onChange={handleChange}
+          autoFocus
+          onKeyDown={handleKeyDownEnter}
+        />
+      </label>
+      <S.PageManagerRowButton disabled={value == ''} onClick={() => save(pageId, value)}>
         Save
-      </button>
+      </S.PageManagerRowButton>
     </S.PageManagerModal>
   );
 };
