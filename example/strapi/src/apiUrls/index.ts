@@ -1,4 +1,4 @@
-const origin = 'http://localhost:1337';
+const origin = '/api';
 export const apiUrls = {
   pages: `${origin}/pages`,
 };

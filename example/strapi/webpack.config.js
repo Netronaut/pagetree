@@ -37,9 +37,9 @@ module.exports = {
     proxy: {
       '/api': {
         target: {
-          host: STRAPI_HOST,
+          host: STRAPI_HOST || 'localhost',
           protocol: 'http:',
-          port: STRAPI_PORT,
+          port: STRAPI_PORT || 1337,
         },
         ignorePath: true,
         changeOrigin: true,
