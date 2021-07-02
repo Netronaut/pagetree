@@ -36,6 +36,12 @@ This will start two services: _app_ and _strapi_
 
 Both services talk to each other through Docker. _app_ runs webpack-dev-server with a proxy pointing to _strapi_. Thus, all requests to `http://<app host>:<app port>/api/*` are routet to `http://<strapi host>:<strapi port>/*`.
 
+Whenever you change somethin in the example code, remember to re-build the docker image:
+
+```bash
+docker compose build app
+```
+
 ## Developing with `strapi` (docker compose) and `app` (npm start)
 
 Following the above setup, _app_ is not listening for code changes. In order to develop and see your code changes, jus start the services as follows:
