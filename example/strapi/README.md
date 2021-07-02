@@ -48,7 +48,7 @@ Following the above setup, _app_ is not listening for code changes. In order to 
 
 ```bash
 # start strapi service
-docker up strapi
+docker compose up strapi
 
 # install linked @pagio/builder rather than hard pagio-builder-*.tar.gz
 npm link @pagio/builder
