@@ -107,7 +107,7 @@ const PageManagerRowTitle = styled.div`
   }
 `;
 
-const PageManagerRowButton = styled.button`
+const PageItemButton = styled.button`
   flex: 0 1 20ch;
   color: hsla(201, 100%, 47%, 1);
   border-radius: 5px;
@@ -200,5 +200,5 @@ export default {
   PageManagerRow,
   PageManagerModal,
   PageManagerRowTitle,
-  PageManagerRowButton,
+  PageItemButton,
 };

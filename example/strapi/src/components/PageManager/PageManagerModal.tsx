@@ -60,9 +60,9 @@ export const PageManagerModal: React.FC<Props> = ({ pageId, pages, close, save }
           onKeyDown={handleKeyDownEnter}
         />
       </label>
-      <S.PageManagerRowButton disabled={value == ''} onClick={() => save(pageId, value)}>
+      <S.PageItemButton disabled={value == ''} onClick={() => save(pageId, value)}>
         Save
-      </S.PageManagerRowButton>
+      </S.PageItemButton>
     </S.PageManagerModal>
   );
 };

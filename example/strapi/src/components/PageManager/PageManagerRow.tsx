@@ -21,12 +21,10 @@ export const PageManagerRow = ({ page, remove, openEdit }: PageManagerRowProps):
             </>
           </Link>
         </S.PageManagerRowTitle>
-        <S.PageManagerRowButton onClick={() => openEdit(page.id)}>
-          Edit title
-        </S.PageManagerRowButton>
-        <S.PageManagerRowButton className="destructive" onClick={() => remove(page.id)}>
+        <S.PageItemButton onClick={() => openEdit(page.id)}>Edit title</S.PageItemButton>
+        <S.PageItemButton className="destructive" onClick={() => remove(page.id)}>
           Remove
-        </S.PageManagerRowButton>
+        </S.PageItemButton>
       </S.PageManagerRow>
     </>
   );
