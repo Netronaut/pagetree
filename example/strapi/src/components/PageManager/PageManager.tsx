@@ -7,7 +7,7 @@ import { ManagementContext } from '../../utils/context';
 import { AddPageInput } from './AddPageInput';
 import { apiUrls } from '../../apiUrls';
 import { createUrlFromText } from '../../utils';
-import { PageManagerRow } from './PageManagerRow';
+import { PageListItem } from './PageListItem';
 import { TPageData } from '../../types';
 import S from './PageManager.styles';
 
@@ -68,7 +68,7 @@ export const PageManager = (): ReactElement => {
           <>
             <h3>Your pages</h3>
             {pages.map((page: TPageData) => (
-              <PageManagerRow
+              <PageListItem
                 remove={handleRemove}
                 openEdit={handleOpenEdit}
                 key={page.id}

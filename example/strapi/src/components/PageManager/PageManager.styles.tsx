@@ -59,7 +59,7 @@ const PageManagerAdd = styled.div`
   }
 `;
 
-const PageManagerRow = styled.div`
+const PageListItem = styled.div`
   border: 1px solid transparent;
   box-sizing: border-box;
   padding: 4px;
@@ -192,7 +192,7 @@ const PageManagerModal = styled.div`
 export default {
   PageList,
   PageManagerAdd,
-  PageManagerRow,
+  PageListItem,
   PageManagerModal,
   PageItemTitle,
   PageItemButton,

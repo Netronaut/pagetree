@@ -3,16 +3,16 @@ import S from './PageManager.styles';
 import { Link } from 'react-router-dom';
 import { TPageData } from '../../types';
 
-type PageManagerRowProps = {
+type PageListItemProps = {
   page: TPageData;
   remove: (id: number) => void;
   openEdit: (id: number) => void;
 };
 
-export const PageManagerRow = ({ page, remove, openEdit }: PageManagerRowProps): ReactElement => {
+export const PageListItem = ({ page, remove, openEdit }: PageListItemProps): ReactElement => {
   return (
     <>
-      <S.PageManagerRow>
+      <S.PageListItem>
         <S.PageItemTitle>
           <Link title="Open in pagebuilder" to={`pagebuilder${page.link}`}>
             <>
@@ -25,7 +25,7 @@ export const PageManagerRow = ({ page, remove, openEdit }: PageManagerRowProps):
         <S.PageItemButton destructive onClick={() => remove(page.id)}>
           Remove
         </S.PageItemButton>
-      </S.PageManagerRow>
+      </S.PageListItem>
     </>
   );
 };
