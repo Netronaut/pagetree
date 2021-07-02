@@ -4,7 +4,7 @@ import { useCallback, useState, useEffect } from 'react';
 import axios from 'axios';
 import { GlobalStyle } from './globalStyle';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import { PageManager } from './components/PageManager/PageManager';
+import { PageManager } from './components/PageManager';
 import { PagebuilderPage } from './components/PagebuilderPage';
 import { ManagementContext } from './utils/context';
 import { apiUrls } from './apiUrls';
