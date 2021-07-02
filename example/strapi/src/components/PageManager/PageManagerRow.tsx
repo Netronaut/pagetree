@@ -14,7 +14,7 @@ export const PageManagerRow = ({ page, remove, openEdit }: PageManagerRowProps):
     <>
       <S.PageManagerRow>
         <S.PageManagerRowTitle>
-          <Link title="OPEN IN PAGEBUILDER" to={`pagebuilder${page.link}`}>
+          <Link title="Open in pagebuilder" to={`pagebuilder${page.link}`}>
             <>
               <h4>{page.title}</h4>
               <p>{page.link}</p>

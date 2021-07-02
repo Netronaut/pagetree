@@ -4,7 +4,7 @@ import axios from 'axios';
 import { Header } from '../Header';
 import { PageManagerModal } from './PageManagerModal';
 import { ManagementContext } from '../../utils/context';
-import { PageManagerAddPage } from './PageManagerAddPage';
+import { AddPageInput } from './AddPageInput';
 import { apiUrls } from '../../apiUrls';
 import { createUrlFromText } from '../../utils';
 import { PageManagerRow } from './PageManagerRow';
@@ -63,7 +63,7 @@ export const PageManager = (): ReactElement => {
       <Header setShowPreview={setShowPreview} />
       <S.PageList>
         <h3>Create a page</h3>
-        <PageManagerAddPage save={createPage} />
+        <AddPageInput save={createPage} />
         {(pages.length > 0 && (
           <>
             <h3>Your pages</h3>
