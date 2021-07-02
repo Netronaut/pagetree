@@ -13,14 +13,14 @@ export const PageManagerRow = ({ page, remove, openEdit }: PageManagerRowProps):
   return (
     <>
       <S.PageManagerRow>
-        <S.PageManagerRowTitle>
+        <S.PageItemTitle>
           <Link title="Open in pagebuilder" to={`pagebuilder${page.link}`}>
             <>
               <h4>{page.title}</h4>
               <p>{page.link}</p>
             </>
           </Link>
-        </S.PageManagerRowTitle>
+        </S.PageItemTitle>
         <S.PageItemButton onClick={() => openEdit(page.id)}>Edit title</S.PageItemButton>
         <S.PageItemButton destructive onClick={() => remove(page.id)}>
           Remove

@@ -4,7 +4,7 @@ const PageList = styled.div`
   position: relative;
   max-width: 80vw;
   margin: 0 auto;
-  & > p {
+  > p {
     margin-top: 30px;
     color: #666;
     font-size: 12px;
@@ -67,7 +67,7 @@ const PageManagerRow = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
-  &:hover {
+  :hover {
     border: 1px solid hsla(201, 100%, 47%, 0.2);
     background: #fbfbfb;
   }
@@ -81,7 +81,7 @@ const PageManagerRow = styled.div`
   }
 `;
 
-const PageManagerRowTitle = styled.div`
+const PageItemTitle = styled.div`
   flex: 1 1 60%;
   min-width: 50vw;
   a {
@@ -101,7 +101,7 @@ const PageManagerRowTitle = styled.div`
       overflow: hidden;
       text-overflow: ellipsis;
     }
-    &:hover {
+    :hover {
       color: #000;
     }
   }
@@ -194,6 +194,6 @@ export default {
   PageManagerAdd,
   PageManagerRow,
   PageManagerModal,
-  PageManagerRowTitle,
+  PageItemTitle,
   PageItemButton,
 };
