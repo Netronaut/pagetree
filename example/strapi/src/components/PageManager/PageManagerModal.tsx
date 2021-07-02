@@ -1,16 +1,16 @@
-import * as React from 'react';
+import React, { ReactElement } from 'react';
 import { useEffect, useRef, useState } from 'react';
 import S from './PageManager.styles';
 import { TPageData } from '../../types';
 
-type Props = {
+type PageManagerModalProps = {
   pageId: number;
   pages: TPageData[];
   close: () => void;
   save: (id: number, v: string) => void;
 };
 
-const useClickOutsede = (ref: React.RefObject<HTMLInputElement>, close: () => void) => {
+const handleTapOutside = (ref: React.RefObject<HTMLInputElement>, close: () => void) => {
   useEffect(() => {
     const handleClickOutside = (e: MouseEvent) => {
       const target = e.target as HTMLDivElement;
@@ -21,7 +21,12 @@ const useClickOutsede = (ref: React.RefObject<HTMLInputElement>, close: () => vo
   }, [ref]);
 };
 
-export const PageManagerModal: React.FC<Props> = ({ pageId, pages, close, save }) => {
+export const PageManagerModal = ({
+  pageId,
+  pages,
+  close,
+  save,
+}: PageManagerModalProps): ReactElement => {
   const [editingPages, setEditingPage] = useState<TPageData | undefined>(undefined);
 
   useEffect(() => {
@@ -34,7 +39,7 @@ export const PageManagerModal: React.FC<Props> = ({ pageId, pages, close, save }
   const [value, setValue] = useState('');
 
   const wrapperRef = useRef(null);
-  useClickOutsede(wrapperRef, close);
+  handleTapOutside(wrapperRef, close);
   const handleChange = (e: React.FormEvent<HTMLInputElement>) => {
     const { value } = e.currentTarget;
     setValue(value);
