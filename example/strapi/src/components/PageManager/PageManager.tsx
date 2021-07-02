@@ -62,7 +62,7 @@ export const PageManager = (): ReactElement => {
   return (
     <>
       <Header setShowPreview={setShowPreview} />
-      <S.PageManager>
+      <S.PageList>
         <h3>Create a page</h3>
         <PageManagerAddPage save={createPage} />
         {(pages.length > 0 && (
@@ -80,7 +80,7 @@ export const PageManager = (): ReactElement => {
             <p>{pages.length == 1 ? '1 page' : pages.length + ' pages'}</p>
           </>
         )) || <p>No pages available!</p>}
-      </S.PageManager>
+      </S.PageList>
       {editingPageId && (
         <PageManagerModal
           pageId={editingPageId}

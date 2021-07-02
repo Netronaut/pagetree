@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-const PageManager = styled.div`
+const PageList = styled.div`
   position: relative;
   max-width: 80vw;
   margin: 0 auto;
@@ -195,7 +195,7 @@ const PageManagerModal = styled.div`
 `;
 
 export default {
-  PageManager,
+  PageList,
   PageManagerAdd,
   PageManagerRow,
   PageManagerModal,
