@@ -39,9 +39,9 @@ export const AddPageInput = ({ save }: AddPageInputProps): ReactElement => {
           onChange={handleChange}
           onKeyDown={handleKeyDownEnter}
         />
-        <button disabled={title == ''} onClick={handleClick}>
+        <S.PageItemButton disabled={title == ''} onClick={handleClick}>
           Add page
-        </button>
+        </S.PageItemButton>
       </S.AddPageInput>
     </>
   );

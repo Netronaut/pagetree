@@ -12,50 +12,39 @@ const PageList = styled.div`
 `;
 
 const AddPageInput = styled.div`
+  --color-primary: hsla(200, 100%, 50%, 1);
+  --color-secondary: hsla(0, 0%, 90%, 1);
   postition: relative;
+  display: flex;
+
   input {
-    border: 2px solid #dadada;
+    flex: 1 1 100%;
+    border: 2px solid var(--color-secondary);
     border-radius: 5px;
     outline: none;
     width: 100%;
     box-sizing: border-box;
     padding: 0 0 0 5px;
-    font-size: 16px;
-    line-height: 2;
     font-size: 18px;
-  }
-  input:focus:empty {
-    border-style: solid;
-    border-color: #999;
-  }
-  input:focus:not(:placeholder-shown) {
-    border-color: hsla(201, 100%, 47%, 1) !important;
-  }
-  input:focus:empty + button:disabled {
-    display: none;
-  }
-  input:focus + button:not(:disabled) {
-    background: hsla(201, 100%, 47%, 1);
-  }
-  input + button:disabled {
-    display: none;
-  }
-  input:focus:empty + button:disabled {
-    display: none;
+    line-height: 2;
+    border-color: var(--color-secondary);
+    + button:disabled {
+      display: none;
+    }
+    :focus {
+      :not(:placeholder-shown) {
+        border-color: var(--color-primary);
+      }
+      :empty {
+        + button:disabled {
+          display: none;
+        }
+      }
+    }
   }
   button {
-    position: absolute;
-    right: -2px;
-    border-top-right-radius: 5px;
-    border-bottom-right-radius: 5px;
-
-    box-sizing: border-box;
-    text-transform: uppercase;
-    font-size: 16px;
-    color: #fff;
+    flex: 1 1 20ch;
     line-height: 2;
-    padding: 0 10px;
-    border: none;
   }
 `;
 
