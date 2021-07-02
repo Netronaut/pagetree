@@ -21,7 +21,7 @@ const PageManagerAdd = styled.div`
     box-sizing: border-box;
     padding: 0 0 0 5px;
     font-size: 16px;
-    line-height: 34px;
+    line-height: 2;
     font-size: 18px;
   }
   input:focus:empty {
@@ -53,7 +53,7 @@ const PageManagerAdd = styled.div`
     text-transform: uppercase;
     font-size: 16px;
     color: #fff;
-    line-height: 36px;
+    line-height: 2;
     padding: 0 10px;
     border: none;
   }
@@ -75,7 +75,7 @@ const PageManagerRow = styled.div`
     display: block;
   }
   a h4 {
-    line-height: 28px;
+    line-height: 2;
     margin: 0;
     padding: 0;
   }
@@ -156,7 +156,7 @@ const PageManagerModal = styled.div`
     border-radius: 50%;
     display: grid;
     place-content: center;
-    line-height: 12px;
+    line-height: 2;
   }
   input {
     border: 2px solid #dadada;
@@ -166,7 +166,7 @@ const PageManagerModal = styled.div`
     box-sizing: border-box;
     padding: 0 0 0 5px;
     font-size: 16px;
-    line-height: 34px;
+    line-height: 2;
     font-size: 18px;
   }
   input:focus:empty {
