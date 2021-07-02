@@ -12,8 +12,7 @@ import { TPageData } from '../../types';
 import S from './PageManager.styles';
 
 export const PageManager = (): ReactElement => {
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const [showPreview, setShowPreview] = useState(false);
+  const [, setShowPreview] = useState(false);
   const { pages, setPages } = useContext(ManagementContext);
   const [editingPageId, seteditingPageId] = useState<number | undefined>(undefined);
   const createPage = (title: string, link: string) => {
