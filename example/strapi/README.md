@@ -2,6 +2,22 @@
 
 ## Getting started (docker compose)
 
+Clone the project:
+
+```bash
+git clone git@github.com:Netronaut/pagebuilder.git
+cd pagebuilder
+```
+
+Make sure the library package is installed and built.
+
+```bash
+npm install
+npm run build
+```
+
+Then, enter the example directory, install the library from your local machine and run the docker environment.
+
 ```bash
 # go to the example
 cd example/strapi
