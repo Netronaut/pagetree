@@ -11,7 +11,7 @@ const PageList = styled.div`
   }
 `;
 
-const PageManagerAdd = styled.div`
+const AddPageInput = styled.div`
   postition: relative;
   input {
     border: 2px solid #dadada;
@@ -191,7 +191,7 @@ const PageManagerModal = styled.div`
 
 export default {
   PageList,
-  PageManagerAdd,
+  AddPageInput,
   PageListItem,
   PageManagerModal,
   PageItemTitle,

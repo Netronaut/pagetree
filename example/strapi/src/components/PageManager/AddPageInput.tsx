@@ -31,7 +31,7 @@ export const AddPageInput = ({ save }: AddPageInputProps): ReactElement => {
 
   return (
     <>
-      <S.PageManagerAdd>
+      <S.AddPageInput>
         <input
           type="text"
           placeholder="Enter a title for the new page..."
@@ -42,7 +42,7 @@ export const AddPageInput = ({ save }: AddPageInputProps): ReactElement => {
         <button disabled={title == ''} onClick={handleClick}>
           Add page
         </button>
-      </S.PageManagerAdd>
+      </S.AddPageInput>
     </>
   );
 };
