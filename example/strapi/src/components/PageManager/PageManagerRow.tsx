@@ -22,7 +22,7 @@ export const PageManagerRow = ({ page, remove, openEdit }: PageManagerRowProps):
           </Link>
         </S.PageManagerRowTitle>
         <S.PageItemButton onClick={() => openEdit(page.id)}>Edit title</S.PageItemButton>
-        <S.PageItemButton className="destructive" onClick={() => remove(page.id)}>
+        <S.PageItemButton destructive onClick={() => remove(page.id)}>
           Remove
         </S.PageItemButton>
       </S.PageManagerRow>

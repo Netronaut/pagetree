@@ -107,27 +107,22 @@ const PageManagerRowTitle = styled.div`
   }
 `;
 
-const PageItemButton = styled.button`
+const PageItemButton = styled.button<{ destructive: boolean }>`
+  --color-destructive: hsla(10, 100%, 45%, 1);
+  --color-primary: hsla(200, 100%, 50%, 1);
+  --color-secondary: hsla(0, 0%, 90%, 1);
   flex: 0 1 20ch;
-  color: hsla(201, 100%, 47%, 1);
   border-radius: 5px;
   background: transparent;
-  border: 2px solid hsla(201, 100%, 47%, 1);
-  &:hover:not(.destructive) {
-    border: 2px solid hsla(201, 100%, 47%, 1);
-    background: hsla(201, 100%, 47%, 1);
-    color: #fff;
-    box-shadow: 0 0 4px rgba(33, 33, 33, 0.3);
-  }
-  &.destructive {
-    border-color: #dadada;
-    color: #dadada;
-    &:hover {
-      color: #fff;
-      border-color: red;
-      background-color: red;
-      box-shadow: 0 0 4px rgba(33, 33, 33, 0.3);
-    }
+  border: 2px solid
+    ${({ destructive }) => (destructive ? 'var(--color-secondary)' : 'var(--color-primary)')};
+  color: ${({ destructive }) => (destructive ? 'var(--color-secondary)' : 'var(--color-primary)')};
+  :hover {
+    border-color: ${({ destructive }) =>
+      destructive ? 'var(--color-destructive)' : 'var(--color-primary)'};
+    color: white;
+    background: ${({ destructive }) =>
+      destructive ? 'var(--color-destructive)' : 'var(--color-primary)'};
   }
 `;
 
