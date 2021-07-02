@@ -51,6 +51,9 @@ Following the above setup, _app_ is not listening for code changes. In order to 
 docker compose up strapi
 
 # install linked @pagio/builder rather than hard pagio-builder-*.tar.gz
+cd ../../
+npm link
+cd example/strapi/
 npm link @pagio/builder
 
 # run webpack-dev-server 
