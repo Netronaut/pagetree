@@ -3,9 +3,9 @@ import { useState } from 'react';
 import { createUrlFromText } from '../../utils';
 import S from './PageManager.styles';
 
-interface AddPageInputProps = {
+interface AddPageInputProps {
   save: (title: string, url: string) => void;
-};
+}
 
 export const AddPageInput = ({ save }: AddPageInputProps): ReactElement => {
   const [title, setTitle] = useState('');

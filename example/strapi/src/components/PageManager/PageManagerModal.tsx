@@ -3,12 +3,12 @@ import { useEffect, useRef, useState } from 'react';
 import S from './PageManager.styles';
 import { TPageData } from '../../types';
 
-interface PageManagerModalProps = {
+interface PageManagerModalProps {
   pageId: number;
   pages: TPageData[];
   close: () => void;
   save: (id: number, v: string) => void;
-};
+}
 
 const handleTapOutside = (ref: React.RefObject<HTMLInputElement>, close: () => void) => {
   useEffect(() => {

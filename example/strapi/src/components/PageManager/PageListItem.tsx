@@ -3,11 +3,11 @@ import S from './PageManager.styles';
 import { Link } from 'react-router-dom';
 import { TPageData } from '../../types';
 
-interface PageListItemProps = {
+interface PageListItemProps {
   page: TPageData;
   remove: (id: number) => void;
   openEdit: (id: number) => void;
-};
+}
 
 export const PageListItem = ({ page, remove, openEdit }: PageListItemProps): ReactElement => {
   return (
