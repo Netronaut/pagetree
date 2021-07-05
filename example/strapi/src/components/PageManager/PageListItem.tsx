@@ -3,7 +3,7 @@ import S from './PageManager.styles';
 import { Link } from 'react-router-dom';
 import { TPageData } from '../../types';
 
-type PageListItemProps = {
+interface PageListItemProps = {
   page: TPageData;
   remove: (id: number) => void;
   openEdit: (id: number) => void;

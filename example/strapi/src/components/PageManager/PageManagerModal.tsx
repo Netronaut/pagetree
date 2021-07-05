@@ -3,7 +3,7 @@ import { useEffect, useRef, useState } from 'react';
 import S from './PageManager.styles';
 import { TPageData } from '../../types';
 
-type PageManagerModalProps = {
+interface PageManagerModalProps = {
   pageId: number;
   pages: TPageData[];
   close: () => void;
