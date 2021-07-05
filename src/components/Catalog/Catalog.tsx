@@ -9,17 +9,25 @@ import S from './Catalog.styles';
 
 interface CatalogProps {
   onModalClose: () => void;
+  searchValue: string;
+  setSearchValue: (value: string) => void;
+  openedGroup: string;
+  setOpenedGroup: (groupName: string) => void;
 }
 
-export const Catalog = ({ onModalClose }: CatalogProps): ReactElement => {
-  const [searchValue, setSearchValue] = useState('');
+export const Catalog = ({
+  onModalClose,
+  searchValue,
+  setSearchValue,
+  openedGroup,
+  setOpenedGroup,
+}: CatalogProps): ReactElement => {
   const handleSearch = (e: React.FormEvent<HTMLInputElement>) => {
     const { value } = e.currentTarget;
     setSearchValue(value);
   };
 
   const { componentGroups } = useContext(TreeContext);
-  const [openedGroup, setOpenedGroup] = useState('');
   const onOpenGroup = (groupName: string) => {
     setOpenedGroup(groupName);
   };

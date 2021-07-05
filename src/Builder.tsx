@@ -1,4 +1,4 @@
-import React, { ReactElement } from 'react';
+import React, { ReactElement, useState } from 'react';
 import { Direction } from './components/Direction';
 import { AddComponents } from './components/AddComponents';
 import { Item, Tree, TSide } from './utils/tree';
@@ -104,6 +104,16 @@ export const Builder = ({
     setValue({ structure: tree.getValue() });
   };
 
+  const [searchValue, setSearchValue] = useState('');
+  const [openedGroup, setOpenedGroup] = useState('');
+  const catalogProps = {
+    onModalClose,
+    searchValue,
+    setSearchValue,
+    openedGroup,
+    setOpenedGroup,
+  };
+
   const content = pageContent.structure ? (
     <Direction
       direction={pageContent.structure.direction}
@@ -135,7 +145,7 @@ export const Builder = ({
               {content}
             </DroppableContent>
             {isModalShown ? (
-              <Catalog onModalClose={onModalClose} />
+              <Catalog {...catalogProps} />
             ) : (
               <>
                 <AddComponents onModalShow={onModalShow} />
