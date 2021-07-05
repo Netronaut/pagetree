@@ -107,6 +107,13 @@ export const Builder = ({
 
   const [searchValue, setSearchValue] = useState('');
   const [openedGroup, setOpenedGroup] = useState('');
+  const catalogProps = {
+    onModalClose,
+    searchValue,
+    setSearchValue,
+    openedGroup,
+    setOpenedGroup,
+  };
 
   const content = pageContent.structure ? (
     <Direction
@@ -139,13 +146,7 @@ export const Builder = ({
               {content}
             </DroppableContent>
             {isModalShown ? (
-              <Catalog
-                onModalClose={onModalClose}
-                searchValue={searchValue}
-                setSearchValue={setSearchValue}
-                openedGroup={openedGroup}
-                setOpenedGroup={setOpenedGroup}
-              />
+              <Catalog {...catalogProps} />
             ) : (
               <>
                 <AddComponents onModalShow={onModalShow} />
