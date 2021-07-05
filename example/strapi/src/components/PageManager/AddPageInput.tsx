@@ -30,19 +30,17 @@ export const AddPageInput = ({ save }: AddPageInputProps): ReactElement => {
   };
 
   return (
-    <>
-      <S.AddPageInput>
-        <input
-          type="text"
-          placeholder="Enter a title for the new page..."
-          value={title}
-          onChange={handleChange}
-          onKeyDown={handleKeyDownEnter}
-        />
-        <S.PageItemButton disabled={title == ''} onClick={handleClick}>
-          Add page
-        </S.PageItemButton>
-      </S.AddPageInput>
-    </>
+    <S.AddPageInput>
+      <input
+        type="text"
+        placeholder="Enter a title for the new page..."
+        value={title}
+        onChange={handleChange}
+        onKeyDown={handleKeyDownEnter}
+      />
+      <S.PageItemButton disabled={title == ''} onClick={handleClick}>
+        Add page
+      </S.PageItemButton>
+    </S.AddPageInput>
   );
 };
