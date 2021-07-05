@@ -9,10 +9,15 @@ import S from './Catalog.styles';
 
 interface CatalogProps {
   onModalClose: () => void;
+  searchValue: string;
+  setSearchValue: (v: string) => void;
 }
 
-export const Catalog = ({ onModalClose }: CatalogProps): ReactElement => {
-  const [searchValue, setSearchValue] = useState('');
+export const Catalog = ({
+  onModalClose,
+  searchValue,
+  setSearchValue,
+}: CatalogProps): ReactElement => {
   const handleSearch = (e: React.FormEvent<HTMLInputElement>) => {
     const { value } = e.currentTarget;
     setSearchValue(value);
