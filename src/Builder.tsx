@@ -106,6 +106,7 @@ export const Builder = ({
   };
 
   const [searchValue, setSearchValue] = useState('');
+  const [openedGroup, setOpenedGroup] = useState('');
 
   const content = pageContent.structure ? (
     <Direction
@@ -142,6 +143,8 @@ export const Builder = ({
                 onModalClose={onModalClose}
                 searchValue={searchValue}
                 setSearchValue={setSearchValue}
+                openedGroup={openedGroup}
+                setOpenedGroup={setOpenedGroup}
               />
             ) : (
               <>
