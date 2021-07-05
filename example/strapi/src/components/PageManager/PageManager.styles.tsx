@@ -96,7 +96,7 @@ const PageItemTitle = styled.div`
   }
 `;
 
-const PageItemButton = styled.button<{ destructive: boolean }>`
+const PageItemButton = styled.button<{ destructive?: boolean }>`
   --color-destructive: hsla(10, 100%, 45%, 1);
   --color-primary: hsla(200, 100%, 50%, 1);
   --color-secondary: hsla(0, 0%, 90%, 1);
