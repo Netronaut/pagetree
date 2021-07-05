@@ -1,12 +1,13 @@
-import * as React from 'react';
+import React, { ReactElement } from 'react';
 import { useState } from 'react';
 import { createUrlFromText } from '../../utils';
+import S from './PageManager.styles';
 
-type Props = {
+interface AddPageInputProps {
   save: (title: string, url: string) => void;
-};
+}
 
-export const CreatePageForm: React.FC<Props> = ({ save }) => {
+export const AddPageInput = ({ save }: AddPageInputProps): ReactElement => {
   const [title, setTitle] = useState('');
 
   const handleChange = (e: React.FormEvent<HTMLInputElement>) => {
@@ -21,7 +22,7 @@ export const CreatePageForm: React.FC<Props> = ({ save }) => {
   };
 
   const handleKeyDownEnter = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    if (e.key === 'Enter') {
+    if (e.key === 'Enter' && title != '') {
       const url = createUrlFromText(title);
       save(title, url);
       setTitle('');
@@ -29,15 +30,17 @@ export const CreatePageForm: React.FC<Props> = ({ save }) => {
   };
 
   return (
-    <>
+    <S.AddPageInput>
       <input
         type="text"
-        placeholder="Enter the page name"
+        placeholder="Enter a title for the new page..."
         value={title}
         onChange={handleChange}
         onKeyDown={handleKeyDownEnter}
       />
-      <button onClick={handleClick}>Add page</button>
-    </>
+      <S.PageItemButton disabled={title == ''} onClick={handleClick}>
+        Add page
+      </S.PageItemButton>
+    </S.AddPageInput>
   );
 };
