@@ -53,7 +53,6 @@ export const Builder = ({
 
     tree.add(new Item({ type } as { type: string }), toId, side);
     setValue({ structure: tree.getValue() });
-    onModalClose();
   };
 
   const add = (e: React.DragEvent<HTMLDivElement>, toId?: string, side?: TSide) => {
