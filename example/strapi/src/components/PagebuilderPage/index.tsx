@@ -1,6 +1,6 @@
-import React, { ReactElement } from 'react';
+import React, { ReactElement, useState, useContext, useEffect } from 'react';
+import { match } from 'react-router';
 import { Builder, TPage } from '@pagio/builder';
-import { useState, useContext, useEffect } from 'react';
 import { components, componentGroups } from '../../catalog';
 import { Header } from '../Header';
 import { ManagementContext } from '../../utils/context';
@@ -8,15 +8,20 @@ import axios from 'axios';
 import { apiUrls } from '../../apiUrls';
 import { TPageData } from '../../types';
 
-export const PagebuilderPage = (): ReactElement => {
+interface PageBuilderProps {
+  match: match<{ pageid: string }>;
+}
+
+export const PagebuilderPage = ({ match }: PageBuilderProps): ReactElement => {
+  const { pageid } = match.params;
+
   const [showPreview, setShowPreview] = useState(false);
   const { pages, setPages } = useContext(ManagementContext);
   const [page, setPage] = useState<TPageData | undefined>({} as TPageData);
   const [pageContent, setPageContent] = useState<TPage | undefined>({} as TPage);
 
   useEffect(() => {
-    const currentPageTitle = location.pathname.split('/')[2];
-    const currentPage = pages.find((page) => page.link === `/${currentPageTitle}`);
+    const currentPage = pages.find((page) => String(page.id) === pageid);
     setPage(currentPage);
     currentPage?.pageContent && setPageContent(currentPage?.pageContent);
   }, [pages]);

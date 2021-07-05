@@ -15,6 +15,7 @@ export const PageManager = (): ReactElement => {
   const [, setShowPreview] = useState(false);
   const { pages, setPages } = useContext(ManagementContext);
   const [editingPageId, seteditingPageId] = useState<number | undefined>(undefined);
+
   const createPage = (title: string, link: string) => {
     axios
       .post(apiUrls.pages, {

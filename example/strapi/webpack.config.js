@@ -8,6 +8,7 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: 'index.bundle.js',
+    publicPath: '/'
   },
   resolve: {
     extensions: ['.ts', '.tsx', '.js', '.json'],
@@ -40,5 +41,6 @@ module.exports = {
         pathRewrite: { '^/api': '' },
       },
     },
+    historyApiFallback: true,
   },
 };
