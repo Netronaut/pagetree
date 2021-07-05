@@ -3,10 +3,10 @@ import { TPageData } from '../types';
 
 type ManagementContextValue = {
   pages: TPageData[];
-  changePages: (pageData: TPageData[]) => void;
+  setPages: (pageData: TPageData[]) => void;
 };
 
 export const ManagementContext = createContext<ManagementContextValue>({
   pages: [],
-  changePages: () => undefined,
+  setPages: () => undefined,
 });

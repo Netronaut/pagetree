@@ -4,7 +4,7 @@ import { useCallback, useState, useEffect } from 'react';
 import axios from 'axios';
 import { GlobalStyle } from './globalStyle';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import { ManagementPage } from './components/ManagementPage';
+import { PageManager } from './components/PageManager';
 import { PagebuilderPage } from './components/PagebuilderPage';
 import { ManagementContext } from './utils/context';
 import { apiUrls } from './apiUrls';
@@ -27,11 +27,11 @@ const App = () => {
   }, []);
 
   return (
-    <ManagementContext.Provider value={{ pages, changePages: setPages }}>
+    <ManagementContext.Provider value={{ pages, setPages }}>
       <Router>
         <Switch>
           <Route path="/" exact>
-            <ManagementPage />
+            <PageManager />
           </Route>
           <Route path="/pagebuilder">
             <PagebuilderPage />

@@ -10,7 +10,7 @@ import { TPageData } from '../../types';
 
 export const PagebuilderPage = (): ReactElement => {
   const [showPreview, setShowPreview] = useState(false);
-  const { pages, changePages } = useContext(ManagementContext);
+  const { pages, setPages } = useContext(ManagementContext);
   const [page, setPage] = useState<TPageData | undefined>({} as TPageData);
   const [pageContent, setPageContent] = useState<TPage | undefined>({} as TPage);
 
@@ -32,7 +32,7 @@ export const PagebuilderPage = (): ReactElement => {
           const copyPages = pages.slice();
           const findedIndex = copyPages.findIndex((page) => page.id === response.data.id);
           copyPages.splice(findedIndex, 1, response.data);
-          changePages(copyPages);
+          setPages(copyPages);
         });
   }, [pageContent]);
 
