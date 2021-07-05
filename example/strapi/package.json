@@ -4,7 +4,9 @@
   "main": "index.js",
   "private": true,
   "scripts": {
-    "start": "PORT=3000 webpack serve --mode=development"
+    "start": "PORT=3000 webpack serve --mode=development",
+    "install:link": "npm link @pagio/builder",
+    "install:hard": "npm install $(npm pack ../../ | tail -1)"
   },
   "dependencies": {
     "@pagio/builder": "^0.1.0",
