@@ -19,7 +19,7 @@ export const GlobalStyle = createGlobalStyle`
       cursor: pointer;
       transition: transform 0.2s;
       &:hover, &:focus-visible {
-        transform: scale(1.2);
+        transform: scale(1.1);
       }
       &:focus {
         outline: none;
