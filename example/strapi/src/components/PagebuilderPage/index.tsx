@@ -14,9 +14,11 @@ export const PagebuilderPage = (): ReactElement => {
   const [page, setPage] = useState<TPageData | undefined>({} as TPageData);
   const [pageContent, setPageContent] = useState<TPage | undefined>({} as TPage);
 
+  console.log('currentPage');
   useEffect(() => {
     const currentPageTitle = location.pathname.split('/')[2];
-    const currentPage = pages.find((page) => page.link === `/${currentPageTitle}`);
+    const currentPage = pages.find((page) => page.path === `/${currentPageTitle}`);
+    console.log(currentPage);
     setPage(currentPage);
     currentPage?.pageContent && setPageContent(currentPage?.pageContent);
   }, [pages]);
