@@ -15,7 +15,7 @@ export const PageListItem = ({ page, remove, openEdit }: PageListItemProps): Rea
       <Link to={`pagebuilder/${page.id}`}>
         <>
           <h4>{page.title}</h4>
-          <p>{page.link}</p>
+          <p>{page.path}</p>
         </>
       </Link>
     </S.PageItemTitle>

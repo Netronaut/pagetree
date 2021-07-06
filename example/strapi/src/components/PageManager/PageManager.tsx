@@ -15,12 +15,11 @@ export const PageManager = (): ReactElement => {
   const [, setShowPreview] = useState(false);
   const { pages, setPages } = useContext(ManagementContext);
   const [editingPageId, seteditingPageId] = useState<number | undefined>(undefined);
-
-  const createPage = (title: string, link: string) => {
+  const createPage = (title: string, path: string) => {
     axios
       .post(apiUrls.pages, {
         title,
-        link,
+        path,
       })
       .then((response) => {
         const copyPages = pages.slice();
@@ -40,7 +39,7 @@ export const PageManager = (): ReactElement => {
     axios
       .put(`${apiUrls.pages}/${id}`, {
         title: value,
-        link: createUrlFromText(value),
+        path: createUrlFromText(value),
       })
       .then((response) => {
         const copyPages = pages.slice();

@@ -3,6 +3,6 @@ import { TPage } from '@pagio/builder/dist/types';
 export type TPageData = {
   id: number;
   title: string;
-  link: string;
+  path: string;
   pageContent: TPage;
 };
