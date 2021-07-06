@@ -19,7 +19,7 @@ export const PageListItem = ({ page, remove, openEdit }: PageListItemProps): Rea
         </>
       </Link>
     </S.PageItemTitle>
-    <S.PageItemButton onClick={() => openEdit(page.id)}>Edit title</S.PageItemButton>
+    <S.PageItemButton onClick={() => openEdit(page.id)}>Edit</S.PageItemButton>
     <S.PageItemButton destructive onClick={() => remove(page.id)}>
       Remove
     </S.PageItemButton>

@@ -7,7 +7,7 @@ interface PageManagerModalProps {
   pageId: number;
   pages: TPageData[];
   close: () => void;
-  save: (id: number, v: string) => void;
+  save: (id: number, title: string, path: string) => void;
 }
 
 const handleTapOutside = (ref: React.RefObject<HTMLInputElement>, close: () => void) => {
@@ -36,17 +36,25 @@ export const PageManagerModal = ({
     pageId && setEditingPage(currentPages);
   }, [pageId]);
 
-  const [value, setValue] = useState('');
+  const [titleValue, setTitleValue] = useState(editingPages?.title || '');
+  const [pathValue, setPathValue] = useState(editingPages?.path || '');
+
+  useEffect(() => {
+    editingPages?.title && setTitleValue(editingPages.title);
+    editingPages?.path && setPathValue(editingPages.path);
+  }, [editingPages]);
 
   const wrapperRef = useRef(null);
   handleTapOutside(wrapperRef, close);
+
   const handleChange = (e: React.FormEvent<HTMLInputElement>) => {
-    const { value } = e.currentTarget;
-    setValue(value);
+    const { value, name } = e.currentTarget;
+    if (name === 'title') setTitleValue(value);
+    if (name === 'path') setPathValue(value);
   };
 
   const handleKeyDownEnter = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    if (value !== '' && e.key === 'Enter') save(pageId, value);
+    if (titleValue !== '' && e.key === 'Enter') save(pageId, titleValue, pathValue);
     if (e.key === 'Escape') close();
   };
 
@@ -57,6 +65,7 @@ export const PageManagerModal = ({
         <span>Edit title</span>
         <input
           type="text"
+          name="title"
           placeholder="The title of your page"
           data-testid="edit-input"
           defaultValue={editingPages?.title}
@@ -65,7 +74,22 @@ export const PageManagerModal = ({
           onKeyDown={handleKeyDownEnter}
         />
       </label>
-      <S.PageItemButton disabled={value == ''} onClick={() => save(pageId, value)}>
+      <label>
+        <span>Edit path</span>
+        <input
+          type="text"
+          name="path"
+          placeholder="The path of your page"
+          data-testid="edit-input"
+          defaultValue={editingPages?.path}
+          onChange={handleChange}
+          onKeyDown={handleKeyDownEnter}
+        />
+      </label>
+      <S.PageItemButton
+        disabled={titleValue == '' && pathValue == ''}
+        onClick={() => save(pageId, titleValue, pathValue)}
+      >
         Save
       </S.PageItemButton>
     </S.PageManagerModal>
