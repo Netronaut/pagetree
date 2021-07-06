@@ -5,8 +5,9 @@
   "private": true,
   "scripts": {
     "start": "PORT=3000 webpack serve --mode=development",
-    "install:link": "npm link @pagio/builder",
-    "install:hard": "npm install $(npm pack ../../ | tail -1)"
+    "install:quickstart": "npm install $(npm pack ../../ | tail -1)",
+    "install:dev": "npm link @pagio/builder",
+    "strapi": "docker compose up strapi -d"
   },
   "dependencies": {
     "@pagio/builder": "^0.1.0",
