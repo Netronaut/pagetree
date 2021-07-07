@@ -4,7 +4,7 @@ import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-d
 import axios from 'axios';
 
 import { GlobalStyle } from './globalStyle';
-import { PageBuilder, PageManager } from './components';
+import { PageManager, Header, PageBuilder } from './components';
 import { ManagementContext } from './utils/context';
 import { apiUrls } from './apiUrls';
 import { PageEntity } from './types';
@@ -28,6 +28,7 @@ const App = () => {
   return (
     <ManagementContext.Provider value={{ pages, setPages }}>
       <Router>
+        <Header setShowPreview={setShowPreview} />
         <Switch>
           <Route path="/pagebuilder/:pageId">
             <PageBuilder showPreview={showPreview} onPageUpdate={handlePageUpdate} />

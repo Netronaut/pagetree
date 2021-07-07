@@ -1,7 +1,6 @@
 import React, { ReactElement, useMemo } from 'react';
 import { useState, useContext } from 'react';
 import axios from 'axios';
-import { Header } from '../Header';
 import { PageManagerModal } from './PageManagerModal';
 import { ManagementContext } from '../../utils/context';
 import { AddPageInput } from './AddPageInput';
@@ -11,7 +10,6 @@ import { PageEntity } from '../../types';
 import S from './PageManager.styles';
 
 export const PageManager = (): ReactElement => {
-  const [, setShowPreview] = useState(false);
   const { pages, setPages } = useContext(ManagementContext);
   const [editingPageId, seteditingPageId] = useState<number | undefined>(undefined);
   const createPage = (title: string, path: string) => {
@@ -74,7 +72,6 @@ export const PageManager = (): ReactElement => {
 
   return (
     <>
-      <Header setShowPreview={setShowPreview} />
       <S.PageList>
         <h3>Create a page</h3>
         <AddPageInput save={createPage} />
