@@ -1,4 +1,4 @@
-import React, { ReactElement, ReactEventHandler, useMemo } from 'react';
+import React, { ReactElement, useMemo } from 'react';
 import { useState, useContext } from 'react';
 import axios from 'axios';
 import { Header } from '../Header';
@@ -57,19 +57,22 @@ export const PageManager = (): ReactElement => {
     });
   };
 
-  const [filterPages, setFilterPages] = useState('');
+  const [filterValue, setFilterValue] = useState('');
 
   const handleFilter = (e: React.FormEvent<HTMLInputElement>) => {
     const { value } = e.currentTarget;
-    setFilterPages(value);
+    setFilterValue(value);
   };
 
   const filteredPages = useMemo(
     () =>
       pages.filter((page: TPageData) => {
-        return page.title.includes(filterPages);
+        const result = [page.title, page.path].filter((value) =>
+          new RegExp(filterValue, 'i').test(value),
+        );
+        if (result.length) return page;
       }),
-    [pages, filterPages],
+    [pages, filterValue],
   );
 
   return (
@@ -86,9 +89,9 @@ export const PageManager = (): ReactElement => {
                 type="text"
                 onChange={handleFilter}
                 placeholder="filter by title"
-                value={filterPages}
+                value={filterValue}
               />
-              <S.PageItemButton disabled={filterPages == ''} onClick={() => setFilterPages('')}>
+              <S.PageItemButton disabled={filterValue == ''} onClick={() => setFilterValue('')}>
                 x
               </S.PageItemButton>
             </S.FilterInput>
