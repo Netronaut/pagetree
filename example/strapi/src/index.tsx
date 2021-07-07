@@ -3,8 +3,7 @@ import ReactDOM from 'react-dom';
 import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom';
 import axios from 'axios';
 import { GlobalStyle } from './globalStyle';
-import { PageManager } from './components/PageManager';
-import { PagebuilderPage } from './components/PagebuilderPage';
+import { PageBuilder, PageManager } from './components';
 import { ManagementContext } from './utils/context';
 import { apiUrls } from './apiUrls';
 import { TPageData } from './types';
@@ -29,7 +28,7 @@ const App = () => {
     <ManagementContext.Provider value={{ pages, setPages }}>
       <Router>
         <Switch>
-          <Route path="/pagebuilder/:pageid" component={PagebuilderPage} />
+          <Route path="/pagebuilder/:pageid" component={PageBuilder} />
           <Route path="/" exact component={PageManager} />
           <Route path="*">
             <Redirect to="/" />

@@ -1,18 +1,18 @@
 import React, { ReactElement, useState, useContext, useEffect } from 'react';
 import { match } from 'react-router';
 import { Builder, TPage } from '@pagio/builder';
-import { components, componentGroups } from '../../catalog';
-import { Header } from '../Header';
-import { ManagementContext } from '../../utils/context';
 import axios from 'axios';
+import { components, componentGroups } from '../../catalog';
+import { ManagementContext } from '../../utils/context';
 import { apiUrls } from '../../apiUrls';
 import { TPageData } from '../../types';
+import { Header } from '../Header';
 
 interface PageBuilderProps {
   match: match<{ pageid: string }>;
 }
 
-export const PagebuilderPage = ({ match }: PageBuilderProps): ReactElement => {
+export const PageBuilder = ({ match }: PageBuilderProps): ReactElement => {
   const { pageid } = match.params;
 
   const [showPreview, setShowPreview] = useState(false);
