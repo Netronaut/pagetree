@@ -48,6 +48,16 @@ const AddPageInput = styled.div`
   }
 `;
 
+const FilterInput = styled(AddPageInput)`
+  width: 40%;
+  input {
+    flex: 1 1 100%;
+  }
+  button {
+    flex: 1 4 14ch;
+  }
+`;
+
 const PageListItem = styled.div`
   border: 1px solid transparent;
   box-sizing: border-box;
@@ -181,6 +191,7 @@ const PageManagerModal = styled.div`
 export default {
   PageList,
   AddPageInput,
+  FilterInput,
   PageListItem,
   PageManagerModal,
   PageItemTitle,

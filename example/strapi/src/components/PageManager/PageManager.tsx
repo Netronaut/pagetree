@@ -82,7 +82,17 @@ export const PageManager = (): ReactElement => {
         {(pages.length > 0 && (
           <>
             <h3>Your pages</h3>
-            <input type="text" onChange={handleFilter} />
+            <S.FilterInput>
+              <input
+                type="text"
+                onChange={handleFilter}
+                placeholder="filter by title"
+                value={filterPages}
+              />
+              <S.PageItemButton disabled={filterPages == ''} onClick={() => setFilterPages('')}>
+                x
+              </S.PageItemButton>
+            </S.FilterInput>
             {filteredPages.map((page: TPageData) => (
               <PageListItem
                 remove={handleRemove}
