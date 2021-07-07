@@ -1,20 +1,20 @@
 import React, { ReactElement } from 'react';
 import { useEffect, useRef, useState } from 'react';
-import S from './PageManager.styles';
 import { PageEntity } from '../../types';
 import { useTapOutside } from './hooks';
+import S from './PageManager.styles';
 
 interface PageManagerModalProps {
   pageId: number;
   pages: PageEntity[];
-  close: () => void;
-  onSave: (id: number, title: string, path: string) => void;
+  onClose: () => void;
+  onSave: ({ id, title, path }: { id: number; title: string; path: string }) => void;
 }
 
 export const PageManagerModal = ({
   pageId,
   pages,
-  close,
+  onClose,
   onSave,
 }: PageManagerModalProps): ReactElement => {
   const [editingPages, setEditingPage] = useState<PageEntity | undefined>(undefined);
@@ -44,13 +44,14 @@ export const PageManagerModal = ({
   };
 
   const handleKeyDownEnter = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    if (titleValue !== '' && e.key === 'Enter') onSave(pageId, titleValue, pathValue);
-    if (e.key === 'Escape') close();
+    if (titleValue !== '' && e.key === 'Enter')
+      onSave({ id: pageId, title: titleValue, path: pathValue });
+    if (e.key === 'Escape') onClose();
   };
 
   return (
     <S.PageManagerModal ref={wrapperRef} data-testid="edit-modal">
-      <button onClick={close}>x</button>
+      <button onClick={onClose}>x</button>
       <label>
         <span>Edit title</span>
         <input
@@ -78,7 +79,7 @@ export const PageManagerModal = ({
       </label>
       <S.PageItemButton
         disabled={titleValue == '' && pathValue == ''}
-        onClick={() => onSave(pageId, titleValue, pathValue)}
+        onClick={() => onSave({ id: pageId, title: titleValue, path: pathValue })}
       >
         Save
       </S.PageItemButton>

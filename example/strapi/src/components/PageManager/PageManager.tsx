@@ -67,7 +67,7 @@ export const PageManager = (): ReactElement => {
             </S.FilterInput>
             {filteredPages.map((page: PageEntity) => (
               <PageListItem
-                remove={handleRemove}
+                onRemove={handleRemove}
                 onEdit={(id: number) => setEditingPageId(id)}
                 key={page.id}
                 page={page}
@@ -78,11 +78,12 @@ export const PageManager = (): ReactElement => {
           </>
         )}
       </S.PageList>
+
       {editingPageId && (
         <PageManagerModal
           pageId={editingPageId}
           pages={pages}
-          close={() => setEditingPageId(null)}
+          onClose={() => setEditingPageId(null)}
           onSave={handleSave}
         />
       )}

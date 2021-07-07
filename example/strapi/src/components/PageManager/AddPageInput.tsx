@@ -3,14 +3,14 @@ import slugify from 'slugify';
 import S from './PageManager.styles';
 
 interface AddPageInputProps {
-  onSave: (title: string, path: string) => void;
+  onSave: ({ title, path }: { title: string; path: string }) => void;
 }
 
 export const AddPageInput = ({ onSave }: AddPageInputProps): ReactElement => {
   const [title, setTitle] = useState('');
 
   const save = () => {
-    onSave(title, slugify(title));
+    onSave({ title, path: slugify(title) });
     setTitle('');
   };
 
