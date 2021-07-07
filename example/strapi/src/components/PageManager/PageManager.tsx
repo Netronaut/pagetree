@@ -6,7 +6,6 @@ import { PageManagerModal } from './PageManagerModal';
 import { ManagementContext } from '../../utils/context';
 import { AddPageInput } from './AddPageInput';
 import { apiUrls } from '../../apiUrls';
-import { createUrlFromText } from '../../utils';
 import { PageListItem } from './PageListItem';
 import { TPageData } from '../../types';
 import S from './PageManager.styles';
@@ -15,11 +14,11 @@ export const PageManager = (): ReactElement => {
   const [, setShowPreview] = useState(false);
   const { pages, setPages } = useContext(ManagementContext);
   const [editingPageId, seteditingPageId] = useState<number | undefined>(undefined);
-  const createPage = (title: string, link: string) => {
+  const createPage = (title: string, path: string) => {
     axios
       .post(apiUrls.pages, {
         title,
-        link,
+        path,
       })
       .then((response) => {
         const copyPages = pages.slice();
@@ -34,12 +33,12 @@ export const PageManager = (): ReactElement => {
     seteditingPageId(undefined);
   };
 
-  const handleSaveEdit = (id: number, value: string) => {
+  const handleSaveEdit = (id: number, title: string, path: string) => {
     seteditingPageId(undefined);
     axios
       .put(`${apiUrls.pages}/${id}`, {
-        title: value,
-        link: createUrlFromText(value),
+        title,
+        path,
       })
       .then((response) => {
         const copyPages = pages.slice();

@@ -127,6 +127,7 @@ const PageManagerModal = styled.div`
   background: #fafafa;
   padding: 20px;
   display: flex;
+  flex-direction: column;
   place-items: center;
   button:first-child {
     position: absolute;
@@ -167,14 +168,15 @@ const PageManagerModal = styled.div`
     flex: 1 0 calc(100% - 20ch);
   }
   label span {
+    display: block;
     color: #aaa;
     font-size: 11px;
+    margin: 15px 5px 5px;
   }
   button:last-child {
-    margin-top: 14px;
-    flex: 1 0 20ch;
-    right: 0;
-    height: 38px;
+    margin-top: 24px;
+    width: calc(60% - 20ch);
+    max-height: 44px;
   }
 `;
 
