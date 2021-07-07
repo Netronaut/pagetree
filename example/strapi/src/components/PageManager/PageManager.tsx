@@ -1,4 +1,4 @@
-import React, { ReactElement } from 'react';
+import React, { ReactElement, ReactEventHandler, useMemo } from 'react';
 import { useState, useContext } from 'react';
 import axios from 'axios';
 import { Header } from '../Header';
@@ -58,6 +58,21 @@ export const PageManager = (): ReactElement => {
     });
   };
 
+  const [filterPages, setFilterPages] = useState('');
+
+  const handleFilter = (e: React.FormEvent<HTMLInputElement>) => {
+    const { value } = e.currentTarget;
+    setFilterPages(value);
+  };
+
+  const filteredPages = useMemo(
+    () =>
+      pages.filter((page: TPageData) => {
+        return page.title.includes(filterPages);
+      }),
+    [pages, filterPages],
+  );
+
   return (
     <>
       <Header setShowPreview={setShowPreview} />
@@ -67,7 +82,8 @@ export const PageManager = (): ReactElement => {
         {(pages.length > 0 && (
           <>
             <h3>Your pages</h3>
-            {pages.map((page: TPageData) => (
+            <input type="text" onChange={handleFilter} />
+            {filteredPages.map((page: TPageData) => (
               <PageListItem
                 remove={handleRemove}
                 openEdit={handleOpenEdit}
