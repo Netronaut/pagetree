@@ -1,10 +1,10 @@
 import React, { ReactElement } from 'react';
 import S from './PageManager.styles';
 import { Link } from 'react-router-dom';
-import { TPageData } from '../../types';
+import { PageEntity } from '../../types';
 
 interface PageListItemProps {
-  page: TPageData;
+  page: PageEntity;
   remove: (id: number) => void;
   openEdit: (id: number) => void;
 }

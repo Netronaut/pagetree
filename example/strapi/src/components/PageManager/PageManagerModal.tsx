@@ -1,11 +1,11 @@
 import React, { ReactElement } from 'react';
 import { useEffect, useRef, useState } from 'react';
 import S from './PageManager.styles';
-import { TPageData } from '../../types';
+import { PageEntity } from '../../types';
 
 interface PageManagerModalProps {
   pageId: number;
-  pages: TPageData[];
+  pages: PageEntity[];
   close: () => void;
   save: (id: number, title: string, path: string) => void;
 }
@@ -27,7 +27,7 @@ export const PageManagerModal = ({
   close,
   save,
 }: PageManagerModalProps): ReactElement => {
-  const [editingPages, setEditingPage] = useState<TPageData | undefined>(undefined);
+  const [editingPages, setEditingPage] = useState<PageEntity | undefined>(undefined);
 
   useEffect(() => {
     const currentPages = pages.find((page) => {

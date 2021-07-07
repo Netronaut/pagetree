@@ -1,9 +1,9 @@
 import { createContext } from 'react';
-import { TPageData } from '../types';
+import { PageEntity } from '../types';
 
 type ManagementContextValue = {
-  pages: TPageData[];
-  setPages: (pageData: TPageData[]) => void;
+  pages: PageEntity[];
+  setPages: (pageData: PageEntity[]) => void;
 };
 
 export const ManagementContext = createContext<ManagementContextValue>({

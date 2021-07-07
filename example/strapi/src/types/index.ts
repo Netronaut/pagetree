@@ -1,8 +1,8 @@
-import { TPage } from '@pagio/builder/dist/types';
+import { PageStructure } from '@pagio/builder/dist/types';
 
-export type TPageData = {
+export interface PageEntity {
   id: number;
   title: string;
   path: string;
-  pageContent: TPage;
-};
+  pageContent: PageStructure;
+}

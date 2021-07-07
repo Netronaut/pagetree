@@ -7,7 +7,7 @@ import { ManagementContext } from '../../utils/context';
 import { AddPageInput } from './AddPageInput';
 import { apiUrls } from '../../apiUrls';
 import { PageListItem } from './PageListItem';
-import { TPageData } from '../../types';
+import { PageEntity } from '../../types';
 import S from './PageManager.styles';
 
 export const PageManager = (): ReactElement => {
@@ -92,7 +92,7 @@ export const PageManager = (): ReactElement => {
                 x
               </S.PageItemButton>
             </S.FilterInput>
-            {filteredPages.map((page: TPageData) => (
+            {filteredPages.map((page: PageEntity) => (
               <PageListItem
                 remove={handleRemove}
                 openEdit={handleOpenEdit}
