@@ -5,7 +5,7 @@ import axios from 'axios';
 
 import { GlobalStyle } from './globalStyle';
 import { PageManager, Header, PageBuilder } from './components';
-import { ManagementContext } from './utils/context';
+import { ManagementContext } from './context';
 import { apiUrls } from './apiUrls';
 import { PageEntity } from './types';
 

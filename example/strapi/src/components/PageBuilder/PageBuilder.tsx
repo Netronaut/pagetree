@@ -2,7 +2,7 @@ import React, { ReactElement, useContext, useMemo } from 'react';
 import { useParams } from 'react-router';
 import { Builder } from '@pagio/builder';
 import { components, componentGroups } from '../../catalog';
-import { ManagementContext } from '../../utils/context';
+import { ManagementContext } from '../../context';
 import { PageEntity } from '../../types';
 
 interface PageBuilderProps {

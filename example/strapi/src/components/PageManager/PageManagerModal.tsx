@@ -7,7 +7,7 @@ interface PageManagerModalProps {
   pageId: number;
   pages: PageEntity[];
   close: () => void;
-  save: (id: number, title: string, path: string) => void;
+  onSave: (id: number, title: string, path: string) => void;
 }
 
 const handleTapOutside = (ref: React.RefObject<HTMLInputElement>, close: () => void) => {
@@ -25,7 +25,7 @@ export const PageManagerModal = ({
   pageId,
   pages,
   close,
-  save,
+  onSave,
 }: PageManagerModalProps): ReactElement => {
   const [editingPages, setEditingPage] = useState<PageEntity | undefined>(undefined);
 
@@ -54,7 +54,7 @@ export const PageManagerModal = ({
   };
 
   const handleKeyDownEnter = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    if (titleValue !== '' && e.key === 'Enter') save(pageId, titleValue, pathValue);
+    if (titleValue !== '' && e.key === 'Enter') onSave(pageId, titleValue, pathValue);
     if (e.key === 'Escape') close();
   };
 
@@ -88,7 +88,7 @@ export const PageManagerModal = ({
       </label>
       <S.PageItemButton
         disabled={titleValue == '' && pathValue == ''}
-        onClick={() => save(pageId, titleValue, pathValue)}
+        onClick={() => onSave(pageId, titleValue, pathValue)}
       >
         Save
       </S.PageItemButton>
