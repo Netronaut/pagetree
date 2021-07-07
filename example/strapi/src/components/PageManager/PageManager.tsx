@@ -78,7 +78,7 @@ export const PageManager = (): ReactElement => {
       <S.PageList>
         <h3>Create a page</h3>
         <AddPageInput save={createPage} />
-        {(pages.length > 0 && (
+        {pages.length > 0 && (
           <>
             <h3>Your pages</h3>
             <S.FilterInput>
@@ -103,7 +103,7 @@ export const PageManager = (): ReactElement => {
 
             <p>{pages.length == 1 ? '1 page' : pages.length + ' pages'}</p>
           </>
-        )) || <p>No pages available!</p>}
+        )}
       </S.PageList>
       {editingPageId && (
         <PageManagerModal
