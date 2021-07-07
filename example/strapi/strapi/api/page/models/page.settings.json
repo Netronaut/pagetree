@@ -15,7 +15,7 @@
     "title": {
       "type": "string"
     },
-    "link": {
+    "path": {
       "type": "string"
     },
     "pageContent": {

@@ -16,7 +16,7 @@ export const PagebuilderPage = (): ReactElement => {
 
   useEffect(() => {
     const currentPageTitle = location.pathname.split('/')[2];
-    const currentPage = pages.find((page) => page.link === `/${currentPageTitle}`);
+    const currentPage = pages.find((page) => page.path === `/${currentPageTitle}`);
     setPage(currentPage);
     currentPage?.pageContent && setPageContent(currentPage?.pageContent);
   }, [pages]);
