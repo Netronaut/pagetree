@@ -11,11 +11,13 @@ import S from './PageManager.styles';
 
 export const PageManager = (): ReactElement => {
   const { pages, setPages } = useContext(ManagementContext);
-  const [editingPageId, setEditingPageId] = useState<number | null>(null);
+  const [selectedPage, setSelectedPage] = useState<PageEntity | null>(null);
   const [filterValue, setFilterValue] = useState('');
 
-  const handleSave = async ({ id, title, path }: { id?: number; title: string; path: string }) => {
-    setEditingPageId(null);
+  const handleSave = async (page: PageEntity) => {
+    const { id, title, path } = page;
+
+    setSelectedPage(null);
 
     const method = id ? 'put' : 'post';
     const url = [apiUrls.pages];
@@ -33,9 +35,9 @@ export const PageManager = (): ReactElement => {
     }
   };
 
-  const handleRemove = async (id: number) => {
-    const response = await axios.delete(`${apiUrls.pages}/${id}`);
-    setPages(pages.filter((page) => page.id !== response.data.id));
+  const handleRemove = async (page: PageEntity) => {
+    const response = await axios.delete(`${apiUrls.pages}/${page.id}`);
+    setPages(pages.filter(({ id }) => id !== response.data.id));
   };
 
   const filteredPages = useMemo(
@@ -67,8 +69,8 @@ export const PageManager = (): ReactElement => {
             </S.FilterInput>
             {filteredPages.map((page: PageEntity) => (
               <PageListItem
-                onRemove={handleRemove}
-                onEdit={(id: number) => setEditingPageId(id)}
+                onRemove={(page) => handleRemove(page)}
+                onEdit={(page) => setSelectedPage(page)}
                 key={page.id}
                 page={page}
               />
@@ -79,11 +81,10 @@ export const PageManager = (): ReactElement => {
         )}
       </S.PageList>
 
-      {editingPageId && (
+      {selectedPage !== null && (
         <PageManagerModal
-          pageId={editingPageId}
-          pages={pages}
-          onClose={() => setEditingPageId(null)}
+          page={selectedPage}
+          onClose={() => setSelectedPage(null)}
           onSave={handleSave}
         />
       )}

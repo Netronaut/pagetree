@@ -5,8 +5,8 @@ import { PageEntity } from '../../types';
 
 interface PageListItemProps {
   page: PageEntity;
-  onRemove: (id: number) => void;
-  onEdit: (id: number) => void;
+  onRemove: (page: PageEntity) => void;
+  onEdit: (page: PageEntity) => void;
 }
 
 export const PageListItem = ({ page, onRemove, onEdit }: PageListItemProps): ReactElement => (
@@ -19,8 +19,8 @@ export const PageListItem = ({ page, onRemove, onEdit }: PageListItemProps): Rea
         </>
       </Link>
     </S.PageItemTitle>
-    <S.PageItemButton onClick={() => onEdit(page.id)}>Edit</S.PageItemButton>
-    <S.PageItemButton destructive onClick={() => onRemove(page.id)}>
+    <S.PageItemButton onClick={() => onEdit(page)}>Edit</S.PageItemButton>
+    <S.PageItemButton destructive onClick={() => onRemove(page)}>
       Remove
     </S.PageItemButton>
   </S.PageListItem>

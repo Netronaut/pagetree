@@ -1,9 +1,10 @@
 import React, { useState, ChangeEvent, ReactElement, KeyboardEvent } from 'react';
 import slugify from 'slugify';
+import { PageEntity } from '../../types';
 import S from './PageManager.styles';
 
 interface AddPageInputProps {
-  onSave: ({ title, path }: { title: string; path: string }) => void;
+  onSave: (page: PageEntity) => void;
 }
 
 export const AddPageInput = ({ onSave }: AddPageInputProps): ReactElement => {
