@@ -11,7 +11,7 @@ export const AddPageInput = ({ onSave }: AddPageInputProps): ReactElement => {
   const [title, setTitle] = useState('');
 
   const save = () => {
-    onSave({ title, path: slugify(title) });
+    onSave({ title, path: `/${slugify(title, { lower: true })}` });
     setTitle('');
   };
 
