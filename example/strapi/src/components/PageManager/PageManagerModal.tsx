@@ -2,6 +2,7 @@ import React, { ReactElement } from 'react';
 import { useEffect, useRef, useState } from 'react';
 import S from './PageManager.styles';
 import { PageEntity } from '../../types';
+import { useTapOutside } from './hooks';
 
 interface PageManagerModalProps {
   pageId: number;
@@ -9,17 +10,6 @@ interface PageManagerModalProps {
   close: () => void;
   onSave: (id: number, title: string, path: string) => void;
 }
-
-const handleTapOutside = (ref: React.RefObject<HTMLInputElement>, close: () => void) => {
-  useEffect(() => {
-    const handleClickOutside = (e: MouseEvent) => {
-      const target = e.target as HTMLDivElement;
-      if (ref && !ref.current?.contains(target)) close();
-    };
-    document.addEventListener('mousedown', handleClickOutside);
-    return () => document.removeEventListener('mousedown', handleClickOutside);
-  }, [ref]);
-};
 
 export const PageManagerModal = ({
   pageId,
@@ -45,7 +35,7 @@ export const PageManagerModal = ({
   }, [editingPages]);
 
   const wrapperRef = useRef(null);
-  handleTapOutside(wrapperRef, close);
+  useTapOutside(wrapperRef, onClose);
 
   const handleChange = (e: React.FormEvent<HTMLInputElement>) => {
     const { value, name } = e.currentTarget;
