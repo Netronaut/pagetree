@@ -12,7 +12,7 @@ interface PageListItemProps {
 export const PageListItem = ({ page, remove, openEdit }: PageListItemProps): ReactElement => (
   <S.PageListItem>
     <S.PageItemTitle>
-      <Link to={`pagebuilder${page.path}`}>
+      <Link to={`pagebuilder/${page.id}`}>
         <>
           <h4>{page.title}</h4>
           <p>{page.path}</p>
