@@ -42,7 +42,7 @@ export const PageManager = (): ReactElement => {
 
   const filteredPages = useMemo(
     () =>
-      pages.filter((page: TPageData) =>
+      pages.filter((page: PageEntity) =>
         [page.title, page.path].find((value) => new RegExp(filterValue, 'i').test(value)),
       ),
     [pages, filterValue],
