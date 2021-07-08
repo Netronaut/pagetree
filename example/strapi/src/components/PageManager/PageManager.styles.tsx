@@ -14,7 +14,6 @@ const PageList = styled.div`
 const AddPageInput = styled.div`
   --color-primary: hsla(200, 100%, 50%, 1);
   --color-secondary: hsla(0, 0%, 90%, 1);
-  postition: relative;
   display: flex;
 
   input {

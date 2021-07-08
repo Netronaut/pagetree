@@ -1,15 +1,16 @@
-import React, { ReactElement, useState } from 'react';
+import React, { ReactElement, useMemo, useState } from 'react';
 import { Direction } from './components/Direction';
 import { AddComponents } from './components/AddComponents';
 import { Item, Tree, TSide } from './utils/tree';
 import { Optional } from './types/helpers';
-import { TPage } from './types';
+import { PageStructure } from './types';
 import { TreeContext } from './utils/context';
 import { Components } from './hocs/createCatalogComponent';
 import { Catalog } from './components/Catalog';
 import { useModal } from './hooks';
 import { ConstructorScreen, DroppableContent } from './componentsStyles';
 import { RemoveDropArea } from './components/RemoveDropArea';
+import { nanoid } from 'nanoid';
 
 const makeElementVisible = (elementId: string) => {
   if (elementId) {
@@ -21,21 +22,26 @@ const makeElementVisible = (elementId: string) => {
 };
 
 export interface BuilderProps {
-  pageContent: TPage;
-  onChange: (val: TPage) => void;
+  pageContent?: PageStructure;
+  onChange: (val: PageStructure) => void;
   showPreview?: boolean;
   components?: Components;
   componentGroups?: Array<string>;
 }
 
 export const Builder = ({
-  pageContent,
+  pageContent = { _id: nanoid(6) },
   onChange,
   showPreview,
   components,
   componentGroups,
-}: BuilderProps): ReactElement | null => {
-  const setValue = (newValue: Optional<TPage>) => {
+}: BuilderProps): ReactElement => {
+  pageContent = useMemo(
+    () => (pageContent === null ? { _id: nanoid(6) } : pageContent),
+    [pageContent],
+  );
+
+  const setValue = (newValue: Optional<PageStructure>) => {
     onChange({ ...pageContent, ...newValue });
   };
 
@@ -83,18 +89,16 @@ export const Builder = ({
     newValue: string,
     userControlledId?: string,
   ) => {
-    if (pageContent) {
-      setValue({
-        config: {
-          ...(pageContent.config || {}),
-          [id]: {
-            ...(pageContent.config?.[id] || {}),
-            [field]: newValue,
-            userControlledId: userControlledId ?? '',
-          },
+    setValue({
+      config: {
+        ...(pageContent.config || {}),
+        [id]: {
+          ...(pageContent.config?.[id] || {}),
+          [field]: newValue,
+          userControlledId: userControlledId ?? '',
         },
-      });
-    }
+      },
+    });
   };
 
   const remove = (e: React.DragEvent<HTMLDivElement>) => {
@@ -106,13 +110,6 @@ export const Builder = ({
 
   const [searchValue, setSearchValue] = useState('');
   const [openedGroup, setOpenedGroup] = useState('');
-  const catalogProps = {
-    onModalClose,
-    searchValue,
-    setSearchValue,
-    openedGroup,
-    setOpenedGroup,
-  };
 
   const content = pageContent.structure ? (
     <Direction
@@ -145,7 +142,13 @@ export const Builder = ({
               {content}
             </DroppableContent>
             {isModalShown ? (
-              <Catalog {...catalogProps} />
+              <Catalog
+                onModalClose={onModalClose}
+                searchValue={searchValue}
+                setSearchValue={setSearchValue}
+                openedGroup={openedGroup}
+                setOpenedGroup={setOpenedGroup}
+              />
             ) : (
               <>
                 <AddComponents onModalShow={onModalShow} />

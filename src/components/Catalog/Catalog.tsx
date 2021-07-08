@@ -1,4 +1,4 @@
-import React, { ReactElement, useContext, useState } from 'react';
+import React, { ReactElement, useContext } from 'react';
 import { TreeContext } from '../../utils/context';
 import { Modal, ModalButton, ModalHeadline } from '../Modal';
 import { SearchIcon } from '../icons';
