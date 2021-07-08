@@ -1,32 +1,25 @@
-import React, { ReactElement } from 'react';
-import { useState } from 'react';
-import { createUrlFromText } from '../../utils';
+import React, { useState, ChangeEvent, ReactElement, KeyboardEvent } from 'react';
+import slugify from 'slugify';
+import { PageEntity } from '../../types';
 import S from './PageManager.styles';
 
 interface AddPageInputProps {
-  save: (title: string, url: string) => void;
+  onSave: (page: PageEntity) => void;
 }
 
-export const AddPageInput = ({ save }: AddPageInputProps): ReactElement => {
+export const AddPageInput = ({ onSave }: AddPageInputProps): ReactElement => {
   const [title, setTitle] = useState('');
 
-  const handleChange = (e: React.FormEvent<HTMLInputElement>) => {
-    const { value } = e.currentTarget;
-    setTitle(value);
-  };
-
-  const handleClick = () => {
-    const url = createUrlFromText(title);
-    save(title, url);
+  const save = () => {
+    onSave({ title, path: `/${slugify(title, { lower: true })}` });
     setTitle('');
   };
 
-  const handleKeyDownEnter = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    if (e.key === 'Enter' && title != '') {
-      const url = createUrlFromText(title);
-      save(title, url);
-      setTitle('');
+  const handleChange = (e: ChangeEvent<HTMLInputElement> | KeyboardEvent<HTMLInputElement>) => {
+    if ((e as KeyboardEvent<HTMLInputElement>).key === 'Enter' && title != '') {
+      return save();
     }
+    setTitle(e.currentTarget.value);
   };
 
   return (
@@ -36,9 +29,9 @@ export const AddPageInput = ({ save }: AddPageInputProps): ReactElement => {
         placeholder="Enter a title for the new page..."
         value={title}
         onChange={handleChange}
-        onKeyDown={handleKeyDownEnter}
+        onKeyDown={handleChange}
       />
-      <S.PageItemButton disabled={title == ''} onClick={handleClick}>
+      <S.PageItemButton disabled={title == ''} onClick={() => save()}>
         Add page
       </S.PageItemButton>
     </S.AddPageInput>

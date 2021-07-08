@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Builder } from '@pagio/builder';
-import type { TPage } from '@pagio/builder';
+import type { PageStructure } from '@pagio/builder';
 import { useState } from 'react';
 import { GlobalStyle } from './globalStyle';
 import { components, componentGroups } from './catalog';
@@ -9,13 +9,13 @@ import { Header } from './components/Header';
 
 const App = () => {
   const [showPreview, setShowPreview] = useState(false);
-  const [pageContent, setPageContent] = useState<TPage>({
+  const [pageContent, setPageContent] = useState<PageStructure>({
     _id: 'test-id',
     title: 'My test page',
     route: '/test',
   });
 
-  const handleUpdate = (update: TPage) => {
+  const handleUpdate = (update: PageStructure) => {
     // eslint-disable-next-line no-console
     console.log(update);
     setPageContent(update);

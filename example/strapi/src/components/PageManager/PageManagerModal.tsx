@@ -1,77 +1,52 @@
-import React, { ReactElement } from 'react';
-import { useEffect, useRef, useState } from 'react';
+import React, { ChangeEvent, ReactElement, useRef, useState, KeyboardEvent } from 'react';
+import { PageEntity } from '../../types';
+import { useTapOutside } from './hooks';
 import S from './PageManager.styles';
-import { TPageData } from '../../types';
 
 interface PageManagerModalProps {
-  pageId: number;
-  pages: TPageData[];
-  close: () => void;
-  save: (id: number, title: string, path: string) => void;
+  page: PageEntity;
+  onClose: () => void;
+  onSave: (page: PageEntity) => void;
 }
 
-const handleTapOutside = (ref: React.RefObject<HTMLInputElement>, close: () => void) => {
-  useEffect(() => {
-    const handleClickOutside = (e: MouseEvent) => {
-      const target = e.target as HTMLDivElement;
-      if (ref && !ref.current?.contains(target)) close();
-    };
-    document.addEventListener('mousedown', handleClickOutside);
-    return () => document.removeEventListener('mousedown', handleClickOutside);
-  }, [ref]);
-};
-
 export const PageManagerModal = ({
-  pageId,
-  pages,
-  close,
-  save,
+  onClose,
+  onSave,
+  ...props
 }: PageManagerModalProps): ReactElement => {
-  const [editingPages, setEditingPage] = useState<TPageData | undefined>(undefined);
-
-  useEffect(() => {
-    const currentPages = pages.find((page) => {
-      return page.id === pageId;
-    });
-    pageId && setEditingPage(currentPages);
-  }, [pageId]);
-
-  const [titleValue, setTitleValue] = useState(editingPages?.title || '');
-  const [pathValue, setPathValue] = useState(editingPages?.path || '');
-
-  useEffect(() => {
-    editingPages?.title && setTitleValue(editingPages.title);
-    editingPages?.path && setPathValue(editingPages.path);
-  }, [editingPages]);
+  const [page, setPage] = useState({ ...props.page });
 
   const wrapperRef = useRef(null);
-  handleTapOutside(wrapperRef, close);
+  useTapOutside(wrapperRef, onClose);
 
-  const handleChange = (e: React.FormEvent<HTMLInputElement>) => {
+  const handleChange = (e: KeyboardEvent<HTMLInputElement> | ChangeEvent<HTMLInputElement>) => {
     const { value, name } = e.currentTarget;
-    if (name === 'title') setTitleValue(value);
-    if (name === 'path') setPathValue(value);
-  };
 
-  const handleKeyDownEnter = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    if (titleValue !== '' && e.key === 'Enter') save(pageId, titleValue, pathValue);
-    if (e.key === 'Escape') close();
+    if ((e as KeyboardEvent<HTMLInputElement>).key === 'Enter' && page.title !== '') {
+      return onSave(page);
+    }
+
+    if ((e as KeyboardEvent<HTMLInputElement>).key === 'Escape') {
+      return onClose();
+    }
+
+    setPage({ ...page, [name]: value });
   };
 
   return (
     <S.PageManagerModal ref={wrapperRef} data-testid="edit-modal">
-      <button onClick={close}>x</button>
+      <button onClick={onClose}>x</button>
       <label>
         <span>Edit title</span>
         <input
+          autoFocus
           type="text"
           name="title"
           placeholder="The title of your page"
           data-testid="edit-input"
-          defaultValue={editingPages?.title}
+          defaultValue={page.title}
           onChange={handleChange}
-          autoFocus
-          onKeyDown={handleKeyDownEnter}
+          onKeyDown={handleChange}
         />
       </label>
       <label>
@@ -81,14 +56,14 @@ export const PageManagerModal = ({
           name="path"
           placeholder="The path of your page"
           data-testid="edit-input"
-          defaultValue={editingPages?.path}
+          defaultValue={page.path}
           onChange={handleChange}
-          onKeyDown={handleKeyDownEnter}
+          onKeyDown={handleChange}
         />
       </label>
       <S.PageItemButton
-        disabled={titleValue == '' && pathValue == ''}
-        onClick={() => save(pageId, titleValue, pathValue)}
+        disabled={page.title === '' || page.path === ''}
+        onClick={() => onSave(page)}
       >
         Save
       </S.PageItemButton>
