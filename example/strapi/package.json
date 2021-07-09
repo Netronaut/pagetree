@@ -10,8 +10,9 @@
     "strapi": "docker compose up strapi -d"
   },
   "dependencies": {
-    "@pagio/builder": "^0.1.0",
+    "@pagio/builder": "file:pagio-builder-0.1.0.tgz",
     "axios": "^0.21.1",
+    "changeset": "^0.2.6",
     "core-js": "^3.15.2",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
