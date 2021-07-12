@@ -1,6 +1,7 @@
 import React, { ReactElement, useMemo, useState } from 'react';
 import { Direction } from './components/Direction';
 import { AddComponents } from './components/AddComponents';
+import { HistoryLog } from './components/HistoryLog';
 import { Item, Tree, TSide } from './utils/tree';
 import { Optional } from './types/helpers';
 import { PageStructure } from './types';
@@ -129,6 +130,8 @@ export const Builder = ({
         componentGroups,
       }}
     >
+      <HistoryLog />
+      test
       <ConstructorScreen>
         {showPreview ? (
           content
