@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useRef, useState } from 'react';
 import { nanoid } from 'nanoid';
 import { HistoryLogContext } from '../../context';
 import { ArrowIcon } from '../icons';
@@ -9,11 +9,14 @@ export const HistoryLog: React.FC = () => {
   const { historyLog } = useContext(HistoryLogContext);
   const [isDisplayHistory, setIsDisplayHistory] = useState(true);
 
-  {
-    /* <S.HistoryWrapper isOpen={isDisplayHistory}> */
-  }
+  const ref = useRef<HTMLDivElement>(null);
+  const [height, setHeight] = useState(0);
+  useEffect(() => {
+    ref.current && setHeight(ref.current?.clientHeight);
+  }, [ref.current?.clientHeight]);
+
   return (
-    <S.HistoryWrapper isOpen={true}>
+    <S.HistoryWrapper ref={ref} height={height} isOpen={isDisplayHistory}>
       <section>
         {historyLog?.map((historyItem) => (
           <DisplayChanges key={nanoid()} historyItem={historyItem} />
@@ -21,9 +24,9 @@ export const HistoryLog: React.FC = () => {
       </section>
       <S.ShowHistoryButton
         isOpen={isDisplayHistory}
-        // onClick={() => setIsDisplayHistory(!isDisplayHistory)}
+        onClick={() => setIsDisplayHistory(!isDisplayHistory)}
       >
-        <ArrowIcon isOpen={isDisplayHistory} />
+        <ArrowIcon />
       </S.ShowHistoryButton>
     </S.HistoryWrapper>
   );

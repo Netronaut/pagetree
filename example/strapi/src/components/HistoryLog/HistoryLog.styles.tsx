@@ -1,29 +1,34 @@
 import styled from 'styled-components';
 
-const HistoryWrapper = styled.div<{ isOpen: boolean }>`
+const HistoryWrapper = styled.div<{ isOpen: boolean; height: number }>`
   position: fixed;
-  /* top: -100vh; */
-  top: ${({ isOpen }) => (isOpen ? '0' : '-100vh')};
+  top: ${({ isOpen, height }) => (isOpen ? '0' : -height + 'px')};
   width: 100%;
-  max-height: 100vh;
+  max-height: 80vh;
   z-index: 10;
   background: #d5d7d8eb;
   color: #3d3d3d;
+  transition: all;
   section {
+    max-height: 80vh;
     overflow-y: auto;
   }
 `;
 
 export const ShowHistoryButton = styled.button<{ isOpen: boolean }>`
-  background: #69bbfd;
-  border-radius: 50%;
   position: absolute;
+  right: calc(50% - 15px);
+  z-index: -1;
   bottom: -16px;
-  right: calc(50% - 3.5px);
+  background: #d5d7d8eb;
+  border-radius: 50%;
+  border: none;
+  width: 30px;
+  height: 30px;
   svg {
     position: absolute;
-    top: 0;
-    left: 0;
+    top: 16px;
+    left: 6px;
     transform: rotate(180deg);
     transition: transform 0.2s;
     ${({ isOpen }) =>
@@ -32,25 +37,6 @@ export const ShowHistoryButton = styled.button<{ isOpen: boolean }>`
       transform: rotate(0deg);
       transition: transform 0.2s;
     `}
-  }
-`;
-
-const HistoryItem = styled.div`
-  position: relative;
-  border: 1px solid transparent;
-  box-sizing: border-box;
-  padding: 4px 35px 4px 15px;
-  border-radius: 5px;
-  display: flex;
-  flex-wrap: wrap;
-  flex-direction: column;
-  justify-content: flex-start;
-  background: #69bbfd;
-  :hover {
-    border: 1px solid hsla(201, 100%, 47%, 0.2);
-  }
-  span {
-    display: block;
   }
 `;
 
@@ -116,7 +102,6 @@ export const HistoryGroupItem = styled.ul`
 export default {
   HistoryWrapper,
   HistoryGroup,
-  HistoryItem,
   HistoryGroupItem,
   ShowHistoryButton,
 };
