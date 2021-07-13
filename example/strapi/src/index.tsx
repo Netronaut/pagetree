@@ -4,21 +4,17 @@ import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-d
 import axios from 'axios';
 
 import { GlobalStyle } from './globalStyle';
-import { PageManager, Header, PageBuilder } from './components';
+import { PageManager, Header, PageBuilder, HistoryLog } from './components';
 import { HistoryLogContext, ManagementContext } from './context';
 import { apiUrls } from './apiUrls';
-import { PageEntity } from './types';
+import { PageEntity, HistoryLogItem } from './types';
 import diff from 'changeset';
+import moment from 'moment';
 
 const App = () => {
   const [pages, setPages] = useState<PageEntity[]>([]);
   const [showPreview, setShowPreview] = useState(false);
-  const [historyLog, setHistoryLog] = useState([]);
-
-  // const writeHistory = (pages: PageEntity[], oldPages: PageEntity[]) => {
-  //   console.log(' pages---', pages, diff(pages, oldPages));
-  //   setHistoryLog(diff(pages, oldPages));
-  // };
+  const [historyLog, setHistoryLog] = useState<HistoryLogItem[]>([]);
 
   useEffect(() => {
     axios.get(apiUrls.pages).then((response) => setPages(response.data));
@@ -29,16 +25,21 @@ const App = () => {
     axios.put(`${apiUrls.pages}/${id}`, {
       pageContent,
     });
-    const p = pages.map((item) => (item.id === id ? page : item));
-    setPages(p);
-    // pageContent && writeHistory(pages, p);
-    setHistoryLog(diff(pages, p));
-    console.log(diff(pages, p));
+    const mapedPages = pages.map((item) => (item.id === id ? page : item));
+    setPages(mapedPages);
+    const copyHistory: HistoryLogItem[] = historyLog.slice();
+    const historyLogItem: HistoryLogItem = {
+      date: moment().format('YYYY MM DD hh:mm:ss'),
+      change: diff(pages, mapedPages),
+    };
+    copyHistory.push(historyLogItem);
+    setHistoryLog(copyHistory);
   };
 
   return (
     <ManagementContext.Provider value={{ pages, setPages }}>
       <HistoryLogContext.Provider value={{ historyLog, setHistoryLog }}>
+        <HistoryLog />
         <Router>
           <Header setShowPreview={setShowPreview} />
           <Switch>
