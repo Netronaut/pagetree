@@ -1,6 +1,5 @@
-import { createContext } from 'react';
-import { PageEntity } from './types';
-// import diff from 'changeset';
+import { createContext, Dispatch, SetStateAction } from 'react';
+import { PageEntity, HistoryLogItem } from './types';
 
 type ManagementContextValue = {
   pages: PageEntity[];
@@ -13,8 +12,8 @@ export const ManagementContext = createContext<ManagementContextValue>({
 });
 
 type HistoryLogContextValue = {
-  historyLog: any[];
-  setHistoryLog: (historyLog: PageEntity[]) => undefined;
+  historyLog: HistoryLogItem[];
+  setHistoryLog: Dispatch<SetStateAction<HistoryLogItem[]>>;
 };
 
 export const HistoryLogContext = createContext<HistoryLogContextValue>({
