@@ -8,8 +8,12 @@ const HistoryWrapper = styled.div<{ isOpen: boolean; height: number }>`
   z-index: 10;
   background: #d5d7d8fa;
   color: #3d3d3d;
-  padding: 5px 25px;
+  padding: 8px 25px;
   transition: all;
+  h3 {
+    margin: 7px 0;
+    padding: 0 15px;
+  }
   section {
     max-height: 80vh;
     overflow-y: scroll;
@@ -57,7 +61,7 @@ export const ShowHistoryButton = styled.button<{ isOpen: boolean }>`
 `;
 
 const DetailsOfChanges = styled.div<{ isOpen: boolean }>`
-  margin-top: 4px;
+  margin-top: 8px;
   color: #6a6a6a;
   font-size: 16px;
   font-weight: 500;
