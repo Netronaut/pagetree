@@ -12,7 +12,7 @@ export const DetailsOfChanges: React.FC<Props> = ({ historyItem }) => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <S.HistoryGroup onClick={() => setIsOpen(!isOpen)} isOpen={isOpen}>
+    <S.DetailsOfChanges onClick={() => setIsOpen(!isOpen)} isOpen={isOpen}>
       <header>
         {historyItem.date}
         <button>
@@ -20,7 +20,7 @@ export const DetailsOfChanges: React.FC<Props> = ({ historyItem }) => {
         </button>
       </header>
       {isOpen && (
-        <S.HistoryGroupItem>
+        <S.DetailsList>
           {historyItem.change.map((item) => {
             const { type, key, value } = item;
             return (
@@ -31,8 +31,8 @@ export const DetailsOfChanges: React.FC<Props> = ({ historyItem }) => {
               </li>
             );
           })}
-        </S.HistoryGroupItem>
+        </S.DetailsList>
       )}
-    </S.HistoryGroup>
+    </S.DetailsOfChanges>
   );
 };

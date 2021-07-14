@@ -49,7 +49,7 @@ export const ShowHistoryButton = styled.button<{ isOpen: boolean }>`
   }
 `;
 
-const HistoryGroup = styled.div<{ isOpen: boolean }>`
+const DetailsOfChanges = styled.div<{ isOpen: boolean }>`
   margin-top: 4px;
   border: ${({ isOpen }) => (isOpen ? '1px solid #F9F9F9' : 'none')};
   border-radius: 8px;
@@ -94,7 +94,7 @@ const HistoryGroup = styled.div<{ isOpen: boolean }>`
   }
 `;
 
-export const HistoryGroupItem = styled.ul`
+export const DetailsList = styled.ul`
   padding: 0;
   margin-bottom: 3px;
   li {
@@ -110,7 +110,7 @@ export const HistoryGroupItem = styled.ul`
 
 export default {
   HistoryWrapper,
-  HistoryGroup,
-  HistoryGroupItem,
+  DetailsOfChanges,
+  DetailsList,
   ShowHistoryButton,
 };
