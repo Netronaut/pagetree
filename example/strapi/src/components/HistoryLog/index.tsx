@@ -7,7 +7,7 @@ import { HistoryLogItem } from '../../types';
 
 export const HistoryLog: React.FC = () => {
   const { historyLog } = useContext(HistoryLogContext);
-  const [isDisplayHistory, setIsDisplayHistory] = useState(true);
+  const [isDisplayHistory, setIsDisplayHistory] = useState(false);
 
   const ref = useRef<HTMLDivElement>(null);
   const [height, setHeight] = useState(0);
@@ -18,6 +18,7 @@ export const HistoryLog: React.FC = () => {
   return (
     <S.HistoryWrapper ref={ref} height={height} isOpen={isDisplayHistory}>
       <section>
+        <h3>History Log</h3>
         {historyLog?.map((historyItem) => (
           <DisplayChanges key={nanoid()} historyItem={historyItem} />
         ))}
