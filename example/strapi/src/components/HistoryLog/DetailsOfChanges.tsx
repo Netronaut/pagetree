@@ -12,8 +12,8 @@ export const DetailsOfChanges: React.FC<Props> = ({ historyItem }) => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <S.DetailsOfChanges onClick={() => setIsOpen(!isOpen)} isOpen={isOpen}>
-      <header>
+    <S.DetailsOfChanges isOpen={isOpen}>
+      <header onClick={() => setIsOpen(!isOpen)}>
         {historyItem.date}
         <button>
           <ArrowIcon isOpen={isOpen} />
