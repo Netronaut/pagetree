@@ -16,7 +16,7 @@ export const DetailsOfChanges: React.FC<Props> = ({ historyItem }) => {
       <header onClick={() => setIsOpen(!isOpen)}>
         {historyItem.date}
         <button>
-          <ArrowIcon isOpen={isOpen} />
+          <ArrowIcon />
         </button>
       </header>
       {isOpen && (
