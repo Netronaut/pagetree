@@ -34,6 +34,13 @@ export const ShowHistoryButton = styled.button<{ isOpen: boolean }>`
   border: none;
   width: 30px;
   height: 30px;
+  transition: all 200ms;
+  ${({ isOpen }) =>
+    !isOpen &&
+    `
+    opacity: 0.3;
+    :hover {opacity: 1;}
+    `}
   svg {
     position: absolute;
     top: 16px;
@@ -53,21 +60,21 @@ const DetailsOfChanges = styled.div<{ isOpen: boolean }>`
   margin-top: 4px;
   border: ${({ isOpen }) => (isOpen ? '1px solid #F9F9F9' : 'none')};
   border-radius: 8px;
-  overflow: hidden;
-  header {
-    position: relative;
-    background: #f9f9f9;
-    padding: 17px 44px 16px 16px;
-    color: #6a6a6a;
-    font-size: 16px;
-    font-weight: 500;
-    line-height: 19px;
-    ${({ isOpen }) =>
-      !isOpen &&
-      `
-      background: #69BBFD;
-      color: #F9F9F9;
+  background: #f9f9f9;
+  padding: 17px 44px 16px 16px;
+  color: #6a6a6a;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 19px;
+  ${({ isOpen }) =>
+    !isOpen &&
+    `
+    background: #69BBFD;
+    color: #F9F9F9;
     `}
+  header {
+    cursor: pointer;
+    position: relative;
   }
   button {
     position: absolute;
