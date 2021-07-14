@@ -58,23 +58,17 @@ export const ShowHistoryButton = styled.button<{ isOpen: boolean }>`
 
 const DetailsOfChanges = styled.div<{ isOpen: boolean }>`
   margin-top: 4px;
-  border: ${({ isOpen }) => (isOpen ? '1px solid #F9F9F9' : 'none')};
-  border-radius: 8px;
-  background: #f9f9f9;
-  padding: 17px 44px 16px 16px;
   color: #6a6a6a;
   font-size: 16px;
   font-weight: 500;
   line-height: 19px;
-  ${({ isOpen }) =>
-    !isOpen &&
-    `
-    background: #69BBFD;
-    color: #F9F9F9;
-    `}
   header {
-    cursor: pointer;
     position: relative;
+    cursor: pointer;
+    border-radius: ${({ isOpen }) => (isOpen ? '8px 8px 0 0' : '8px')};
+    background: #69bbfd;
+    color: #f9f9f9;
+    padding: 17px 44px 16px 16px;
   }
   button {
     position: absolute;
@@ -99,11 +93,15 @@ const DetailsOfChanges = styled.div<{ isOpen: boolean }>`
     `}
     }
   }
+  ul {
+    border-radius: ${({ isOpen }) => (isOpen ? '0 0 8px 8px' : 'none')};
+  }
 `;
 
 export const DetailsList = styled.ul`
-  padding: 0;
-  margin-bottom: 3px;
+  margin: 0;
+  padding: 6px 0;
+  background: #f9f9f9;
   li {
     margin-bottom: 3px;
     display: grid;
