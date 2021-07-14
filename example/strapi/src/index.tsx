@@ -5,7 +5,7 @@ import axios from 'axios';
 
 import { GlobalStyle } from './globalStyle';
 import { PageManager, Header, PageBuilder, HistoryLog } from './components';
-import { HistoryLogContext, ManagementContext } from './context';
+import { ManagementContext } from './context';
 import { apiUrls } from './apiUrls';
 import { PageEntity, HistoryLogItem } from './types';
 import diff from 'changeset';
@@ -38,22 +38,20 @@ const App = () => {
 
   return (
     <ManagementContext.Provider value={{ pages, setPages }}>
-      <HistoryLogContext.Provider value={{ historyLog, setHistoryLog }}>
-        <HistoryLog />
-        <Router>
-          <Header setShowPreview={setShowPreview} />
-          <Switch>
-            <Route path="/pagebuilder/:pageId">
-              <PageBuilder showPreview={showPreview} onPageUpdate={handlePageUpdate} />
-            </Route>
-            <Route path="/" exact component={PageManager} />
-            <Route path="*">
-              <Redirect to="/" />
-            </Route>
-          </Switch>
-        </Router>
-        <GlobalStyle />
-      </HistoryLogContext.Provider>
+      <HistoryLog historyLog={historyLog} />
+      <Router>
+        <Header setShowPreview={setShowPreview} />
+        <Switch>
+          <Route path="/pagebuilder/:pageId">
+            <PageBuilder showPreview={showPreview} onPageUpdate={handlePageUpdate} />
+          </Route>
+          <Route path="/" exact component={PageManager} />
+          <Route path="*">
+            <Redirect to="/" />
+          </Route>
+        </Switch>
+      </Router>
+      <GlobalStyle />
     </ManagementContext.Provider>
   );
 };

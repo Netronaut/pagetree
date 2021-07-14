@@ -1,12 +1,15 @@
-import React, { useContext, useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { nanoid } from 'nanoid';
-import { HistoryLogContext } from '../../context';
+import { HistoryLogItem } from '../../types';
 import { ArrowIcon } from '../icons';
 import S from './HistoryLog.styles';
 import { DetailsOfChanges } from './DetailsOfChanges';
 
-export const HistoryLog: React.FC = () => {
-  const { historyLog } = useContext(HistoryLogContext);
+type Props = {
+  historyLog: HistoryLogItem[];
+};
+
+export const HistoryLog: React.FC<Props> = ({ historyLog }) => {
   const [isDisplayHistory, setIsDisplayHistory] = useState(false);
 
   const ref = useRef<HTMLDivElement>(null);
