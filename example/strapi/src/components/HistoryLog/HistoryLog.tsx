@@ -4,6 +4,7 @@ import { HistoryLogItem } from '../../types';
 import { ArrowIcon } from '../icons';
 import S from './HistoryLog.styles';
 import { DetailsOfChanges } from './DetailsOfChanges';
+import { useTapOutside } from '../PageManager/hooks';
 
 type Props = {
   historyLog: HistoryLogItem[];
@@ -17,6 +18,8 @@ export const HistoryLog: React.FC<Props> = ({ historyLog }) => {
   useEffect(() => {
     ref.current && setHeight(ref.current?.clientHeight);
   }, [ref.current?.clientHeight]);
+
+  useTapOutside(ref, () => setIsDisplayHistory(false));
 
   return (
     <S.HistoryWrapper ref={ref} height={height} isOpen={isDisplayHistory}>
