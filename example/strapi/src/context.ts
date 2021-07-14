@@ -1,5 +1,5 @@
-import { createContext, Dispatch, SetStateAction } from 'react';
-import { PageEntity, HistoryLogItem } from './types';
+import { createContext } from 'react';
+import { PageEntity } from './types';
 
 type ManagementContextValue = {
   pages: PageEntity[];
@@ -9,14 +9,4 @@ type ManagementContextValue = {
 export const ManagementContext = createContext<ManagementContextValue>({
   pages: [],
   setPages: () => undefined,
-});
-
-type HistoryLogContextValue = {
-  historyLog: HistoryLogItem[];
-  setHistoryLog: Dispatch<SetStateAction<HistoryLogItem[]>>;
-};
-
-export const HistoryLogContext = createContext<HistoryLogContextValue>({
-  historyLog: [],
-  setHistoryLog: () => undefined,
 });
