@@ -3,15 +3,24 @@ import styled from 'styled-components';
 const HistoryWrapper = styled.div<{ isOpen: boolean; height: number }>`
   position: fixed;
   top: ${({ isOpen, height }) => (isOpen ? '0' : -height + 'px')};
-  width: 100%;
+  width: calc(100% - 25px);
   max-height: 80vh;
   z-index: 10;
-  background: #d5d7d8eb;
+  background: #d5d7d8fa;
   color: #3d3d3d;
+  padding: 5px 25px;
   transition: all;
   section {
     max-height: 80vh;
-    overflow-y: auto;
+    overflow-y: scroll;
+    padding-right: 11px;
+    ::-webkit-scrollbar {
+      width: 4px;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #69bbfd;
+      border-radius: 3px;
+    }
   }
 `;
 
@@ -20,7 +29,7 @@ export const ShowHistoryButton = styled.button<{ isOpen: boolean }>`
   right: calc(50% - 15px);
   z-index: -1;
   bottom: -16px;
-  background: #d5d7d8eb;
+  background: #d5d7d8fa;
   border-radius: 50%;
   border: none;
   width: 30px;
@@ -41,7 +50,7 @@ export const ShowHistoryButton = styled.button<{ isOpen: boolean }>`
 `;
 
 const HistoryGroup = styled.div<{ isOpen: boolean }>`
-  margin: 4px 16px;
+  margin-top: 4px;
   border: ${({ isOpen }) => (isOpen ? '1px solid #F9F9F9' : 'none')};
   border-radius: 8px;
   overflow: hidden;
