@@ -1,20 +1,9 @@
-import { PageStructure } from '@pagio/builder/dist/types';
-import { ProductionComponentProps } from '@pagio/builder';
+import { PageStructure, PageHistory } from '@pagio/builder/dist/types';
 
 export interface PageEntity {
   id?: number;
   title: string;
   path: string;
   pageContent?: PageStructure;
+  history?: PageHistory;
 }
-
-export type HistoryLogItem = {
-  date: string;
-  change: Change[];
-};
-
-export type Change = {
-  type: string;
-  key: string[];
-  value: string | ProductionComponentProps;
-};

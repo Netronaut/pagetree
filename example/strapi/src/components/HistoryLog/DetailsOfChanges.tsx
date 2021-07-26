@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { nanoid } from 'nanoid';
 import { ArrowIcon } from '../icons';
 import S from './HistoryLog.styles';
-import { HistoryLogItem } from '../../types';
+import { HistoryLogItem } from '@pagio/builder';
 
 type Props = {
   historyItem: HistoryLogItem;
