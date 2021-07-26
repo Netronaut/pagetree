@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { nanoid } from 'nanoid';
-import { HistoryLogItem } from '../../types';
+import { HistoryLogItem } from '@pagio/builder';
 import { ArrowIcon } from '../icons';
 import S from './HistoryLog.styles';
 import { DetailsOfChanges } from './DetailsOfChanges';
