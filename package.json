@@ -36,6 +36,7 @@
     "typescript": "^4.3.4"
   },
   "dependencies": {
+    "changeset": "^0.2.6",
     "slugify": "^1.5.3"
   }
 }
