@@ -1,9 +1,9 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { HistoryLogItem } from '@pagio/builder';
 import { ArrowIcon } from '../icons';
-import S from './HistoryLog.styles';
 import { DetailsOfChanges } from './DetailsOfChanges';
 import { useTapOutside } from '../PageManager/hooks';
+import S from './HistoryLog.styles';
 
 type Props = {
   historyLog: HistoryLogItem[];
