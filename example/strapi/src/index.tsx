@@ -10,7 +10,6 @@ import { ManagementContext } from './context';
 import { apiUrls } from './apiUrls';
 import { PageEntity } from './types';
 import diff from 'changeset';
-import moment from 'moment';
 
 const App = () => {
   const [pages, setPages] = useState<PageEntity[]>([]);
@@ -30,7 +29,7 @@ const App = () => {
     setPages(mapedPages);
     const copyHistory: PageHistory = historyLog.slice();
     const historyLogItem: HistoryLogItem = {
-      date: moment().format('YYYY MM DD hh:mm:ss'),
+      date: new Date().toUTCString().replace('GMT', ''),
       change: diff(pages, mapedPages),
     };
     copyHistory.push(historyLogItem);
