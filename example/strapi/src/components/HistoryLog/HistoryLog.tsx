@@ -1,5 +1,4 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { nanoid } from 'nanoid';
 import { HistoryLogItem } from '@pagio/builder';
 import { ArrowIcon } from '../icons';
 import S from './HistoryLog.styles';
@@ -25,8 +24,8 @@ export const HistoryLog: React.FC<Props> = ({ historyLog }) => {
     <S.HistoryWrapper ref={ref} height={height} isOpen={isDisplayHistory}>
       <section>
         <h3>History Log</h3>
-        {historyLog?.map((historyItem) => (
-          <DetailsOfChanges key={nanoid()} historyItem={historyItem} />
+        {historyLog?.map((historyItem, i) => (
+          <DetailsOfChanges key={i} historyItem={historyItem} />
         ))}
       </section>
       <S.ShowHistoryButton
