@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { nanoid } from 'nanoid';
 import { ArrowIcon } from '../icons';
 import S from './HistoryLog.styles';
 import { HistoryLogItem } from '@pagio/builder';
@@ -21,16 +20,13 @@ export const DetailsOfChanges: React.FC<Props> = ({ historyItem }) => {
       </header>
       {isOpen && (
         <S.DetailsList>
-          {historyItem.change.map((item) => {
-            const { type, key, value } = item;
-            return (
-              <li key={nanoid()}>
-                <strong>{type}</strong>
-                <span>{key.join('/')}</span>
-                {typeof value === 'string' && <span>{value}</span>}
-              </li>
-            );
-          })}
+          {historyItem.change.map(({ type, key, value }, i) => (
+            <li key={`index-${i}`}>
+              <strong>{type}</strong>
+              <span>{key.join('/')}</span>
+              {typeof value === 'string' && <span>{value}</span>}
+            </li>
+          ))}
         </S.DetailsList>
       )}
     </S.DetailsOfChanges>
