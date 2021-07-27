@@ -1,6 +1,5 @@
 import React, { useState, ReactElement } from 'react';
-import { HistoryLogItem } from '@pagio/builder';
-import { ArrowIcon } from '../icons';
+import { HistoryLogItem, ArrowIcon } from '@pagio/builder';
 import S from './HistoryLog.styles';
 
 interface DetailsOfChangesProps {
