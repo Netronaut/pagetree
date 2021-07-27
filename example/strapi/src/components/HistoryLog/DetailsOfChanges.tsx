@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
+import { HistoryLogItem } from '@pagio/builder';
 import { ArrowIcon } from '../icons';
 import S from './HistoryLog.styles';
-import { HistoryLogItem } from '@pagio/builder';
 
 type Props = {
   historyItem: HistoryLogItem;
