@@ -1,13 +1,13 @@
-import React, { useState } from 'react';
+import React, { useState, ReactElement } from 'react';
 import { HistoryLogItem } from '@pagio/builder';
 import { ArrowIcon } from '../icons';
 import S from './HistoryLog.styles';
 
-type Props = {
+interface DetailsOfChangesProps {
   historyItem: HistoryLogItem;
-};
+}
 
-export const DetailsOfChanges: React.FC<Props> = ({ historyItem }) => {
+export const DetailsOfChanges = ({ historyItem }: DetailsOfChangesProps): ReactElement => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
