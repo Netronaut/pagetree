@@ -1,5 +1,5 @@
 import { ChildDirection } from '../utils/tree';
-import { ProductionComponentProps } from '@pagio/builder';
+import { ProductionComponentProps } from '../hocs/createCatalogComponent';
 
 export interface PageStructure {
   _id: string;
