@@ -28,7 +28,7 @@ const HistoryWrapper = styled.div<{ isOpen: boolean; height: number }>`
   }
 `;
 
-export const ShowHistoryButton = styled.button<{ isOpen: boolean }>`
+const ShowHistoryButton = styled.button<{ isOpen: boolean }>`
   position: absolute;
   right: calc(50% - 15px);
   z-index: -1;
@@ -102,7 +102,7 @@ const DetailsOfChanges = styled.div<{ isOpen: boolean }>`
   }
 `;
 
-export const DetailsList = styled.ul`
+const DetailsList = styled.ul`
   margin: 0;
   padding: 6px 0;
   background: #f9f9f9;
