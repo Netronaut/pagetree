@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom';
 import axios from 'axios';
+import diff from 'changeset';
 import { PageHistory, HistoryLogItem } from '@pagio/builder';
 
 import { GlobalStyle } from './globalStyle';
@@ -9,7 +10,6 @@ import { PageManager, Header, PageBuilder, HistoryLog } from './components';
 import { ManagementContext } from './context';
 import { apiUrls } from './apiUrls';
 import { PageEntity } from './types';
-import diff from 'changeset';
 
 const App = () => {
   const [pages, setPages] = useState<PageEntity[]>([]);
