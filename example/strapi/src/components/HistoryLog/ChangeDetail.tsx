@@ -1,18 +1,19 @@
 import React, { useState, ReactElement } from 'react';
-import { HistoryLogItem, ArrowIcon } from '@pagio/builder';
+import { ArrowIcon, PageHistoryItem } from '@pagio/builder';
+import { formatISO9075 } from 'date-fns';
 import S from './HistoryLog.styles';
 
-interface DetailsOfChangesProps {
-  historyItem: HistoryLogItem;
+interface ChangeDetailProps {
+  historyItem: PageHistoryItem;
 }
 
-export const DetailsOfChanges = ({ historyItem }: DetailsOfChangesProps): ReactElement => {
+export const ChangeDetail = ({ historyItem }: ChangeDetailProps): ReactElement => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <S.DetailsOfChanges isOpen={isOpen}>
+    <S.ChangeDetail isOpen={isOpen}>
       <header onClick={() => setIsOpen(!isOpen)}>
-        {historyItem.date}
+        {formatISO9075(historyItem.date)}
         <button>
           <ArrowIcon />
         </button>
@@ -28,6 +29,6 @@ export const DetailsOfChanges = ({ historyItem }: DetailsOfChangesProps): ReactE
           ))}
         </S.DetailsList>
       )}
-    </S.DetailsOfChanges>
+    </S.ChangeDetail>
   );
 };

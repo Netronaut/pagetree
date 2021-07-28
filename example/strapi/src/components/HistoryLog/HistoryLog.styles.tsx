@@ -60,7 +60,7 @@ const ShowHistoryButton = styled.button<{ isOpen: boolean }>`
   }
 `;
 
-const DetailsOfChanges = styled.div<{ isOpen: boolean }>`
+const ChangeDetail = styled.div<{ isOpen: boolean }>`
   margin-top: 8px;
   color: #6a6a6a;
   font-size: 16px;
@@ -119,7 +119,7 @@ const DetailsList = styled.ul`
 
 export default {
   HistoryWrapper,
-  DetailsOfChanges,
+  ChangeDetail,
   DetailsList,
   ShowHistoryButton,
 };

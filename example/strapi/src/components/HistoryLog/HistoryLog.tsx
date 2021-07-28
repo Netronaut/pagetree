@@ -1,14 +1,14 @@
-import React, { useEffect, useRef, useState } from 'react';
-import { HistoryLogItem, ArrowIcon } from '@pagio/builder';
-import { DetailsOfChanges } from './DetailsOfChanges';
+import React, { useEffect, useRef, useState, ReactElement } from 'react';
+import { ArrowIcon, PageHistory } from '@pagio/builder';
 import { useTapOutside } from '../PageManager/hooks';
+import { ChangeDetail } from './ChangeDetail';
 import S from './HistoryLog.styles';
 
-type Props = {
-  historyLog: HistoryLogItem[];
-};
+interface HistoryLogProps {
+  history?: PageHistory;
+}
 
-export const HistoryLog: React.FC<Props> = ({ historyLog }) => {
+export const HistoryLog = ({ history = [] }: HistoryLogProps): ReactElement => {
   const [isDisplayHistory, setIsDisplayHistory] = useState(false);
 
   const ref = useRef<HTMLDivElement>(null);
@@ -23,8 +23,8 @@ export const HistoryLog: React.FC<Props> = ({ historyLog }) => {
     <S.HistoryWrapper ref={ref} height={height} isOpen={isDisplayHistory}>
       <section>
         <h3>History Log</h3>
-        {historyLog?.map((historyItem, i) => (
-          <DetailsOfChanges key={i} historyItem={historyItem} />
+        {history.map((historyItem, i) => (
+          <ChangeDetail key={i} historyItem={historyItem} />
         ))}
       </section>
       <S.ShowHistoryButton

@@ -4,6 +4,7 @@ import { Builder } from '@pagio/builder';
 import { components, componentGroups } from '../../catalog';
 import { ManagementContext } from '../../context';
 import { PageEntity } from '../../types';
+import { HistoryLog } from '../HistoryLog';
 
 interface PageBuilderProps {
   showPreview: boolean;
@@ -21,12 +22,15 @@ export const PageBuilder = ({ showPreview, onPageUpdate }: PageBuilderProps): Re
   const { pageContent } = page;
 
   return (
-    <Builder
-      pageContent={pageContent}
-      onChange={(pageContentUpdate) => onPageUpdate({ ...page, pageContent: pageContentUpdate })}
-      showPreview={showPreview}
-      components={components}
-      componentGroups={componentGroups}
-    />
+    <>
+      <HistoryLog history={page.history} />
+      <Builder
+        pageContent={pageContent}
+        onChange={(pageContentUpdate) => onPageUpdate({ ...page, pageContent: pageContentUpdate })}
+        showPreview={showPreview}
+        components={components}
+        componentGroups={componentGroups}
+      />
+    </>
   );
 };
