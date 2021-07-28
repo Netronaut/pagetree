@@ -7,14 +7,14 @@ export interface PageStructure {
   config?: Record<string, Record<string, string>>;
 }
 
-export type PageHistory = Array<HistoryLogItem>;
-
-export interface HistoryLogItem {
-  date: string;
-  change: Array<PageHistoryItem>;
-}
+export type PageHistory = Array<PageHistoryItem>;
 
 export interface PageHistoryItem {
+  date: Date;
+  change: Array<PageChange>;
+}
+
+export interface PageChange {
   type: 'put' | 'del';
   key: Array<string>;
   value: string | ProductionComponentProps;

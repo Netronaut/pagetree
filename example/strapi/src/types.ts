@@ -1,4 +1,4 @@
-import { PageStructure, PageHistory } from '@pagio/builder/dist/types';
+import { PageStructure, PageHistory } from '@pagio/builder';
 
 export interface PageEntity {
   id?: number;
