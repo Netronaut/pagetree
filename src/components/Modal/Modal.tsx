@@ -6,7 +6,6 @@ import S, { ModalContainerProps } from './Modal.styles';
 type ModalProps = ModalContainerProps & {
   children?: ReactNode;
   onClose: () => void;
-  position?: 'bottom-left';
 };
 
 export const Modal = ({ children, onClose, position }: ModalProps): ReactElement => {
