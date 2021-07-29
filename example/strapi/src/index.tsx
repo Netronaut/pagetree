@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom';
 import axios from 'axios';
+import diff from 'changeset';
 
 import { GlobalStyle } from './globalStyle';
 import { PageManager, Header, PageBuilder } from './components';
@@ -18,11 +19,24 @@ const App = () => {
   }, []);
 
   const handlePageUpdate = (page: PageEntity) => {
-    const { id, pageContent } = page;
-    axios.put(`${apiUrls.pages}/${id}`, {
-      pageContent,
+    axios.put(`${apiUrls.pages}/${page.id}`, {
+      pageContent: page.pageContent,
     });
-    setPages(pages.map((item) => (item.id === id ? page : item)));
+
+    setPages(
+      pages.map((item) => {
+        if (item.id !== page.id) {
+          return item;
+        }
+        return {
+          ...page,
+          history: (page.history || []).concat({
+            date: new Date(),
+            change: diff(page.pageContent, item.pageContent),
+          }),
+        };
+      }),
+    );
   };
 
   return (

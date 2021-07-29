@@ -1,7 +1,7 @@
 import React, { ReactElement } from 'react';
-import S from './PageManager.styles';
 import { Link } from 'react-router-dom';
 import { PageEntity } from '../../types';
+import S from './PageManager.styles';
 
 interface PageListItemProps {
   page: PageEntity;

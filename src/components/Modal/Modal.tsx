@@ -1,12 +1,11 @@
 import React, { ReactElement, ReactNode, useEffect, useRef } from 'react';
 import { CrossIcon } from '../icons';
-import S, { ModalContainerProps } from './Modal.styles';
 import { ModalButton } from './ModalButton';
+import S, { ModalContainerProps } from './Modal.styles';
 
 type ModalProps = ModalContainerProps & {
   children?: ReactNode;
   onClose: () => void;
-  position?: 'bottom-left';
 };
 
 export const Modal = ({ children, onClose, position }: ModalProps): ReactElement => {
