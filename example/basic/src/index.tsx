@@ -11,8 +11,6 @@ const App = () => {
   const [showPreview, setShowPreview] = useState(false);
   const [pageContent, setPageContent] = useState<PageStructure>({
     _id: 'test-id',
-    title: 'My test page',
-    route: '/test',
   });
 
   const handleUpdate = (update: PageStructure) => {
