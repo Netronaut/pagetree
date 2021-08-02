@@ -1,5 +1,9 @@
-import { ChildDirection } from '../utils/tree';
-import { ProductionComponentProps } from '../hocs/createCatalogComponent';
+import { ChildDirection } from './utils/tree';
+import { ProductionComponentProps } from './hocs/createCatalogComponent';
+
+export type Optional<T> = {
+  [K in keyof T]?: T[K];
+};
 
 export interface PageStructure {
   _id: string;
