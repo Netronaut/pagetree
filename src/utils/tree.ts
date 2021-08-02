@@ -1,5 +1,5 @@
 import { nanoid } from 'nanoid';
-import { Optional } from '../types/helpers';
+import { Optional } from '../types';
 
 export enum TDirection {
   row = 'row',

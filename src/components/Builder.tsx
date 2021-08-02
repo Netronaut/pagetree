@@ -1,16 +1,14 @@
 import React, { ReactElement, useMemo, useState } from 'react';
-import { Direction } from './components/Direction';
-import { AddComponents } from './components/AddComponents';
-import { Item, Tree, TSide } from './utils/tree';
-import { Optional } from './types/helpers';
-import { PageStructure } from './types';
-import { TreeContext } from './utils/context';
-import { Components } from './hocs/createCatalogComponent';
-import { Catalog } from './components/Catalog';
-import { useModal } from './hooks';
-import { ConstructorScreen, DroppableContent } from './componentsStyles';
-import { RemoveDropArea } from './components/RemoveDropArea';
 import { nanoid } from 'nanoid';
+import { Direction } from './Direction';
+import { Catalog } from './Catalog';
+import { AddComponents } from './AddComponents';
+import { RemoveDropArea } from './RemoveDropArea';
+import { Item, Tree, TSide, TreeContext } from '../utils';
+import { Optional, PageStructure } from '../types';
+import { useModal } from '../hooks';
+import { Components } from '../hocs';
+import { ConstructorScreen, DroppableContent } from './components.styles';
 
 const makeElementVisible = (elementId: string) => {
   if (elementId) {

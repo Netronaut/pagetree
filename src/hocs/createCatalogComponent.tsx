@@ -2,10 +2,10 @@ import React, { useContext, useState } from 'react';
 import { useModal } from '../hooks';
 import styled from 'styled-components';
 import { TreeContext } from '../utils/context';
-import { H1 } from '../componentsStyles';
 import { EditContent } from '../components/Modal/EditContent';
 import { EditId } from '../components/Modal/EditId';
 import { Modal } from '../components/Modal';
+import { H1 } from '../components/components.styles';
 
 export type ProductionComponentProps = {
   id: string;

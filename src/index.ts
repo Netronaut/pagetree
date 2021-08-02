@@ -1,4 +1,3 @@
-export * from './hocs/createCatalogComponent';
-export * from './Builder';
-export * from './components/icons';
+export * from './components';
 export * from './types';
+export * from './hocs';

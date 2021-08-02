@@ -1,7 +1,7 @@
 import React from 'react';
-import { Flex } from '../../componentsStyles';
 import { ModalButton } from './ModalButton';
 import S from './Modal.styles';
+import { Flex } from '../components.styles';
 
 type Props = {
   field: string;
