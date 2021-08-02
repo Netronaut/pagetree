@@ -11,21 +11,24 @@ interface PageBuilderProps {
   onPageUpdate: (page: PageEntity) => void;
 }
 
-export const PageBuilder = ({ showPreview, onPageUpdate }: PageBuilderProps): ReactElement => {
+export const PageBuilder = ({
+  showPreview,
+  onPageUpdate,
+}: PageBuilderProps): ReactElement | null => {
   const { pageId } = useParams<{ pageId: string }>();
   const { pages } = useContext(ManagementContext);
 
-  const page =
-    useMemo(() => pages.find(({ id }) => String(id) === pageId), [pageId, pages]) ||
-    ({} as PageEntity);
+  const page = useMemo(() => pages.find(({ id }) => String(id) === pageId), [pageId, pages]);
 
-  const { pageContent } = page;
+  if (!page) {
+    return null;
+  }
 
   return (
     <>
       <HistoryLog history={page.history} />
       <Builder
-        pageContent={pageContent}
+        pageContent={page.pageContent || {}}
         onChange={(pageContentUpdate) => onPageUpdate({ ...page, pageContent: pageContentUpdate })}
         showPreview={showPreview}
         components={components}

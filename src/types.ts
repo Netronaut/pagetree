@@ -5,8 +5,7 @@ export type Optional<T> = {
   [K in keyof T]?: T[K];
 };
 
-export interface PageStructure {
-  _id: string;
+export interface PageContent {
   structure?: ChildDirection;
   config?: Record<string, Record<string, string>>;
 }
