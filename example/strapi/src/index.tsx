@@ -13,16 +13,23 @@ import { PageEntity } from './types';
 const App = () => {
   const [pages, setPages] = useState<PageEntity[]>([]);
   const [showPreview, setShowPreview] = useState(false);
+  const [currentPageId, setCurrentPageId] = useState<number>();
 
   useEffect(() => {
     axios.get(apiUrls.pages).then((response) => setPages(response.data));
   }, []);
 
-  const handlePageUpdate = (page: PageEntity) => {
-    axios.put(`${apiUrls.pages}/${page.id}`, {
-      pageContent: page.pageContent,
-    });
+  useEffect(() => {
+    const page = pages.find((page) => page.id === currentPageId);
+    currentPageId &&
+      axios.put(`${apiUrls.pages}/${currentPageId}`, {
+        pageContent: page?.pageContent,
+        history: page?.history,
+      });
+  }, [pages, currentPageId]);
 
+  const handlePageUpdate = (page: PageEntity) => {
+    setCurrentPageId(page?.id);
     setPages(
       pages.map((item) => {
         if (item.id !== page.id) {
