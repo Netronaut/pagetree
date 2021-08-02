@@ -6,7 +6,7 @@
     "start": "PORT=3000 webpack serve --mode=development"
   },
   "peerDependencies": {
-    "@pagio/builder": "^0.1.0"
+    "@pagio/builder": "^0.2.0-rc"
   },
   "dependencies": {
     "react": "^17.0.2",
