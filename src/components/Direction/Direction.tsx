@@ -1,9 +1,8 @@
 import React, { useContext, useEffect } from 'react';
-import { ComponentRenderer } from '../ComponentRenderer';
-import { Indicator } from '../ComponentRenderer/componentsStyles';
+import { ComponentRenderer, Indicator } from '../ComponentRenderer';
 import { usePrevious, useDragAndDrop } from '../../hooks';
 import { ChildDirection, TreeContext } from '../../tree';
-import { DirectionWrapper } from './componentsStyles';
+import { DirectionContainer } from './Direction.styles';
 
 const ratios: Record<number, string[]> = {
   2: ['2:1', '1:1', '1:2'],
@@ -38,7 +37,7 @@ export const Direction: React.FC<ChildDirection> = ({ direction, components, id 
   };
 
   return (
-    <DirectionWrapper
+    <DirectionContainer
       direction={direction}
       showPreview={showPreview}
       ratio={config?.[id as string]?.ratio || new Array(components.length).fill(1).join(':')}
@@ -67,6 +66,6 @@ export const Direction: React.FC<ChildDirection> = ({ direction, components, id 
           />
         );
       })}
-    </DirectionWrapper>
+    </DirectionContainer>
   );
 };

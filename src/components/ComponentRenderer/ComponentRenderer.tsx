@@ -1,9 +1,9 @@
 import React, { useContext, useMemo } from 'react';
-import { Indicator, Container, Configure, Ratios, Ratio } from './componentsStyles';
 import { useDragAndDrop, useModal } from '../../hooks';
 import { ChildComponent, TreeContext } from '../../tree';
 import { CatalogComponent } from '../Catalog';
 import { Modal } from '../Modal';
+import { Configure, Container, Indicator, Ratio, Ratios } from './ComponentRenderer.styles';
 
 type Props = {
   component: ChildComponent;

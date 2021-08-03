@@ -6,7 +6,7 @@ import { CatalogGroup } from './CatalogGroup';
 import { SearchBox } from './SearchBox';
 
 import { CatalogComponent } from './Catalog.types';
-import S from './Catalog.styles';
+import { CatalogContainer } from './Catalog.styles';
 
 interface CatalogProps {
   components?: Array<CatalogComponent>;
@@ -62,7 +62,7 @@ export const Catalog = ({
         </ModalButton>
       </SearchBox>
 
-      <S.Catalog>
+      <CatalogContainer>
         {searchValue ? (
           <FilteredCatalogList searchValue={searchValue} />
         ) : (
@@ -75,7 +75,7 @@ export const Catalog = ({
             />
           ))
         )}
-      </S.Catalog>
+      </CatalogContainer>
     </Modal>
   );
 };

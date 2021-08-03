@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-const HistoryWrapper = styled.div<{ isOpen: boolean; height: number }>`
+export const HistoryWrapper = styled.div<{ isOpen: boolean; height: number }>`
   position: fixed;
   top: ${({ isOpen, height }) => (isOpen ? '0' : -height + 'px')};
   width: calc(100% - 25px);
@@ -28,7 +28,7 @@ const HistoryWrapper = styled.div<{ isOpen: boolean; height: number }>`
   }
 `;
 
-const ShowHistoryButton = styled.button<{ isOpen: boolean }>`
+export const ShowHistoryButton = styled.button<{ isOpen: boolean }>`
   position: absolute;
   right: calc(50% - 15px);
   z-index: -1;
@@ -60,7 +60,7 @@ const ShowHistoryButton = styled.button<{ isOpen: boolean }>`
   }
 `;
 
-const ChangeDetail = styled.div<{ isOpen: boolean }>`
+export const ChangeDetailContainer = styled.div<{ isOpen: boolean }>`
   margin-top: 8px;
   color: #6a6a6a;
   font-size: 16px;
@@ -102,7 +102,7 @@ const ChangeDetail = styled.div<{ isOpen: boolean }>`
   }
 `;
 
-const DetailsList = styled.ul`
+export const DetailsList = styled.ul`
   margin: 0;
   padding: 6px 0;
   background: #f9f9f9;
@@ -116,10 +116,3 @@ const DetailsList = styled.ul`
     grid-column: 2 / 3;
   }
 `;
-
-export default {
-  HistoryWrapper,
-  ChangeDetail,
-  DetailsList,
-  ShowHistoryButton,
-};

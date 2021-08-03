@@ -1,7 +1,7 @@
 import React, { ChangeEvent, ReactElement, useRef, useState, KeyboardEvent } from 'react';
 import { PageEntity } from '../../types';
 import { useTapOutside } from './hooks';
-import S from './PageManager.styles';
+import { PageItemButton, PageManagerModalContainer } from './PageManager.styles';
 
 interface PageManagerModalProps {
   page: PageEntity;
@@ -34,7 +34,7 @@ export const PageManagerModal = ({
   };
 
   return (
-    <S.PageManagerModal ref={wrapperRef} data-testid="edit-modal">
+    <PageManagerModalContainer ref={wrapperRef} data-testid="edit-modal">
       <button onClick={onClose}>x</button>
       <label>
         <span>Edit title</span>
@@ -61,12 +61,9 @@ export const PageManagerModal = ({
           onKeyDown={handleChange}
         />
       </label>
-      <S.PageItemButton
-        disabled={page.title === '' || page.path === ''}
-        onClick={() => onSave(page)}
-      >
+      <PageItemButton disabled={page.title === '' || page.path === ''} onClick={() => onSave(page)}>
         Save
-      </S.PageItemButton>
-    </S.PageManagerModal>
+      </PageItemButton>
+    </PageManagerModalContainer>
   );
 };

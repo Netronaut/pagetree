@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-const PageList = styled.div`
+export const PageList = styled.div`
   position: relative;
   max-width: 80vw;
   margin: 0 auto;
@@ -11,7 +11,7 @@ const PageList = styled.div`
   }
 `;
 
-const AddPageInput = styled.div`
+export const AddPageInputContainer = styled.div`
   --color-primary: hsla(200, 100%, 50%, 1);
   --color-secondary: hsla(0, 0%, 90%, 1);
   display: flex;
@@ -47,7 +47,7 @@ const AddPageInput = styled.div`
   }
 `;
 
-const FilterInput = styled(AddPageInput)`
+export const FilterInput = styled(AddPageInputContainer)`
   width: 40%;
   input {
     flex: 1 1 100%;
@@ -57,7 +57,7 @@ const FilterInput = styled(AddPageInput)`
   }
 `;
 
-const PageListItem = styled.div`
+export const PageListItemContainer = styled.div`
   border: 1px solid transparent;
   box-sizing: border-box;
   padding: 4px;
@@ -79,7 +79,7 @@ const PageListItem = styled.div`
   }
 `;
 
-const PageItemTitle = styled.div`
+export const PageItemTitle = styled.div`
   flex: 1 1 60%;
   min-width: 50vw;
   a {
@@ -105,7 +105,7 @@ const PageItemTitle = styled.div`
   }
 `;
 
-const PageItemButton = styled.button<{ destructive?: boolean }>`
+export const PageItemButton = styled.button<{ destructive?: boolean }>`
   --color-destructive: hsla(10, 100%, 45%, 1);
   --color-primary: hsla(200, 100%, 50%, 1);
   --color-secondary: hsla(0, 0%, 90%, 1);
@@ -124,7 +124,7 @@ const PageItemButton = styled.button<{ destructive?: boolean }>`
   }
 `;
 
-const PageManagerModal = styled.div`
+export const PageManagerModalContainer = styled.div`
   border: 2px solid #fff;
   box-sizing: border-box;
   border-radius: 10px;
@@ -188,13 +188,3 @@ const PageManagerModal = styled.div`
     max-height: 44px;
   }
 `;
-
-export default {
-  PageList,
-  AddPageInput,
-  FilterInput,
-  PageListItem,
-  PageManagerModal,
-  PageItemTitle,
-  PageItemButton,
-};

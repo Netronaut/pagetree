@@ -1,7 +1,7 @@
 import React from 'react';
 import { ModalButton } from './ModalButton';
-import S from './Modal.styles';
 import { Flex } from '../components.styles';
+import { ModalInput } from './Modal.styles';
 
 type Props = {
   field: string;
@@ -29,7 +29,7 @@ export const EditContent: React.FC<Props> = ({
   return (
     <>
       <h3>{type}</h3>
-      <S.ModalInput
+      <ModalInput
         required
         placeholder={`Enter ${label}`}
         value={inputValue}
