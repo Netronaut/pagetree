@@ -9,7 +9,6 @@ interface ChangeDetailProps {
 
 export const ChangeDetail = ({ historyItem }: ChangeDetailProps): ReactElement => {
   const [isOpen, setIsOpen] = useState(false);
-
   return (
     <ChangeDetailContainer isOpen={isOpen}>
       <header onClick={() => setIsOpen(!isOpen)}>

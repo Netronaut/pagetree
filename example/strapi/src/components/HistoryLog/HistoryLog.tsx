@@ -23,9 +23,8 @@ export const HistoryLog = ({ history = [] }: HistoryLogProps): ReactElement => {
     <HistoryWrapper ref={ref} height={height} isOpen={isDisplayHistory}>
       <section>
         <h3>History Log</h3>
-        {history.map((historyItem, i) => (
-          <ChangeDetail key={i} historyItem={historyItem} />
-        ))}
+        {history &&
+          history.map((historyItem, i) => <ChangeDetail key={i} historyItem={historyItem} />)}
       </section>
       <ShowHistoryButton
         isOpen={isDisplayHistory}
