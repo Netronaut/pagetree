@@ -1,12 +1,15 @@
 import React, { ReactElement, useMemo } from 'react';
 import { Modal, ModalButton, ModalHeadline } from '../Modal';
 import { SearchIcon } from '../icons';
-import { SearchBox } from './SearchBox';
 import { FilteredCatalogList } from './FilteredCatalogList';
 import { CatalogGroup } from './CatalogGroup';
+import { SearchBox } from './SearchBox';
+
+import { CatalogComponent } from './Catalog.types';
 import S from './Catalog.styles';
 
 interface CatalogProps {
+  components?: Array<CatalogComponent>;
   onModalClose: () => void;
   searchValue: string;
   setSearchValue: (value: string) => void;
@@ -15,6 +18,7 @@ interface CatalogProps {
 }
 
 export const Catalog = ({
+  components = [],
   onModalClose,
   searchValue,
   setSearchValue,
@@ -26,7 +30,18 @@ export const Catalog = ({
     setSearchValue(value);
   };
 
-  const { componentGroups } = useContext(TreeContext);
+  const componentGroups = useMemo(
+    () =>
+      Array.from(
+        new Set(
+          components
+            .map((component) => component.groupName)
+            .filter((componentName) => componentName !== undefined) as Array<string>,
+        ),
+      ),
+    [components],
+  );
+
   const onOpenGroup = (groupName: string) => {
     setOpenedGroup(groupName);
   };
@@ -51,7 +66,7 @@ export const Catalog = ({
         {searchValue ? (
           <FilteredCatalogList searchValue={searchValue} />
         ) : (
-          componentGroups?.map((groupName) => (
+          componentGroups.map((groupName) => (
             <CatalogGroup
               key={groupName}
               groupName={groupName}

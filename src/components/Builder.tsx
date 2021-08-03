@@ -1,12 +1,12 @@
 import React, { ReactElement, useState } from 'react';
 import { Direction } from './Direction';
-import { Catalog } from './Catalog';
+import { Catalog, CatalogComponent } from './Catalog';
 import { AddComponents } from './AddComponents';
 import { RemoveDropArea } from './RemoveDropArea';
 import { Item, Tree, TreeContext, TSide } from '../tree';
 import { PageContent } from '../types';
 import { useModal } from '../hooks';
-import { Components } from '../hocs';
+
 import { ConstructorScreen, DroppableContent } from './components.styles';
 
 const makeElementVisible = (elementId: string) => {
@@ -22,8 +22,7 @@ export interface BuilderProps {
   pageContent?: PageContent;
   onChange: (val: PageContent) => void;
   showPreview?: boolean;
-  components?: Components;
-  componentGroups?: Array<string>;
+  components?: Array<CatalogComponent>;
 }
 
 export const Builder = ({
@@ -31,7 +30,6 @@ export const Builder = ({
   onChange,
   showPreview,
   components,
-  componentGroups,
 }: BuilderProps): ReactElement => {
   const { isModalShown, onModalShow, onModalClose } = useModal();
 
@@ -115,7 +113,6 @@ export const Builder = ({
         config: pageContent.config,
         showPreview,
         components,
-        componentGroups,
       }}
     >
       <ConstructorScreen>
@@ -132,6 +129,7 @@ export const Builder = ({
             </DroppableContent>
             {isModalShown ? (
               <Catalog
+                components={components}
                 onModalClose={onModalClose}
                 searchValue={searchValue}
                 setSearchValue={setSearchValue}

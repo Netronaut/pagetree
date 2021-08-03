@@ -1,8 +1,8 @@
 import React, { useContext, useMemo } from 'react';
 import { Indicator, Container, Configure, Ratios, Ratio } from './componentsStyles';
 import { useDragAndDrop, useModal } from '../../hooks';
-import { CatalogComponent } from '../../hocs/createCatalogComponent';
 import { ChildComponent, TreeContext } from '../../tree';
+import { CatalogComponent } from '../Catalog';
 import { Modal } from '../Modal';
 
 type Props = {

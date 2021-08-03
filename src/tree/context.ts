@@ -9,7 +9,6 @@ type TreeContextValue = {
   config: PageContent['config'];
   showPreview?: boolean;
   components?: Array<CatalogComponent>;
-  componentGroups?: string[];
 };
 
 export const TreeContext = createContext({} as TreeContextValue);

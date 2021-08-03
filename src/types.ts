@@ -1,5 +1,5 @@
-import { ProductionComponentProps } from './hocs/createCatalogComponent';
 import { ChildDirection } from './tree';
+import { ProductionComponentProps } from './components';
 
 export type Optional<T> = {
   [K in keyof T]?: T[K];

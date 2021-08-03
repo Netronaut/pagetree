@@ -1,9 +1,9 @@
 import React, { useContext, useEffect } from 'react';
 import { ComponentRenderer } from '../ComponentRenderer';
 import { Indicator } from '../ComponentRenderer/componentsStyles';
-import { DirectionWrapper } from './componentsStyles';
 import { usePrevious, useDragAndDrop } from '../../hooks';
 import { ChildDirection, TreeContext } from '../../tree';
+import { DirectionWrapper } from './componentsStyles';
 
 const ratios: Record<number, string[]> = {
   2: ['2:1', '1:1', '1:2'],

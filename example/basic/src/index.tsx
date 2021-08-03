@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import ReactDOM from 'react-dom';
 import { Builder, PageContent } from '@pagio/builder';
-import { components, componentGroups } from './catalog';
+import { components } from './catalog';
 import { Header } from './components';
 import { GlobalStyle } from './globalStyle';
 
@@ -25,7 +25,6 @@ const App = () => {
         onChange={handleUpdate}
         showPreview={showPreview}
         components={components}
-        componentGroups={componentGroups}
       />
       <GlobalStyle />
     </>
