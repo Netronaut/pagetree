@@ -1,15 +1,15 @@
-import * as React from 'react';
-import { TSide } from './tree';
+import { createContext } from 'react';
+import { CatalogComponent } from '../components';
 import { PageContent } from '../types';
-import { Components } from '../hocs/createCatalogComponent';
+import { TSide } from './tree.types';
 
 type TreeContextValue = {
   add: (e: React.DragEvent<HTMLDivElement>, toId?: string, side?: TSide) => void;
   onConfigChange: (id: string, field: string, value: string, userControlledId?: string) => void;
   config: PageContent['config'];
   showPreview?: boolean;
-  components?: Components;
+  components?: Array<CatalogComponent>;
   componentGroups?: string[];
 };
 
-export const TreeContext = React.createContext({} as TreeContextValue);
+export const TreeContext = createContext({} as TreeContextValue);

@@ -3,7 +3,7 @@ import { Direction } from './Direction';
 import { Catalog } from './Catalog';
 import { AddComponents } from './AddComponents';
 import { RemoveDropArea } from './RemoveDropArea';
-import { Item, Tree, TSide, TreeContext } from '../utils';
+import { Item, Tree, TreeContext, TSide } from '../tree';
 import { PageContent } from '../types';
 import { useModal } from '../hooks';
 import { Components } from '../hocs';

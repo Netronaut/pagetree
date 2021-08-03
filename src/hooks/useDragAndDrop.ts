@@ -1,6 +1,5 @@
 import React, { DragEventHandler, useContext, useState } from 'react';
-import { TreeContext } from '../utils/context';
-import { TSide } from '../utils/tree';
+import { TreeContext, TSide } from '../tree';
 
 const getInsertion = ({ x, y, width, height }: Record<string, number>) => {
   if (x < 20) {
