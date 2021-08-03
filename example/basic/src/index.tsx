@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import ReactDOM from 'react-dom';
-import { Builder, PageContent } from '@pagio/builder';
+import { PageCanvas, PageContent } from '@pagio/builder';
 import { components } from './catalog';
 import { Header } from './components';
 import { GlobalStyle } from './globalStyle';
@@ -20,7 +20,7 @@ const App = () => {
   return (
     <>
       <Header setShowPreview={setShowPreview} />
-      <Builder
+      <PageCanvas
         pageContent={pageContent}
         onChange={handleUpdate}
         showPreview={showPreview}

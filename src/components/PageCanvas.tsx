@@ -3,10 +3,9 @@ import { Direction } from './Direction';
 import { Catalog, CatalogComponent } from './Catalog';
 import { AddComponents } from './AddComponents';
 import { RemoveDropArea } from './RemoveDropArea';
-import { Item, Tree, TreeContext, TSide } from '../tree';
+import { Item, Tree, TreeContext, TSide } from './PageTree';
 import { PageContent } from '../types';
 import { useModal } from '../hooks';
-
 import { ConstructorScreen, DroppableContent } from './components.styles';
 
 const makeElementVisible = (elementId: string) => {
@@ -18,19 +17,19 @@ const makeElementVisible = (elementId: string) => {
   }
 };
 
-export interface BuilderProps {
+export interface PageCanvasProps {
   pageContent?: PageContent;
   onChange: (val: PageContent) => void;
   showPreview?: boolean;
   components?: Array<CatalogComponent>;
 }
 
-export const Builder = ({
+export const PageCanvas = ({
   pageContent = {},
   onChange,
   showPreview,
   components,
-}: BuilderProps): ReactElement => {
+}: PageCanvasProps): ReactElement => {
   const { isModalShown, onModalShow, onModalClose } = useModal();
 
   const addNew = (e: React.DragEvent<HTMLDivElement>, toId?: string, side?: TSide) => {
