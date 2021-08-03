@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { TDirection } from '../../tree';
+import { TDirection } from '../PageTree';
 
 const getStylesFromDirection = (direction: TDirection, ratio: string) => {
   if (direction === TDirection.row) {

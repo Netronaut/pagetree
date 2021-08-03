@@ -1,5 +1,4 @@
-import { ChildDirection } from './tree';
-import { ProductionComponentProps } from './components';
+import { ChildDirection, ProductionComponentProps } from './components';
 
 export type Optional<T> = {
   [K in keyof T]?: T[K];

@@ -1,7 +1,6 @@
 import React, { useContext, useEffect } from 'react';
-import { ComponentRenderer, Indicator } from '../ComponentRenderer';
 import { usePrevious, useDragAndDrop } from '../../hooks';
-import { ChildDirection, TreeContext } from '../../tree';
+import { ChildDirection, Indicator, PageTree, TreeContext } from '../PageTree';
 import { DirectionContainer } from './Direction.styles';
 
 const ratios: Record<number, string[]> = {
@@ -55,7 +54,7 @@ export const Direction: React.FC<ChildDirection> = ({ direction, components, id 
           return <Direction key={component.id} {...component} />;
         }
         return (
-          <ComponentRenderer
+          <PageTree
             key={component.id}
             component={component}
             direction={direction}

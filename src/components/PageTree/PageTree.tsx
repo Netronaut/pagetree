@@ -1,27 +1,34 @@
-import React, { useContext, useMemo } from 'react';
+import React, { ReactElement, useContext, useMemo } from 'react';
 import { useDragAndDrop, useModal } from '../../hooks';
-import { ChildComponent, TreeContext } from '../../tree';
 import { CatalogComponent } from '../Catalog';
 import { Modal } from '../Modal';
-import { Configure, Container, Indicator, Ratio, Ratios } from './ComponentRenderer.styles';
+import { TreeContext } from './context';
+import {
+  Configure,
+  PageTreeContainer,
+  Indicator,
+  Ratio,
+  Ratios,
+  ChildComponent,
+} from './PageTree.styles';
 
-type Props = {
+interface PageTreeProps {
   component: ChildComponent;
   direction: string;
   ratios: Record<number, string[]>;
   onRatioSelect: (val: number) => void;
   lastIndex: boolean;
   componentsInTheRow: number;
-};
+}
 
-export const ComponentRenderer: React.FC<Props> = ({
+export const PageTree = ({
   component,
   direction,
   ratios,
   onRatioSelect,
   lastIndex,
   componentsInTheRow,
-}) => {
+}: PageTreeProps): ReactElement => {
   const { id, type } = component;
   const { onDragLeave, onDragStart, onDragOver, onDrop, insertTo } = useDragAndDrop(id);
 
@@ -60,7 +67,7 @@ export const ComponentRenderer: React.FC<Props> = ({
   );
 
   return (
-    <Container
+    <PageTreeContainer
       id={id}
       insertTo={insertTo}
       {...{
@@ -80,7 +87,7 @@ export const ComponentRenderer: React.FC<Props> = ({
           <Slide />
         </Configure>
       )}
-    </Container>
+    </PageTreeContainer>
   );
 };
 

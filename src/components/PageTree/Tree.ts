@@ -1,6 +1,6 @@
 import { Container } from './Container';
 import { Item } from './Item';
-import { ChildDirection, RemovedItemResult, TDirection, TNode, TSide } from './tree.types';
+import { ChildDirection, RemovedItemResult, TDirection, TNode, TSide } from './PageTree.types';
 
 const getCircularReplacer = () => {
   const seen = new WeakSet();

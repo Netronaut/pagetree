@@ -2,7 +2,7 @@ import React, { useContext, useState } from 'react';
 import styled from 'styled-components';
 import { EditContent, EditId, Modal, H1 } from '../';
 import { useModal } from '../../hooks';
-import { TreeContext } from '../../tree';
+import { TreeContext } from '../PageTree';
 import { CatalogComponent, ProductionComponentProps } from './Catalog.types';
 
 const Configure = styled.div`

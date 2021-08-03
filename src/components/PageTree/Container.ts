@@ -7,7 +7,7 @@ import {
   TNode,
   TParent,
   TSide,
-} from './tree.types';
+} from './PageTree.styles';
 
 export const sidesByDirection: Record<TDirection, [TSide, TSide]> = {
   [TDirection.row]: [TSide.left, TSide.right],

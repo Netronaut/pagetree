@@ -1,5 +1,5 @@
 import React, { DragEventHandler, useContext, useState } from 'react';
-import { TreeContext, TSide } from '../tree';
+import { TreeContext, TSide } from '../components/PageTree';
 
 const getInsertion = ({ x, y, width, height }: Record<string, number>) => {
   if (x < 20) {

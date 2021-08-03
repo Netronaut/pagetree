@@ -1,5 +1,5 @@
 import { nanoid } from 'nanoid';
-import { TParent } from './tree.types';
+import { TParent } from './PageTree.styles';
 
 export class Item {
   id: string;

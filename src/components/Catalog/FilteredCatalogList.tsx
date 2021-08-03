@@ -1,6 +1,6 @@
 import React, { ReactElement, useContext } from 'react';
 import { useDragAndDrop } from '../../hooks';
-import { TreeContext } from '../../tree';
+import { TreeContext } from '../PageTree';
 import { CatalogItem } from './Catalog.styles';
 
 interface FilteredCatalogListProps {
