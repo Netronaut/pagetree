@@ -1,11 +1,10 @@
 import React, { ReactElement, useState } from 'react';
-import { Direction } from './Direction';
+import { PageContent } from '../types';
+import { useModal } from '../hooks';
 import { Catalog, CatalogComponent } from './Catalog';
 import { AddComponents } from './AddComponents';
 import { RemoveDropArea } from './RemoveDropArea';
-import { Item, Tree, TreeContext, TSide } from './PageTree';
-import { PageContent } from '../types';
-import { useModal } from '../hooks';
+import { Direction, Item, Tree, TreeContext, TSide } from './PageTree';
 import { ConstructorScreen, DroppableContent } from './components.styles';
 
 const makeElementVisible = (elementId: string) => {

@@ -1,7 +1,9 @@
-import React, { useContext, useEffect } from 'react';
+import React, { ReactElement, useContext, useEffect } from 'react';
 import { usePrevious, useDragAndDrop } from '../../hooks';
-import { ChildDirection, Indicator, PageTree, TreeContext } from '../PageTree';
-import { DirectionContainer } from './Direction.styles';
+import { TreeContext } from './context';
+import { PageTree } from './PageTree';
+import { DirectionContainer, Indicator } from './PageTree.styles';
+import { ChildDirection } from './PageTree.types';
 
 const ratios: Record<number, string[]> = {
   2: ['2:1', '1:1', '1:2'],
@@ -19,7 +21,9 @@ const ratios: Record<number, string[]> = {
   ],
 };
 
-export const Direction: React.FC<ChildDirection> = ({ direction, components, id }) => {
+type DirectionProps = ChildDirection;
+
+export const Direction = ({ direction, components, id }: DirectionProps): ReactElement => {
   const { onDragLeave, onDragOver, insertTo, onDrop } = useDragAndDrop(id);
   const { onConfigChange, config, showPreview } = useContext(TreeContext);
 
