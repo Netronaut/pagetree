@@ -13,37 +13,26 @@ import { PageEntity } from './types';
 const App = () => {
   const [pages, setPages] = useState<PageEntity[]>([]);
   const [showPreview, setShowPreview] = useState(false);
-  const [currentPageId, setCurrentPageId] = useState<number>();
 
   useEffect(() => {
     axios.get(apiUrls.pages).then((response) => setPages(response.data));
   }, []);
 
-  useEffect(() => {
-    const page = pages.find((page) => page.id === currentPageId);
-    currentPageId &&
-      axios.put(`${apiUrls.pages}/${currentPageId}`, {
-        pageContent: page?.pageContent,
-        history: page?.history,
-      });
-  }, [pages, currentPageId]);
-
   const handlePageUpdate = (page: PageEntity) => {
-    setCurrentPageId(page?.id);
-    setPages(
-      pages.map((item) => {
-        if (item.id !== page.id) {
-          return item;
-        }
-        return {
-          ...page,
-          history: (page.history || []).concat({
-            date: new Date(),
-            change: diff(page.pageContent, item.pageContent),
-          }),
-        };
-      }),
-    );
+    const updatePages = pages.map((item) => {
+      if (item.id !== page.id) {
+        return item;
+      }
+      return {
+        ...page,
+        history: (page.history || []).concat({
+          date: new Date(),
+          change: diff(page.pageContent, item.pageContent),
+        }),
+      };
+    });
+    setPages(updatePages);
+    axios.put(`${apiUrls.pages}/${page?.id}`, updatePages);
   };
 
   return (
