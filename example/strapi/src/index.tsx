@@ -19,10 +19,12 @@ const App = () => {
   }, []);
 
   const handlePageUpdate = (page: PageEntity) => {
+    let currentPageId: number | undefined;
     const updatePages = pages.map((item) => {
       if (item.id !== page.id) {
         return item;
       }
+      currentPageId = item.id;
       return {
         ...page,
         history: (page.history || []).concat({
@@ -32,7 +34,7 @@ const App = () => {
       };
     });
     setPages(updatePages);
-    axios.put(`${apiUrls.pages}/${page?.id}`, updatePages);
+    currentPageId && axios.put(`${apiUrls.pages}/${page?.id}`, updatePages[currentPageId]);
   };
 
   return (
