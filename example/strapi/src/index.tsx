@@ -24,7 +24,7 @@ const App = () => {
 
     if (previousPage) {
       nextPage.history = (nextPage.history || []).concat({
-        date: new Date(),
+        date: new Date().toISOString(),
         change: diff(previousPage.pageContent, nextPage.pageContent),
       });
     }
