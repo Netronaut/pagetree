@@ -1,32 +1,6 @@
-import type { ReactElement } from 'react';
-import React from 'react';
+import React, { ReactElement } from 'react';
 
-import { HeadWrapper, Logo, HeadContent, ToggleButton, Label } from './componentsStyles';
-
-interface Props {
-  setShowPreview: React.Dispatch<React.SetStateAction<boolean>>;
-}
-
-export const Header = ({ setShowPreview }: Props): ReactElement => {
-  return (
-    <HeadWrapper>
-      <Logo>
-        <LogoSvg />
-        <span>Pagio</span>
-      </Logo>
-      <HeadContent>
-        <Label htmlFor="toggle-button">Preview mode</Label>
-        <ToggleButton
-          id="toggle-button"
-          type="checkbox"
-          onChange={() => setShowPreview((prev) => !prev)}
-        />
-      </HeadContent>
-    </HeadWrapper>
-  );
-};
-
-const LogoSvg = (): ReactElement => (
+export const BrandLogo = (): ReactElement => (
   <svg viewBox="0 0 180 198" fill="none" xmlns="http://www.w3.org/2000/svg">
     <g filter="url(#filter0_d)">
       <path

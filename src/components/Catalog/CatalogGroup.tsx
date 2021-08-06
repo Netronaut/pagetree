@@ -1,6 +1,6 @@
 import React, { ReactElement, useContext } from 'react';
 import { useDragAndDrop } from '../../hooks';
-import { TreeContext } from '../../utils/context';
+import { TreeContext } from '../../tree';
 import { ArrowIcon } from '../icons';
 import S from './Catalog.styles';
 
