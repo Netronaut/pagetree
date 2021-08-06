@@ -1,6 +1,6 @@
 import React, { ReactElement, useContext } from 'react';
-import { useDragAndDrop } from '../../hooks';
-import { TreeContext } from '../PageTree';
+import { PageTreeStateContext } from '../../provider';
+import { useDrag } from '../../dragAndDrop';
 import { CatalogItem } from './Catalog.styles';
 
 interface FilteredCatalogListProps {
@@ -8,25 +8,23 @@ interface FilteredCatalogListProps {
 }
 
 export const FilteredCatalogList = ({ searchValue }: FilteredCatalogListProps): ReactElement => {
-  const { components } = useContext(TreeContext);
-  const { onDragStart } = useDragAndDrop();
+  const { components } = useContext(PageTreeStateContext);
 
   return (
     <>
       {components
         ?.filter(
-          ({ componentName }) =>
+          ({ label, type }) =>
             searchValue === '' ||
-            componentName.toLocaleLowerCase().includes(searchValue.toLocaleLowerCase()),
+            (label || type).toLocaleLowerCase().includes(searchValue.toLocaleLowerCase()),
         )
-        .map(({ componentName, type }, i) => (
+        .map((item, i) => (
           <CatalogItem
-            id={type}
-            key={`droppable-component-${i}`}
-            draggable
-            onDragStart={onDragStart}
+            key={`catalog-item-${i}`}
+            data-component-description={JSON.stringify({ type: item.type })}
+            {...useDrag()}
           >
-            {componentName}
+            {item.label || item.type}
           </CatalogItem>
         ))}
     </>

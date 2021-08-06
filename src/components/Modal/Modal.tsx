@@ -5,7 +5,7 @@ import { ModalContainer, ModalContainerProps, ModalHeader } from './Modal.styles
 
 type ModalProps = ModalContainerProps & {
   children?: ReactNode;
-  onClose: () => void;
+  onClose?: () => void;
 };
 
 export const Modal = ({ children, onClose, position }: ModalProps): ReactElement => {
@@ -19,7 +19,7 @@ export const Modal = ({ children, onClose, position }: ModalProps): ReactElement
   useEffect(() => {
     const handleClickOutside = (event: Event) => {
       if (modalRef.current && !modalRef.current.contains(event.target as Node)) {
-        onClose();
+        onClose && onClose();
       }
     };
     window.addEventListener('click', handleClickOutside, true);

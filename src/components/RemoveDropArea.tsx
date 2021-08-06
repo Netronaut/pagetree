@@ -1,5 +1,6 @@
-import React, { DragEvent, DragEventHandler, ReactElement, useState } from 'react';
+import React, { DragEvent, ReactElement, useContext, useState } from 'react';
 import styled from 'styled-components';
+import { PageTreeDispatchContext } from '../provider';
 import { TrashIcon } from './icons';
 
 const DropArea = styled.div<{ $target: boolean }>`
@@ -20,11 +21,8 @@ const DropArea = styled.div<{ $target: boolean }>`
   ${({ $target }) => ($target ? `transform: scale(1.05);` : '')}
 `;
 
-interface RemoveDropAreaProps {
-  onDrop: DragEventHandler<HTMLDivElement>;
-}
-
-export const RemoveDropArea = ({ onDrop }: RemoveDropAreaProps): ReactElement => {
+export const RemoveDropArea = (): ReactElement => {
+  const dispatch = useContext(PageTreeDispatchContext);
   const [target, setTarget] = useState(false);
 
   const onDragOver = (event: DragEvent<EventTarget>) => {
@@ -38,7 +36,12 @@ export const RemoveDropArea = ({ onDrop }: RemoveDropAreaProps): ReactElement =>
   };
 
   return (
-    <DropArea onDrop={onDrop} onDragOver={onDragOver} onDragLeave={onDragLeave} $target={target}>
+    <DropArea
+      onDrop={(event) => dispatch({ type: 'remove', payload: { event } })}
+      onDragOver={onDragOver}
+      onDragLeave={onDragLeave}
+      $target={target}
+    >
       <TrashIcon />
     </DropArea>
   );
