@@ -1,4 +1,5 @@
 import React, { ReactElement } from 'react';
+
 export const Logo = (): ReactElement => (
   <svg viewBox="0 0 180 198" fill="none" xmlns="http://www.w3.org/2000/svg">
     <g filter="url(#filter0_d)">

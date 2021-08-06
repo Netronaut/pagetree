@@ -1,7 +1,7 @@
 import React, { ReactElement } from 'react';
 import { Link } from 'react-router-dom';
 import { PageEntity } from '../../types';
-import S from './PageManager.styles';
+import { PageItemButton, PageItemTitle, PageListItemContainer } from './PageManager.styles';
 
 interface PageListItemProps {
   page: PageEntity;
@@ -10,18 +10,18 @@ interface PageListItemProps {
 }
 
 export const PageListItem = ({ page, onRemove, onEdit }: PageListItemProps): ReactElement => (
-  <S.PageListItem>
-    <S.PageItemTitle>
+  <PageListItemContainer>
+    <PageItemTitle>
       <Link to={`pagebuilder/${page.id}`}>
         <>
           <h4>{page.title}</h4>
           <p>{page.path}</p>
         </>
       </Link>
-    </S.PageItemTitle>
-    <S.PageItemButton onClick={() => onEdit(page)}>Edit</S.PageItemButton>
-    <S.PageItemButton destructive onClick={() => onRemove(page)}>
+    </PageItemTitle>
+    <PageItemButton onClick={() => onEdit(page)}>Edit</PageItemButton>
+    <PageItemButton destructive onClick={() => onRemove(page)}>
       Remove
-    </S.PageItemButton>
-  </S.PageListItem>
+    </PageItemButton>
+  </PageListItemContainer>
 );

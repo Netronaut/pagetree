@@ -19,7 +19,7 @@ const getStylesFromDirection = (direction: TDirection, ratio: string) => {
   `;
 };
 
-export const DirectionWrapper = styled.div<{
+export const DirectionContainer = styled.div<{
   direction: TDirection;
   ratio: string;
   showPreview?: boolean;

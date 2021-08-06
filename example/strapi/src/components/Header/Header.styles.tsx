@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 
-const HeadWrapper = styled.header`
+export const HeadWrapper = styled.header`
   display: grid;
   grid-template: 1fr / 1fr minmax(auto, 238px) 4fr 2fr 1fr;
   background: #282c39;
@@ -9,7 +9,8 @@ const HeadWrapper = styled.header`
   line-height: 1.2;
   padding: 20px 15px;
 `;
-const HeadContent = styled.div`
+
+export const HeadContent = styled.div`
   grid-column: 4 / 4;
   display: grid;
   grid-auto-flow: column;
@@ -18,7 +19,7 @@ const HeadContent = styled.div`
   grid-template-columns: auto 60px;
 `;
 
-const LogoLink = styled(Link)`
+export const LogoLink = styled(Link)`
   grid-column: 2 / 3;
   display: flex;
   align-items: center;
@@ -37,11 +38,11 @@ const LogoLink = styled(Link)`
   }
 `;
 
-const Label = styled.label`
+export const Label = styled.label`
   cursor: pointer;
 `;
 
-const ToggleButton = styled.input`
+export const ToggleButton = styled.input`
   position: relative;
   display: inline-block;
   margin: 0;
@@ -76,11 +77,3 @@ const ToggleButton = styled.input`
     background: #39a7ff;
   }
 `;
-
-export default {
-  HeadWrapper,
-  HeadContent,
-  LogoLink,
-  Label,
-  ToggleButton,
-};

@@ -1,8 +1,7 @@
 import React, { Dispatch, ReactElement } from 'react';
 import { useLocation } from 'react-router';
 import { Logo } from './Logo';
-
-import S from './Header.styles';
+import { HeadContent, HeadWrapper, Label, LogoLink, ToggleButton } from './Header.styles';
 
 interface HeaderProps {
   setShowPreview: Dispatch<React.SetStateAction<boolean>>;
@@ -11,21 +10,21 @@ interface HeaderProps {
 export const Header = ({ setShowPreview }: HeaderProps): ReactElement => {
   const { pathname } = useLocation();
   return (
-    <S.HeadWrapper>
-      <S.LogoLink to="/">
+    <HeadWrapper>
+      <LogoLink to="/">
         <Logo />
         <span>Pagio</span>
-      </S.LogoLink>
+      </LogoLink>
       {/^\/pagebuilder/.test(pathname) && (
-        <S.HeadContent>
-          <S.Label htmlFor="toggle-button">Preview mode</S.Label>
-          <S.ToggleButton
+        <HeadContent>
+          <Label htmlFor="toggle-button">Preview mode</Label>
+          <ToggleButton
             id="toggle-button"
             type="checkbox"
             onChange={() => setShowPreview((prev) => !prev)}
           />
-        </S.HeadContent>
+        </HeadContent>
       )}
-    </S.HeadWrapper>
+    </HeadWrapper>
   );
 };

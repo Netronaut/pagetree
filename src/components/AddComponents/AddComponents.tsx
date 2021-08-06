@@ -1,5 +1,5 @@
 import React from 'react';
-import { AddComponentsWrapper } from './componentsStyles';
+import { AddComponentsWrapper } from './AddComponents.styles';
 
 type Props = {
   onModalShow: () => void;
