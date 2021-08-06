@@ -1,0 +1,13 @@
+{
+  "name": "@pagio/example-dashboard",
+  "version": "0.2.0-rc",
+  "private": true,
+  "description": "A collection of components for the pages dashboard",
+  "author": "Jakob Hohlfeld <jakob.hohlfeld@netronaut.de>",
+  "peerDependencies": {
+    "react": "^17.0.2"
+  },
+  "devDependencies": {
+    "typescript": "^4.3.5"
+  }
+}
