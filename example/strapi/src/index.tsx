@@ -19,24 +19,26 @@ const App = () => {
   }, []);
 
   const handlePageUpdate = (page: PageEntity) => {
-    axios.put(`${apiUrls.pages}/${page.id}`, {
-      pageContent: page.pageContent,
-    });
+    const previousPage = pages.find((item) => item.id === page.id);
+    const nextPage = { ...page };
+
+    if (previousPage) {
+      nextPage.history = (nextPage.history || []).concat({
+        date: new Date().toISOString(),
+        change: diff(previousPage.pageContent, nextPage.pageContent),
+      });
+    }
 
     setPages(
       pages.map((item) => {
-        if (item.id !== page.id) {
+        if (item.id !== nextPage.id) {
           return item;
         }
-        return {
-          ...page,
-          history: (page.history || []).concat({
-            date: new Date(),
-            change: diff(page.pageContent, item.pageContent),
-          }),
-        };
+        return nextPage;
       }),
     );
+
+    axios.put(`${apiUrls.pages}/${nextPage.id}`, nextPage);
   };
 
   return (

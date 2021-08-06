@@ -20,6 +20,9 @@
     },
     "pageContent": {
       "type": "json"
+    },
+    "history": {
+      "type": "json"
     }
   }
 }

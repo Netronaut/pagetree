@@ -1,6 +1,5 @@
 import React, { useState, ReactElement } from 'react';
 import { ArrowIcon, PageHistoryItem } from '@pagio/builder';
-import { formatISO9075 } from 'date-fns';
 import { ChangeDetailContainer, DetailsList } from './HistoryLog.styles';
 
 interface ChangeDetailProps {
@@ -9,11 +8,10 @@ interface ChangeDetailProps {
 
 export const ChangeDetail = ({ historyItem }: ChangeDetailProps): ReactElement => {
   const [isOpen, setIsOpen] = useState(false);
-
   return (
     <ChangeDetailContainer isOpen={isOpen}>
       <header onClick={() => setIsOpen(!isOpen)}>
-        {formatISO9075(historyItem.date)}
+        {historyItem.date}
         <button>
           <ArrowIcon />
         </button>

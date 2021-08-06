@@ -13,7 +13,7 @@ export interface PageContent {
 export type PageHistory = Array<PageHistoryItem>;
 
 export interface PageHistoryItem {
-  date: Date;
+  date: string;
   change: Array<PageChange>;
 }
 
