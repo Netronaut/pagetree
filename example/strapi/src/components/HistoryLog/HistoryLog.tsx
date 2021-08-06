@@ -22,10 +22,11 @@ export const HistoryLog = ({ history = [] }: HistoryLogProps): ReactElement => {
   return (
     <HistoryWrapper ref={ref} height={height} isOpen={isDisplayHistory}>
       <section>
-        <h3>History Log</h3>
-        {history.map((historyItem, i) => (
-          <ChangeDetail key={i} historyItem={historyItem} />
-        ))}
+        {!history ? <h3>History Log is empty</h3> : <h3>History Log:</h3>}
+        {history &&
+          history
+            .map((historyItem, i) => <ChangeDetail key={i} historyItem={historyItem} />)
+            .reverse()}
       </section>
       <ShowHistoryButton
         isOpen={isDisplayHistory}
