@@ -7,7 +7,7 @@ import { AddPageInput } from './AddPageInput';
 import { apiUrls } from '../../apiUrls';
 import { PageListItem } from './PageListItem';
 import { PageEntity } from '../../types';
-import S from './PageManager.styles';
+import { FilterInput, PageItemButton, PageList } from './PageManager.styles';
 
 export const PageManager = (): ReactElement => {
   const { pages, setPages } = useContext(ManagementContext);
@@ -50,23 +50,23 @@ export const PageManager = (): ReactElement => {
 
   return (
     <>
-      <S.PageList>
+      <PageList>
         <h3>Create a page</h3>
         <AddPageInput onSave={handleSave} />
         {pages.length > 0 && (
           <>
             <h3>Your pages</h3>
-            <S.FilterInput>
+            <FilterInput>
               <input
                 type="text"
                 onChange={(e) => setFilterValue(e.currentTarget.value)}
                 placeholder="filter by title"
                 value={filterValue}
               />
-              <S.PageItemButton disabled={filterValue == ''} onClick={() => setFilterValue('')}>
+              <PageItemButton disabled={filterValue == ''} onClick={() => setFilterValue('')}>
                 x
-              </S.PageItemButton>
-            </S.FilterInput>
+              </PageItemButton>
+            </FilterInput>
             {filteredPages.map((page: PageEntity) => (
               <PageListItem
                 onRemove={(page) => handleRemove(page)}
@@ -79,7 +79,7 @@ export const PageManager = (): ReactElement => {
             <p>{pages.length == 1 ? '1 page' : pages.length + ' pages'}</p>
           </>
         )}
-      </S.PageList>
+      </PageList>
 
       {selectedPage !== null && (
         <PageManagerModal

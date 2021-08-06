@@ -1,7 +1,7 @@
 import React, { ReactElement, useContext } from 'react';
 import { useDragAndDrop } from '../../hooks';
 import { TreeContext } from '../../tree';
-import S from './Catalog.styles';
+import { CatalogItem } from './Catalog.styles';
 
 interface FilteredCatalogListProps {
   searchValue: string;
@@ -20,14 +20,14 @@ export const FilteredCatalogList = ({ searchValue }: FilteredCatalogListProps): 
             componentName.toLocaleLowerCase().includes(searchValue.toLocaleLowerCase()),
         )
         .map(({ componentName, type }, i) => (
-          <S.CatalogItem
+          <CatalogItem
             id={type}
             key={`droppable-component-${i}`}
             draggable
             onDragStart={onDragStart}
           >
             {componentName}
-          </S.CatalogItem>
+          </CatalogItem>
         ))}
     </>
   );

@@ -2,7 +2,7 @@ import React, { ReactElement, useContext } from 'react';
 import { useDragAndDrop } from '../../hooks';
 import { TreeContext } from '../../tree';
 import { ArrowIcon } from '../icons';
-import S from './Catalog.styles';
+import { CatalogGroupContainer, CatalogItem, DropdownButton } from './Catalog.styles';
 
 interface CatalogGroupProps {
   groupName: string;
@@ -24,27 +24,27 @@ export const CatalogGroup = ({
   };
 
   return (
-    <S.CatalogGroup isOpen={isOpen}>
+    <CatalogGroupContainer isOpen={isOpen}>
       <header onClick={() => handleToggle(isOpen)}>
         {groupName}
-        <S.DropdownButton isOpen={isOpen}>
+        <DropdownButton isOpen={isOpen}>
           <ArrowIcon isOpen={isOpen} />
-        </S.DropdownButton>
+        </DropdownButton>
       </header>
       <section>
         {components
           ?.filter((component) => component.groupName === groupName)
           .map((component, i) => (
-            <S.CatalogItem
+            <CatalogItem
               id={component.type}
               key={`droppable-component-${i}`}
               draggable
               onDragStart={onDragStart}
             >
               {component.componentName}
-            </S.CatalogItem>
+            </CatalogItem>
           ))}
       </section>
-    </S.CatalogGroup>
+    </CatalogGroupContainer>
   );
 };

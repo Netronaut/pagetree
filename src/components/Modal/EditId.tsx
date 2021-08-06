@@ -1,7 +1,7 @@
 import React from 'react';
 import { ModalButton } from './ModalButton';
-import S from './Modal.styles';
 import { Flex } from '../components.styles';
+import { ModalH3, ModalInput } from './Modal.styles';
 
 type Props = {
   field: string;
@@ -27,8 +27,8 @@ export const EditId: React.FC<Props> = ({
 
   return (
     <>
-      <S.ModalH3>{type} ID</S.ModalH3>
-      <S.ModalInput
+      <ModalH3>{type} ID</ModalH3>
+      <ModalInput
         required
         placeholder={`Enter ${label} ID`}
         value={idByUser}

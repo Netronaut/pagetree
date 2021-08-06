@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-const Catalog = styled.div`
+export const CatalogContainer = styled.div`
   overflow-y: scroll;
   padding-right: 11px;
   ::-webkit-scrollbar {
@@ -12,7 +12,7 @@ const Catalog = styled.div`
   }
 `;
 
-const CatalogItem = styled.div`
+export const CatalogItem = styled.div`
   border-radius: '20px';
   background: '#69BBFD';
   box-sizing: 'border-box';
@@ -37,7 +37,7 @@ const CatalogItem = styled.div`
   }
 `;
 
-const CatalogGroup = styled.div<{ isOpen: boolean }>`
+export const CatalogGroupContainer = styled.div<{ isOpen: boolean }>`
   margin-bottom: 16px;
   border: ${({ isOpen }) => (isOpen ? '1px solid #F9F9F9' : 'none')};
   border-radius: 20px;
@@ -74,7 +74,7 @@ const CatalogGroup = styled.div<{ isOpen: boolean }>`
   }
 `;
 
-const DropdownButton = styled.button<{ isOpen: boolean }>`
+export const DropdownButton = styled.button<{ isOpen: boolean }>`
   position: absolute;
   top: calc(50% - 3.5px);
   right: 16px;
@@ -97,10 +97,3 @@ const DropdownButton = styled.button<{ isOpen: boolean }>`
     `}
   }
 `;
-
-export default {
-  Catalog,
-  CatalogItem,
-  CatalogGroup,
-  DropdownButton,
-};

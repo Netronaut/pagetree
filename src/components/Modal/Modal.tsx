@@ -1,7 +1,7 @@
 import React, { ReactElement, ReactNode, useEffect, useRef } from 'react';
 import { CrossIcon } from '../icons';
 import { ModalButton } from './ModalButton';
-import S, { ModalContainerProps } from './Modal.styles';
+import { ModalContainer, ModalContainerProps, ModalHeader } from './Modal.styles';
 
 type ModalProps = ModalContainerProps & {
   children?: ReactNode;
@@ -31,13 +31,13 @@ export const Modal = ({ children, onClose, position }: ModalProps): ReactElement
   }, []);
 
   return (
-    <S.ModalContainer ref={modalRef} draggable="true" onDragStart={onDragStart} position={position}>
-      <S.ModalHeader>
+    <ModalContainer ref={modalRef} draggable="true" onDragStart={onDragStart} position={position}>
+      <ModalHeader>
         <ModalButton onClick={onClose}>
           <CrossIcon />
         </ModalButton>
-      </S.ModalHeader>
+      </ModalHeader>
       {children}
-    </S.ModalContainer>
+    </ModalContainer>
   );
 };

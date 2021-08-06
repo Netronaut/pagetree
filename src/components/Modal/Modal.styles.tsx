@@ -4,7 +4,7 @@ export interface ModalContainerProps {
   position?: 'bottom-left';
 }
 
-const ModalContainer = styled.div<ModalContainerProps>`
+export const ModalContainer = styled.div<ModalContainerProps>`
   z-index: 2;
   top: 15px;
   display: flex;
@@ -44,20 +44,20 @@ const ModalContainer = styled.div<ModalContainerProps>`
   }
 `;
 
-const ModalHeader = styled.header({
+export const ModalHeader = styled.header({
   position: 'absolute',
   top: '15px',
   right: '15px',
   display: 'flex',
 });
 
-const ModalH3 = styled.h3`
+export const ModalH3 = styled.h3`
   font-size: 22px;
   line-height: 21px;
   text-align: center;
 `;
 
-const ModalInput = styled.input`
+export const ModalInput = styled.input`
   border: 1px solid #fff;
   border-radius: 10px;
   padding: 10px 15px;
@@ -66,7 +66,7 @@ const ModalInput = styled.input`
   }
 `;
 
-const Sel = styled.div`
+export const Sel = styled.div`
   border: 1px solid #f9f9f9;
   border-radius: 10px;
   padding: 20px 13px;
@@ -76,19 +76,10 @@ const Sel = styled.div`
   }
 `;
 
-const Hr = styled.hr`
+export const Hr = styled.hr`
   margin-top: 32px;
   width: 95%;
   height: 1px;
   border: none;
   background: #f9f9f9;
 `;
-
-export default {
-  ModalContainer,
-  ModalHeader,
-  ModalH3,
-  ModalInput,
-  Sel,
-  Hr,
-};
