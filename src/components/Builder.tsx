@@ -1,13 +1,12 @@
-import React, { ReactElement, useMemo, useState } from 'react';
-import { nanoid } from 'nanoid';
+import React, { ReactElement, useState } from 'react';
 import { Direction } from './Direction';
-import { Catalog } from './Catalog';
+import { Catalog, CatalogComponent } from './Catalog';
 import { AddComponents } from './AddComponents';
 import { RemoveDropArea } from './RemoveDropArea';
-import { Item, Tree, TSide, TreeContext } from '../utils';
-import { Optional, PageStructure } from '../types';
+import { Item, Tree, TreeContext, TSide } from '../tree';
+import { PageContent } from '../types';
 import { useModal } from '../hooks';
-import { Components } from '../hocs';
+
 import { ConstructorScreen, DroppableContent } from './components.styles';
 
 const makeElementVisible = (elementId: string) => {
@@ -20,29 +19,18 @@ const makeElementVisible = (elementId: string) => {
 };
 
 export interface BuilderProps {
-  pageContent?: PageStructure;
-  onChange: (val: PageStructure) => void;
+  pageContent?: PageContent;
+  onChange: (val: PageContent) => void;
   showPreview?: boolean;
-  components?: Components;
-  componentGroups?: Array<string>;
+  components?: Array<CatalogComponent>;
 }
 
 export const Builder = ({
-  pageContent = { _id: nanoid(6) },
+  pageContent = {},
   onChange,
   showPreview,
   components,
-  componentGroups,
 }: BuilderProps): ReactElement => {
-  pageContent = useMemo(
-    () => (pageContent === null ? { _id: nanoid(6) } : pageContent),
-    [pageContent],
-  );
-
-  const setValue = (newValue: Optional<PageStructure>) => {
-    onChange({ ...pageContent, ...newValue });
-  };
-
   const { isModalShown, onModalShow, onModalClose } = useModal();
 
   const addNew = (e: React.DragEvent<HTMLDivElement>, toId?: string, side?: TSide) => {
@@ -56,7 +44,7 @@ export const Builder = ({
     const tree = new Tree(pageContent.structure);
 
     tree.add(new Item({ type } as { type: string }), toId, side);
-    setValue({ structure: tree.getValue() });
+    onChange({ ...pageContent, structure: tree.getValue() });
   };
 
   const add = (e: React.DragEvent<HTMLDivElement>, toId?: string, side?: TSide) => {
@@ -77,7 +65,7 @@ export const Builder = ({
 
     if (removedItem) {
       tree.add(removedItem, removedContainerId === toId ? lastComponentId : toId, side);
-      setValue({ structure: tree.getValue() });
+      onChange({ ...pageContent, structure: tree.getValue() });
     }
   };
 
@@ -87,7 +75,8 @@ export const Builder = ({
     newValue: string,
     userControlledId?: string,
   ) => {
-    setValue({
+    onChange({
+      ...pageContent,
       config: {
         ...(pageContent.config || {}),
         [id]: {
@@ -103,18 +92,18 @@ export const Builder = ({
     const fromId = e.dataTransfer.getData('fromId');
     const tree = new Tree(pageContent.structure);
     tree.remove(fromId);
-    setValue({ structure: tree.getValue() });
+    onChange({ ...pageContent, structure: tree.getValue() });
   };
 
   const [searchValue, setSearchValue] = useState('');
   const [openedGroup, setOpenedGroup] = useState('');
 
-  const content = pageContent.structure ? (
+  const structure = pageContent.structure && (
     <Direction
       direction={pageContent.structure.direction}
       components={pageContent.structure.components}
     />
-  ) : null;
+  );
 
   return (
     <TreeContext.Provider
@@ -124,12 +113,11 @@ export const Builder = ({
         config: pageContent.config,
         showPreview,
         components,
-        componentGroups,
       }}
     >
       <ConstructorScreen>
         {showPreview ? (
-          content
+          structure
         ) : (
           <>
             <DroppableContent
@@ -137,10 +125,11 @@ export const Builder = ({
               onDragOver={(e) => e.preventDefault()}
               onDrop={addNew}
             >
-              {content}
+              {structure}
             </DroppableContent>
             {isModalShown ? (
               <Catalog
+                components={components}
                 onModalClose={onModalClose}
                 searchValue={searchValue}
                 setSearchValue={setSearchValue}

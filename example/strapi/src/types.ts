@@ -1,9 +1,9 @@
-import { PageStructure, PageHistory } from '@pagio/builder';
+import { PageContent, PageHistory } from '@pagio/builder';
 
 export interface PageEntity {
   id?: number;
   title: string;
   path: string;
-  pageContent?: PageStructure;
+  pageContent?: PageContent;
   history?: PageHistory;
 }

@@ -1,16 +1,9 @@
 import React, { useContext, useState } from 'react';
-import { useModal } from '../hooks';
 import styled from 'styled-components';
-import { TreeContext } from '../utils/context';
-import { EditContent } from '../components/Modal/EditContent';
-import { EditId } from '../components/Modal/EditId';
-import { Modal } from '../components/Modal';
-import { H1 } from '../components/components.styles';
-
-export type ProductionComponentProps = {
-  id: string;
-  config?: Record<string, string>;
-};
+import { EditContent, EditId, Modal, H1 } from '../';
+import { useModal } from '../../hooks';
+import { TreeContext } from '../../tree';
+import { CatalogComponent, ProductionComponentProps } from './Catalog.types';
 
 const Configure = styled.div`
   box-sizing: border-box;
@@ -52,15 +45,6 @@ const Type = styled.span<{ inside?: boolean }>`
       margin-bottom: 21px;
     `};
 `;
-
-export type CatalogComponent = {
-  (props: { type: string; id: string }): JSX.Element;
-  type: string;
-  componentName: string;
-  groupName: string | undefined;
-};
-
-export type Components = CatalogComponent[];
 
 export const createCatalogComponent = (
   WrappedComponent: React.FC,

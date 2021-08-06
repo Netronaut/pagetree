@@ -1,21 +1,19 @@
-import React from 'react';
+import React, { useState } from 'react';
 import ReactDOM from 'react-dom';
-import { Builder } from '@pagio/builder';
-import type { PageStructure } from '@pagio/builder';
-import { useState } from 'react';
+import { Builder, PageContent } from '@pagio/builder';
+import { components } from './catalog';
+import { Header } from './components';
 import { GlobalStyle } from './globalStyle';
-import { components, componentGroups } from './catalog';
-import { Header } from './components/Header';
 
 const App = () => {
   const [showPreview, setShowPreview] = useState(false);
-  const [pageContent, setPageContent] = useState<PageStructure>({
-    _id: 'test-id',
-  });
+  const [pageContent, setPageContent] = useState<PageContent>();
 
-  const handleUpdate = (update: PageStructure) => {
+  const handleUpdate = (update: PageContent) => {
     // eslint-disable-next-line no-console
-    console.log(update);
+    console.info('Page structure updated');
+    // eslint-disable-next-line no-console
+    console.log(JSON.stringify(update, null, 2));
     setPageContent(update);
   };
 
@@ -27,7 +25,6 @@ const App = () => {
         onChange={handleUpdate}
         showPreview={showPreview}
         components={components}
-        componentGroups={componentGroups}
       />
       <GlobalStyle />
     </>
