@@ -4,7 +4,8 @@ import { PageEntity } from '../../../strapi/src/types';
 import { useModal } from '../../../../src/hooks'; // TODO: need to import from the '@pagio/builder';
 
 import { PageItem } from './PageItem';
-import { Table, SmallerBold } from './PageList.styles';
+import { Table } from './PageList.styles';
+import { PageListHeader } from './PageListHeader';
 interface PageListProps {
   children: ReactElement;
   primary?: boolean;
@@ -25,15 +26,7 @@ export const PageList = ({ pages }: PageListProps) => {
       )}
       <Table>
         <thead>
-          <tr>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th>
-              <SmallerBold>Status</SmallerBold>
-            </th>
-          </tr>
+          <PageListHeader />
         </thead>
         <tbody>
           {pages.length &&
