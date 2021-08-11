@@ -1,6 +1,6 @@
 import React, { ReactElement } from 'react';
 
-export interface StarIconProps {
+interface StarIconProps {
   isSelected?: boolean;
   width?: number;
   height?: number;

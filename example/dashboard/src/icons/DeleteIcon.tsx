@@ -1,6 +1,6 @@
 import React, { ReactElement } from 'react';
 
-export interface DeleteIconProps {
+interface DeleteIconProps {
   isSelected?: boolean;
 }
 
