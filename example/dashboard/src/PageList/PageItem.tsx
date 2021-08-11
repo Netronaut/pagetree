@@ -6,9 +6,10 @@ interface Props {
   isPined?: boolean;
   title: string;
   version: string;
+  onModalShow: () => void;
 }
 
-export const PageItem: React.FC<Props> = ({ isPined, title, version }) => {
+export const PageItem: React.FC<Props> = ({ isPined, title, version, onModalShow }) => {
   const [pined, setPined] = useState(isPined);
   return (
     <tr>
@@ -21,7 +22,9 @@ export const PageItem: React.FC<Props> = ({ isPined, title, version }) => {
         <Larger>{title}</Larger>
       </td>
       <HiddenCell hidden={false}>
-        <EditIcon />
+        <IconWrapperButton onClick={onModalShow}>
+          <EditIcon />
+        </IconWrapperButton>
       </HiddenCell>
       <HiddenCell hidden={false}>
         <DeleteIcon />
