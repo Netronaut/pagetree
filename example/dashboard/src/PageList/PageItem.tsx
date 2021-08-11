@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { PageEntity } from '../../../strapi/src/types';
 import { DeleteIcon, StarIcon, EditIcon } from '../icons';
 import { Larger, HiddenCell, IconWrapperButton } from './PageList.styles';
+import Tooltip from './Tooltip';
 
 interface Props {
   page: PageEntity;
@@ -15,22 +16,28 @@ export const PageItem: React.FC<Props> = ({ page, onEdit, onRemove }) => {
   return (
     <tr>
       <td>
-        <IconWrapperButton onClick={() => setPined(!pined)}>
-          <StarIcon isFilled={pined} />
-        </IconWrapperButton>
+        <Tooltip content={<>Pin page</>}>
+          <IconWrapperButton onClick={() => setPined(!pined)}>
+            <StarIcon isFilled={pined} />
+          </IconWrapperButton>
+        </Tooltip>
       </td>
       <td>
         <Larger>{title}</Larger>
       </td>
       <HiddenCell hidden={false}>
-        <IconWrapperButton onClick={() => onEdit(page)}>
-          <EditIcon isOutlined />
-        </IconWrapperButton>
+        <Tooltip content={<span>Edit page</span>}>
+          <IconWrapperButton onClick={() => onEdit(page)}>
+            <EditIcon isOutlined />
+          </IconWrapperButton>
+        </Tooltip>
       </HiddenCell>
       <HiddenCell hidden={false}>
-        <IconWrapperButton onClick={() => onRemove(page)}>
-          <DeleteIcon />
-        </IconWrapperButton>
+        <Tooltip content={<span>Remove page</span>}>
+          <IconWrapperButton onClick={() => onRemove(page)}>
+            <DeleteIcon />
+          </IconWrapperButton>
+        </Tooltip>
       </HiddenCell>
       <td>{version}</td>
     </tr>
