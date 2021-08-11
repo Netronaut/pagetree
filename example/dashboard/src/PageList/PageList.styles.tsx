@@ -1,5 +1,15 @@
 import styled from 'styled-components';
 
+export const IconWrapperButton = styled.button`
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s;
+  :hover {
+    transform: scale(1.2);
+  }
+`;
+
 export const Table = styled.table`
   /* global fonts */
   font-family: Roboto;
