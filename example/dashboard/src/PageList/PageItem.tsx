@@ -24,7 +24,7 @@ export const PageItem: React.FC<Props> = ({ page, onEdit, onRemove }) => {
       </td>
       <HiddenCell hidden={false}>
         <IconWrapperButton onClick={() => onEdit(page)}>
-          <EditIcon />
+          <EditIcon isOutlined />
         </IconWrapperButton>
       </HiddenCell>
       <HiddenCell hidden={false}>
