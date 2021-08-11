@@ -13,40 +13,35 @@ interface PageListProps {
 
 export const PageList = ({ pages }: PageListProps) => {
   const { isModalShown, onModalShow, onModalClose } = useModal();
+  const handleRemove = (page: PageEntity) =>
+    console.log(`page with the id:${page.id} should be remove`);
 
   return (
-    <Table>
-      <thead>
-        <tr>
-          <th></th>
-          <th></th>
-          <th></th>
-          <th></th>
-          <th>
-            <SmallerBold>Status</SmallerBold>
-          </th>
-        </tr>
-      </thead>
-      <tbody>
-        {pages.length &&
-          pages.map((page) => {
-            const { title, isPined, version } = page;
-            return (
-              <PageItem
-                key={page.id}
-                isPined={isPined}
-                title={title}
-                version={version || ''}
-                onModalShow={onModalShow}
-              />
-            );
-          })}
-      </tbody>
+    <>
       {isModalShown && (
         <h2>
-          Should open the Edting modal window <button onClick={onModalClose}>close editing</button>
+          Should open the Editing modal window <button onClick={onModalClose}>close editing</button>
         </h2>
       )}
-    </Table>
+      <Table>
+        <thead>
+          <tr>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th>
+              <SmallerBold>Status</SmallerBold>
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          {pages.length &&
+            pages.map((page) => (
+              <PageItem key={page.id} page={page} onEdit={onModalShow} onRemove={handleRemove} />
+            ))}
+        </tbody>
+      </Table>
+    </>
   );
 };

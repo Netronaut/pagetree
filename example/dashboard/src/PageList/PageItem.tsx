@@ -1,15 +1,16 @@
 import React, { useState } from 'react';
+import { PageEntity } from '../../../strapi/src/types';
 import { DeleteIcon, StarIcon, EditIcon } from '../icons';
 import { Larger, HiddenCell, IconWrapperButton } from './PageList.styles';
 
 interface Props {
-  isPined?: boolean;
-  title: string;
-  version: string;
-  onModalShow: () => void;
+  page: PageEntity;
+  onRemove: (page: PageEntity) => void;
+  onEdit: (page: PageEntity) => void;
 }
 
-export const PageItem: React.FC<Props> = ({ isPined, title, version, onModalShow }) => {
+export const PageItem: React.FC<Props> = ({ page, onEdit, onRemove }) => {
+  const { isPined, title, version } = page;
   const [pined, setPined] = useState(isPined);
   return (
     <tr>
@@ -22,12 +23,14 @@ export const PageItem: React.FC<Props> = ({ isPined, title, version, onModalShow
         <Larger>{title}</Larger>
       </td>
       <HiddenCell hidden={false}>
-        <IconWrapperButton onClick={onModalShow}>
+        <IconWrapperButton onClick={() => onEdit(page)}>
           <EditIcon />
         </IconWrapperButton>
       </HiddenCell>
       <HiddenCell hidden={false}>
-        <DeleteIcon />
+        <IconWrapperButton onClick={() => onRemove(page)}>
+          <DeleteIcon />
+        </IconWrapperButton>
       </HiddenCell>
       <td>{version}</td>
     </tr>
