@@ -24,8 +24,8 @@ export const StarIcon = ({
       <path
         d="M10.2594 15.5658L4.5365 18.5668L5.62971 12.2106L1 7.70951L7.39796 6.78285L10.2594 1L13.1209 6.78285L19.5189 7.70951L14.8891 12.2106L15.9824 18.5668L10.2594 15.5658Z"
         stroke={isOutlined ? '#39A7FF' : '#C2C2C2'}
-        stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeLinecap="round"
+        strokeLinejoin="round"
       />
     </svg>
   );
