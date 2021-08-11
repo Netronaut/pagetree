@@ -2,7 +2,7 @@ import React from 'react';
 import { DeleteIcon } from './DeleteIcon';
 import { StarIcon } from './StarIcon';
 import { EditIcon } from './EditIcon';
-import styled from 'styled-components';
+import { Larger, HiddenCell } from './PageList.styles';
 
 interface Props {
   isPined?: boolean;
@@ -27,12 +27,3 @@ export const PageItem: React.FC<Props> = ({ isPined, title, version }) => (
     <td>{version}</td>
   </tr>
 );
-
-export const Larger = styled.span`
-  font-size: 18px;
-  line-height: 21px;
-`;
-
-export const HiddenCell = styled.td<{ hidden: boolean }>`
-  opacity: ${({ hidden }) => (hidden ? '0.1' : '1')};
-`;
