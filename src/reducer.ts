@@ -1,14 +1,24 @@
 import { PageNode } from './pageTree';
-import { DragOverState, InsertionPoint, PageTreeDropPayload, PageTreeState } from './types';
+import { DataTransferProps, DragOverState, InsertionPoint, PageTreeState } from './types';
+
+export interface DropPayload {
+  data: DataTransferProps;
+  targetId: string | null;
+  insertionPoint?: InsertionPoint;
+}
+
+export interface RemovePayload {
+  data: DataTransferProps;
+}
 
 export type PageTreeAction =
   | {
       type: 'drop';
-      payload: PageTreeDropPayload;
+      payload: DropPayload;
     }
   | {
       type: 'remove';
-      payload: { event: React.DragEvent<HTMLDivElement> };
+      payload: RemovePayload;
     }
   | {
       type: 'update';
@@ -60,8 +70,27 @@ export function reducer(state: PageTreeState, action: PageTreeAction): PageTreeS
         pageTree,
       };
     }
-    case 'remove':
+    case 'remove': {
+      const {
+        data: { sourceId },
+      } = action.payload;
+
+      if (sourceId) {
+        const { pageTree } = state;
+        const sourceNode = pageTree?.findByUuid(sourceId);
+        if (!sourceNode) {
+          throw Error('sourceNode not found');
+        }
+        sourceNode.parentNode?.remove(sourceNode);
+        pageTree?.clean();
+        return {
+          ...state,
+          pageTree,
+        };
+      }
+
       return state;
+    }
     case 'update':
       return state;
     case 'preview':

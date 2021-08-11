@@ -224,4 +224,24 @@ describe('pageTree', () => {
 
     expect(pageTree.childNodes).toHaveLength(1);
   });
+
+  it('should remove a node', () => {
+    const sourceId = 'sourceId';
+    const initialState = {
+      pageTree: new PageNode({
+        axis: PageNodeAxis.Column,
+        childNodes: [{ type: 'headline' }, { type: 'article-teaser', uuid: sourceId }],
+      }),
+    };
+    const state = reducer(initialState, {
+      type: 'remove',
+      payload: {
+        data: {
+          sourceId,
+        },
+      },
+    });
+    expect(state.pageTree?.childNodes).toHaveLength(1);
+    expect(state.pageTree?.getChildAt(0)?.options.uuid).not.toBe(sourceId);
+  });
 });

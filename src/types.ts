@@ -26,17 +26,8 @@ export interface PageTreeState {
   dragOver?: DragOverState;
 }
 
-export interface PageTreeDropPayload {
-  data: {
-    componentDescription?: CatalogComponentDescription;
-    sourceId?: string;
-  };
-  targetId: string | null;
-  insertionPoint?: InsertionPoint;
-}
-
 export interface DataTransferProps {
-  componentDescription?: string;
+  componentDescription?: CatalogComponentDescription;
   sourceId?: string;
 }
 

@@ -32,6 +32,10 @@ export interface UseDropReturnType {
   onDrop: DragEventHandler;
 }
 
+export interface UseDropRemoveReturnType {
+  onDrop: DragEventHandler;
+}
+
 export const useDrag = (): UseDragReturnType => {
   const dispatch = useContext(PageTreeDispatchContext);
   const { dragOver } = useContext(PageTreeStateContext);
@@ -117,6 +121,27 @@ export const useDrop = (): UseDropReturnType => {
     dragOver,
     onDragOver,
     onDragLeave,
+    onDrop,
+  };
+};
+
+export const onDropRemove = (): UseDropRemoveReturnType => {
+  const dispatch = useContext(PageTreeDispatchContext);
+
+  function onDrop(event: React.DragEvent<HTMLDivElement>) {
+    event.stopPropagation();
+    event.preventDefault();
+
+    const dataTransfer = event.dataTransfer.getData('text/plain');
+    if (dataTransfer) {
+      dispatch({
+        type: 'remove',
+        payload: { data: JSON.parse(dataTransfer) },
+      });
+    }
+  }
+
+  return {
     onDrop,
   };
 };
