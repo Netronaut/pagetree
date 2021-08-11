@@ -1,5 +1,5 @@
 import React from 'react';
-import { DeleteIcon, StarIcon, EditIcon } from './icons';
+import { DeleteIcon, StarIcon, EditIcon } from '../icons';
 import { Larger, HiddenCell } from './PageList.styles';
 
 interface Props {

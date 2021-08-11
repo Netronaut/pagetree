@@ -1,6 +1,6 @@
 import React, { ReactElement } from 'react';
 
-import { PageEntity } from '../../strapi/src/types';
+import { PageEntity } from '../../../strapi/src/types';
 import { PageItem } from './PageItem';
 import { Table, SmallerBold } from './PageList.styles';
 interface PageListProps {
