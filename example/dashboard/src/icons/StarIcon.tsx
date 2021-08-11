@@ -2,13 +2,13 @@ import React, { ReactElement } from 'react';
 
 interface StarIconProps {
   isFilled?: boolean;
-  isOutlined: boolean;
+  isOutlined?: boolean;
   width?: number;
   height?: number;
 }
 export const StarIcon = ({
   isFilled = false,
-  isOutlined = false,
+  isOutlined = true,
   width = 21,
   height = 20,
 }: StarIconProps): ReactElement => {

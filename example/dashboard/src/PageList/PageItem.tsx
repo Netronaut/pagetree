@@ -11,7 +11,7 @@ interface Props {
 export const PageItem: React.FC<Props> = ({ isPined, title, version }) => (
   <tr>
     <td>
-      <StarIcon isSelected={isPined} />
+      <StarIcon isFilled={isPined} />
     </td>
     <td>
       <Larger>{title}</Larger>
