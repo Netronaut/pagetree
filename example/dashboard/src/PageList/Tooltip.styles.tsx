@@ -44,7 +44,7 @@ export const TooltipTip = styled.div<{ direction: 'top' | 'bottom' | 'left' | 'r
     `;
     if (direction === 'right')
       return `
-        left: calc(100% + 30px);
+        left: calc(100% + 10px);
         top: 50%;
         transform: translateX(0) translateY(-50%);
         ::before {
@@ -65,7 +65,7 @@ export const TooltipTip = styled.div<{ direction: 'top' | 'bottom' | 'left' | 'r
     if (direction === 'left')
       return `
         left: auto;
-        right: calc(100% + 30px);
+        right: calc(100% + 10px);
         top: 50%;
         transform: translateX(0) translateY(-50%);
         :before {
