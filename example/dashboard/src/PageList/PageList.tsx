@@ -12,10 +12,9 @@ interface PageListProps {
   pages: PageEntity[];
 }
 
-export const PageList = ({ pages }: PageListProps) => {
+export const PageList = ({ pages }: PageListProps): ReactElement => {
   const { isModalShown, onModalShow, onModalClose } = useModal();
-  const handleRemove = (page: PageEntity) =>
-    console.log(`page with the id:${page.id} should be remove`);
+  const handleRemove = (page: PageEntity) => alert(`page with the id:${page.id} should be remove`);
 
   return (
     <>

@@ -1,14 +1,21 @@
-import React, { useState } from 'react';
+import React, { ReactElement, useState } from 'react';
 import { TooltipWrapper, TooltipTip } from './Tooltip.styles';
 
-const Tooltip = (props) => {
-  let timeout;
+interface TooltipProps {
+  children: ReactElement;
+  content: ReactElement;
+  direction?: 'top' | 'bottom' | 'left' | 'right';
+  delay?: number;
+}
+
+export const Tooltip = ({ direction, delay, children, content }: TooltipProps): ReactElement => {
+  let timeout: NodeJS.Timeout;
   const [active, setActive] = useState(false);
 
   const showTip = () => {
     timeout = setTimeout(() => {
       setActive(true);
-    }, props.delay || 400);
+    }, delay || 400);
   };
 
   const hideTip = () => {
@@ -18,10 +25,8 @@ const Tooltip = (props) => {
 
   return (
     <TooltipWrapper onMouseEnter={showTip} onMouseLeave={hideTip}>
-      {props.children}
-      {active && <TooltipTip direction={props.direction || 'top'}>{props.content}</TooltipTip>}
+      {children}
+      {active && <TooltipTip direction={direction || 'top'}>{content}</TooltipTip>}
     </TooltipWrapper>
   );
 };
-
-export default Tooltip;

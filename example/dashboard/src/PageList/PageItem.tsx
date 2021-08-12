@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { PageEntity } from '../../../strapi/src/types';
 import { DeleteIcon, StarIcon, EditIcon } from '../icons';
 import { Larger, HiddenCell, IconWrapperButton } from './PageList.styles';
-import Tooltip from './Tooltip';
+import { Tooltip } from './Tooltip';
 
 interface Props {
   page: PageEntity;
