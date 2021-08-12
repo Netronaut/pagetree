@@ -5,43 +5,18 @@ interface BrandIconProps {
 }
 
 export const BrandIcon = ({ isActive }: BrandIconProps): ReactElement => (
-  <svg width="25" height="26" viewBox="0 0 180 198" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <g filter="url(#filter0_d)">
-      <path
-        d="M44.59 189.28H14.56C6.52 189.28 0 182.76 0 174.72V130.13H59.15V174.72C59.15 182.76 52.63 189.28 44.59 189.28Z"
-        fill={isActive ? '#39A7FF' : '#AAAAAA'}
-      />
-      <path
-        d="M175.63 14.56V58.24H141.04C140.8 53.67 137.03 50.05 132.4 50.05H0V14.56C0 6.52 6.52 0 14.56 0H161.07C169.11 0 175.63 6.52 175.63 14.56Z"
-        fill={isActive ? '#FF394B' : '#DDDDDD'}
-      />
-      <path
-        d="M175.63 58.24V102.83C175.63 110.87 169.11 117.39 161.07 117.39H0V67.34H132.4C134.78 67.34 136.95 66.38 138.52 64.81C140.09 63.24 141.05 61.08 141.05 58.69C141.05 58.54 141.05 58.39 141.04 58.24H175.63Z"
-        fill={isActive ? '#FFBD39' : '#EEEEEE'}
-      />
-    </g>
-    <defs>
-      <filter
-        id="filter0_d"
-        x="-4"
-        y="0"
-        width="183.63"
-        height="197.28"
-        filterUnits="userSpaceOnUse"
-        colorInterpolationFilters="sRGB"
-      >
-        <feFlood floodOpacity="0" result="BackgroundImageFix" />
-        <feColorMatrix
-          in="SourceAlpha"
-          type="matrix"
-          values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
-        />
-        <feOffset dy="4" />
-        <feGaussianBlur stdDeviation="2" />
-        <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0" />
-        <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow" />
-        <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow" result="shape" />
-      </filter>
-    </defs>
+  <svg width="25" height="26" viewBox="0 0 25 26" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path
+      d="M6.12363 25.9284H1.99955C0.895404 25.9284 0 25.0352 0 23.9339V17.8257H8.12318V23.9339C8.12318 25.0352 7.22778 25.9284 6.12363 25.9284Z"
+      fill={isActive ? '#39A7FF' : '#AAAAAA'}
+    />
+    <path
+      d="M24.1196 1.99451V7.97802H19.3693C19.3363 7.352 18.8186 6.85611 18.1827 6.85611H0V1.99451C0 0.893144 0.895404 0 1.99955 0H22.12C23.2242 0 24.1196 0.893144 24.1196 1.99451Z"
+      fill={isActive ? '#FF394B' : '#DDDDDD'}
+    />
+    <path
+      d="M24.1196 7.97803V14.0862C24.1196 15.1876 23.2242 16.0807 22.12 16.0807H0V9.22459H18.1827C18.5096 9.22459 18.8076 9.09309 19.0232 8.87802C19.2388 8.66295 19.3707 8.36707 19.3707 8.03967C19.3707 8.01912 19.3707 7.99858 19.3693 7.97803H24.1196Z"
+      fill={isActive ? '#FFBD39' : '#EEEEEE'}
+    />
   </svg>
 );
