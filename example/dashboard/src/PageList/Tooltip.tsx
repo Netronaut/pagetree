@@ -1,9 +1,9 @@
 import React, { ReactElement, useState } from 'react';
 import { TooltipWrapper, TooltipTip } from './Tooltip.styles';
 
-interface TooltipProps {
+export interface TooltipProps {
   children: ReactElement;
-  content: ReactElement;
+  content: ReactElement | string;
   direction?: 'top' | 'bottom' | 'left' | 'right';
   delay?: number;
 }
@@ -15,7 +15,7 @@ export const Tooltip = ({ direction, delay, children, content }: TooltipProps): 
   const showTip = () => {
     timeout = setTimeout(() => {
       setActive(true);
-    }, delay || 400);
+    }, delay ?? 400);
   };
 
   const hideTip = () => {

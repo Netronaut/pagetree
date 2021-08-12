@@ -1,8 +1,8 @@
-import React, { ReactElement } from 'react'
+import React, { ReactElement } from 'react';
 
 interface ButtonProps {
-  children: ReactElement;
+  children: ReactElement | string;
   primary?: boolean;
 }
 
-export const Button = ({ children }: ButtonProps) => <button>{children}</button>
+export const Button = ({ children }: ButtonProps): ReactElement => <button>{children}</button>;
