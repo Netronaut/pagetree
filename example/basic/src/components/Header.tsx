@@ -5,10 +5,11 @@ import { BrandLogo } from './BrandLogo';
 import { HeadRoot, Logo, HeadContent, ToggleButton, Label } from './components.styles';
 
 interface HeaderProps {
+  preview: boolean;
   setPreview: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-export const Header = ({ setPreview }: HeaderProps): ReactElement => (
+export const Header = ({ preview, setPreview }: HeaderProps): ReactElement => (
   <HeadRoot>
     <Logo>
       <BrandLogo />
@@ -19,7 +20,8 @@ export const Header = ({ setPreview }: HeaderProps): ReactElement => (
       <ToggleButton
         id="toggle-button"
         type="checkbox"
-        onChange={() => setPreview((preview) => !preview)}
+        checked={preview}
+        onChange={() => setPreview(!preview)}
       />
     </HeadContent>
   </HeadRoot>

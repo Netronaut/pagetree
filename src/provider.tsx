@@ -6,7 +6,6 @@ import React, {
   useEffect,
   useReducer,
 } from 'react';
-import md5 from 'md5';
 import { PageTreeAction, reducer } from './reducer';
 import { CatalogComponent, PageTreeState } from './types';
 import { PageNode } from './pageTree';
@@ -24,7 +23,7 @@ interface PageTreeProviderProps {
 
 export const PageTreeProvider = ({
   children,
-  onUpdate,
+  onUpdate = () => undefined,
   preview = false,
   components,
   pageTree,
@@ -36,8 +35,8 @@ export const PageTreeProvider = ({
   });
 
   useEffect(() => {
-    onUpdate && state.pageTree && onUpdate(state.pageTree);
-  }, [onUpdate, pageTree ? md5(pageTree.toString()) : undefined]);
+    state.pageTree?.hash && onUpdate(state.pageTree as PageNode);
+  }, [state.pageTree?.hash]);
 
   return (
     <PageTreeDispatchContext.Provider value={dispatch}>

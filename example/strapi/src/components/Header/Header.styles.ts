@@ -1,7 +1,6 @@
 import styled from 'styled-components';
-import { Link } from 'react-router-dom';
 
-export const HeadWrapper = styled.header`
+export const HeadRoot = styled.header`
   display: grid;
   grid-template: 1fr / 1fr minmax(auto, 238px) 4fr 2fr 1fr;
   background: #282c39;
@@ -19,18 +18,14 @@ export const HeadContent = styled.div`
   grid-template-columns: auto 60px;
 `;
 
-export const LogoLink = styled(Link)`
+export const Logo = styled.div`
   grid-column: 2 / 3;
   display: flex;
   align-items: center;
-  color: white;
-  text-decoration: none;
-
   svg {
     width: 42px;
     height: 42px;
   }
-
   span {
     margin-left: 11px;
     font-size: 45px;

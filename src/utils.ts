@@ -1,6 +1,9 @@
 import { InsertionPoint, PageNodeAxis } from './types';
 
 export function vertical(insertionPoint: InsertionPoint, match?: PageNodeAxis): boolean {
+  if (InsertionPoint.None) {
+    return true;
+  }
   const isVertical = [InsertionPoint.Top, InsertionPoint.Bottom].includes(insertionPoint);
   if (match) {
     return isVertical && match === PageNodeAxis.Column;
@@ -9,6 +12,9 @@ export function vertical(insertionPoint: InsertionPoint, match?: PageNodeAxis): 
 }
 
 export function horizontal(insertionPoint: InsertionPoint, match?: PageNodeAxis): boolean {
+  if (InsertionPoint.None) {
+    return true;
+  }
   const isHorizontal = [InsertionPoint.Left, InsertionPoint.Right].includes(insertionPoint);
   if (match) {
     return isHorizontal && match === PageNodeAxis.Row;

@@ -1,5 +1,5 @@
+import md5 from 'md5';
 import { nanoid } from 'nanoid';
-import { DeepPartial } from 'tsdef';
 import { InsertionPoint, PageNodeAxis } from './types';
 import { vertical, append, matchesAxis } from './utils';
 
@@ -21,15 +21,21 @@ export interface PageNodeOptions {
   childNodes?: Array<PageNodeOptions>;
 }
 
+export interface PartialPageNodeOptions extends Partial<Omit<PageNodeOptions, 'childNodes'>> {
+  childNodes?: Partial<Array<PartialPageNodeOptions>>;
+}
+
 export class PageNode {
   uuid: string;
   type: string;
   props: PageNodeProps;
   axis?: PageNodeAxis;
+
+  hash?: string;
   parentNode: PageNode | null = null;
   childNodes: Array<PageNode> | null = null;
 
-  constructor(options: DeepPartial<PageNodeOptions>) {
+  constructor(options: PartialPageNodeOptions) {
     if (!options.type && !options.childNodes && !options.axis) {
       throw Error('Either type or childNodes|axis must be set');
     }
@@ -148,35 +154,58 @@ export class PageNode {
     return this;
   }
 
-  clean(): void {
-    if (!this.childNodes) {
-      return;
+  optimize(): this {
+    if (this.childNodes) {
+      this.childNodes.forEach((childNode) => childNode.optimize());
+
+      for (const childNode of this.childNodes) {
+        if (!childNode.axis) {
+          continue;
+        }
+        if (childNode.axis === this.axis) {
+          childNode.childNodes?.forEach((node) =>
+            this.insertAt(
+              node,
+              this.axis === PageNodeAxis.Row ? InsertionPoint.Left : InsertionPoint.Top,
+              childNode,
+            ),
+          );
+          this.remove(childNode);
+        }
+      }
+
+      if (this.childNodes.length === 1) {
+        this.parentNode?.insertAt(this.childNodes[0], InsertionPoint.None, this);
+      }
+
+      if (this.childNodes.length === 0) {
+        this.parentNode?.remove(this);
+      }
     }
 
-    if (this.childNodes.length === 1) {
-      this.parentNode?.insertAt(this.childNodes[0], InsertionPoint.None, this);
+    if (!this.parentNode) {
+      this.hash = md5(this.toString());
     }
 
-    if (this.childNodes.length === 0) {
-      this.parentNode?.remove(this);
-      return;
-    }
-
-    this.childNodes.forEach((childNode) => childNode.clean());
-
-    return;
+    return this;
   }
 
   valueOf(): PageNodeOptions {
-    return {
+    const value: PageNodeOptions = {
       uuid: this.uuid,
       type: this.type,
       props: this.props,
-      axis: this.axis,
-      childNodes: this.childNodes
-        ? this.childNodes.map((childNode) => childNode.valueOf())
-        : undefined,
     };
+
+    if (this.axis) {
+      value.axis = this.axis;
+    }
+
+    if (this.childNodes) {
+      value.childNodes = this.childNodes.map((childNode) => childNode.valueOf());
+    }
+
+    return value;
   }
 
   toString(): string {

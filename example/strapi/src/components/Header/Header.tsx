@@ -1,30 +1,32 @@
-import React, { Dispatch, ReactElement } from 'react';
-import { useLocation } from 'react-router';
-import { Logo } from './Logo';
-import { HeadContent, HeadWrapper, Label, LogoLink, ToggleButton } from './Header.styles';
+import type { ReactElement } from 'react';
+import React from 'react';
+import { Link } from 'react-router-dom';
+import { BrandLogo } from './BrandLogo';
+import { HeadRoot, HeadContent, Logo, Label, ToggleButton } from './Header.styles';
 
 interface HeaderProps {
-  setShowPreview: Dispatch<React.SetStateAction<boolean>>;
+  preview?: boolean;
+  setPreview?: (preview: boolean) => void;
 }
 
-export const Header = ({ setShowPreview }: HeaderProps): ReactElement => {
-  const { pathname } = useLocation();
-  return (
-    <HeadWrapper>
-      <LogoLink to="/">
-        <Logo />
+export const Header = ({ preview, setPreview }: HeaderProps): ReactElement => (
+  <HeadRoot>
+    <Link to="/">
+      <Logo>
+        <BrandLogo />
         <span>Pagio</span>
-      </LogoLink>
-      {/^\/pagebuilder/.test(pathname) && (
-        <HeadContent>
-          <Label htmlFor="toggle-button">Preview mode</Label>
-          <ToggleButton
-            id="toggle-button"
-            type="checkbox"
-            onChange={() => setShowPreview((prev) => !prev)}
-          />
-        </HeadContent>
-      )}
-    </HeadWrapper>
-  );
-};
+      </Logo>
+    </Link>
+    {setPreview && (
+      <HeadContent>
+        <Label htmlFor="toggle-button">Preview mode</Label>
+        <ToggleButton
+          id="toggle-button"
+          type="checkbox"
+          checked={preview}
+          onChange={() => setPreview(!preview)}
+        />
+      </HeadContent>
+    )}
+  </HeadRoot>
+);

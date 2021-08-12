@@ -39,8 +39,12 @@ export function reducer(state: PageTreeState, action: PageTreeAction): PageTreeS
       const { payload } = action;
       const pageTree = state.pageTree || new PageNode({ childNodes: [] });
       const { componentDescription, sourceId } = payload.data;
-      const insertionPoint = payload.insertionPoint || InsertionPoint.Bottom;
       const targetId = payload.targetId === 'page-tree-root' ? pageTree.uuid : payload.targetId;
+
+      const insertionPoint =
+        payload.targetId !== 'page-tree-root' && payload.insertionPoint
+          ? payload.insertionPoint
+          : InsertionPoint.None;
 
       const targetNode = pageTree.findByUuid(targetId as string);
       if (!targetNode) {
@@ -63,7 +67,7 @@ export function reducer(state: PageTreeState, action: PageTreeAction): PageTreeS
           targetNode,
         );
       }
-      pageTree.clean();
+      pageTree.optimize();
 
       return {
         ...state,
@@ -82,7 +86,7 @@ export function reducer(state: PageTreeState, action: PageTreeAction): PageTreeS
           throw Error('sourceNode not found');
         }
         sourceNode.parentNode?.remove(sourceNode);
-        pageTree?.clean();
+        pageTree?.optimize();
         return {
           ...state,
           pageTree,

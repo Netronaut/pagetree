@@ -24,6 +24,7 @@ export interface PageTreeState {
   components?: Array<CatalogComponent>;
   preview?: boolean;
   dragOver?: DragOverState;
+  hash?: string;
 }
 
 export interface DataTransferProps {

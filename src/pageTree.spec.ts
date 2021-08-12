@@ -16,7 +16,6 @@ describe('pageTree', () => {
           insertionPoint: InsertionPoint.None,
         },
       });
-
       expect(state.pageTree).toBeDefined();
       expect(state.pageTree?.type).toBe(PageNodeType.Track);
       expect(state.pageTree?.childNodes).toHaveLength(1);
@@ -214,34 +213,60 @@ describe('pageTree', () => {
       expect(state.pageTree?.childNodes).toHaveLength(1);
       expect(state.pageTree?.getChildAt(0)?.uuid).not.toBe(sourceId);
     });
+
+    it.todo(
+      'should properly optimize after removing a node, leaving a track node the only child of the root node',
+    );
   });
 
-  it('should clean up empty track nodes', () => {
+  it('should optimize empty track nodes', () => {
     const pageTree = new PageNode({
       childNodes: [{ type: 'headline' }, { childNodes: [] }],
     });
-    pageTree.clean();
-
+    pageTree.optimize();
     expect(pageTree.childNodes).toHaveLength(1);
   });
 
-  it('should remove a node', () => {
-    const sourceId = 'sourceId';
-    const initialState = {
-      pageTree: new PageNode({
-        axis: PageNodeAxis.Column,
-        childNodes: [{ type: 'headline' }, { type: 'article-teaser', uuid: sourceId }],
-      }),
-    };
-    const state = reducer(initialState, {
-      type: 'remove',
-      payload: {
-        data: {
-          sourceId,
+  it('should optimize while leaving root node unchanged', () => {
+    const rootNodeId = 'rootNodeId';
+    const pageTree = new PageNode({
+      uuid: rootNodeId,
+      type: PageNodeType.Track,
+      axis: PageNodeAxis.Column,
+      childNodes: [
+        {
+          type: PageNodeType.Track,
+          axis: PageNodeAxis.Row,
+          childNodes: [
+            {
+              type: 'article-teaser',
+            },
+          ],
         },
-      },
+      ],
     });
-    expect(state.pageTree?.childNodes).toHaveLength(1);
-    expect(state.pageTree?.getChildAt(0)?.options.uuid).not.toBe(sourceId);
+    pageTree.optimize();
+    expect(pageTree.uuid).toBe(rootNodeId);
+    expect(pageTree.type).toBe(PageNodeType.Track);
+    expect(pageTree.childNodes).toHaveLength(1);
+    expect(pageTree.getChildAt(0)?.type).toBe('article-teaser');
+  });
+
+  it('should optimize merge two nested tracks of the same orientation', () => {
+    const pageTree = new PageNode({
+      axis: PageNodeAxis.Column,
+      childNodes: [
+        { type: 'headline' },
+        {
+          axis: PageNodeAxis.Column,
+          childNodes: [{ type: 'article-teaser' }, { type: 'article-teaser' }],
+        },
+      ],
+    });
+    pageTree.optimize();
+    expect(pageTree.childNodes).toHaveLength(3);
+    expect(pageTree.getChildAt(0)?.type).toBe('headline');
+    expect(pageTree.getChildAt(1)?.type).toBe('article-teaser');
+    expect(pageTree.getChildAt(2)?.type).toBe('article-teaser');
   });
 });
