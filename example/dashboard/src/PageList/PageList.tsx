@@ -6,7 +6,7 @@ import { useModal } from '../../../../src/hooks'; // TODO: need to import from t
 import { PageItem } from './PageItem';
 import { Table } from './PageList.styles';
 import { PageListHeader } from './PageListHeader';
-interface PageListProps {
+export interface PageListProps {
   children: ReactElement;
   primary?: boolean;
   pages: PageEntity[];

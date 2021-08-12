@@ -1,12 +1,12 @@
-import React from 'react';
-import { PageList } from './PageList';
+import React, { ReactElement } from 'react';
+import { PageList, PageListProps } from './PageList';
 
 export default {
   title: 'Example/PageList',
   component: PageList,
 };
 
-export const pageList = (args) => <PageList {...args} />;
+export const pageList = (args: PageListProps): ReactElement => <PageList {...args} />;
 
 pageList.args = {
   pages: [
@@ -38,7 +38,7 @@ pageList.args = {
   ],
 };
 
-export const withLongText = (args) => <PageList {...args} />;
+export const withLongText = (args: PageListProps): ReactElement => <PageList {...args} />;
 
 withLongText.args = {
   pages: [
