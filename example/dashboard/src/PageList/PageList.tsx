@@ -1,4 +1,4 @@
-import React, { ReactElement } from 'react';
+import React, { ReactElement, useState } from 'react';
 
 import { PageEntity } from '../../../strapi/src/types';
 import { useModal } from '../../../../src/hooks'; // TODO: need to import from the '@pagio/builder';
@@ -6,6 +6,7 @@ import { useModal } from '../../../../src/hooks'; // TODO: need to import from t
 import { PageItem } from './PageItem';
 import { Table } from './PageList.styles';
 import { PageListHeader } from './PageListHeader';
+import { InputSearch } from '../InputSearch';
 export interface PageListProps {
   children: ReactElement;
   primary?: boolean;
@@ -15,9 +16,11 @@ export interface PageListProps {
 export const PageList = ({ pages }: PageListProps): ReactElement => {
   const { isModalShown, onModalShow, onModalClose } = useModal();
   const handleRemove = (page: PageEntity) => alert(`page with the id:${page.id} should be remove`);
+  const [searchValue, setSearchValue] = useState('');
 
   return (
     <>
+      <InputSearch searchValue={searchValue} setSearchValue={setSearchValue} />
       {isModalShown && (
         <h2>
           Should open the Editing modal window <button onClick={onModalClose}>close editing</button>
@@ -29,9 +32,15 @@ export const PageList = ({ pages }: PageListProps): ReactElement => {
         </thead>
         <tbody>
           {pages.length &&
-            pages.map((page) => (
-              <PageItem key={page.id} page={page} onEdit={onModalShow} onRemove={handleRemove} />
-            ))}
+            pages
+              .filter(
+                ({ title }) =>
+                  searchValue === '' ||
+                  title.toLocaleLowerCase().includes(searchValue.toLocaleLowerCase()),
+              )
+              .map((page) => (
+                <PageItem key={page.id} page={page} onEdit={onModalShow} onRemove={handleRemove} />
+              ))}
         </tbody>
       </Table>
     </>
