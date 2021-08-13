@@ -121,6 +121,6 @@ const Ul = styled.div`
 `;
 
 export default {
-  title: 'Components/Tooltip',
+  title: 'Common/Tooltip',
   component: List,
 };

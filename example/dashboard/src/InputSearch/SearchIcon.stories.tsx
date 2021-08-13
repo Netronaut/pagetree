@@ -2,7 +2,7 @@ import React, { ReactElement } from 'react';
 import { InputSearch, InputSearchProps } from './InputSearch';
 
 export default {
-  title: 'Example/InputSearch',
+  title: 'Common/InputSearch',
   component: InputSearch,
 };
 

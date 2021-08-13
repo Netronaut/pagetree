@@ -2,7 +2,7 @@ import React, { ReactElement } from 'react';
 import { PageList, PageListProps } from './PageList';
 
 export default {
-  title: 'Example/PageList',
+  title: 'PageList',
   component: PageList,
 };
 
