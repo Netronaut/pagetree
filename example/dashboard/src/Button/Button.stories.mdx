@@ -4,10 +4,26 @@ import { Meta, Story } from '@storybook/addon-docs';
 
 import { Button } from './Button';
 
-<Meta title="Button" />
+<Meta title="Button" component={Button}  />
+
+export const Template = (args) => <Button {...args} />
 
 # Button
 
-<Story name="Primary">
-  <Button primary>Add page</Button>
-</Story>
+<Canvas>
+  <Story name="Primary">
+    <Button>Add page</Button>
+  </Story>
+  <Story name="Secondary" args={{ 
+    color: 'secondary',
+    children: 'Ok',
+  }}>>
+    {Template.bind({})}
+  </Story>
+  <Story name="Transparent" args={{ 
+    color: 'transparent',
+    children: 'CANCEL',
+  }}>>
+    {Template.bind({})}
+  </Story>
+</Canvas>

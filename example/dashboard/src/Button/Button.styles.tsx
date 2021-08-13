@@ -1,11 +1,16 @@
 import styled from 'styled-components';
+import { ButtonProps } from './Button';
 
-export const StyledButton = styled.button`
+export const StyledButton = styled.button<{ color: ButtonProps['color'] }>`
   display: flex;
   justify-content: center;
   align-items: center;
   min-width: 162px;
-  background: #24c217;
+  background: ${({ color }) => {
+    if (color === 'primary') return '#24c217';
+    if (color === 'secondary') return '#5F9EFC';
+    if (color === 'transparent') return 'transparent';
+  }};
   border: none;
   border-radius: 3px;
   padding: 10px 16px 11px;
@@ -13,7 +18,7 @@ export const StyledButton = styled.button`
   transition: all 200ms;
 
   text-transform: uppercase;
-  color: #ffffff;
+  color: ${({ color }) => (color === 'transparent' ? '#CCCCCC' : '#FFFFFF')};
   //styleName: Medium Bold CTA;
   font-family: Roboto;
   font-size: 16px;

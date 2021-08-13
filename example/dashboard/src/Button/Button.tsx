@@ -1,11 +1,11 @@
 import React, { ReactElement } from 'react';
 import { StyledButton } from './Button.styles';
 
-interface ButtonProps {
+export interface ButtonProps {
   children: ReactElement | string;
-  primary?: boolean;
+  color?: 'primary' | 'secondary' | 'transparent';
 }
 
-export const Button = ({ children }: ButtonProps): ReactElement => (
-  <StyledButton>{children}</StyledButton>
+export const Button = ({ children, color = 'primary' }: ButtonProps): ReactElement => (
+  <StyledButton color={color}>{children}</StyledButton>
 );
