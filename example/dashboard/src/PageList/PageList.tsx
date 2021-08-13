@@ -7,6 +7,7 @@ import { PageItem } from './PageItem';
 import { Table } from './PageList.styles';
 import { PageListHeader } from './PageListHeader';
 import { InputSearch } from '../InputSearch';
+import { Button } from '../Button';
 export interface PageListProps {
   children: ReactElement;
   primary?: boolean;
@@ -15,12 +16,15 @@ export interface PageListProps {
 
 export const PageList = ({ pages }: PageListProps): ReactElement => {
   const { isModalShown, onModalShow, onModalClose } = useModal();
+
+  const handleAdd = () => alert('open the Edit window');
   const handleRemove = (page: PageEntity) => alert(`page with the id:${page.id} should be remove`);
   const [searchValue, setSearchValue] = useState('');
 
   return (
     <>
       <InputSearch searchValue={searchValue} setSearchValue={setSearchValue} />
+      <Button onClick={handleAdd}>Add page</Button>
       {isModalShown && (
         <h2>
           Should open the Editing modal window <button onClick={onModalClose}>close editing</button>
