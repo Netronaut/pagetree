@@ -1,7 +1,13 @@
 import React, { ReactElement } from 'react';
-import { SearchIcon } from './SearchIcon';
+import { SearchIcon, SearchIconProps } from './SearchIcon';
 
-export const Search = (): ReactElement => <SearchIcon />;
+export const defauld = (): ReactElement => <SearchIcon />;
+
+export const blue = (args: SearchIconProps): ReactElement => <SearchIcon {...args} />;
+
+blue.args = {
+  isOutlined: true,
+};
 
 export default {
   title: 'Icons/SearchIcon',
