@@ -1,6 +1,6 @@
 import React, { DragEventHandler, useContext } from 'react';
 import { PageTreeDispatchContext, PageTreeStateContext } from './provider';
-import { DragOverState, InsertionPoint } from './types';
+import { DataTransferPayload, DragOverPayload, InsertionPoint } from './types';
 
 const getInsertionPoint = ({ x, y, width, height }: Record<string, number>): InsertionPoint => {
   if (x < width * 0.25) {
@@ -20,13 +20,15 @@ const getInsertionPoint = ({ x, y, width, height }: Record<string, number>): Ins
 
 export interface UseDragReturnType {
   draggable: boolean;
-  dragOver?: DragOverState;
+  dataTransfer?: DataTransferPayload;
+  dragOver?: DragOverPayload;
   onDragStart: (event: React.DragEvent<HTMLDivElement>) => void;
   onDragEnd: () => void;
 }
 
 export interface UseDropReturnType {
-  dragOver?: DragOverState;
+  dataTransfer?: DataTransferPayload;
+  dragOver?: DragOverPayload;
   onDragOver: (event: React.DragEvent<HTMLDivElement>) => void;
   onDragLeave: (event: React.DragEvent<HTMLDivElement>) => void;
   onDrop: DragEventHandler;
@@ -38,26 +40,25 @@ export interface UseDropRemoveReturnType {
 
 export const useDrag = (): UseDragReturnType => {
   const dispatch = useContext(PageTreeDispatchContext);
-  const { dragOver } = useContext(PageTreeStateContext);
+  const { dragOver, dataTransfer } = useContext(PageTreeStateContext);
 
   function onDragStart(event: React.DragEvent<HTMLDivElement>) {
     event.stopPropagation();
     const { componentDescription } = event.currentTarget.dataset;
-    event.dataTransfer.setData(
-      'text/plain',
-      JSON.stringify({
-        componentDescription: componentDescription ? JSON.parse(componentDescription) : null,
-        sourceId: event.currentTarget.getAttribute('id'),
-      }),
-    );
+    const data = {
+      componentDescription: componentDescription ? JSON.parse(componentDescription) : null,
+      sourceId: event.currentTarget.getAttribute('id') || undefined,
+    };
+    dispatch({ type: 'dataTransfer', payload: data });
   }
 
   function onDragEnd() {
-    dispatch({ type: 'dragOver' });
+    dispatch({ type: 'dragEnd' });
   }
 
   return {
     draggable: true,
+    dataTransfer,
     dragOver,
     onDragStart,
     onDragEnd,
@@ -66,7 +67,7 @@ export const useDrag = (): UseDragReturnType => {
 
 export const useDrop = (): UseDropReturnType => {
   const dispatch = useContext(PageTreeDispatchContext);
-  const { dragOver } = useContext(PageTreeStateContext);
+  const { dragOver, dataTransfer } = useContext(PageTreeStateContext);
 
   function onDragOver(event: React.DragEvent<HTMLDivElement>) {
     event.stopPropagation();
@@ -92,7 +93,16 @@ export const useDrop = (): UseDropReturnType => {
 
   function onDragLeave(event: React.DragEvent<HTMLDivElement>) {
     event.stopPropagation();
-    dispatch({ type: 'dragOver' });
+    setTimeout(
+      () =>
+        dispatch({
+          type: 'dragLeave',
+          payload: {
+            sourceId: event.currentTarget?.getAttribute('id') || undefined,
+          },
+        }),
+      60,
+    );
   }
 
   function onDrop(event: React.DragEvent<HTMLDivElement>) {
@@ -108,17 +118,16 @@ export const useDrop = (): UseDropReturnType => {
       height,
     });
 
-    const dataTransfer = event.dataTransfer.getData('text/plain');
-    if (dataTransfer) {
-      dispatch({
-        type: 'drop',
-        payload: { data: JSON.parse(dataTransfer), targetId, insertionPoint },
-      });
-    }
+    dispatch({
+      type: 'drop',
+      payload: { targetId, insertionPoint },
+    });
+    dispatch({ type: 'dragEnd' });
   }
 
   return {
     dragOver,
+    dataTransfer,
     onDragOver,
     onDragLeave,
     onDrop,
@@ -131,14 +140,8 @@ export const onDropRemove = (): UseDropRemoveReturnType => {
   function onDrop(event: React.DragEvent<HTMLDivElement>) {
     event.stopPropagation();
     event.preventDefault();
-
-    const dataTransfer = event.dataTransfer.getData('text/plain');
-    if (dataTransfer) {
-      dispatch({
-        type: 'remove',
-        payload: { data: JSON.parse(dataTransfer) },
-      });
-    }
+    dispatch({ type: 'remove' });
+    dispatch({ type: 'dragEnd' });
   }
 
   return {

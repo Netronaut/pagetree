@@ -6,12 +6,12 @@ describe('pageTree', () => {
   describe('reducer', () => {
     it('should add a node to an empty tree', () => {
       const initialState = {
+        dataTransfer: { componentDescription: { type: 'article-teaser' } },
         pageTree: undefined,
       };
       const state = reducer(initialState, {
         type: 'drop',
         payload: {
-          data: { componentDescription: { type: 'article-teaser' } },
           targetId: 'page-tree-root',
           insertionPoint: InsertionPoint.None,
         },
@@ -25,6 +25,7 @@ describe('pageTree', () => {
     it('should add a node to an existing node list', () => {
       const targetId = 'targetId';
       const initialState = {
+        dataTransfer: { componentDescription: { type: 'article-teaser' } },
         pageTree: new PageNode({
           uuid: targetId,
           childNodes: [{ type: 'headline' }],
@@ -34,7 +35,6 @@ describe('pageTree', () => {
         type: 'drop',
         payload: {
           targetId,
-          data: { componentDescription: { type: 'article-teaser' } },
           insertionPoint: InsertionPoint.Bottom,
         },
       });
@@ -46,20 +46,18 @@ describe('pageTree', () => {
     it('should add a node after an existing node', () => {
       const targetId = 'targetId';
       const initialState = {
+        dataTransfer: { componentDescription: { type: 'article-teaser' } },
         pageTree: new PageNode({
           childNodes: [{ type: 'headline', uuid: targetId }],
         }),
       };
-
       const state = reducer(initialState, {
         type: 'drop',
         payload: {
           targetId,
-          data: { componentDescription: { type: 'article-teaser' } },
           insertionPoint: InsertionPoint.Bottom,
         },
       });
-
       expect(state.pageTree?.childNodes).toHaveLength(2);
       expect(state.pageTree?.getChildAt(0)?.type).toBe('headline');
       expect(state.pageTree?.getChildAt(1)?.type).toBe('article-teaser');
@@ -68,6 +66,7 @@ describe('pageTree', () => {
     it('should add a node before an existing node', () => {
       const targetId = 'targetId';
       const initialState = {
+        dataTransfer: { componentDescription: { type: 'article-teaser' } },
         pageTree: new PageNode({
           childNodes: [{ type: 'headline', uuid: targetId }],
         }),
@@ -76,11 +75,9 @@ describe('pageTree', () => {
         type: 'drop',
         payload: {
           targetId,
-          data: { componentDescription: { type: 'article-teaser' } },
           insertionPoint: InsertionPoint.Top,
         },
       });
-
       expect(state.pageTree?.childNodes).toHaveLength(2);
       expect(state.pageTree?.getChildAt(0)?.type).toBe('article-teaser');
     });
@@ -88,6 +85,7 @@ describe('pageTree', () => {
     it('should add a node between two existing nodes', () => {
       const targetId = 'targetId';
       const initialState = {
+        dataTransfer: { componentDescription: { type: 'article-teaser' } },
         pageTree: new PageNode({
           childNodes: [{ type: 'headline-1', uuid: targetId }, { type: 'headline-2' }],
         }),
@@ -96,11 +94,9 @@ describe('pageTree', () => {
         type: 'drop',
         payload: {
           targetId,
-          data: { componentDescription: { type: 'article-teaser' } },
           insertionPoint: InsertionPoint.Bottom,
         },
       });
-
       expect(state.pageTree?.childNodes).toHaveLength(3);
       expect(state.pageTree?.getChildAt(0)?.type).toBe('headline-1');
       expect(state.pageTree?.getChildAt(1)?.type).toBe('article-teaser');
@@ -110,6 +106,7 @@ describe('pageTree', () => {
     it('should add a node next to a node with non-matching axis', () => {
       const targetId = 'targetId';
       const initialState = {
+        dataTransfer: { componentDescription: { type: 'article-teaser' } },
         pageTree: new PageNode({
           axis: PageNodeAxis.Column,
           childNodes: [
@@ -122,11 +119,9 @@ describe('pageTree', () => {
         type: 'drop',
         payload: {
           targetId,
-          data: { componentDescription: { type: 'article-teaser' } },
           insertionPoint: InsertionPoint.Right,
         },
       });
-
       expect(state.pageTree?.childNodes).toHaveLength(2);
       expect(state.pageTree?.getChildAt(1)?.type).toBe(PageNodeType.Track);
       expect(state.pageTree?.getChildAt(1)?.axis).toBe(PageNodeAxis.Row);
@@ -139,6 +134,7 @@ describe('pageTree', () => {
       const targetId = 'targetId';
       const sourceId = 'sourceId';
       const initialState = {
+        dataTransfer: { sourceId },
         pageTree: new PageNode({
           axis: PageNodeAxis.Column,
           childNodes: [
@@ -151,11 +147,9 @@ describe('pageTree', () => {
         type: 'drop',
         payload: {
           targetId,
-          data: { sourceId },
           insertionPoint: InsertionPoint.Top,
         },
       });
-
       expect(state.pageTree?.childNodes).toHaveLength(2);
       expect(state.pageTree?.getChildAt(0)?.uuid).toBe(sourceId);
       expect(state.pageTree?.getChildAt(1)?.uuid).toBe(targetId);
@@ -164,6 +158,7 @@ describe('pageTree', () => {
     it('should clean up empty track nodes after moving a node', () => {
       const sourceId = 'sourceId';
       const initialState = {
+        dataTransfer: { sourceId },
         pageTree: new PageNode({
           childNodes: [
             { type: 'headline' },
@@ -182,11 +177,9 @@ describe('pageTree', () => {
       const state = reducer(initialState, {
         type: 'drop',
         payload: {
-          data: { sourceId },
           targetId: 'page-tree-root',
         },
       });
-
       expect(state.pageTree?.childNodes).toHaveLength(3);
       expect(state.pageTree?.getChildAt(0)?.type).toBe('headline');
       expect(state.pageTree?.getChildAt(1)?.type).toBe('article-teaser');
@@ -197,19 +190,13 @@ describe('pageTree', () => {
     it('should remove a node', () => {
       const sourceId = 'sourceId';
       const initialState = {
+        dataTransfer: { sourceId },
         pageTree: new PageNode({
           axis: PageNodeAxis.Column,
           childNodes: [{ type: 'headline' }, { type: 'article-teaser', uuid: sourceId }],
         }),
       };
-      const state = reducer(initialState, {
-        type: 'remove',
-        payload: {
-          data: {
-            sourceId,
-          },
-        },
-      });
+      const state = reducer(initialState, { type: 'remove' });
       expect(state.pageTree?.childNodes).toHaveLength(1);
       expect(state.pageTree?.getChildAt(0)?.uuid).not.toBe(sourceId);
     });

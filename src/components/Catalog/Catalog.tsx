@@ -6,7 +6,11 @@ import { SearchBox } from './SearchBox';
 
 import { CatalogContainer } from './Catalog.styles';
 
-export const Catalog = (): ReactElement => {
+interface CatalogProps {
+  hide?: boolean;
+}
+
+export const Catalog = ({ hide }: CatalogProps): ReactElement => {
   const [searchValue, setSearchValue] = useState('');
 
   const handleSearch = (e: React.FormEvent<HTMLInputElement>) => {
@@ -15,7 +19,7 @@ export const Catalog = (): ReactElement => {
   };
 
   return (
-    <Modal position="bottom-left">
+    <Modal position="bottom-left" hide={hide}>
       <ModalHeadline>Components</ModalHeadline>
       <SearchBox>
         <input

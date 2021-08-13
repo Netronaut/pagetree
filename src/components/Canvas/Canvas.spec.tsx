@@ -1,9 +1,9 @@
 import React, { ReactElement } from 'react';
-import { render, fireEvent, screen } from '@testing-library/react';
+import { render, fireEvent } from '@testing-library/react';
 import { CatalogComponentDescription } from '../../types';
 import { PageTreeProvider } from '../../provider';
 import { PageNode, PageNodeType } from '../../pageTree';
-import { Canvas } from '../../components';
+import { Canvas, Catalog } from '../../components';
 
 describe('Canvas', () => {
   const MockArticleTeaser = ({ label }: CatalogComponentDescription): ReactElement => (
@@ -31,33 +31,23 @@ describe('Canvas', () => {
 
   it('should add a new component to an empty page tree', () => {
     const { container } = render(
-      <>
-        <PageTreeProvider components={components}>
-          <Canvas />
-        </PageTreeProvider>
-      </>,
+      <PageTreeProvider components={components}>
+        <Canvas />
+        <Catalog />
+      </PageTreeProvider>,
     );
 
     expect(
       container.querySelectorAll(`[data-page-node-type="${PageNodeType.Track}"]`),
     ).toHaveLength(0);
 
-    fireEvent.drop(container.querySelector('[data-pagetree-root]') as Element, {
-      dataTransfer: {
-        getData: () =>
-          JSON.stringify({
-            componentDescription: {
-              type: 'article-teaser',
-            },
-          }),
-      },
-    });
+    fireEvent.dragStart(container.querySelector('[data-component-description]') as Element);
+    fireEvent.drop(container.querySelector('[data-pagetree-root]') as Element);
 
     expect(
       container.querySelectorAll(`[data-page-node-type="${PageNodeType.Track}"]`),
     ).toHaveLength(1);
     expect(container.querySelectorAll('[data-page-node-type="article-teaser"]')).toHaveLength(1);
-    expect(screen.getAllByText('Article Teaser')).toHaveLength(1);
   });
 
   it('should add a new component to an existing node list', () => {
@@ -66,25 +56,17 @@ describe('Canvas', () => {
     const { container } = render(
       <PageTreeProvider components={components} pageTree={pageTree}>
         <Canvas />
+        <Catalog />
       </PageTreeProvider>,
     );
 
-    fireEvent.drop(container.querySelector(`[data-pagetree-root]`) as Element, {
-      dataTransfer: {
-        getData: () =>
-          JSON.stringify({
-            componentDescription: {
-              type: 'article-teaser',
-            },
-          }),
-      },
-    });
+    fireEvent.dragStart(container.querySelector('[data-component-description]') as Element);
+    fireEvent.drop(container.querySelector('[data-pagetree-root]') as Element);
 
     expect(
       container.querySelectorAll(`[data-page-node-type="${PageNodeType.Track}"]`),
     ).toHaveLength(1);
     expect(container.querySelectorAll('[data-page-node-type="article-teaser"]')).toHaveLength(2);
-    expect(screen.getAllByText('Article Teaser')).toHaveLength(2);
   });
 
   it('should add a new component after an existing component', () => {
@@ -95,20 +77,12 @@ describe('Canvas', () => {
     const { container } = render(
       <PageTreeProvider components={components} pageTree={pageTree}>
         <Canvas />
+        <Catalog />
       </PageTreeProvider>,
     );
 
-    const target = container.querySelector(`[id="${targetId}"]`) as Element;
-    fireEvent.drop(target, {
-      dataTransfer: {
-        getData: () =>
-          JSON.stringify({
-            componentDescription: {
-              type: 'article-teaser',
-            },
-          }),
-      },
-    });
+    fireEvent.dragStart(container.querySelector('[data-component-description]') as Element);
+    fireEvent.drop(container.querySelector(`[id="${targetId}"]`) as Element);
 
     expect(
       container.querySelectorAll(`[data-page-node-type="${PageNodeType.Track}"]`),
@@ -116,7 +90,6 @@ describe('Canvas', () => {
     const nodes = container.querySelectorAll('[data-page-node-type="article-teaser"]');
     expect(nodes).toHaveLength(2);
     expect(nodes[0].getAttribute('id')).toBe(targetId);
-    expect(screen.getAllByText('Article Teaser')).toHaveLength(2);
   });
 
   it('should add a new component next to a deep nested component', () => {
@@ -133,6 +106,7 @@ describe('Canvas', () => {
     const { container } = render(
       <PageTreeProvider components={components} pageTree={pageTree}>
         <Canvas />
+        <Catalog />
       </PageTreeProvider>,
     );
 
@@ -140,24 +114,14 @@ describe('Canvas', () => {
       container.querySelectorAll(`[data-page-node-type="${PageNodeType.Track}"]`),
     ).toHaveLength(2);
     expect(container.querySelectorAll('[data-page-node-type="article-teaser"]')).toHaveLength(2);
-    expect(screen.getAllByText('Article Teaser')).toHaveLength(2);
 
-    fireEvent.drop(container.querySelector(`[id="${targetId}"]`) as Element, {
-      dataTransfer: {
-        getData: () =>
-          JSON.stringify({
-            componentDescription: {
-              type: 'article-teaser',
-            },
-          }),
-      },
-    });
+    fireEvent.dragStart(container.querySelector('[data-component-description]') as Element);
+    fireEvent.drop(container.querySelector(`[id="${targetId}"]`) as Element);
 
     expect(
       container.querySelectorAll(`[data-page-node-type="${PageNodeType.Track}"]`),
     ).toHaveLength(2);
     expect(container.querySelectorAll('[data-page-node-type="article-teaser"]')).toHaveLength(3);
-    expect(screen.getAllByText('Article Teaser')).toHaveLength(3);
   });
 
   it('should add a new component between two existing components', () => {
@@ -174,6 +138,7 @@ describe('Canvas', () => {
     const { container } = render(
       <PageTreeProvider components={components} pageTree={pageTree}>
         <Canvas />
+        <Catalog />
       </PageTreeProvider>,
     );
 
@@ -181,20 +146,9 @@ describe('Canvas', () => {
       container.querySelectorAll(`[data-page-node-type="${PageNodeType.Track}"]`),
     ).toHaveLength(1);
     expect(container.querySelectorAll('[data-page-node-type="article-teaser"]')).toHaveLength(2);
-    expect(screen.getAllByText('Article Teaser')).toHaveLength(2);
 
-    // console.log(container.querySelector(`[id="${targetId}"]`)?.getAttribute('id'));
-
-    fireEvent.drop(container.querySelector(`[id="${targetId}"]`) as Element, {
-      dataTransfer: {
-        getData: () =>
-          JSON.stringify({
-            componentDescription: {
-              type: 'article-teaser',
-            },
-          }),
-      },
-    });
+    fireEvent.dragStart(container.querySelector('[data-component-description]') as Element);
+    fireEvent.drop(container.querySelector(`[id="${targetId}"]`) as Element);
 
     const nodes = container.querySelectorAll('[data-page-node-type="article-teaser"]');
     expect(nodes).toHaveLength(3);

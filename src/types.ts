@@ -14,22 +14,31 @@ export enum InsertionPoint {
   Right = 'right',
 }
 
-export interface DragOverState {
+export interface DragOverPayload {
   targetId?: string;
   insertionPoint: InsertionPoint;
+}
+
+export interface DragLeavePayload {
+  sourceId?: string;
+}
+
+export interface DataTransferPayload {
+  componentDescription?: CatalogComponentDescription;
+  sourceId?: string;
+}
+export interface DropPayload {
+  targetId: string | null;
+  insertionPoint?: InsertionPoint;
 }
 
 export interface PageTreeState {
   pageTree?: PageNode;
   components?: Array<CatalogComponent>;
   preview?: boolean;
-  dragOver?: DragOverState;
-  hash?: string;
-}
-
-export interface DataTransferProps {
-  componentDescription?: CatalogComponentDescription;
-  sourceId?: string;
+  dataTransfer?: DataTransferPayload;
+  dragOver?: DragOverPayload;
+  dragOverMillies?: number;
 }
 
 export interface OnDropPayload {
@@ -39,7 +48,7 @@ export interface OnDropPayload {
 }
 
 export interface DropTargetProps {
-  dragOver?: DragOverState;
+  dragOver?: DragOverPayload;
 }
 
 export type PageHistory = Array<PageHistoryItem>;

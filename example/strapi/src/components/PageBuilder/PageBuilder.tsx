@@ -59,16 +59,15 @@ export const PageBuilder = (): ReactElement | null => {
       <Canvas />
       {!preview && (
         <PageTreeStateContext.Consumer>
-          {({ dragOver, dataTransfer }) => {
-            const elements = [];
-            if (dataTransfer?.sourceId) {
-              elements.push(<RemoveDropArea key="remove" />);
-            }
-            if (!dragOver) {
-              elements.push(<Catalog key="catalog" />);
-            }
-            return elements;
-          }}
+          {({ dragOver, dataTransfer }) => (
+            <>
+              <RemoveDropArea
+                key="remove"
+                hide={!dataTransfer || dataTransfer.sourceId === undefined}
+              />
+              <Catalog hide={dragOver !== undefined} />
+            </>
+          )}
         </PageTreeStateContext.Consumer>
       )}
     </PageTreeProvider>

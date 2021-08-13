@@ -1,15 +1,12 @@
 import { PageNode } from './pageTree';
-import { DataTransferProps, DragOverState, InsertionPoint, PageTreeState } from './types';
-
-export interface DropPayload {
-  data: DataTransferProps;
-  targetId: string | null;
-  insertionPoint?: InsertionPoint;
-}
-
-export interface RemovePayload {
-  data: DataTransferProps;
-}
+import {
+  DataTransferPayload,
+  DragLeavePayload,
+  DragOverPayload,
+  DropPayload,
+  InsertionPoint,
+  PageTreeState,
+} from './types';
 
 export type PageTreeAction =
   | {
@@ -18,7 +15,6 @@ export type PageTreeAction =
     }
   | {
       type: 'remove';
-      payload: RemovePayload;
     }
   | {
       type: 'update';
@@ -29,8 +25,19 @@ export type PageTreeAction =
       payload: boolean;
     }
   | {
+      type: 'dataTransfer';
+      payload?: DataTransferPayload;
+    }
+  | {
       type: 'dragOver';
-      payload?: DragOverState;
+      payload?: DragOverPayload;
+    }
+  | {
+      type: 'dragLeave';
+      payload?: DragLeavePayload;
+    }
+  | {
+      type: 'dragEnd';
     };
 
 export function reducer(state: PageTreeState, action: PageTreeAction): PageTreeState {
@@ -38,7 +45,7 @@ export function reducer(state: PageTreeState, action: PageTreeAction): PageTreeS
     case 'drop': {
       const { payload } = action;
       const pageTree = state.pageTree || new PageNode({ childNodes: [] });
-      const { componentDescription, sourceId } = payload.data;
+      const dataTransfer = state.dataTransfer;
       const targetId = payload.targetId === 'page-tree-root' ? pageTree.uuid : payload.targetId;
 
       const insertionPoint =
@@ -51,8 +58,8 @@ export function reducer(state: PageTreeState, action: PageTreeAction): PageTreeS
         throw Error('targetNode not found');
       }
 
-      if (sourceId) {
-        const sourceNode = pageTree.findByUuid(sourceId);
+      if (dataTransfer && dataTransfer.sourceId) {
+        const sourceNode = pageTree.findByUuid(dataTransfer.sourceId);
         if (!sourceNode) {
           throw Error('sourceNode not found');
         }
@@ -60,9 +67,9 @@ export function reducer(state: PageTreeState, action: PageTreeAction): PageTreeS
           return state;
         }
         pageTree.insertAt(sourceNode, insertionPoint, targetNode);
-      } else if (componentDescription?.type) {
+      } else if (dataTransfer && dataTransfer.componentDescription?.type) {
         pageTree.insertAt(
-          new PageNode({ type: componentDescription?.type as string }),
+          new PageNode({ type: dataTransfer.componentDescription?.type as string }),
           insertionPoint,
           targetNode,
         );
@@ -71,17 +78,17 @@ export function reducer(state: PageTreeState, action: PageTreeAction): PageTreeS
 
       return {
         ...state,
+        dataTransfer: undefined,
         pageTree,
       };
     }
-    case 'remove': {
-      const {
-        data: { sourceId },
-      } = action.payload;
 
-      if (sourceId) {
+    case 'remove': {
+      const { dataTransfer } = state;
+
+      if (dataTransfer?.sourceId) {
         const { pageTree } = state;
-        const sourceNode = pageTree?.findByUuid(sourceId);
+        const sourceNode = pageTree?.findByUuid(dataTransfer.sourceId);
         if (!sourceNode) {
           throw Error('sourceNode not found');
         }
@@ -89,17 +96,41 @@ export function reducer(state: PageTreeState, action: PageTreeAction): PageTreeS
         pageTree?.optimize();
         return {
           ...state,
+          dataTransfer: undefined,
           pageTree,
         };
       }
 
       return state;
     }
+
     case 'update':
       return state;
+
     case 'preview':
       return { ...state, preview: action.payload };
-    case 'dragOver':
-      return { ...state, dragOver: action.payload };
+
+    case 'dataTransfer':
+      return { ...state, dataTransfer: action.payload };
+
+    case 'dragOver': {
+      return { ...state, dragOver: action.payload, dragOverMillies: Date.now() };
+    }
+
+    case 'dragLeave': {
+      if (
+        state.dragOver &&
+        state.dragOver.targetId === action.payload?.sourceId &&
+        state.dragOverMillies &&
+        state.dragOverMillies < Date.now() - 60
+      ) {
+        return { ...state, dragOverMillies: undefined, dragOver: undefined };
+      }
+      return state;
+    }
+
+    case 'dragEnd': {
+      return { ...state, dataTransfer: undefined, dragOverMillies: undefined, dragOver: undefined };
+    }
   }
 }

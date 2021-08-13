@@ -19,7 +19,7 @@ const App = () => {
       childNodes: [{ type: 'headline' }, { type: 'article-teaser', uuid: 'article' }],
     }),
   );
-  const [preview, setPreview] = useState(true);
+  const [preview, setPreview] = useState(false);
 
   const handleUpdate = (pageTree: PageNode) => {
     // eslint-disable-next-line no-console
@@ -42,16 +42,15 @@ const App = () => {
         <Canvas />
         {!preview && (
           <PageTreeStateContext.Consumer>
-            {({ dragOver, dataTransfer }) => {
-              const elements = [];
-              if (dataTransfer?.sourceId) {
-                elements.push(<RemoveDropArea key="remove" />);
-              }
-              if (!dragOver) {
-                elements.push(<Catalog key="catalog" />);
-              }
-              return elements;
-            }}
+            {({ dragOver, dataTransfer }) => (
+              <>
+                <RemoveDropArea
+                  key="remove"
+                  hide={!dataTransfer || dataTransfer.sourceId === undefined}
+                />
+                <Catalog hide={dragOver !== undefined} />
+              </>
+            )}
           </PageTreeStateContext.Consumer>
         )}
       </PageTreeProvider>
