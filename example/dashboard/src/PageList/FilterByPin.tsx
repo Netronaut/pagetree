@@ -9,9 +9,9 @@ type Props = {
 
 export const FilterByPin: React.FC<Props> = ({ isFilterActive, setIsFilterActive }) => (
   <h2>
-    All Pages
+    {!isFilterActive ? 'All Pages' : 'Pined Pages'}
     <IconWrapperButton onClick={() => setIsFilterActive(!isFilterActive)}>
-      <StarIcon isOutlined={isFilterActive} />
+      <StarIcon isOutlined={false} isFilled={isFilterActive} />
     </IconWrapperButton>
   </h2>
 );
