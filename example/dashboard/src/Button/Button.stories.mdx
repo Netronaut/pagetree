@@ -1,0 +1,12 @@
+import { Meta, Story } from '@storybook/addon-docs';
+import { Button } from './Button';
+
+<Meta title="Button" component={Button}  />
+
+# Button
+
+<Canvas>
+  <Story name="Button" args={{ primary: true, secondary: false, text: 'Button' }}>
+    {({text, ...args}) => <Button {...args}>{text}</Button>}
+  </Story>
+</Canvas>
