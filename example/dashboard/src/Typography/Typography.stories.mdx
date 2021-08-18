@@ -1,0 +1,41 @@
+import { Meta, Canvas } from '@storybook/addon-docs';
+import styled from 'styled-components'
+import { Larger, LargerMedium, MediumBold, Smaller, SmallerBold } from './Typography'
+
+<Meta title="Typography" />
+
+export const FontDetails = styled(Smaller).attrs({ as: 'div' })`
+  color: grey;
+  padding: 1em 0;
+  border: 1px solid lightgrey;
+  border-width: 0 0 1px 0;
+`
+
+# Tooltip
+
+<Canvas>
+  <Story name="Typography">
+    <div style={{ display: 'grid', gap: '1rem' }}>
+      <div>
+        <Larger>Larger</Larger>
+        <FontDetails>font-size: 18px; line-height: 1.5;</FontDetails>
+      </div>
+      <div>
+        <LargerMedium>LargerMedium</LargerMedium>
+        <FontDetails>font-size: 24px; font-weight: 500;</FontDetails>
+      </div>
+      <div>
+        <MediumBold>MediumBold</MediumBold>
+        <FontDetails>font-size: 16px; font-weight: 700;</FontDetails>
+      </div>
+      <div>
+        <Smaller>Smaller</Smaller>
+        <FontDetails>font-size: 12px; font-weight: 400;</FontDetails>
+      </div>
+      <div>
+        <SmallerBold>SmallerBold</SmallerBold>
+        <FontDetails>font-size: 12px; font-weight: 700;</FontDetails>
+      </div>
+    </div>
+  </Story>
+</Canvas>

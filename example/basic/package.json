@@ -1,6 +1,6 @@
 {
   "name": "@pagio/example-basic",
-  "version": "0.1.0",
+  "version": "0.2.0-rc",
   "private": true,
   "scripts": {
     "start": "PORT=3000 webpack serve --mode=development"
