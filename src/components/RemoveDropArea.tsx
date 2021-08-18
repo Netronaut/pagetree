@@ -1,9 +1,11 @@
-import React, { DragEvent, DragEventHandler, ReactElement, useState } from 'react';
+import React, { DragEvent, ReactElement, useState } from 'react';
 import styled from 'styled-components';
+import { onDropRemove } from '../dragAndDrop';
 import { TrashIcon } from './icons';
 
-const DropArea = styled.div<{ $target: boolean }>`
-  position: absolute;
+const DropArea = styled.div<{ hide?: boolean; $target: boolean }>`
+  display: ${({ hide }) => (hide ? 'none' : 'block')};
+  position: fixed;
   bottom: 25px;
   right: 25px;
   width: 80px;
@@ -21,10 +23,10 @@ const DropArea = styled.div<{ $target: boolean }>`
 `;
 
 interface RemoveDropAreaProps {
-  onDrop: DragEventHandler<HTMLDivElement>;
+  hide?: boolean;
 }
 
-export const RemoveDropArea = ({ onDrop }: RemoveDropAreaProps): ReactElement => {
+export const RemoveDropArea = ({ hide }: RemoveDropAreaProps): ReactElement => {
   const [target, setTarget] = useState(false);
 
   const onDragOver = (event: DragEvent<EventTarget>) => {
@@ -38,7 +40,13 @@ export const RemoveDropArea = ({ onDrop }: RemoveDropAreaProps): ReactElement =>
   };
 
   return (
-    <DropArea onDrop={onDrop} onDragOver={onDragOver} onDragLeave={onDragLeave} $target={target}>
+    <DropArea
+      onDragOver={onDragOver}
+      onDragLeave={onDragLeave}
+      $target={target}
+      hide={hide}
+      {...onDropRemove()}
+    >
       <TrashIcon />
     </DropArea>
   );

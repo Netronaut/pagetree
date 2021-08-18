@@ -1,6 +1,12 @@
 import styled from 'styled-components';
 
-export const HeadWrapper = styled.header`
+export const AppRoot = styled.main`
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+`;
+
+export const HeadRoot = styled.header`
   display: grid;
   grid-template: 1fr / 1fr minmax(auto, 238px) 4fr 2fr 1fr;
   background: #282c39;

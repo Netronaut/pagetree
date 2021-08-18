@@ -5,10 +5,11 @@ import { ModalContainer, ModalContainerProps, ModalHeader } from './Modal.styles
 
 type ModalProps = ModalContainerProps & {
   children?: ReactNode;
-  onClose: () => void;
+  onClose?: () => void;
+  hide?: boolean;
 };
 
-export const Modal = ({ children, onClose, position }: ModalProps): ReactElement => {
+export const Modal = ({ children, onClose, position, hide }: ModalProps): ReactElement => {
   const modalRef = useRef<HTMLDivElement>(null);
 
   const onDragStart = (e: React.DragEvent<HTMLDivElement>) => {
@@ -19,7 +20,7 @@ export const Modal = ({ children, onClose, position }: ModalProps): ReactElement
   useEffect(() => {
     const handleClickOutside = (event: Event) => {
       if (modalRef.current && !modalRef.current.contains(event.target as Node)) {
-        onClose();
+        onClose && onClose();
       }
     };
     window.addEventListener('click', handleClickOutside, true);
@@ -31,7 +32,13 @@ export const Modal = ({ children, onClose, position }: ModalProps): ReactElement
   }, []);
 
   return (
-    <ModalContainer ref={modalRef} draggable="true" onDragStart={onDragStart} position={position}>
+    <ModalContainer
+      ref={modalRef}
+      draggable="true"
+      onDragStart={onDragStart}
+      position={position}
+      hide={hide}
+    >
       <ModalHeader>
         <ModalButton onClick={onClose}>
           <CrossIcon />

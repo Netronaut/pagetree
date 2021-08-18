@@ -1,23 +1,24 @@
-import React, { ReactElement, useMemo } from 'react';
-import { useState, useContext } from 'react';
+import React, { ReactElement, useMemo, useState, useEffect } from 'react';
 import axios from 'axios';
-import { PageManagerModal } from './PageManagerModal';
-import { ManagementContext } from '../../context';
 import { AddPageInput } from './AddPageInput';
 import { apiUrls } from '../../apiUrls';
-import { PageListItem } from './PageListItem';
+import { Header } from '../Header';
 import { PageEntity } from '../../types';
+import { PageManagerModal } from './PageManagerModal';
+import { PageListItem } from './PageListItem';
 import { FilterInput, PageItemButton, PageList } from './PageManager.styles';
 
 export const PageManager = (): ReactElement => {
-  const { pages, setPages } = useContext(ManagementContext);
-  const [selectedPage, setSelectedPage] = useState<PageEntity | null>(null);
+  const [pages, setPages] = useState<Array<PageEntity>>([]);
+  const [editPage, setEditPage] = useState<PageEntity | null>(null);
   const [filterValue, setFilterValue] = useState('');
+
+  useEffect(() => {
+    axios.get(apiUrls.pages).then((response) => setPages(response.data));
+  }, []);
 
   const handleSave = async (page: PageEntity) => {
     const { id, title, path } = page;
-
-    setSelectedPage(null);
 
     const method = id ? 'put' : 'post';
     const url = [apiUrls.pages];
@@ -33,6 +34,8 @@ export const PageManager = (): ReactElement => {
     } else {
       setPages(pages.concat(response.data));
     }
+
+    setEditPage(null);
   };
 
   const handleRemove = async (page: PageEntity) => {
@@ -50,6 +53,7 @@ export const PageManager = (): ReactElement => {
 
   return (
     <>
+      <Header />
       <PageList>
         <h3>Create a page</h3>
         <AddPageInput onSave={handleSave} />
@@ -70,7 +74,7 @@ export const PageManager = (): ReactElement => {
             {filteredPages.map((page: PageEntity) => (
               <PageListItem
                 onRemove={(page) => handleRemove(page)}
-                onEdit={(page) => setSelectedPage(page)}
+                onEdit={(page) => setEditPage(page)}
                 key={page.id}
                 page={page}
               />
@@ -81,12 +85,8 @@ export const PageManager = (): ReactElement => {
         )}
       </PageList>
 
-      {selectedPage !== null && (
-        <PageManagerModal
-          page={selectedPage}
-          onClose={() => setSelectedPage(null)}
-          onSave={handleSave}
-        />
+      {editPage && (
+        <PageManagerModal page={editPage} onClose={() => setEditPage(null)} onSave={handleSave} />
       )}
     </>
   );
