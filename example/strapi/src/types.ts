@@ -5,5 +5,7 @@ export interface PageEntity {
   title: string;
   path: string;
   pageContent?: PageNodeOptions;
+  starred?: boolean;
+  version?: string;
   history?: PageHistory;
 }

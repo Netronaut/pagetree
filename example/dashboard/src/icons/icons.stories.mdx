@@ -1,0 +1,41 @@
+import { Meta, Story } from '@storybook/addon-docs';
+import { BrandIcon } from './BrandIcon'
+import { DeleteIcon } from './DeleteIcon'
+import { EditIcon } from './EditIcon'
+import { SearchIcon } from './SearchIcon'
+import { StarIcon } from './StarIcon'
+import { IconButton } from './IconButton'
+
+export const Grid = (Story) => <div style={{ display: 'grid', gap: '1rem', 'justifyItems': 'start'}}><Story /></div>
+
+<Meta title="Icons" decorators={[Grid]} />
+
+export const  args={
+  fill: false,
+  stroke: false,
+  width: 24,
+  height: 24,
+}
+
+# Icons
+
+<Canvas>
+  <Story name="Icons" args={args}>
+    {(args) => (
+      <>
+        <BrandIcon {...args} />
+        <DeleteIcon {...args} />
+        <EditIcon {...args} />
+        <SearchIcon {...args} />
+        <StarIcon {...args} />
+      </>
+    )}
+  </Story>
+  <Story name="Icons with IconButton" args={args}>
+    {(args) => [BrandIcon, DeleteIcon, EditIcon, SearchIcon, StarIcon].map((Icon, index) => (
+      <IconButton key={index}>
+        <Icon {...args} />
+      </IconButton>
+    ))}
+  </Story>
+</Canvas>

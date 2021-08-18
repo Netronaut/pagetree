@@ -1,0 +1,58 @@
+import { Meta, Story } from '@storybook/addon-docs';
+import { PageList } from './PageList';
+
+<Meta title="PageList" component={PageList} />
+
+export const mockPages = [
+  {
+    id: 1,
+    title: 'News | Unterhaltung',
+    path: 'item-one',
+    isPined: true,
+    version: 'Version 2, Published',
+  },
+  {
+    id: 2,
+    title: 'A cool and potentially long page title...',
+    path: 'item-two',
+    version: 'Version 31, Published',
+  },
+  {
+    id: 3,
+    title: 'Homepage',
+    path: 'item-three',
+    version: 'Version 12, Published, 3 changes',
+  },
+  {
+    id: 4,
+    title: 'Gute Zeiten Schlechte Zeiten | Alle Videos',
+    path: 'item-four',
+    version: 'Version 5, Published',
+  },
+];
+
+export const actions = {
+  onAdd: () => alert('add page'),
+  onEdit: () => alert('edit page'),
+  onRemove: () => alert('remove page'),
+  onSelect: () => alert('select page'),
+}
+
+# PageList
+
+<Canvas>
+  <Story name="PageList">
+    <PageList pages={mockPages} {...actions} />
+  </Story>
+  <Story name="With long title">
+    <PageList pages={[
+    {
+      id: 1,
+      title:
+        'Item One Item OneItem OneItem OneItem OneItem OneItem OneItem OneItem OneItem OneItem OneItem OneItem OneItem OneItem OneItem OneItem OneItem OneItem OneItem OneItem OneItem One',
+      path: 'item-one',
+    },
+  ]}
+  {...actions} />
+  </Story>
+</Canvas>
