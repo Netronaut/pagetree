@@ -1,13 +1,54 @@
-import { ChildDirection } from './tree';
 import { ProductionComponentProps } from './components';
+import { PageNode } from './pageTree';
 
-export type Optional<T> = {
-  [K in keyof T]?: T[K];
-};
+export enum PageNodeAxis {
+  Row = 'row',
+  Column = 'column',
+}
 
-export interface PageContent {
-  structure?: ChildDirection;
-  config?: Record<string, Record<string, string>>;
+export enum InsertionPoint {
+  None,
+  Top = 'top',
+  Left = 'left',
+  Bottom = 'bottom',
+  Right = 'right',
+}
+
+export interface DragOverPayload {
+  targetId?: string;
+  insertionPoint: InsertionPoint;
+}
+
+export interface DragLeavePayload {
+  sourceId?: string;
+}
+
+export interface DataTransferPayload {
+  componentDescription?: CatalogComponentDescription;
+  sourceId?: string;
+}
+export interface DropPayload {
+  targetId: string | null;
+  insertionPoint?: InsertionPoint;
+}
+
+export interface PageTreeState {
+  pageTree?: PageNode;
+  components?: Array<CatalogComponent>;
+  preview?: boolean;
+  dataTransfer?: DataTransferPayload;
+  dragOver?: DragOverPayload;
+  dragOverMillies?: number;
+}
+
+export interface OnDropPayload {
+  event: React.DragEvent<HTMLDivElement>;
+  targetId: string;
+  insertionPoint: InsertionPoint;
+}
+
+export interface DropTargetProps {
+  dragOver?: DragOverPayload;
 }
 
 export type PageHistory = Array<PageHistoryItem>;
@@ -22,3 +63,12 @@ export interface PageChange {
   key: Array<string>;
   value: string | ProductionComponentProps;
 }
+
+export interface CatalogComponentDescription {
+  type: string;
+  label?: string;
+  tags?: Array<string>;
+}
+
+export type CatalogComponent = React.FunctionComponent<CatalogComponentDescription> &
+  CatalogComponentDescription;

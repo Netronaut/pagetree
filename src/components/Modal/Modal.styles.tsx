@@ -2,12 +2,13 @@ import styled from 'styled-components';
 
 export interface ModalContainerProps {
   position?: 'bottom-left';
+  hide?: boolean;
 }
 
 export const ModalContainer = styled.div<ModalContainerProps>`
   z-index: 2;
   top: 15px;
-  display: flex;
+  display: ${({ hide }) => (hide ? 'none' : 'flex')};
   flex-direction: column;
   justify-content: center;
   box-sizing: border-box;
