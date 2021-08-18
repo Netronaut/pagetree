@@ -1,0 +1,28 @@
+import { Meta, Story } from '@storybook/addon-docs';
+import { Button } from '../Button'
+import { Tooltip } from './Tooltip'
+
+<Meta title="Tooltip" component={Tooltip} />
+
+# Tooltip
+
+<Canvas>
+  <Story name="Tooltip">
+    <div style={{ display: 'flex', height: '100%', 'justifyContent': 'center', 'alignItems': 'center' }}>
+      <div style={{ display: 'grid', gap: '1rem' }}>
+        <Tooltip position="top" content="Top tooltip content" style={{ 'gridColumn': '1' }}>
+          <Button primary>Top</Button>
+        </Tooltip>
+        <Tooltip position="right" content="Right tooltip content" style={{ 'gridColumn': '2' }}>
+          <Button primary>Right</Button>
+        </Tooltip>
+        <Tooltip position="bottom" content="Bottom tooltip content" style={{ 'gridColumn': '1' }}>
+          <Button primary>Bottom</Button>
+        </Tooltip>
+        <Tooltip position="left" content="Left tooltip content" style={{ 'gridColumn': '2' }}>
+          <Button primary>Left</Button>
+        </Tooltip>
+      </div>
+    </div>
+  </Story>
+</Canvas>
