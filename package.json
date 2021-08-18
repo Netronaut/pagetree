@@ -17,11 +17,12 @@
     "dev": "tsc -w",
     "lint": "eslint '{src,example}/**/*.ts{,x}'",
     "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook"
+    "build-storybook": "build-storybook",
+    "test": "jest"
   },
   "peerDependencies": {
     "nanoid": ">=3",
-    "react": ">=17||>16.8",
+    "react": ">=17||>=16.8",
     "styled-components": ">=5"
   },
   "devDependencies": {
@@ -30,7 +31,11 @@
     "@storybook/addon-essentials": "^6.3.6",
     "@storybook/addon-links": "^6.3.6",
     "@storybook/react": "^6.3.6",
+    "@testing-library/react": "^12.0.0",
+    "@types/lodash.isequal": "^4.5.5",
+    "@types/md5": "^2.3.1",
     "@types/react": "^17.0.2",
+    "@types/react-dom": "^17.0.9",
     "@types/styled-components": "^5.1.7",
     "@typescript-eslint/eslint-plugin": "^4.28.0",
     "@typescript-eslint/parser": "^4.28.0",
@@ -38,12 +43,17 @@
     "eslint": "^7.29.0",
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-prettier": "^3.4.0",
+    "jest": "^27.0.6",
     "prettier": "^2.3.2",
+    "ts-jest": "^27.0.4",
+    "tsdef": "^0.0.14",
     "tslib": "^2.1.0",
     "typescript": "^4.3.4"
   },
   "dependencies": {
     "changeset": "^0.2.6",
+    "lodash.isequal": "^4.5.0",
+    "md5": "^2.3.0",
     "slugify": "^1.5.3"
   }
 }

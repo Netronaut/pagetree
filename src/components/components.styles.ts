@@ -1,18 +1,5 @@
 import styled from 'styled-components';
 
-export const ConstructorScreen = styled.div({
-  height: 'calc(100% - 86px)',
-  width: '100%',
-  boxSizing: 'border-box',
-});
-
-export const DroppableContent = styled.div`
-  width: 100%;
-  height: 100%;
-  padding: 15px;
-  box-sizing: border-box;
-`;
-
 export const Flex = styled.section<{
   px?: number;
   mt?: number;

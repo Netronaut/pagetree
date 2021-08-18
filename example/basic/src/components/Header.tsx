@@ -2,14 +2,15 @@ import type { ReactElement } from 'react';
 import React from 'react';
 import { BrandLogo } from './BrandLogo';
 
-import { HeadWrapper, Logo, HeadContent, ToggleButton, Label } from './components.styles';
+import { HeadRoot, Logo, HeadContent, ToggleButton, Label } from './components.styles';
 
 interface HeaderProps {
-  setShowPreview: React.Dispatch<React.SetStateAction<boolean>>;
+  preview: boolean;
+  setPreview: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-export const Header = ({ setShowPreview }: HeaderProps): ReactElement => (
-  <HeadWrapper>
+export const Header = ({ preview, setPreview }: HeaderProps): ReactElement => (
+  <HeadRoot>
     <Logo>
       <BrandLogo />
       <span>Pagio</span>
@@ -19,8 +20,9 @@ export const Header = ({ setShowPreview }: HeaderProps): ReactElement => (
       <ToggleButton
         id="toggle-button"
         type="checkbox"
-        onChange={() => setShowPreview((prev) => !prev)}
+        checked={preview}
+        onChange={() => setPreview(!preview)}
       />
     </HeadContent>
-  </HeadWrapper>
+  </HeadRoot>
 );
