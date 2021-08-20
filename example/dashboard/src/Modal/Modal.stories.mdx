@@ -1,7 +1,20 @@
 import { Meta, Story } from '@storybook/addon-docs';
-import { PageList } from './PageList';
+import { PageList } from '../PageList';
+import { EditPageModal } from './EditPageModal';
+import { ModalBg } from './Modal.styles.tsx';
 
-<Meta title="PageList" component={PageList} />
+<Meta title="Modal window" component={ModalBg} />
+
+export const modalActions = {
+  onSave: () => alert('save page'),
+  onClose: () => alert('close edit'),
+}
+
+export const mockPage = {
+  id: 1,
+  title: '',
+  path: 'The path of your page',
+}
 
 export const mockPages = [
   {
@@ -38,21 +51,13 @@ export const actions = {
   onSelect: () => alert('select page'),
 }
 
-# PageList
+# Modal
 
 <Canvas>
-  <Story name="PageList">
-    <PageList pages={mockPages} {...actions} />
-  </Story>
-  <Story name="With long title">
-    <PageList pages={[
-    {
-      id: 1,
-      title:
-        'Item One Item OneItem OneItem OneItem OneItem OneItem OneItem OneItem OneItem OneItem OneItem OneItem OneItem OneItem OneItem OneItem OneItem OneItem OneItem OneItem OneItem One',
-      path: 'item-one',
-    },
-  ]}
-  {...actions} />
+  <Story name="Modal">
+    <ModalBg>
+      <PageList pages={mockPages} {...actions} />
+    </ModalBg>
+    <EditPageModal page={mockPage} {...modalActions}/>
   </Story>
 </Canvas>
