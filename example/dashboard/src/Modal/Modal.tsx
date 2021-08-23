@@ -11,7 +11,7 @@ import { useTapOutside } from '../../../strapi/src/components/PageManager/hooks'
 import { ModalContainer } from './Modal.styles';
 import { CloseIcon } from '../icons';
 import { Button } from '../Button';
-import { LargerMedium, SmallerBold, Smaller } from '../Typography';
+import { LargerMedium, SmallerBold, Smaller, Default } from '../Typography';
 
 interface ModalProps {
   page: PageEntity;
@@ -25,7 +25,12 @@ export const Modal = ({ onClose, onSave, ...props }: ModalProps): ReactElement =
   const wrapperRef = useRef(null);
   useTapOutside(wrapperRef, onClose);
 
-  const handleChange = (e: KeyboardEvent<HTMLInputElement> | ChangeEvent<HTMLInputElement>) => {
+  const handleChange = (
+    e:
+      | KeyboardEvent<HTMLInputElement>
+      | ChangeEvent<HTMLInputElement>
+      | KeyboardEvent<HTMLSpanElement>,
+  ) => {
     const { value, name } = e.currentTarget;
 
     if ((e as KeyboardEvent<HTMLInputElement>).key === 'Enter' && page.title !== '') {
@@ -47,7 +52,8 @@ export const Modal = ({ onClose, onSave, ...props }: ModalProps): ReactElement =
       <LargerMedium>Edit Page</LargerMedium>
       <label>
         <SmallerBold>Page title</SmallerBold>
-        <input
+        <Default
+          as="input"
           autoFocus
           type="text"
           name="title"
@@ -61,7 +67,8 @@ export const Modal = ({ onClose, onSave, ...props }: ModalProps): ReactElement =
       </label>
       <label>
         <SmallerBold>Page title</SmallerBold>
-        <input
+        <Default
+          as="input"
           type="text"
           name="path"
           placeholder="The path of your page"
