@@ -13,13 +13,13 @@ import { CloseIcon } from '../icons';
 import { Button } from '../Button';
 import { LargerMedium, SmallerBold, Smaller, Default } from '../Typography';
 
-interface ModalProps {
+interface EditPageModalProps {
   page: PageEntity;
   onClose: () => MouseEventHandler;
   onSave: (page: PageEntity) => void;
 }
 
-export const Modal = ({ onClose, onSave, page }: ModalProps): ReactElement => {
+export const EditPageModal = ({ onClose, onSave, page }: EditPageModalProps): ReactElement => {
   const [formState, setFormState] = useState({ ...page });
 
   const wrapperRef = useRef(null);
