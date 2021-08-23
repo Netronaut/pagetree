@@ -1,6 +1,6 @@
 import { Meta, Story } from '@storybook/addon-docs';
 import { PageList } from '../PageList';
-import { Modal } from './Modal';
+import { EditPageModal } from './EditPageModal';
 import { ModalBg } from './Modal.styles.tsx';
 
 <Meta title="Modal window" component={ModalBg} />
@@ -58,6 +58,6 @@ export const actions = {
     <ModalBg>
       <PageList pages={mockPages} {...actions} />
     </ModalBg>
-    <Modal page={mockPage} {...modalActions}/>
+    <EditPageModal page={mockPage} {...modalActions}/>
   </Story>
 </Canvas>
