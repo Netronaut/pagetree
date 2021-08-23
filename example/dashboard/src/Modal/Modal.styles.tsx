@@ -33,10 +33,6 @@ export const ModalContainer = styled.div`
     box-sizing: border-box;
     padding: 9px 7px 8px;
     background: #f5f5f5;
-    font-size: 16px;
-    font-weight: 400;
-    line-height: 19px;
-
     ::placeholder {
       color: #3333334d;
     }
