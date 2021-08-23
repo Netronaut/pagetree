@@ -19,29 +19,24 @@ interface ModalProps {
   onSave: (page: PageEntity) => void;
 }
 
-export const Modal = ({ onClose, onSave, ...props }: ModalProps): ReactElement => {
-  const [page, setPage] = useState({ ...props.page });
+export const Modal = ({ onClose, onSave, page }: ModalProps): ReactElement => {
+  const [formState, setFormState] = useState({ ...page });
 
   const wrapperRef = useRef(null);
   useTapOutside(wrapperRef, onClose);
 
-  const handleChange = (
-    e:
-      | KeyboardEvent<HTMLInputElement>
-      | ChangeEvent<HTMLInputElement>
-      | KeyboardEvent<HTMLSpanElement>,
-  ) => {
+  const handleChange = (e: KeyboardEvent<HTMLInputElement> | ChangeEvent<HTMLInputElement>) => {
     const { value, name } = e.currentTarget;
 
     if ((e as KeyboardEvent<HTMLInputElement>).key === 'Enter' && page.title !== '') {
-      return onSave(page);
+      return onSave(formState);
     }
 
     if ((e as KeyboardEvent<HTMLInputElement>).key === 'Escape') {
       return onClose();
     }
 
-    setPage({ ...page, [name]: value });
+    setFormState({ ...formState, [name]: value });
   };
 
   return (
