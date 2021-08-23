@@ -54,6 +54,7 @@ export const Modal = ({ onClose, onSave, page }: ModalProps): ReactElement => {
           name="title"
           placeholder="The title of your page"
           data-testid="edit-input"
+          value={formState.title}
           defaultValue={page.title}
           onChange={handleChange}
           onKeyDown={handleChange}
@@ -68,6 +69,7 @@ export const Modal = ({ onClose, onSave, page }: ModalProps): ReactElement => {
           name="path"
           placeholder="The path of your page"
           data-testid="edit-input"
+          value={formState.path}
           defaultValue={page.path}
           onChange={handleChange}
           onKeyDown={handleChange}
