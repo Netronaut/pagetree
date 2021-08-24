@@ -24,7 +24,7 @@ export const ModalContainer = styled.div`
   border-radius: 4px;
   box-shadow: 0px 11px 18px 2px #00000040;
   background: #fff;
-  padding: 43px 35px 38px;
+  padding: ${({ theme }) => theme.spacing.any.large};
 
   button:last-child {
     margin-top: 46px;
