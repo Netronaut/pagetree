@@ -10,12 +10,6 @@ export const modalActions = {
   onClose: () => alert('close edit'),
 }
 
-export const mockPage = {
-  id: 1,
-  title: '',
-  path: 'The path of your page',
-}
-
 export const mockPages = [
   {
     id: 1,
@@ -42,6 +36,18 @@ export const mockPages = [
     path: 'item-four',
     version: 'Version 5, Published',
   },
+  {
+    id: 5,
+    title: '',
+    path: 'The path of your page',
+    version: 'Version 5, Published',
+  },
+  {
+    id: 6,
+    title: '',
+    path: '',
+    version: '',
+  },
 ];
 
 export const actions = {
@@ -58,6 +64,12 @@ export const actions = {
     <ModalBg>
       <PageList pages={mockPages} {...actions} />
     </ModalBg>
-    <EditPageModal page={mockPage} {...modalActions}/>
+    <EditPageModal page={mockPages[4]} {...modalActions}/>
+  </Story>
+  <Story name="Modal - empty form">
+    <ModalBg>
+      <PageList pages={mockPages} {...actions} />
+    </ModalBg>
+    <EditPageModal page={mockPages[5]} {...modalActions}/>
   </Story>
 </Canvas>

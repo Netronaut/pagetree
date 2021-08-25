@@ -2,10 +2,12 @@ import styled from 'styled-components';
 
 export interface DefaultTypographyProps {
   flex?: boolean;
+  color?: string;
 }
 
 export const Default = styled.span<DefaultTypographyProps>`
   ${({ flex }) => (flex ? 'display: flex;' : '')}
+  color: ${({ color }) => (color ? color : 'inherit')};
   font-family: Roboto, sans-serif;
   font-size: 16px;
   font-weight: 400;
