@@ -21,7 +21,6 @@ export const ModalContainer = styled.div`
   display: flex;
   flex-direction: column;
   border: 2px solid #fff;
-  box-sizing: border-box;
   border-radius: 4px;
   box-shadow: 0px 11px 18px 2px #00000040;
   background: #fff;
