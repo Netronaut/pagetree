@@ -25,19 +25,7 @@ export const ModalContainer = styled.div`
   box-shadow: 0px 11px 18px 2px #00000040;
   background: #fff;
   padding: 43px 35px 38px;
-  label {
-    flex: 1 0 calc(100% - 20ch);
-    span {
-      display: block;
-      color: #999999;
-      &:first-child {
-        margin: 23px 7px 6px;
-      }
-      &:last-child {
-        margin: 6px 7px 4px;
-      }
-    }
-  }
+
   button:last-child {
     margin-top: 46px;
     width: calc(60% - 20ch);
@@ -56,9 +44,10 @@ export const CloseButton = styled(IconButton)`
   padding: 0;
 `;
 
-export const ModalInput = styled.input`
+export const ModalInput = styled.input<{ isError: boolean }>`
   border-radius: 4px;
   border: 2px solid transparent;
+  border-color: ${({ theme, isError }) => (isError ? theme.color.red : '')};
   outline: none;
   width: 100%;
   box-sizing: border-box;
@@ -71,14 +60,23 @@ export const ModalInput = styled.input`
   ::placeholder {
     color: ${({ theme }) => `${theme.color.gray1}4d`};
   }
-  &:focus:empty {
-    border-style: solid;
-    border-color: ${({ theme }) => theme.color.red};
-  }
   &:focus:not(:placeholder-shown) {
     border-color: hsla(201, 100%, 47%, 1) !important;
   }
   &:focus + button:not(:disabled) {
     background: hsla(201, 100%, 47%, 1);
+  }
+`;
+
+export const ModalLabel = styled.label`
+  flex: 1 0 calc(100% - 20ch);
+  span {
+    display: block;
+    &:first-child {
+      margin: 23px 7px 6px;
+    }
+    &:last-child {
+      margin: 6px 7px 4px;
+    }
   }
 `;
