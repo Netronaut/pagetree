@@ -55,7 +55,6 @@ export const EditPageModal = ({ onClose, onSave, page }: EditPageModalProps): Re
             placeholder="The title of your page"
             data-testid="edit-input"
             value={formState.title}
-            defaultValue={page.title}
             onChange={handleChange}
             onKeyDown={handleChange}
           />
@@ -71,7 +70,6 @@ export const EditPageModal = ({ onClose, onSave, page }: EditPageModalProps): Re
             placeholder="The path of your page"
             data-testid="edit-input"
             value={formState.path}
-            defaultValue={page.path}
             onChange={handleChange}
             onKeyDown={handleChange}
           />
