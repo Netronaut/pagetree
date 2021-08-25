@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { IconButton } from '../icons';
 
 export const ModalBg = styled.div`
   position: absolute;
@@ -60,15 +61,6 @@ export const ModalContainer = styled.div`
       }
     }
   }
-  button:first-child {
-    position: absolute;
-    top: 20px;
-    right: 21px;
-    background: none;
-    border: none;
-    cursor: pointer;
-    padding: 0;
-  }
   button:last-child {
     margin-top: 46px;
     width: calc(60% - 20ch);
@@ -77,10 +69,10 @@ export const ModalContainer = styled.div`
   }
 `;
 
-export const CloseButton = styled.button`
+export const CloseButton = styled(IconButton)`
   position: absolute;
-  top: 20px;
-  right: 21px;
+  top: 24px;
+  right: 24px;
   background: none;
   border: none;
   cursor: pointer;

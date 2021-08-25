@@ -8,8 +8,8 @@ import React, {
 } from 'react';
 import { PageEntity } from '../../../strapi/src/types';
 import { useTapOutside } from '../../../strapi/src/components/PageManager/hooks';
-import { ModalContainer } from './Modal.styles';
-import { CloseIcon, IconButton } from '../icons';
+import { ModalContainer, CloseButton } from './Modal.styles';
+import { CloseIcon } from '../icons';
 import { Button } from '../Button';
 import { LargerMedium, SmallerBold, Smaller, Default } from '../Typography';
 
@@ -41,9 +41,9 @@ export const EditPageModal = ({ onClose, onSave, page }: EditPageModalProps): Re
 
   return (
     <ModalContainer ref={wrapperRef} data-testid="edit-modal">
-      <IconButton onClick={onClose}>
+      <CloseButton onClick={onClose}>
         <CloseIcon />
-      </IconButton>
+      </CloseButton>
       <LargerMedium>Edit Page</LargerMedium>
       <label>
         <SmallerBold>Page title</SmallerBold>
