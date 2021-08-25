@@ -16,7 +16,7 @@ export const ModalBg = styled.div`
 export const ModalContainer = styled.div`
   position: fixed;
   top: 30%;
-  left: calc(50% - 30vw);
+  left: calc(50% - 24vw);
   width: 48vw;
   display: flex;
   flex-direction: column;
