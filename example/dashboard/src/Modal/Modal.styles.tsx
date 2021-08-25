@@ -64,17 +64,17 @@ export const ModalInput = styled.input`
   width: 100%;
   box-sizing: border-box;
   padding: 9px 7px 8px;
-  background: #f5f5f5;
+  background-color: ${({ theme }) => theme.color.gray4};
   font-family: inherit;
   font-size: inherit;
   font-weight: inherit;
   line-height: inherit;
   ::placeholder {
-    color: #3333334d;
+    color: ${({ theme }) => `${theme.color.gray1}4d`};
   }
   &:focus:empty {
     border-style: solid;
-    border-color: #cf3535;
+    border-color: ${({ theme }) => theme.color.red};
   }
   &:focus:not(:placeholder-shown) {
     border-color: hsla(201, 100%, 47%, 1) !important;
