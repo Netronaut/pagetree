@@ -26,28 +26,6 @@ export const ModalContainer = styled.div`
   box-shadow: 0px 11px 18px 2px #00000040;
   background: #fff;
   padding: 43px 35px 38px;
-  input {
-    border-radius: 4px;
-    border: 2px solid transparent;
-    outline: none;
-    width: 100%;
-    box-sizing: border-box;
-    padding: 9px 7px 8px;
-    background: #f5f5f5;
-    ::placeholder {
-      color: #3333334d;
-    }
-    &:focus:empty {
-      border-style: solid;
-      border-color: #cf3535;
-    }
-    &:focus:not(:placeholder-shown) {
-      border-color: hsla(201, 100%, 47%, 1) !important;
-    }
-    &:focus + button:not(:disabled) {
-      background: hsla(201, 100%, 47%, 1);
-    }
-  }
   label {
     flex: 1 0 calc(100% - 20ch);
     span {
@@ -77,4 +55,31 @@ export const CloseButton = styled(IconButton)`
   border: none;
   cursor: pointer;
   padding: 0;
+`;
+
+export const ModalInput = styled.input`
+  border-radius: 4px;
+  border: 2px solid transparent;
+  outline: none;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 9px 7px 8px;
+  background: #f5f5f5;
+  font-family: inherit;
+  font-size: inherit;
+  font-weight: inherit;
+  line-height: inherit;
+  ::placeholder {
+    color: #3333334d;
+  }
+  &:focus:empty {
+    border-style: solid;
+    border-color: #cf3535;
+  }
+  &:focus:not(:placeholder-shown) {
+    border-color: hsla(201, 100%, 47%, 1) !important;
+  }
+  &:focus + button:not(:disabled) {
+    background: hsla(201, 100%, 47%, 1);
+  }
 `;
