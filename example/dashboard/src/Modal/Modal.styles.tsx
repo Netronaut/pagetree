@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { IconButton } from '../icons';
+import { Default } from '../Typography';
 
 export const ModalBg = styled.div`
   position: absolute;
@@ -21,46 +22,11 @@ export const ModalContainer = styled.div`
   display: flex;
   flex-direction: column;
   border: 2px solid #fff;
-  box-sizing: border-box;
   border-radius: 4px;
   box-shadow: 0px 11px 18px 2px #00000040;
   background: #fff;
   padding: 43px 35px 38px;
-  input {
-    border-radius: 4px;
-    border: 2px solid transparent;
-    outline: none;
-    width: 100%;
-    box-sizing: border-box;
-    padding: 9px 7px 8px;
-    background: #f5f5f5;
-    ::placeholder {
-      color: #3333334d;
-    }
-    &:focus:empty {
-      border-style: solid;
-      border-color: #cf3535;
-    }
-    &:focus:not(:placeholder-shown) {
-      border-color: hsla(201, 100%, 47%, 1) !important;
-    }
-    &:focus + button:not(:disabled) {
-      background: hsla(201, 100%, 47%, 1);
-    }
-  }
-  label {
-    flex: 1 0 calc(100% - 20ch);
-    span {
-      display: block;
-      color: #999999;
-      &:first-child {
-        margin: 23px 7px 6px;
-      }
-      &:last-child {
-        margin: 6px 7px 4px;
-      }
-    }
-  }
+
   button:last-child {
     margin-top: 46px;
     width: calc(60% - 20ch);
@@ -73,8 +39,36 @@ export const CloseButton = styled(IconButton)`
   position: absolute;
   top: 24px;
   right: 24px;
-  background: none;
+`;
+
+export const ModalInput = styled(Default).attrs({ as: 'input' })<{ isError: boolean }>`
+  border-radius: 4px;
   border: none;
-  cursor: pointer;
-  padding: 0;
+  outline: solid transparent 2px;
+  ${({ theme, isError }) => (isError ? `outline-color: ${theme.color.red};` : '')}
+  width: 100%;
+  padding: 9px 7px 8px;
+  background-color: ${({ theme }) => theme.color.gray4};
+  ::placeholder {
+    color: ${({ theme }) => `${theme.color.gray1}4d`};
+  }
+  &:focus {
+    outline-color: ${({ theme }) => `${theme.color.secondary}4d`};
+  }
+  &:focus:not(:placeholder-shown) {
+    outline-color: ${({ theme }) => theme.color.secondary};
+  }
+`;
+
+export const ModalLabel = styled.label`
+  flex: 1 0 calc(100% - 20ch);
+  span {
+    display: block;
+    &:first-child {
+      margin: 23px 7px 6px;
+    }
+    &:last-child {
+      margin: 6px 7px 4px;
+    }
+  }
 `;
