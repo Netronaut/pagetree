@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { StyledComponent } from 'styled-components';
 import { MediumBold } from '../Typography';
 
 export interface ButtonProps {
@@ -21,4 +21,4 @@ export const Button = styled(MediumBold).attrs({ as: 'button' })<ButtonProps>`
     };
     color: ${primary || secondary ? theme.color.white : theme.color.gray4}};
   `}
-`;
+` as StyledComponent<'button', never, ButtonProps>;

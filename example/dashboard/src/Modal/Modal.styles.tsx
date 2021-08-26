@@ -43,30 +43,6 @@ export const CloseButton = styled(IconButton)`
   padding: 0;
 `;
 
-export const ModalInput = styled.input<{ isError: boolean }>`
-  border-radius: 4px;
-  border: 2px solid transparent;
-  border-color: ${({ theme, isError }) => (isError ? theme.color.red : '')};
-  outline: none;
-  width: 100%;
-  box-sizing: border-box;
-  padding: ${({ theme }) => theme.spacing.input};
-  background-color: ${({ theme }) => theme.color.gray4};
-  font-family: inherit;
-  font-size: inherit;
-  font-weight: inherit;
-  line-height: inherit;
-  ::placeholder {
-    color: ${({ theme }) => `${theme.color.gray1}4d`};
-  }
-  &:focus:not(:placeholder-shown) {
-    border-color: hsla(201, 100%, 47%, 1) !important;
-  }
-  &:focus + button:not(:disabled) {
-    background: hsla(201, 100%, 47%, 1);
-  }
-`;
-
 export const ModalLabel = styled.label`
   span {
     display: block;

@@ -8,11 +8,14 @@ import React, {
 } from 'react';
 import { PageEntity } from '../../../strapi/src/types';
 import { useTapOutside } from '../../../strapi/src/components/PageManager/hooks';
-import { ModalContainer, CloseButton, ModalInput, ModalLabel } from './Modal.styles';
+import { ModalContainer, CloseButton, ModalLabel } from './Modal.styles';
 import { CloseIcon } from '../icons';
 import { Button } from '../Button';
-import { LargerMedium, SmallerBold, Smaller, Default } from '../Typography';
+import { LargerMedium, SmallerBold, Smaller } from '../Typography';
 import { color } from '../theme';
+import omit from 'lodash.omit';
+import isEmpty from 'lodash.isempty';
+import { Input } from '../Input';
 
 interface EditPageModalProps {
   page: PageEntity;
@@ -20,9 +23,15 @@ interface EditPageModalProps {
   onSave: (page: PageEntity) => void;
 }
 
+const validate = (name: string, value: string): string | undefined => {
+  if (!value) return `The ${name} field must be filled`;
+};
+
+type EditPageModalErrors = Record<string, string | undefined>;
+
 export const EditPageModal = ({ onClose, onSave, page }: EditPageModalProps): ReactElement => {
-  const [formState, setFormState] = useState({ ...page });
-  const [errors, setErrors] = useState({ title: '', path: '' });
+  const [formState, setFormState] = useState<PageEntity>({ ...page });
+  const [errors, setErrors] = useState<EditPageModalErrors>({});
 
   const wrapperRef = useRef(null);
   useTapOutside(wrapperRef, onClose);
@@ -30,7 +39,7 @@ export const EditPageModal = ({ onClose, onSave, page }: EditPageModalProps): Re
   const handleChange = (e: KeyboardEvent<HTMLInputElement> | ChangeEvent<HTMLInputElement>) => {
     const { value, name } = e.currentTarget;
 
-    if ((e as KeyboardEvent<HTMLInputElement>).key === 'Enter' && page.title !== '') {
+    if ((e as KeyboardEvent<HTMLInputElement>).key === 'Enter' && isEmpty(errors)) {
       return onSave(formState);
     }
 
@@ -39,65 +48,55 @@ export const EditPageModal = ({ onClose, onSave, page }: EditPageModalProps): Re
     }
 
     setFormState({ ...formState, [name]: value });
-    if (value) {
-      setErrors({ ...errors, [name]: '' });
-    }
-  };
 
-  const handleBlure = (e: KeyboardEvent<HTMLInputElement> | ChangeEvent<HTMLInputElement>) => {
-    const { value, name } = e.currentTarget;
-
-    if (!value) {
-      setErrors({ ...errors, [name]: 'This field must be filled' });
+    const error = validate(name, value);
+    const newErrors = omit<EditPageModalErrors>(errors, [name]);
+    if (error) {
+      newErrors[name] = error;
     }
+    setErrors(newErrors);
   };
 
   return (
-    <ModalContainer ref={wrapperRef} data-testid="edit-modal">
+    <ModalContainer ref={wrapperRef}>
       <CloseButton onClick={onClose}>
         <CloseIcon />
       </CloseButton>
       <LargerMedium>Edit Page</LargerMedium>
       <ModalLabel>
-        <SmallerBold color={color.gray5}>Page title</SmallerBold>
-        <Default as="div">
-          <ModalInput
-            autoFocus
-            type="text"
-            name="title"
-            placeholder="The title of your page"
-            data-testid="edit-input"
-            value={formState.title}
-            isError={!!errors.title}
-            onChange={handleChange}
-            onKeyDown={handleChange}
-            onBlur={handleBlure}
-          />
-        </Default>
-        <Smaller color={errors.title ? color.red : color.gray5}>
+        <SmallerBold color={color.gray2}>Page title</SmallerBold>
+        <Input
+          autoFocus
+          type="text"
+          name="title"
+          placeholder="The title of your page"
+          value={formState.title}
+          isError={!!errors.title}
+          onChange={handleChange}
+          onKeyDown={handleChange}
+          onBlur={handleChange}
+        />
+        <Smaller color={errors.title ? color.red : color.gray2}>
           {errors.title || 'Add a title identifiying your page in the page builder'}
         </Smaller>
       </ModalLabel>
       <ModalLabel>
-        <SmallerBold color={color.gray5}>Page path</SmallerBold>
-        <Default as="div">
-          <ModalInput
-            type="text"
-            name="path"
-            placeholder="The path of your page"
-            data-testid="edit-input"
-            value={formState.path}
-            isError={!!errors.path}
-            onChange={handleChange}
-            onKeyDown={handleChange}
-            onBlur={handleBlure}
-          />
-        </Default>
-        <Smaller color={errors.path ? color.red : color.gray5}>
+        <SmallerBold color={color.gray2}>Page path</SmallerBold>
+        <Input
+          type="text"
+          name="path"
+          placeholder="The path of your page"
+          value={formState.path}
+          isError={'path' in errors}
+          onChange={handleChange}
+          onKeyDown={handleChange}
+          onBlur={handleChange}
+        />
+        <Smaller color={errors.path ? color.red : color.gray2}>
           {errors.path || 'Add a path relative to your base URL'}
         </Smaller>
       </ModalLabel>
-      <Button secondary onClick={onSave}>
+      <Button secondary onClick={() => isEmpty(errors) && onSave(formState)}>
         Save
       </Button>
     </ModalContainer>
