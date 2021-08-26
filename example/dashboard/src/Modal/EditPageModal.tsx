@@ -13,6 +13,8 @@ import { CloseIcon } from '../icons';
 import { Button } from '../Button';
 import { LargerMedium, SmallerBold, Smaller } from '../Typography';
 import { color } from '../theme';
+import omit from 'lodash.omit';
+import isEmpty from 'lodash.isempty';
 
 interface EditPageModalProps {
   page: PageEntity;
@@ -20,9 +22,15 @@ interface EditPageModalProps {
   onSave: (page: PageEntity) => void;
 }
 
+const validate = (name: string, value: string): string | undefined => {
+  if (!value) return `The ${name} field must be filled`;
+};
+
+type EditPageModalErrors = Record<string, string | undefined>;
+
 export const EditPageModal = ({ onClose, onSave, page }: EditPageModalProps): ReactElement => {
-  const [formState, setFormState] = useState({ ...page });
-  const [errors, setErrors] = useState({} as { [key: string]: string | undefined });
+  const [formState, setFormState] = useState<PageEntity>({ ...page });
+  const [errors, setErrors] = useState<EditPageModalErrors>({});
 
   const wrapperRef = useRef(null);
   useTapOutside(wrapperRef, onClose);
@@ -30,7 +38,7 @@ export const EditPageModal = ({ onClose, onSave, page }: EditPageModalProps): Re
   const handleChange = (e: KeyboardEvent<HTMLInputElement> | ChangeEvent<HTMLInputElement>) => {
     const { value, name } = e.currentTarget;
 
-    if ((e as KeyboardEvent<HTMLInputElement>).key === 'Enter' && page.title !== '') {
+    if ((e as KeyboardEvent<HTMLInputElement>).key === 'Enter' && isEmpty(errors)) {
       return onSave(formState);
     }
 
@@ -39,11 +47,13 @@ export const EditPageModal = ({ onClose, onSave, page }: EditPageModalProps): Re
     }
 
     setFormState({ ...formState, [name]: value });
-    setErrors({ ...errors, [name]: validate(name, value) });
-  };
 
-  const validate = (name: string, value: string): string | undefined => {
-    if (!value) return `The ${name} field must be filled`;
+    const error = validate(name, value);
+    const newErrors = omit<EditPageModalErrors>(errors, [name]);
+    if (error) {
+      newErrors[name] = error;
+    }
+    setErrors(newErrors);
   };
 
   return (
@@ -76,7 +86,7 @@ export const EditPageModal = ({ onClose, onSave, page }: EditPageModalProps): Re
           name="path"
           placeholder="The path of your page"
           value={formState.path}
-          isError={!!errors.path}
+          isError={'path' in errors}
           onChange={handleChange}
           onKeyDown={handleChange}
           onBlur={handleChange}
@@ -85,7 +95,7 @@ export const EditPageModal = ({ onClose, onSave, page }: EditPageModalProps): Re
           {errors.path || 'Add a path relative to your base URL'}
         </Smaller>
       </ModalLabel>
-      <Button secondary onClick={onSave}>
+      <Button secondary onClick={() => isEmpty(errors) && onSave(formState)}>
         Save
       </Button>
     </ModalContainer>
