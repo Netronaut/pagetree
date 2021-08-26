@@ -22,7 +22,7 @@ interface EditPageModalProps {
 
 export const EditPageModal = ({ onClose, onSave, page }: EditPageModalProps): ReactElement => {
   const [formState, setFormState] = useState({ ...page });
-  const [errors, setErrors] = useState({ title: '', path: '' });
+  const [errors, setErrors] = useState({} as { [key: string]: string | undefined });
 
   const wrapperRef = useRef(null);
   useTapOutside(wrapperRef, onClose);
@@ -39,17 +39,11 @@ export const EditPageModal = ({ onClose, onSave, page }: EditPageModalProps): Re
     }
 
     setFormState({ ...formState, [name]: value });
-    if (value) {
-      setErrors({ ...errors, [name]: '' });
-    }
+    setErrors({ ...errors, [name]: validate(name, value) });
   };
 
-  const handleBlure = (e: KeyboardEvent<HTMLInputElement> | ChangeEvent<HTMLInputElement>) => {
-    const { value, name } = e.currentTarget;
-
-    if (!value) {
-      setErrors({ ...errors, [name]: 'This field must be filled' });
-    }
+  const validate = (name: string, value: string): string | undefined => {
+    if (!value) return `The ${name} field must be filled`;
   };
 
   return (
@@ -71,7 +65,7 @@ export const EditPageModal = ({ onClose, onSave, page }: EditPageModalProps): Re
             isError={!!errors.title}
             onChange={handleChange}
             onKeyDown={handleChange}
-            onBlur={handleBlure}
+            onBlur={handleChange}
           />
         </Default>
         <Smaller color={errors.title ? color.red : color.gray5}>
@@ -90,7 +84,7 @@ export const EditPageModal = ({ onClose, onSave, page }: EditPageModalProps): Re
             isError={!!errors.path}
             onChange={handleChange}
             onKeyDown={handleChange}
-            onBlur={handleBlure}
+            onBlur={handleChange}
           />
         </Default>
         <Smaller color={errors.path ? color.red : color.gray5}>
