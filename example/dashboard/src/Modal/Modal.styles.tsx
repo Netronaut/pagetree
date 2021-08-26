@@ -14,6 +14,7 @@ export const ModalBg = styled.div`
 `;
 
 export const ModalContainer = styled.div`
+  --modal-padding: ${({ theme }) => theme.spacing.large};
   position: fixed;
   top: 30%;
   left: calc(50% - 24vw);
@@ -24,7 +25,7 @@ export const ModalContainer = styled.div`
   border-radius: 4px;
   box-shadow: 0px 11px 18px 2px #00000040;
   background: #fff;
-  padding: ${({ theme }) => theme.spacing.any.large};
+  padding: var(--modal-padding);
 
   button:last-child {
     margin-top: 46px;
