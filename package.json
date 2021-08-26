@@ -18,8 +18,7 @@
     "lint": "eslint '{src,example}/**/*.ts{,x}'",
     "test": "jest",
     "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook",
-    "test": "jest"
+    "build-storybook": "build-storybook"
   },
   "peerDependencies": {
     "nanoid": ">=3",
@@ -27,15 +26,13 @@
     "styled-components": ">=5"
   },
   "devDependencies": {
-    "@testing-library/react": "^12.0.0",
-    "@types/lodash.isequal": "^4.5.5",
-    "@types/md5": "^2.3.1",
     "@babel/core": "^7.15.0",
     "@storybook/addon-actions": "^6.3.6",
     "@storybook/addon-essentials": "^6.3.6",
     "@storybook/addon-links": "^6.3.6",
     "@storybook/react": "^6.3.6",
     "@testing-library/react": "^12.0.0",
+    "@types/lodash.isempty": "^4.4.6",
     "@types/lodash.isequal": "^4.5.5",
     "@types/md5": "^2.3.1",
     "@types/react": "^17.0.2",
