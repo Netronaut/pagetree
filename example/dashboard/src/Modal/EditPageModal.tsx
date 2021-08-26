@@ -47,46 +47,40 @@ export const EditPageModal = ({ onClose, onSave, page }: EditPageModalProps): Re
   };
 
   return (
-    <ModalContainer ref={wrapperRef} data-testid="edit-modal">
+    <ModalContainer ref={wrapperRef}>
       <CloseButton onClick={onClose}>
         <CloseIcon />
       </CloseButton>
       <LargerMedium>Edit Page</LargerMedium>
       <ModalLabel>
         <SmallerBold color={color.gray5}>Page title</SmallerBold>
-        <Default as="div">
-          <ModalInput
-            autoFocus
-            type="text"
-            name="title"
-            placeholder="The title of your page"
-            data-testid="edit-input"
-            value={formState.title}
-            isError={!!errors.title}
-            onChange={handleChange}
-            onKeyDown={handleChange}
-            onBlur={handleChange}
-          />
-        </Default>
+        <ModalInput
+          autoFocus
+          type="text"
+          name="title"
+          placeholder="The title of your page"
+          value={formState.title}
+          isError={!!errors.title}
+          onChange={handleChange}
+          onKeyDown={handleChange}
+          onBlur={handleChange}
+        />
         <Smaller color={errors.title ? color.red : color.gray5}>
           {errors.title || 'Add a title identifiying your page in the page builder'}
         </Smaller>
       </ModalLabel>
       <ModalLabel>
         <SmallerBold color={color.gray5}>Page path</SmallerBold>
-        <Default as="div">
-          <ModalInput
-            type="text"
-            name="path"
-            placeholder="The path of your page"
-            data-testid="edit-input"
-            value={formState.path}
-            isError={!!errors.path}
-            onChange={handleChange}
-            onKeyDown={handleChange}
-            onBlur={handleChange}
-          />
-        </Default>
+        <ModalInput
+          type="text"
+          name="path"
+          placeholder="The path of your page"
+          value={formState.path}
+          isError={!!errors.path}
+          onChange={handleChange}
+          onKeyDown={handleChange}
+          onBlur={handleChange}
+        />
         <Smaller color={errors.path ? color.red : color.gray5}>
           {errors.path || 'Add a path relative to your base URL'}
         </Smaller>

@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { IconButton } from '../icons';
+import { Default } from '../Typography';
 
 export const ModalBg = styled.div`
   position: absolute;
@@ -44,7 +45,7 @@ export const CloseButton = styled(IconButton)`
   padding: 0;
 `;
 
-export const ModalInput = styled.input<{ isError: boolean }>`
+export const ModalInput = styled(Default).attrs({ as: 'input' })<{ isError: boolean }>`
   border-radius: 4px;
   border: 2px solid transparent;
   ${({ theme, isError }) => (isError ? `border-color: ${theme.color.red};` : '')}
@@ -52,10 +53,6 @@ export const ModalInput = styled.input<{ isError: boolean }>`
   width: 100%;
   padding: 9px 7px 8px;
   background-color: ${({ theme }) => theme.color.gray4};
-  font-family: inherit;
-  font-size: inherit;
-  font-weight: inherit;
-  line-height: inherit;
   ::placeholder {
     color: ${({ theme }) => `${theme.color.gray1}4d`};
   }
