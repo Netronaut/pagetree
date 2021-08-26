@@ -2,6 +2,7 @@ import styled from 'styled-components';
 
 export const IconButton = styled.button`
   display: inline-flex;
+  align-items: center;
   background: transparent;
   border: none;
   cursor: pointer;

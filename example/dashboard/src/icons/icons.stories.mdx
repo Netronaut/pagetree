@@ -3,9 +3,12 @@ import { BrandIcon } from './BrandIcon'
 import { DeleteIcon } from './DeleteIcon'
 import { EditIcon } from './EditIcon'
 import { SearchIcon } from './SearchIcon'
+import { ShareIcon } from './ShareIcon'
 import { StarIcon } from './StarIcon'
 import { CloseIcon } from './CloseIcon'
 import { IconButton } from './IconButton'
+import { ClipboardIcon } from './ClipboardIcon';
+import { LogIcon } from './LogIcon';
 
 export const Grid = (Story) => <div style={{ display: 'grid', gap: '1rem', 'justifyItems': 'start'}}><Story /></div>
 
@@ -29,12 +32,25 @@ export const  args={
         <EditIcon {...args} />
         <SearchIcon {...args} />
         <CloseIcon {...args} />
+        <ShareIcon {...args} />
         <StarIcon {...args} />
+        <ClipboardIcon {...args} />
+        <LogIcon {...args} />
       </>
     )}
   </Story>
   <Story name="Icons with IconButton" args={args}>
-    {(args) => [BrandIcon, DeleteIcon, EditIcon, SearchIcon, CloseIcon, StarIcon].map((Icon, index) => (
+    {(args) => [
+      BrandIcon,
+      DeleteIcon,
+      EditIcon,
+      SearchIcon,
+      CloseIcon,
+      ShareIcon,
+      StarIcon,
+      ClipboardIcon,
+      LogIcon,
+    ].map((Icon, index) => (
       <IconButton key={index}>
         <Icon {...args} />
       </IconButton>
