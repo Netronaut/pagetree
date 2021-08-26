@@ -10,12 +10,22 @@ export const color = {
   red: '#db3838',
 };
 
-const small = '1em';
-const medium = '1.375em';
-const large = '2.75em';
+const xxs = '0.375em';
+const xs = '0.75em';
+const sm = '1.125em';
+const md = '1.375em';
+const lg = '1.75em';
+const xl = '2.25em';
+const xxl = '3.5em';
 
 export const spacing = {
-  small,
-  medium,
-  large,
+  xxs,
+  xs,
+  sm,
+  md,
+  lg,
+  xl,
+  xxl,
+  button: `${xs} ${xl}`,
+  input: `${xs}`,
 };
