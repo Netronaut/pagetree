@@ -1,0 +1,12 @@
+import { Meta, Story } from '@storybook/addon-docs';
+import { Tag } from './Tag';
+
+<Meta title="Tag" component={Tag} />
+
+# Input
+
+<Canvas>
+  <Story name="Tag" args={{ selected: false }}>
+    {(args) => <Tag {...args}>Header</Tag>}
+  </Story>
+</Canvas>
