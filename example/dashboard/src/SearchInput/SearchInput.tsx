@@ -1,6 +1,6 @@
 import React, { ReactElement } from 'react';
 import { SearchIcon } from '../icons';
-import { SearchInputRoot, Input } from './SearchInput.styles';
+import { Input } from '../Input';
 
 interface SearchInputProps {
   value?: string;
@@ -11,8 +11,5 @@ export const SearchInput = ({
   value = '',
   onChange = () => undefined,
 }: SearchInputProps): ReactElement => (
-  <SearchInputRoot>
-    <Input placeholder="Search" value={value} onChange={onChange} />
-    <SearchIcon />
-  </SearchInputRoot>
+  <Input placeholder="Search" value={value} onChange={onChange} icon={<SearchIcon />} />
 );

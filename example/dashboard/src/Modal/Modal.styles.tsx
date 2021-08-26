@@ -1,6 +1,5 @@
-import styled, { StyledComponent } from 'styled-components';
+import styled from 'styled-components';
 import { IconButton } from '../icons';
-import { Default, DefaultTypographyProps } from '../Typography';
 
 export const ModalBg = styled.div`
   position: absolute;
@@ -40,27 +39,6 @@ export const CloseButton = styled(IconButton)`
   top: 24px;
   right: 24px;
 `;
-
-type ModalInputProps = DefaultTypographyProps & { isError: boolean };
-
-export const ModalInput = styled(Default).attrs({ as: 'input' })<ModalInputProps>`
-  border-radius: 4px;
-  border: none;
-  outline: solid transparent 2px;
-  ${({ theme, isError }) => (isError ? `outline-color: ${theme.color.red};` : '')}
-  width: 100%;
-  padding: 9px 7px 8px;
-  background-color: ${({ theme }) => theme.color.gray4};
-  ::placeholder {
-    color: ${({ theme }) => `${theme.color.gray1}4d`};
-  }
-  &:focus {
-    outline-color: ${({ theme }) => `${theme.color.secondary}4d`};
-  }
-  &:focus:not(:placeholder-shown) {
-    outline-color: ${({ theme }) => theme.color.secondary};
-  }
-` as StyledComponent<'input', never, ModalInputProps>;
 
 export const ModalLabel = styled.label`
   flex: 1 0 calc(100% - 20ch);
