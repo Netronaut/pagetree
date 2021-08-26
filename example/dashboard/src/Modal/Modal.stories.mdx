@@ -64,12 +64,12 @@ export const actions = {
     <ModalBg>
       <PageList pages={mockPages} {...actions} />
     </ModalBg>
-    <EditPageModal page={mockPages[4]} {...modalActions}/>
+    <EditPageModal page={mockPages[5]} {...modalActions}/>
   </Story>
-  <Story name="Modal - empty form">
+  <Story name="Modal, prefilled">
     <ModalBg>
       <PageList pages={mockPages} {...actions} />
     </ModalBg>
-    <EditPageModal page={mockPages[5]} {...modalActions}/>
+    <EditPageModal page={mockPages[1]} {...modalActions}/>
   </Story>
 </Canvas>
