@@ -8,13 +8,14 @@ import React, {
 } from 'react';
 import { PageEntity } from '../../../strapi/src/types';
 import { useTapOutside } from '../../../strapi/src/components/PageManager/hooks';
-import { ModalContainer, CloseButton, ModalInput, ModalLabel } from './Modal.styles';
+import { ModalContainer, CloseButton, ModalLabel } from './Modal.styles';
 import { CloseIcon } from '../icons';
 import { Button } from '../Button';
 import { LargerMedium, SmallerBold, Smaller } from '../Typography';
 import { color } from '../theme';
 import omit from 'lodash.omit';
 import isEmpty from 'lodash.isempty';
+import { Input } from '../Input';
 
 interface EditPageModalProps {
   page: PageEntity;
@@ -66,7 +67,7 @@ export const EditPageModal = ({ onClose, onSave, page }: EditPageModalProps): Re
       <LargerMedium>Edit Page</LargerMedium>
       <ModalLabel>
         <SmallerBold color={color.gray2}>Page title</SmallerBold>
-        <ModalInput
+        <Input
           autoFocus
           type="text"
           name="title"
@@ -83,7 +84,7 @@ export const EditPageModal = ({ onClose, onSave, page }: EditPageModalProps): Re
       </ModalLabel>
       <ModalLabel>
         <SmallerBold color={color.gray2}>Page path</SmallerBold>
-        <ModalInput
+        <Input
           type="text"
           name="path"
           placeholder="The path of your page"
