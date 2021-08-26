@@ -19,7 +19,7 @@ export const GlobalStyle = createGlobalStyle`
     flex-direction: column;
   }
 
-  div {
+  div, input {
     box-sizing: border-box;
   }
 

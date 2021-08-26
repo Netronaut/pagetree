@@ -50,7 +50,6 @@ export const ModalInput = styled.input<{ isError: boolean }>`
   border-color: ${({ theme, isError }) => (isError ? theme.color.red : '')};
   outline: none;
   width: 100%;
-  box-sizing: border-box;
   padding: 9px 7px 8px;
   background-color: ${({ theme }) => theme.color.gray4};
   font-family: inherit;
