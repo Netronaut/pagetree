@@ -47,9 +47,9 @@ export const CloseButton = styled(IconButton)`
 
 export const ModalInput = styled(Default).attrs({ as: 'input' })<{ isError: boolean }>`
   border-radius: 4px;
-  border: 2px solid transparent;
-  ${({ theme, isError }) => (isError ? `border-color: ${theme.color.red};` : '')}
-  outline: none;
+  border: none;
+  outline: solid transparent 2px;
+  ${({ theme, isError }) => (isError ? `outline-color: ${theme.color.red};` : '')}
   width: 100%;
   padding: 9px 7px 8px;
   background-color: ${({ theme }) => theme.color.gray4};
@@ -57,10 +57,10 @@ export const ModalInput = styled(Default).attrs({ as: 'input' })<{ isError: bool
     color: ${({ theme }) => `${theme.color.gray1}4d`};
   }
   &:focus {
-    border-color: ${({ theme }) => `${theme.color.secondary}4d`};
+    outline-color: ${({ theme }) => `${theme.color.secondary}4d`};
   }
   &:focus:not(:placeholder-shown) {
-    border-color: ${({ theme }) => theme.color.secondary};
+    outline-color: ${({ theme }) => theme.color.secondary};
   }
 `;
 
