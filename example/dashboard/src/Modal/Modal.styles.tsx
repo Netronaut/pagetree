@@ -39,10 +39,6 @@ export const CloseButton = styled(IconButton)`
   position: absolute;
   top: 24px;
   right: 24px;
-  background: none;
-  border: none;
-  cursor: pointer;
-  padding: 0;
 `;
 
 export const ModalInput = styled(Default).attrs({ as: 'input' })<{ isError: boolean }>`
