@@ -11,7 +11,7 @@ import { useTapOutside } from '../../../strapi/src/components/PageManager/hooks'
 import { ModalContainer, CloseButton, ModalInput, ModalLabel } from './Modal.styles';
 import { CloseIcon } from '../icons';
 import { Button } from '../Button';
-import { LargerMedium, SmallerBold, Smaller, Default } from '../Typography';
+import { LargerMedium, SmallerBold, Smaller } from '../Typography';
 import { color } from '../theme';
 
 interface EditPageModalProps {
@@ -53,7 +53,7 @@ export const EditPageModal = ({ onClose, onSave, page }: EditPageModalProps): Re
       </CloseButton>
       <LargerMedium>Edit Page</LargerMedium>
       <ModalLabel>
-        <SmallerBold color={color.gray5}>Page title</SmallerBold>
+        <SmallerBold color={color.gray2}>Page title</SmallerBold>
         <ModalInput
           autoFocus
           type="text"
@@ -65,12 +65,12 @@ export const EditPageModal = ({ onClose, onSave, page }: EditPageModalProps): Re
           onKeyDown={handleChange}
           onBlur={handleChange}
         />
-        <Smaller color={errors.title ? color.red : color.gray5}>
+        <Smaller color={errors.title ? color.red : color.gray2}>
           {errors.title || 'Add a title identifiying your page in the page builder'}
         </Smaller>
       </ModalLabel>
       <ModalLabel>
-        <SmallerBold color={color.gray5}>Page path</SmallerBold>
+        <SmallerBold color={color.gray2}>Page path</SmallerBold>
         <ModalInput
           type="text"
           name="path"
@@ -81,7 +81,7 @@ export const EditPageModal = ({ onClose, onSave, page }: EditPageModalProps): Re
           onKeyDown={handleChange}
           onBlur={handleChange}
         />
-        <Smaller color={errors.path ? color.red : color.gray5}>
+        <Smaller color={errors.path ? color.red : color.gray2}>
           {errors.path || 'Add a path relative to your base URL'}
         </Smaller>
       </ModalLabel>
