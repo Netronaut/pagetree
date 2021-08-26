@@ -10,20 +10,12 @@ export const color = {
   red: '#db3838',
 };
 
+const small = '1em';
+const medium = '1.375em';
+const large = '2.75em';
+
 export const spacing = {
-  vertical: {
-    small: '0 1em',
-    medium: '0 1.375em',
-    large: '0 2.75em',
-  },
-  horizontal: {
-    small: '1em 0',
-    medium: '1.375em 0',
-    large: '2.75em 0',
-  },
-  any: {
-    small: '1em',
-    medium: '1.375em',
-    large: '2.75em',
-  },
+  small,
+  medium,
+  large,
 };
