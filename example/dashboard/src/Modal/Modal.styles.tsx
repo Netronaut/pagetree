@@ -14,7 +14,6 @@ export const ModalBg = styled.div`
 `;
 
 export const ModalContainer = styled.div`
-  --modal-padding: ${({ theme }) => theme.spacing.large};
   position: fixed;
   top: 30%;
   left: calc(50% - 24vw);
@@ -25,10 +24,10 @@ export const ModalContainer = styled.div`
   border-radius: 4px;
   box-shadow: 0px 11px 18px 2px #00000040;
   background: #fff;
-  padding: var(--modal-padding);
+  padding: ${({ theme }) => theme.spacing.xxl};
 
   button:last-child {
-    margin-top: 46px;
+    margin-top: ${({ theme }) => `${theme.spacing.xl}`};
     width: calc(60% - 20ch);
     max-height: 44px;
     align-self: center;
@@ -37,10 +36,9 @@ export const ModalContainer = styled.div`
 
 export const CloseButton = styled(IconButton)`
   position: absolute;
-  top: 24px;
-  right: 24px;
+  top: ${({ theme }) => theme.spacing.md};
+  right: ${({ theme }) => theme.spacing.md};
   background: none;
-  border: none;
   cursor: pointer;
   padding: 0;
 `;
@@ -52,7 +50,7 @@ export const ModalInput = styled.input<{ isError: boolean }>`
   outline: none;
   width: 100%;
   box-sizing: border-box;
-  padding: 9px 7px 8px;
+  padding: ${({ theme }) => theme.spacing.input};
   background-color: ${({ theme }) => theme.color.gray4};
   font-family: inherit;
   font-size: inherit;
@@ -70,14 +68,14 @@ export const ModalInput = styled.input<{ isError: boolean }>`
 `;
 
 export const ModalLabel = styled.label`
-  flex: 1 0 calc(100% - 20ch);
   span {
     display: block;
     &:first-child {
-      margin: 23px 7px 6px;
+      margin-top: ${({ theme }) => `${theme.spacing.md}`};
+      padding: ${({ theme }) => `${theme.spacing.xs} ${theme.spacing.xxs}`};
     }
     &:last-child {
-      margin: 6px 7px 4px;
+      padding: ${({ theme }) => `${theme.spacing.xxs}`};
     }
   }
 `;
