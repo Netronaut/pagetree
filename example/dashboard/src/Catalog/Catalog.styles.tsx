@@ -12,7 +12,7 @@ export const CatalogWrapper = styled.div<{ expanded: boolean }>`
   right: ${({ expanded, theme }) => (expanded ? 0 : theme.spacing.md)};
   bottom: ${({ expanded, theme }) => (expanded ? 0 : theme.spacing.lg)};
   border-radius: ${({ expanded }) => (expanded ? 0 : '4px')};
-  box-shadow: 0px 3px 12px rgba(33, 33, 33, 0.3);
+  box-shadow: 0px 4px 8px 0px #13592220;
   background: ${({ theme }) => theme.color.white};
   & > div > div > input {
     margin-top: ${({ theme }) => theme.spacing.xxs};
