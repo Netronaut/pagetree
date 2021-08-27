@@ -27,12 +27,12 @@ export const Catalog = ({ expanded }: CatalogProps): ReactElement => {
     <CatalogWrapper expanded={isExpanded}>
       {isExpanded ? (
         <>
-          <CatalogHeader expanded={expanded || false}>
+          <CatalogHeader expanded={isExpanded || false}>
             <SearchInput
               value={searchValue}
               onChange={(event) => setSearchValue(event.currentTarget.value)}
             />
-            <CatalogTags expanded={expanded || false}>
+            <CatalogTags expanded={isExpanded || false}>
               {dummyTags.map((tag, index) => (
                 <Tag key={index} selected={index == 0}>
                   #{tag}
