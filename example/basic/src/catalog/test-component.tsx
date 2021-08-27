@@ -1,16 +1,8 @@
-import React from 'react';
+import React, { ReactElement } from 'react';
+import { CatalogComponentProps } from '@pagio/builder';
 import styled from 'styled-components';
 
-import { createCatalogComponent, ProductionComponentProps } from '@pagio/builder';
-
-const Container = styled.div`
-  box-sizing: border-box;
-  outline: none;
-  height: 200px;
-  width: 100%;
-`;
-
-const ProductionContainer = styled.div`
+const TestComponentRoot = styled.div`
   background: #fde;
   background-size: cover;
   height: 200px;
@@ -21,11 +13,6 @@ const ProductionContainer = styled.div`
   padding: 20px;
 `;
 
-const Production: React.FC<ProductionComponentProps> = ({ config }) => {
-  return <ProductionContainer>{config?.testComponent}</ProductionContainer>;
+export const TestComponent = ({ config }: CatalogComponentProps): ReactElement => {
+  return <TestComponentRoot>{config?.testComponent}</TestComponentRoot>;
 };
-
-export default createCatalogComponent(Container, Production, {
-  type: 'test-component',
-  label: 'Test Component',
-});

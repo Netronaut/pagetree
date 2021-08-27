@@ -35,5 +35,5 @@ export const SavePageContentBatton = styled(Button)<{ hidden?: boolean }>`
   width: 180px;
   font-size: 19px;
   text-transform: capitalize;
-  transition: all 0.4s ease-out; // need to fix;
+  transition: all 0.4s ease-out;
 `;
