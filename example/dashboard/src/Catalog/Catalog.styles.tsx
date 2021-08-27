@@ -27,7 +27,6 @@ export const CatalogWrapper = styled.div<{ expanded: boolean }>`
     bottom: ${({ expanded }) => (expanded ? 'auto' : 0)};
     right: 0;
     width: ${({ expanded }) => (expanded ? '60px' : '220px')};
-    transform: ${({ expanded }) => (expanded ? 'scale(1,1)' : 'scale(0.75,0.75)')};
     height: ${({ expanded }) => (expanded ? '60px' : '44px')};
     line-height: ${({ expanded }) => (expanded ? '60px' : '44px')};
     display: block;
@@ -44,7 +43,10 @@ export const CatalogWrapper = styled.div<{ expanded: boolean }>`
         stroke: ${({ theme, expanded }) => (expanded ? theme.color.gray3 : theme.color.secondary)};
         stroke-width: ${({ expanded }) => (expanded ? 1 : 3)};
       }
-      ${({ expanded }) => (expanded ? 'transform: rotate(0deg)' : 'transform: rotate(45deg)')}
+      ${({ expanded, theme }) =>
+        expanded
+          ? 'transform: scale(1) rotate(0deg);'
+          : `transform: scale(0.75) rotate(45deg); padding: ${theme.spacing.xxs};`}
     }
   }
 `;
@@ -69,7 +71,7 @@ export const CatalogHeader = styled.div<{ expanded: boolean }>`
 export const CatalogToggleLabel = styled(Default)`
   position: absolute;
   left: 0;
-  min-width: 140px;
+  min-width: 160px;
   flex: 0 1 70%;
   white-space: no-wrap;
   text-align: center;
@@ -153,10 +155,3 @@ export const CatalogItem = styled.div`
     border-top-color ${({ theme }) => theme.color.gray3};
   }
 `;
-
-/*
-
-border-style: solid;
-  border-width: 1px;
-  border-color: ${({ theme }) => theme.color.gray3};
-  */
