@@ -2,6 +2,7 @@ import React, { ReactElement, useContext, useMemo } from 'react';
 import { useDrag, useDrop } from '../../dragAndDrop';
 import { PageNode, PageNodeType } from '../../pageTree';
 import { PageTreeStateContext } from '../../provider';
+import { CatalogComponentDescription, DefaultComponent } from '../Catalog';
 import { RenderedNodeRoot } from './Canvas.styles';
 
 interface NodeProps {
@@ -10,10 +11,13 @@ interface NodeProps {
 
 export const RenderedNode = ({ node }: NodeProps): ReactElement | null => {
   const { components } = useContext(PageTreeStateContext);
-  const Component = useMemo(
+
+  const component = useMemo<CatalogComponentDescription | undefined>(
     () => components?.find(({ type }) => type === node.type),
     [components, node.type],
   );
+
+  const Component = component?.builderComponent || DefaultComponent;
 
   return (
     <RenderedNodeRoot
@@ -26,8 +30,8 @@ export const RenderedNode = ({ node }: NodeProps): ReactElement | null => {
       {node.type === PageNodeType.Track
         ? node.childNodes &&
           node.childNodes.map((node) => <RenderedNode key={node.uuid} node={node} />)
-        : Component && (
-            <Component type={Component.type} label={Component.label} tags={Component.tags} />
+        : component && (
+            <Component type={component.type} label={component.label} tags={component.tags} />
           )}
     </RenderedNodeRoot>
   );

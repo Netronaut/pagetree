@@ -7,8 +7,9 @@ import React, {
   useReducer,
 } from 'react';
 import { PageTreeAction, reducer } from './reducer';
-import { CatalogComponent, PageTreeState } from './types';
+import { PageTreeState } from './types';
 import { PageNode } from './pageTree';
+import { CatalogComponentDescription } from './components/Catalog';
 
 export const PageTreeDispatchContext = createContext<Dispatch<PageTreeAction>>(() => undefined);
 export const PageTreeStateContext = createContext<PageTreeState>({});
@@ -18,7 +19,7 @@ interface PageTreeProviderProps {
   onUpdate?: (update: PageNode) => void;
   pageTree?: PageNode;
   preview?: boolean;
-  components?: Array<CatalogComponent>;
+  components?: Array<CatalogComponentDescription>;
 }
 
 export const PageTreeProvider = ({

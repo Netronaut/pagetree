@@ -1,4 +1,4 @@
-import { ProductionComponentProps } from './components';
+import { CatalogComponentDescription, CatalogComponentProps } from './components';
 import { PageNode } from './pageTree';
 
 export enum PageNodeAxis {
@@ -34,7 +34,7 @@ export interface DropPayload {
 
 export interface PageTreeState {
   pageTree?: PageNode;
-  components?: Array<CatalogComponent>;
+  components?: Array<CatalogComponentDescription>;
   preview?: boolean;
   dataTransfer?: DataTransferPayload;
   dragOver?: DragOverPayload;
@@ -61,14 +61,5 @@ export interface PageHistoryItem {
 export interface PageChange {
   type: 'put' | 'del';
   key: Array<string>;
-  value: string | ProductionComponentProps;
+  value: string | CatalogComponentProps;
 }
-
-export interface CatalogComponentDescription {
-  type: string;
-  label?: string;
-  tags?: Array<string>;
-}
-
-export type CatalogComponent = React.FunctionComponent<CatalogComponentDescription> &
-  CatalogComponentDescription;

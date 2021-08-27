@@ -1,17 +1,11 @@
-import React, { ReactElement } from 'react';
+import React from 'react';
 import { render, fireEvent } from '@testing-library/react';
-import { CatalogComponentDescription } from '../../types';
 import { PageTreeProvider } from '../../provider';
 import { PageNode, PageNodeType } from '../../pageTree';
 import { Canvas, Catalog } from '../../components';
 
 describe('Canvas', () => {
-  const MockArticleTeaser = ({ label }: CatalogComponentDescription): ReactElement => (
-    <span>{label}</span>
-  );
-  MockArticleTeaser.type = 'article-teaser';
-  MockArticleTeaser.label = 'Article Teaser';
-  const components = [MockArticleTeaser];
+  const components = [{ type: 'article-teaser', label: 'Article Teaser' }];
   let pageTree: PageNode;
 
   beforeEach(() => {
