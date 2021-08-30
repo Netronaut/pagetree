@@ -8,6 +8,7 @@ import {
   ClipboardIcon,
   LogIcon,
   IconButton,
+  Badge,
 } from '../icons';
 import { Button } from '../Button';
 import { Larger } from '../Typography';
