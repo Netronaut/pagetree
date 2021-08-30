@@ -8,3 +8,4 @@ export * from './CloseIcon';
 export * from './BrandIcon';
 export * from './ClipboardIcon';
 export * from './LogIcon';
+export * from './Badge';

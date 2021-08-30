@@ -9,6 +9,7 @@ import { CloseIcon } from './CloseIcon'
 import { IconButton } from './IconButton'
 import { ClipboardIcon } from './ClipboardIcon';
 import { LogIcon } from './LogIcon';
+import { Badge } from './Badge';
 
 export const Grid = (Story) => <div style={{ display: 'grid', gap: '1rem', 'justifyItems': 'start'}}><Story /></div>
 
@@ -55,5 +56,21 @@ export const  args={
         <Icon {...args} />
       </IconButton>
     ))}
+  </Story>
+  <Story name="Icons with Badge">
+    <>
+      <Badge value={3}>
+        <LogIcon/>
+      </Badge>
+      <Badge value={256}>
+        <SearchIcon/>
+      </Badge>
+      <Badge value={0}>
+        <ClipboardIcon/>
+      </Badge>
+      <Badge>
+        <EditIcon/>
+      </Badge>
+    </>
   </Story>
 </Canvas>
