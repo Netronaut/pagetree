@@ -101,7 +101,7 @@ export const CatalogTags = styled.div<{ expanded: boolean }>`
   padding-top: ${({ theme }) => theme.spacing.xxs};
 `;
 
-export const CatalogContainer = styled.div`
+export const CatalogBody = styled.div`
   overflow-x: scroll;
   position: absolute;
   height: 140px;

@@ -4,7 +4,7 @@ import {
   CatalogWrapper,
   CatalogToggleLabel,
   CatalogTags,
-  CatalogContainer,
+  CatalogBody,
   CatalogHeader,
 } from './Catalog.styles';
 import { CatalogList } from './CatalogList';
@@ -42,9 +42,9 @@ export const Catalog = ({ expanded, components }: CatalogProps): ReactElement =>
               ))}
             </CatalogTags>
           </CatalogHeader>
-          <CatalogContainer>
+          <CatalogBody>
             <CatalogList components={components} searchValue={searchValue} />
-          </CatalogContainer>
+          </CatalogBody>
         </>
       ) : null}
       {!isExpanded ? <CatalogToggleLabel>Add Components</CatalogToggleLabel> : null}
