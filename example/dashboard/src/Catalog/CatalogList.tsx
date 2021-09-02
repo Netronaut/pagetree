@@ -1,14 +1,13 @@
 import React, { ReactElement } from 'react';
-import { useDrag, CatalogComponentDescription } from '@pagio/builder';
+import { useDrag, CatalogComponent } from '@pagio/builder';
 import { CatalogItem } from './Catalog.styles';
 
 interface CatalogListProps {
   searchValue: string;
+  components: Array<CatalogComponent>;
 }
 
-const components: Array<CatalogComponentDescription> = [];
-
-export const CatalogList = ({ searchValue }: CatalogListProps): ReactElement => {
+export const CatalogList = ({ searchValue, components }: CatalogListProps): ReactElement => {
   return (
     <>
       {components

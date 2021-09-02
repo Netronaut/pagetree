@@ -1,4 +1,5 @@
 import React, { ReactElement, useState } from 'react';
+import { CatalogComponent } from '@pagio/builder';
 import {
   CatalogWrapper,
   CatalogToggleLabel,
@@ -17,9 +18,10 @@ import { CloseIcon } from '../icons';
 
 export interface CatalogProps {
   expanded?: boolean;
+  components: Array<CatalogComponent>;
 }
 
-export const Catalog = ({ expanded }: CatalogProps): ReactElement => {
+export const Catalog = ({ expanded, components }: CatalogProps): ReactElement => {
   const [searchValue, setSearchValue] = useState('');
   const [isExpanded, setIsExpanded] = useState(Boolean(expanded));
 
@@ -41,7 +43,7 @@ export const Catalog = ({ expanded }: CatalogProps): ReactElement => {
             </CatalogTags>
           </CatalogHeader>
           <CatalogContainer>
-            <CatalogList searchValue={searchValue} />
+            <CatalogList components={components} searchValue={searchValue} />
           </CatalogContainer>
         </>
       ) : null}
