@@ -1,5 +1,5 @@
-import React, { ReactElement, useState } from 'react';
-import { CatalogComponent } from '@pagio/builder';
+import React, { ReactElement, useState, useMemo } from 'react';
+import { CatalogComponentDescription } from '@pagio/builder';
 import {
   CatalogWrapper,
   CatalogToggleLabel,
@@ -11,19 +11,18 @@ import { CatalogList } from './CatalogList';
 
 import { Tag } from '../Tag';
 
-const dummyTags = ['latest', 'tag name 1', 'tag name 2'];
-
 import { SearchInput } from '../SearchInput';
 import { CloseIcon } from '../icons';
 
 export interface CatalogProps {
   expanded?: boolean;
-  components: Array<CatalogComponent>;
+  components: Array<CatalogComponentDescription>;
 }
 
 export const Catalog = ({ expanded, components }: CatalogProps): ReactElement => {
   const [searchValue, setSearchValue] = useState('');
   const [isExpanded, setIsExpanded] = useState(Boolean(expanded));
+  const tags = useMemo(() => Array.from(new Set(components.flatMap(({ tags }) => tags)).values()));
 
   return (
     <CatalogWrapper expanded={isExpanded}>
@@ -35,7 +34,7 @@ export const Catalog = ({ expanded, components }: CatalogProps): ReactElement =>
               onChange={(event) => setSearchValue(event.currentTarget.value)}
             />
             <CatalogTags expanded={isExpanded || false}>
-              {dummyTags.map((tag, index) => (
+              {tags.map((tag, index) => (
                 <Tag key={index} selected={index == 0}>
                   #{tag}
                 </Tag>
