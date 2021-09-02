@@ -3,17 +3,20 @@ import { Default } from '../Typography';
 import { IconButton } from '../icons/IconButton';
 
 export const CatalogWrapper = styled.div<{ expanded: boolean }>`
-  height: ${({ expanded }) => (expanded ? '200px' : '44px')};
-  width: ${({ expanded }) => (expanded ? '100vw' : '190px')};
+  ${({ expanded, theme }) => `
+    height:  ${expanded ? '200px' : '44px'};
+    width: ${expanded ? '100vw' : '190px'};
+    cursor: ${expanded ? 'default' : 'pointer'};
+    right: ${expanded ? 0 : theme.spacing.md};
+    bottom: ${expanded ? 0 : theme.spacing.lg};
+    border-radius: ${expanded ? 0 : '4px'};
+  `}
   position: fixed;
   display: flex;
   justify-content: flex-end;
-  cursor: ${({ expanded }) => (expanded ? 'default' : 'pointer')};
-  right: ${({ expanded, theme }) => (expanded ? 0 : theme.spacing.md)};
-  bottom: ${({ expanded, theme }) => (expanded ? 0 : theme.spacing.lg)};
-  border-radius: ${({ expanded }) => (expanded ? 0 : '4px')};
   box-shadow: 0px 4px 8px 0px #13592220;
   background: ${({ theme }) => theme.color.white};
+
   & > div > div > input {
     margin-top: ${({ theme }) => theme.spacing.xxs};
     line-heigth: 22px;
@@ -123,7 +126,6 @@ export const CatalogItem = styled.div`
   max-width: 180px;
   border: 2px solid purple;
   box-sizing: border-box;
-    
   min-height: 110px;
   border-radius: 4px;
   background-color: ${({ theme }) => theme.color.white};
@@ -133,8 +135,6 @@ export const CatalogItem = styled.div`
   justify-content: center;
   cursor: move;
   user-select: none;
-  --webkit-user-select: none;
-  --moz-user-select: none;
   height: 80px;
   text-align: center;
   margin: ${({ theme }) => theme.spacing.md} 0 15px 0;
