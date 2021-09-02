@@ -104,8 +104,10 @@ export const CatalogTags = styled.div<{ expanded: boolean }>`
 export const CatalogBody = styled.div`
   overflow-x: scroll;
   position: absolute;
-  height: 140px;
-  top: 60px;
+  left: 0;
+  height: 150px;
+  top: 50px;
+  padding: 0 ${({ theme }) => theme.spacing.md};
   display: flex;
   gap: ${({ theme }) => theme.spacing.md};
   background-color: ${({ theme }) => theme.color.white};
