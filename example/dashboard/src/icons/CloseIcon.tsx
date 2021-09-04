@@ -1,14 +1,18 @@
-import React, { ReactElement } from 'react';
+import React from 'react';
+import omit from 'lodash.omit';
+import styled from 'styled-components';
 
-export const CloseIcon = (): ReactElement => (
-  <svg width="24" height="24" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <line x1="17.3536" y1="0.353553" x2="1.35355" y2="16.3536" stroke="black" />
-    <line
-      y1="-0.5"
-      x2="22.6274"
-      y2="-0.5"
-      transform="matrix(0.707107 0.707107 0.707107 -0.707107 1 0)"
-      stroke="black"
+export const CloseIcon = styled((props) => (
+  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" {...omit(props, ['fill', 'stroke'])}>
+    <path
+      d="M4.5 4.5L19.5 19.5M4.5 19.5L19.5 4.5"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
     />
   </svg>
-);
+))<{ stroke?: boolean }>`
+  path {
+    stroke: ${({ stroke, theme }) => (stroke ? theme.color.secondary : theme.color.gray3)};
+  }
+`;
