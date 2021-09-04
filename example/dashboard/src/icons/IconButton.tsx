@@ -1,8 +1,4 @@
 import styled from 'styled-components';
-import { DeleteIcon } from './DeleteIcon';
-import { EditIcon } from './EditIcon';
-import { SearchIcon } from './SearchIcon';
-import { StarIcon } from './StarIcon';
 
 export const IconButton = styled.button`
   display: inline-flex;
@@ -12,7 +8,7 @@ export const IconButton = styled.button`
   padding: 0;
 
   &:hover {
-    ${DeleteIcon}, ${EditIcon}, ${SearchIcon}, ${StarIcon} {
+    svg {
       --icon-button-hover-color: ${({ theme }) => theme.color.secondary};
 
       path {
