@@ -1,13 +1,13 @@
 import React, { ReactElement, useState } from 'react';
 import { PageEntity } from '../../../strapi/src/types';
 import { Button } from '../Button';
-import { IconButton, StarIcon } from '../icons';
-import { SearchInput } from '../SearchInput';
+import { IconButton, SearchIcon, StarIcon } from '../icons';
 import { Larger } from '../Typography';
 import { Tooltip } from '../Tooltip';
 import { PageItem } from './PageItem';
 import { PageListHeader } from './PageListHeader';
 import { ListHead, Table } from './PageList.styles';
+import { Input } from '../Input';
 
 export interface PageListProps {
   children: ReactElement;
@@ -40,9 +40,10 @@ export const PageList = ({
             </IconButton>
           </Tooltip>
         </Larger>
-        <SearchInput
+        <Input
           value={searchValue}
           onChange={(event) => setSearchValue(event.currentTarget.value)}
+          icon={<SearchIcon />}
         />
         <Button primary onClick={onAdd}>
           Add page
