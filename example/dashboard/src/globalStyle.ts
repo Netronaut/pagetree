@@ -11,12 +11,6 @@ export const GlobalStyle = createGlobalStyle`
     font-size: 16px;
   }
 
-  #root {
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-  }
-
   div, input {
     box-sizing: border-box;
   }
