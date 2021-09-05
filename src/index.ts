@@ -1,4 +1,5 @@
 export * from './components';
+export * from './dragAndDrop';
 export * from './pageTree';
 export * from './types';
 export * from './provider';
