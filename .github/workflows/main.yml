@@ -17,7 +17,7 @@ on:
 
 jobs:
   test:
-    name: Test on node and ubuntu-latest
+    name: Build, lint and test on node and ubuntu-latest
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
@@ -26,8 +26,9 @@ jobs:
       with:
         node-version: 16
         
-    - name: npm install, build and test
+    - name: npm install, build, lint and test
       run: |
         npm ci
         npm run build
+        npm run lint
         npm test
