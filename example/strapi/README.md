@@ -1,4 +1,4 @@
-# @pagio/example-strapi
+# Strapi example
 
 ## Getting started (docker compose)
 
