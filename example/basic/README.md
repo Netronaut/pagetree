@@ -1,4 +1,4 @@
-# @pagio // Basic example
+# Basic example
 
 Run this example:
 
