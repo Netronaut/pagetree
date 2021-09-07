@@ -1,6 +1,6 @@
 import { ThemeProvider } from 'styled-components';
-import * as theme from '../example/dashboard/src/theme.ts';
-import { GlobalStyle } from '../example/dashboard/src/globalStyle';
+import * as theme from '@pagio/components/src/theme.ts';
+import { GlobalStyle } from '@pagio/components/src/globalStyle';
 import './style.css';
 
 export const parameters = {

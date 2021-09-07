@@ -6,8 +6,8 @@ import React, {
   KeyboardEvent,
   MouseEventHandler,
 } from 'react';
-import { PageEntity } from '../../../strapi/src/types';
-import { useTapOutside } from '../../../strapi/src/components/PageManager/hooks';
+import { PageEntity } from '@pagio/example-strapi/src/types';
+import { useTapOutside } from '@pagio/example-strapi/src/components/PageManager/hooks';
 import { ModalContainer, CloseButton, ModalLabel } from './Modal.styles';
 import { CloseIcon } from '../icons';
 import { Button } from '../Button';

@@ -1,6 +1,6 @@
 {
   "name": "@pagio/example-strapi",
-  "version": "0.2.0-rc",
+  "version": "0.2.0",
   "main": "index.js",
   "private": true,
   "scripts": {
@@ -10,7 +10,7 @@
     "strapi": "docker compose up strapi -d"
   },
   "dependencies": {
-    "@pagio/builder": "^0.2.0-rc",
+    "@pagio/builder": "^0.2.0",
     "axios": "^0.21.1",
     "core-js": "^3.15.2",
     "react": "^17.0.2",
