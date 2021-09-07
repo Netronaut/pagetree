@@ -1,8 +1,8 @@
 {
-  "name": "@pagio/example-dashboard",
-  "version": "0.2.0-rc",
+  "name": "@pagio/components",
+  "version": "0.2.0",
   "private": true,
-  "description": "A collection of components for the pages dashboard",
+  "description": "A collection of components for pagio",
   "author": "Jakob Hohlfeld <jakob.hohlfeld@netronaut.de>",
   "peerDependencies": {
     "react": ">=17||>=16.8"
@@ -14,7 +14,7 @@
     "typescript": "^4.3.5"
   },
   "dependencies": {
-    "@pagio/builder": "^0.2.0-rc",
+    "@pagio/builder": "^0.2.0",
     "lodash.isempty": "^4.4.0",
     "lodash.omit": "^4.5.0"
   }
