@@ -1,9 +1,8 @@
 # Basic example
 
-Run this example:
+Run this example from the root directory:
 
 ```bash
-$ cd example/basic
-$ npm i
-$ npm start
+npm run build
+npm start -w @pagio/example-basic
 ```
