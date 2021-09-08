@@ -4,7 +4,6 @@ import {
   Canvas,
   PageTreeProvider,
   PageNode,
-  Catalog,
   RemoveDropArea,
   PageTreeStateContext,
 } from '@pagio/builder';
