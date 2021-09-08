@@ -12,11 +12,10 @@
     "./packages/example/*"
   ],
   "scripts": {
-    "clean": "tsc --build --clean tsconfig.build.json",
-    "build": "tsc --build tsconfig.build.json",
-    "dev": "tsc --build tsconfig.build.json -w",
+    "build": "tsc -b packages/builder packages/components",
+    "dev": "tsc -b -w packages/builder packages/components",
     "lint": "eslint 'packages/**/*.ts{,x}'",
-    "test": "jest packages/builder/src/",
+    "test": "jest packages/builder/src/ packages/components/src/",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook"
   },

@@ -5,10 +5,11 @@
   "license": "MIT",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
-  "files": [
-    "src",
-    "dist"
-  ],
+  "scripts": {
+    "clean": "tsc --build --clean tsconfig.json",
+    "build": "tsc --build tsconfig.json",
+    "dev": "tsc --build tsconfig.json -w"
+  },
   "peerDependencies": {
     "nanoid": ">=3",
     "react": ">=17||>=16.8",
