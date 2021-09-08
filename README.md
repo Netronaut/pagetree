@@ -64,6 +64,7 @@ npm install
 npm test
 npm run lint
 npm run build
+npm run dev
 npm run storybook
 ```
 
