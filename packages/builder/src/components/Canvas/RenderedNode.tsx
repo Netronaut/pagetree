@@ -2,8 +2,8 @@ import React, { ReactElement, useContext, useMemo } from 'react';
 import { useDrag, useDrop } from '../../dragAndDrop';
 import { PageNode, PageNodeType } from '../../pageTree';
 import { PageTreeStateContext } from '../../provider';
-import { RenderedNodeRoot } from './Canvas.styles';
 import { CatalogComponentDescription } from '../../types';
+import { DefaultComponent, RenderedNodeRoot } from './Canvas.styles';
 
 interface NodeProps {
   node: PageNode;

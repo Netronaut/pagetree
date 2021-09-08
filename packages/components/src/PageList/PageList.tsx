@@ -1,13 +1,13 @@
 import React, { ReactElement, useState } from 'react';
-import { PageEntity } from '@pagio/example-strapi/src/types';
 import { Button } from '../Button';
 import { IconButton, SearchIcon, StarIcon } from '../icons';
-import { Larger } from '../Typography';
+import { Input } from '../Input';
 import { Tooltip } from '../Tooltip';
+import { Larger } from '../Typography';
 import { PageItem } from './PageItem';
 import { PageListHeader } from './PageListHeader';
 import { ListHead, Table } from './PageList.styles';
-import { Input } from '../Input';
+import { PageEntity } from './PageList.types';
 
 export interface PageListProps {
   children: ReactElement;

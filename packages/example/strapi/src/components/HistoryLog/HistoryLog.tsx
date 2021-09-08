@@ -1,6 +1,5 @@
 import React, { useEffect, useRef, useState, ReactElement } from 'react';
 import { ArrowIcon, PageHistory } from '@pagio/builder';
-import { useTapOutside } from '../PageManager/hooks';
 import { ChangeDetail } from './ChangeDetail';
 import { HistoryWrapper, ShowHistoryButton } from './HistoryLog.styles';
 

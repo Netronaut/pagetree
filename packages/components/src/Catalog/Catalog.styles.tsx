@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { Default } from '../Typography';
 
-export const CatalogRoot = styled.div<{ expanded: boolean }>`
+export const CatalogRoot = styled.div<{ hide: boolean; expanded: boolean }>`
   position: fixed;
   display: flex;
   flex-direction: column;
@@ -11,11 +11,13 @@ export const CatalogRoot = styled.div<{ expanded: boolean }>`
 
   user-select: none;
 
-  ${({ expanded, theme }) => `
+  ${({ hide, expanded, theme }) => `
     padding: ${theme.spacing.xs} ${theme.spacing.xs};
     background: ${theme.color.white};
     right: ${theme.spacing.md};
     bottom: ${theme.spacing.lg};
+    
+    ${hide && `display: none;`}
 
     ${
       expanded &&
@@ -58,7 +60,7 @@ export const CatalogBody = styled.div`
   }
 `;
 
-export const CatalogTags = styled.div<{ expanded: boolean }>`
+export const CatalogTags = styled.div`
   display: grid;
   grid-auto-flow: column;
   gap: ${({ theme }) => theme.spacing.xxs};

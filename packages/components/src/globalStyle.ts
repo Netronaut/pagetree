@@ -1,17 +1,16 @@
 import { createGlobalStyle } from 'styled-components';
 
 export const GlobalStyle = createGlobalStyle`
-  html {
+  html, body, #root {
     height: 100%;
   }
 
   body {
-    height: 100%;
     margin: 0;
     font-size: 16px;
   }
 
-  div, input {
+  div, input, header, section, main {
     box-sizing: border-box;
   }
 

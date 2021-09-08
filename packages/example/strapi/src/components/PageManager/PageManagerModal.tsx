@@ -1,6 +1,4 @@
 import React, { ChangeEvent, ReactElement, useRef, useState, KeyboardEvent } from 'react';
-import { PageEntity } from '../../types';
-import { useTapOutside } from './hooks';
 import { PageItemButton, PageManagerModalContainer } from './PageManager.styles';
 
 interface PageManagerModalProps {

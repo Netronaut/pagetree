@@ -1,5 +1,5 @@
-import React, { ReactElement, useState, useMemo } from 'react';
-import { CatalogComponentDescription, useDrag } from '@pagio/builder';
+import React, { ReactElement, useState, useMemo, useContext } from 'react';
+import { CatalogComponentDescription, PageTreeStateContext, useDrag } from '@pagio/builder';
 import { Tag } from '../Tag';
 import { CloseIcon, SearchIcon } from '../icons';
 import { Default } from '../Typography';
@@ -14,21 +14,22 @@ import {
 } from './Catalog.styles';
 
 export interface CatalogProps {
-  components: Array<CatalogComponentDescription>;
+  hide?: boolean;
   expanded?: boolean;
-  onChangeExpanded?: (expanded: boolean) => void;
 }
 
-export const Catalog = ({
-  components,
-  expanded = false,
-  onChangeExpanded = () => undefined,
-}: CatalogProps): ReactElement => {
+export const Catalog = ({ hide = false, ...props }: CatalogProps): ReactElement => {
   const [searchValue, setSearchValue] = useState('');
   const [selectedTags, setSelectedTags] = useState<Array<string>>([]);
+  const [expanded, setExpanded] = useState<boolean>(props.expanded || false);
+
+  const { components } = useContext(PageTreeStateContext);
 
   const tags = useMemo(
-    () => Array.from(new Set(components.flatMap(({ tags }) => tags)).values()),
+    () =>
+      Array.from(new Set(components?.flatMap(({ tags }) => tags)).values()).filter(
+        (tag) => tag !== undefined,
+      ),
     [components],
   ) as Array<string>;
 
@@ -47,7 +48,7 @@ export const Catalog = ({
     );
 
   return (
-    <CatalogRoot expanded={expanded}>
+    <CatalogRoot hide={hide} expanded={expanded}>
       <CatalogHeader expanded={expanded}>
         {expanded && (
           <>
@@ -57,7 +58,7 @@ export const Catalog = ({
               onChange={(event) => setSearchValue(event.currentTarget.value)}
               icon={<SearchIcon />}
             />
-            <CatalogTags expanded={expanded}>
+            <CatalogTags>
               {tags.map((tag, index) => (
                 <Tag
                   key={index}
@@ -70,7 +71,7 @@ export const Catalog = ({
             </CatalogTags>
           </>
         )}
-        <CatalogOpenCloseButton expanded={expanded} onClick={() => onChangeExpanded(!expanded)}>
+        <CatalogOpenCloseButton expanded={expanded} onClick={() => setExpanded(!expanded)}>
           <Default>Add Components</Default>
           <CloseIcon />
         </CatalogOpenCloseButton>

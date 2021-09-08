@@ -6,16 +6,16 @@ import React, {
   KeyboardEvent,
   MouseEventHandler,
 } from 'react';
-import { PageEntity } from '@pagio/example-strapi/src/types';
-import { useTapOutside } from '@pagio/example-strapi/src/components/PageManager/hooks';
-import { ModalContainer, CloseButton, ModalLabel } from './Modal.styles';
+import omit from 'lodash.omit';
+import isEmpty from 'lodash.isempty';
 import { CloseIcon } from '../icons';
 import { Button } from '../Button';
 import { LargerMedium, SmallerBold, Smaller } from '../Typography';
 import { color } from '../theme';
-import omit from 'lodash.omit';
-import isEmpty from 'lodash.isempty';
 import { Input } from '../Input';
+import { PageEntity } from '../PageList';
+import { useTapOutside } from './useTapOutside';
+import { ModalContainer, CloseButton, ModalLabel } from './Modal.styles';
 
 interface EditPageModalProps {
   page: PageEntity;

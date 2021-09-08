@@ -1,15 +1,19 @@
 import styled from 'styled-components';
 import { PageNodeType } from '../../pageTree';
-import { DragOverPayload, DropTargetProps, InsertionPoint, PageNodeAxis } from '../../types';
+import {
+  CatalogComponentProps,
+  DragOverPayload,
+  DropTargetProps,
+  InsertionPoint,
+  PageNodeAxis,
+} from '../../types';
 
-export const CanvasRoot = styled.div<DropTargetProps>`
+export const CanvasRoot = styled.main<DropTargetProps>`
   display: flex;
-  flex: 1;
   align-items: flex-start;
-  background-color: lightgrey;
-  margin: 1rem;
-  padding: 1rem;
-  border: 1px dashed grey;
+  background-color: ${({ theme }) => theme.color.canvasBgColor || 'f5f5f5'};
+  width: 100%;
+  min-height: 100vh;
 
   ${({ dragOver, id }) =>
     dragOver && dragOver.targetId === id
@@ -82,4 +86,8 @@ export const RenderedNodeRoot = styled.div<{
       : `
     
   `}
+`;
+
+export const DefaultComponent = styled.div<CatalogComponentProps>`
+  height: 200px;
 `;

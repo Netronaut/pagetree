@@ -13,11 +13,9 @@ import {
 import { Button } from '../Button';
 import { Larger } from '../Typography';
 
-interface Props {
-  logLength: number;
-}
+const numberOfChanges = 0;
 
-export const Header = ({ logLength }: Props): ReactElement => (
+export const Header = (): ReactElement => (
   <HeaderRoot>
     <HeaderGroup columnNumber={1}>
       <IconButton>
@@ -46,7 +44,7 @@ export const Header = ({ logLength }: Props): ReactElement => (
 
     <HeaderGroup columnNumber={5}>
       <IconButton>
-        <Badge value={logLength}>
+        <Badge value={numberOfChanges}>
           <LogIcon />
         </Badge>
       </IconButton>

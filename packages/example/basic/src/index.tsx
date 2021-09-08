@@ -1,16 +1,9 @@
 import React, { useState } from 'react';
 import ReactDOM from 'react-dom';
-import {
-  Canvas,
-  PageTreeProvider,
-  PageNode,
-  RemoveDropArea,
-  PageTreeStateContext,
-} from '@pagio/builder';
+import { ThemeProvider } from 'styled-components';
+import { PageTreeProvider, PageNode, PageTreeStateContext } from '@pagio/builder';
+import { Canvas, Catalog, GlobalStyle, Header, theme } from '@pagio/components';
 import { components } from './catalog';
-import { Header } from './components';
-import { GlobalStyle } from './globalStyle';
-import { AppRoot } from './components/components.styles';
 
 const App = () => {
   const [pageTree, setPageTree] = useState<PageNode>(
@@ -18,7 +11,6 @@ const App = () => {
       childNodes: [{ type: 'headline' }, { type: 'article-teaser', uuid: 'article' }],
     }),
   );
-  const [preview, setPreview] = useState(false);
 
   const handleUpdate = (pageTree: PageNode) => {
     // eslint-disable-next-line no-console
@@ -29,31 +21,16 @@ const App = () => {
   };
 
   return (
-    <AppRoot>
+    <ThemeProvider theme={theme}>
       <GlobalStyle />
-      <PageTreeProvider
-        onUpdate={handleUpdate}
-        pageTree={pageTree}
-        preview={preview}
-        components={components}
-      >
-        <Header preview={preview} setPreview={setPreview} />
+      <PageTreeProvider onUpdate={handleUpdate} pageTree={pageTree} components={components}>
+        <Header />
         <Canvas />
-        {!preview && (
-          <PageTreeStateContext.Consumer>
-            {({ dragOver, dataTransfer }) => (
-              <>
-                <RemoveDropArea
-                  key="remove"
-                  hide={!dataTransfer || dataTransfer.sourceId === undefined}
-                />
-                <Catalog hide={dragOver !== undefined} />
-              </>
-            )}
-          </PageTreeStateContext.Consumer>
-        )}
+        <PageTreeStateContext.Consumer>
+          {({ dragOver }) => <Catalog hide={dragOver !== undefined} />}
+        </PageTreeStateContext.Consumer>
       </PageTreeProvider>
-    </AppRoot>
+    </ThemeProvider>
   );
 };
 

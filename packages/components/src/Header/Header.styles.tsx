@@ -2,10 +2,19 @@ import styled from 'styled-components';
 import { Button } from '../Button';
 import { IconButton } from '../icons';
 
-export const HeaderRoot = styled.section`
+export const HeaderRoot = styled.header`
   display: grid;
   grid-template-columns: auto auto 1fr auto auto;
   grid-column-gap: ${({ theme }) => theme.spacing.xxs};
+  position: fixed;
+  z-index: 10;
+
+  ${({ theme }) => `
+    left: ${theme.spacing.xs};
+    right: ${theme.spacing.xs};
+    top: ${theme.spacing.xs};
+  `}
+
   ${IconButton} {
     padding: ${({ theme }) => theme.spacing.xs};
     border-right: 1px solid ${({ theme }) => theme.color.gray4};

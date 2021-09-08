@@ -1,4 +1,4 @@
-export const color = {
+export const color: Record<string, string> = {
   secondary: '#5f9efc',
   red: '#db3838',
   primary: '#24c217',
@@ -8,6 +8,8 @@ export const color = {
   gray3: '#d0d0d0',
   gray4: '#f5f5f5',
 };
+
+color.canvasBgColor = color.gray4;
 
 const xxs = '0.375em';
 const xs = '0.75em';
