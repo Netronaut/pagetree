@@ -1,8 +1,8 @@
 import React from 'react';
 import { render, fireEvent } from '@testing-library/react';
-import { PageTreeProvider } from '../../provider';
-import { PageNode, PageNodeType } from '../../pageTree';
-import { Canvas, Catalog } from '../../components';
+import { PageNode, PageNodeType, PageTreeProvider } from '@pagio/builder';
+import { Catalog } from '../Catalog';
+import { Canvas } from './Canvas';
 
 describe('Canvas', () => {
   const components = [{ type: 'article-teaser', label: 'Article Teaser' }];

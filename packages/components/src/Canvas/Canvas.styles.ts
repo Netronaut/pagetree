@@ -1,12 +1,12 @@
 import styled from 'styled-components';
-import { PageNodeType } from '../../pageTree';
 import {
   CatalogComponentProps,
   DragOverPayload,
   DropTargetProps,
   InsertionPoint,
   PageNodeAxis,
-} from '../../types';
+  PageNodeType,
+} from '@pagio/builder';
 
 export const CanvasRoot = styled.main<DropTargetProps>`
   display: flex;
