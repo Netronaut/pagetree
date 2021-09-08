@@ -1,8 +1,8 @@
 {
   "compilerOptions": {
     "composite": true,
-    "target": "es6",
-    "module": "esnext",
+    "target": "ES5",
+    "module": "CommonJS",
     "lib": ["es2019", "dom"],
     "declaration": true,
     "strict": true,
@@ -10,9 +10,9 @@
     "moduleResolution": "node",
     "allowSyntheticDefaultImports": true,
     "sourceMap": true,
-    "esModuleInterop": true,
+    "esModuleInterop": true
   },
   "exclude": [
-    "**/node_modules", "**/__tests__/*", "**/*.spec.*", "**/*.test.*", "jest.config.js"
+    "**/node_modules", "**/__mocks__/*", "**/__tests__/*", "**/*.spec.*", "**/*.test.*", "jest.config.js"
   ]
 }
