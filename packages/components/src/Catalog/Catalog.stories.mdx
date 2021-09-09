@@ -3,6 +3,7 @@ import { PageTreeProvider } from '@pagio/builder';
 import { Default } from '../Typography';
 import { CloseIcon } from '../icons';
 import { Catalog } from './Catalog';
+import { DropToRemove } from './DropToRemove';
 import { CatalogOpenCloseButton, CatalogItem } from './Catalog.styles';
 import { components as mockComponents } from './__mocks__/components';
 
@@ -46,5 +47,8 @@ export const onChangeExpanded = (expanded) => alert(`change expanded to: ${expan
   </Story>
   <Story name="CatalogItem">
     <CatalogItem>CatalogItem</CatalogItem>
+  </Story>
+  <Story name="Catalog DropToRemove">
+    <DropToRemove />
   </Story>
 </Canvas>

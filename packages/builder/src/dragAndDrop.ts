@@ -26,18 +26,6 @@ export interface UseDragReturnType {
   onDragEnd: () => void;
 }
 
-export interface UseDropReturnType {
-  dataTransfer?: DataTransferPayload;
-  dragOver?: DragOverPayload;
-  onDragOver: (event: React.DragEvent<HTMLDivElement>) => void;
-  onDragLeave: (event: React.DragEvent<HTMLDivElement>) => void;
-  onDrop: DragEventHandler;
-}
-
-export interface UseDropRemoveReturnType {
-  onDrop: DragEventHandler;
-}
-
 export const useDrag = (): UseDragReturnType => {
   const dispatch = useContext(PageTreeDispatchContext);
   const { dragOver, dataTransfer } = useContext(PageTreeStateContext);
@@ -64,6 +52,14 @@ export const useDrag = (): UseDragReturnType => {
     onDragEnd,
   };
 };
+
+export interface UseDropReturnType {
+  dataTransfer?: DataTransferPayload;
+  dragOver?: DragOverPayload;
+  onDragOver: (event: React.DragEvent<HTMLDivElement>) => void;
+  onDragLeave: (event: React.DragEvent<HTMLDivElement>) => void;
+  onDrop: DragEventHandler;
+}
 
 export const useDrop = (): UseDropReturnType => {
   const dispatch = useContext(PageTreeDispatchContext);
@@ -134,7 +130,13 @@ export const useDrop = (): UseDropReturnType => {
   };
 };
 
-export const onDropRemove = (): UseDropRemoveReturnType => {
+export interface UseDropRemoveReturnType {
+  onDragOver: (event: React.DragEvent<HTMLDivElement>) => void;
+  onDragLeave: (event: React.DragEvent<HTMLDivElement>) => void;
+  onDrop: DragEventHandler;
+}
+
+export const useDropRemove = (): UseDropRemoveReturnType => {
   const dispatch = useContext(PageTreeDispatchContext);
 
   function onDrop(event: React.DragEvent<HTMLDivElement>) {
@@ -144,7 +146,17 @@ export const onDropRemove = (): UseDropRemoveReturnType => {
     dispatch({ type: 'dragEnd' });
   }
 
+  const onDragOver = (event: React.DragEvent<EventTarget>) => {
+    event.preventDefault();
+  };
+
+  const onDragLeave = (event: React.DragEvent<HTMLDivElement>) => {
+    event.preventDefault();
+  };
+
   return {
+    onDragOver,
+    onDragLeave,
     onDrop,
   };
 };
