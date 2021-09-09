@@ -1,8 +1,8 @@
 import React, { ReactElement, useMemo, useState, useEffect } from 'react';
+import { PageEntity } from '@pagio/components';
 import { AddPageInput } from './AddPageInput';
 import { getPages, removePage, savePage } from '../../api';
 import { Header } from '../Header';
-import { PageEntity } from '../../types';
 import { PageManagerModal } from './PageManagerModal';
 import { PageListItem } from './PageListItem';
 import { FilterInput, PageItemButton, PageList } from './PageManager.styles';

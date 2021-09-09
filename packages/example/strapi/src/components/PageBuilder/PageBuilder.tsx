@@ -1,19 +1,12 @@
 import React, { ReactElement, useEffect, useState } from 'react';
 import { useParams } from 'react-router';
 import diff from 'changeset';
-import {
-  Canvas,
-  Catalog,
-  PageNode,
-  PageTreeProvider,
-  PageTreeStateContext,
-  RemoveDropArea,
-} from '@pagio/builder';
-import { components } from '../../catalog';
-import { PageEntity } from '../../types';
+import { PageNode, PageTreeProvider, PageTreeStateContext } from '@pagio/builder';
+import { Canvas, Catalog, PageEntity } from '@pagio/components';
 import { HistoryLog } from '../HistoryLog';
 import { Header } from '../Header';
 import { getPage, savePage } from '../../api';
+import { components } from '../../catalog';
 
 export const PageBuilder = (): ReactElement | null => {
   const { pageId } = useParams<{ pageId: string }>();
@@ -58,15 +51,7 @@ export const PageBuilder = (): ReactElement | null => {
       <Canvas />
       {!preview && (
         <PageTreeStateContext.Consumer>
-          {({ dragOver, dataTransfer }) => (
-            <>
-              <RemoveDropArea
-                key="remove"
-                hide={!dataTransfer || dataTransfer.sourceId === undefined}
-              />
-              <Catalog hide={dragOver !== undefined} />
-            </>
-          )}
+          {({ dragOver }) => <Catalog hide={dragOver !== undefined} />}
         </PageTreeStateContext.Consumer>
       )}
     </PageTreeProvider>

@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState, ReactElement } from 'react';
-import { ArrowIcon, PageHistory } from '@pagio/builder';
+import { PageHistory } from '@pagio/builder';
+import { LogIcon, useTapOutside } from '@pagio/components';
 import { ChangeDetail } from './ChangeDetail';
 import { HistoryWrapper, ShowHistoryButton } from './HistoryLog.styles';
 
@@ -31,7 +32,7 @@ export const HistoryLog = ({ history = [] }: HistoryLogProps): ReactElement => {
         isOpen={isDisplayHistory}
         onClick={() => setIsDisplayHistory(!isDisplayHistory)}
       >
-        <ArrowIcon width={18} height={8} />
+        <LogIcon />
       </ShowHistoryButton>
     </HistoryWrapper>
   );

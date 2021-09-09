@@ -22,6 +22,7 @@ export const Catalog = ({ hide = false, ...props }: CatalogProps): ReactElement 
   const [searchValue, setSearchValue] = useState('');
   const [selectedTags, setSelectedTags] = useState<Array<string>>([]);
   const [expanded, setExpanded] = useState<boolean>(props.expanded || false);
+  const dragProps = useDrag();
 
   const { components } = useContext(PageTreeStateContext);
 
@@ -85,7 +86,7 @@ export const Catalog = ({ hide = false, ...props }: CatalogProps): ReactElement 
               <CatalogItem
                 key={`catalog-item-${i}`}
                 data-component-description={JSON.stringify({ type: item.type })}
-                {...useDrag()}
+                {...dragProps}
               >
                 {item.label}
               </CatalogItem>

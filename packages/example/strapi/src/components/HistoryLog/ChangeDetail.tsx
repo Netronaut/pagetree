@@ -1,5 +1,6 @@
 import React, { useState, ReactElement } from 'react';
-import { ArrowIcon, PageHistoryItem } from '@pagio/builder';
+import { PageHistoryItem } from '@pagio/builder';
+import { LogIcon } from '@pagio/components';
 import { ChangeDetailContainer, DetailsList } from './HistoryLog.styles';
 
 interface ChangeDetailProps {
@@ -13,7 +14,7 @@ export const ChangeDetail = ({ historyItem }: ChangeDetailProps): ReactElement =
       <header onClick={() => setIsOpen(!isOpen)}>
         {historyItem.date}
         <button>
-          <ArrowIcon />
+          <LogIcon />
         </button>
       </header>
       {isOpen && (

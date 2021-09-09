@@ -1,11 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom';
-import { GlobalStyle } from './globalStyle';
+import { ThemeProvider } from 'styled-components';
+import { theme, GlobalStyle } from '@pagio/components';
 import { PageManager, PageBuilder } from './components';
 
 const App = () => (
-  <>
+  <ThemeProvider theme={theme}>
     <Router>
       <Switch>
         <Route path="/pagebuilder/:pageId">
@@ -18,7 +19,7 @@ const App = () => (
       </Switch>
     </Router>
     <GlobalStyle />
-  </>
+  </ThemeProvider>
 );
 
 ReactDOM.render(<App />, document.getElementById('root'));
