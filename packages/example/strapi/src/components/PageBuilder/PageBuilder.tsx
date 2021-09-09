@@ -1,6 +1,5 @@
 import React, { ReactElement, useEffect, useState } from 'react';
 import { useParams } from 'react-router';
-import axios from 'axios';
 import diff from 'changeset';
 import {
   Canvas,
@@ -10,11 +9,11 @@ import {
   PageTreeStateContext,
   RemoveDropArea,
 } from '@pagio/builder';
-import { apiUrls } from '../../apiUrls';
 import { components } from '../../catalog';
 import { PageEntity } from '../../types';
 import { HistoryLog } from '../HistoryLog';
 import { Header } from '../Header';
+import { getPage, savePage } from '../../api';
 
 export const PageBuilder = (): ReactElement | null => {
   const { pageId } = useParams<{ pageId: string }>();
@@ -22,7 +21,7 @@ export const PageBuilder = (): ReactElement | null => {
   const [page, setPage] = useState<PageEntity | null>(null);
 
   useEffect(() => {
-    axios.get(`${apiUrls.pages}/${pageId}`).then((response) => setPage(response.data));
+    getPage(pageId).then(setPage);
   }, [pageId]);
 
   const handleUpdate = (pageTree: PageNode) => {
@@ -39,7 +38,7 @@ export const PageBuilder = (): ReactElement | null => {
     // eslint-disable-next-line no-console
     console.log(pageTree.toString());
 
-    axios.put(`${apiUrls.pages}/${nextPage.id}`, nextPage);
+    savePage(nextPage);
     setPage(nextPage);
   };
 
