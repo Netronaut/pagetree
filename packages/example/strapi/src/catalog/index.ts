@@ -1,5 +1,16 @@
-import { default as headline } from './headline';
-import { default as article } from './article-teaser';
-import { default as testComponent } from './test-component';
+import { CatalogComponentDescription } from '@pagio/builder';
+import { Headline } from './Headline';
+import { ArticleTeaser } from './ArticleTeaser';
 
-export const components = [headline, article, testComponent];
+export const components = [
+  {
+    type: 'article-teaser',
+    label: 'Article Teaser',
+    component: ArticleTeaser,
+  },
+  {
+    type: 'headline',
+    label: 'Headline',
+    component: Headline,
+  },
+] as Array<CatalogComponentDescription>;
