@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import ReactDOM from 'react-dom';
 import { ThemeProvider } from 'styled-components';
 import { PageTreeProvider, PageNode, PageTreeStateContext } from '@pagetree/builder';
-import { Canvas, Catalog, GlobalStyle, Header, theme } from '@pagetree/components';
+import { Canvas, Catalog, DropToRemove, GlobalStyle, Header, theme } from '@pagetree/components';
 
 import { components } from './catalog';
 
@@ -28,7 +28,12 @@ const App = () => {
         <Header page={{ title: 'A test page', path: '', starred: false }} />
         <Canvas />
         <PageTreeStateContext.Consumer>
-          {({ dragOver }) => <Catalog hide={dragOver !== undefined} />}
+          {({ dragOver, dataTransfer }) => (
+            <>
+              <Catalog hide={dragOver !== undefined} />
+              <DropToRemove hide={!dataTransfer || dataTransfer.sourceId === undefined} />
+            </>
+          )}
         </PageTreeStateContext.Consumer>
       </PageTreeProvider>
     </ThemeProvider>
