@@ -3,5 +3,9 @@
   "compilerOptions": {
     "rootDir": "src",
   },
-  "references": [{ "path": "../../builder" }]
+  "include": ["src"],
+  "references": [
+    { "path": "../../builder" },
+    { "path": "../../components" }
+  ]
 }
