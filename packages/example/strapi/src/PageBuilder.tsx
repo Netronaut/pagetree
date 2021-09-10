@@ -1,8 +1,8 @@
 import React, { ReactElement, useEffect, useState } from 'react';
 import { useParams } from 'react-router';
 import { ThemeProvider } from 'styled-components';
-import diff from 'changeset';
 import { PageNode, PageTreeProvider, PageTreeStateContext } from '@pagio/builder';
+import diff from 'changeset';
 import { Canvas, Catalog, GlobalStyle, Header, PageEntity, theme } from '@pagio/components';
 import { getPage, savePage } from './api';
 import { components } from './catalog';
