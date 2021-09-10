@@ -14,16 +14,26 @@ export const ListHeadTitle = styled.div`
   align-items: center;
 `;
 
+export const QuickActionGrid = styled.div`
+  display: grid;
+  grid-auto-flow: column;
+  justify-content: center;
+  gap: 0.5em;
+
+  visibility: hidden;
+`;
+
 export const Table = styled.table`
   text-align: left;
   width: 100%;
   table-layout: auto;
   border-collapse: collapse;
-  line-height: 4em;
 
   th,
   td {
-    border-bottom: solid ${({ theme }) => theme.color.gray4} 1px;
+    border-bottom: solid ${({ theme }) => theme.color.gray3} 1px;
+    padding: 0 ${({ theme }) => theme.spacing.md};
+    line-height: 4;
   }
 
   td {
@@ -31,14 +41,13 @@ export const Table = styled.table`
     white-space: nowrap;
 
     &:nth-child(2) {
-      line-height: 1;
       text-overflow: ellipsis;
     }
   }
 
   th {
     &:nth-child(1) {
-      width: 2em;
+      width: 4em;
     }
 
     &:nth-child(3) {
@@ -49,13 +58,10 @@ export const Table = styled.table`
       width: 12em;
     }
   }
-`;
 
-export const QuickActionGrid = styled.div<{ visible: boolean }>`
-  display: grid;
-  grid-auto-flow: column;
-  justify-content: center;
-  gap: 0.5em;
-
-  ${({ visible }) => `visibility: ${visible ? 'visible' : 'hidden'};`}
+  tr:hover {
+    ${QuickActionGrid} {
+      visibility: visible;
+    }
+  }
 `;

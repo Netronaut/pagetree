@@ -10,8 +10,6 @@ import { ListHead, ListHeadTitle, Table } from './PageList.styles';
 import { PageEntity } from './PageList.types';
 
 export interface PageListProps {
-  children: ReactElement;
-  primary?: boolean;
   pages: PageEntity[];
   onAdd: () => void;
   onEdit: (page: PageEntity) => void;
