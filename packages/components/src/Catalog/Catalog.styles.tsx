@@ -15,7 +15,7 @@ export const CatalogRoot = styled.div<{ hide: boolean; expanded: boolean }>`
     padding: ${theme.spacing.xs} ${theme.spacing.xs};
     background: ${theme.color.white};
     right: ${theme.spacing.md};
-    bottom: ${theme.spacing.lg};
+    bottom: ${theme.spacing.md};
     
     ${hide && `display: none;`}
 

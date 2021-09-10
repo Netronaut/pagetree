@@ -10,9 +10,9 @@ export const HeaderRoot = styled.header`
   z-index: 10;
 
   ${({ theme }) => `
-    left: ${theme.spacing.xs};
-    right: ${theme.spacing.xs};
-    top: ${theme.spacing.xs};
+    left: ${theme.spacing.md};
+    right: ${theme.spacing.md};
+    top: ${theme.spacing.md};
   `}
 
   ${IconButton} {
