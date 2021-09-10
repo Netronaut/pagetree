@@ -13,6 +13,7 @@ import {
 } from '../icons';
 import { Button } from '../Button';
 import { Larger } from '../Typography';
+import { PageEntity } from '..';
 
 const numberOfChanges = 0;
 
@@ -41,11 +42,11 @@ export const Header = ({ page, onUpdate = () => undefined, link }: HeaderProps):
     </HeaderGroup>
 
     <HeaderGroup columnNumber={2}>
-      <IconButton>
-        <StarIcon />
+      <IconButton onClick={() => onUpdate({ ...page, starred: !page.starred })}>
+        <StarIcon fill={page.starred} />
       </IconButton>
       <TextGroup>
-        <Larger>Gute Zeiten Schlechte Zeiten | Alle Videos</Larger>
+        <Larger>{page.title}</Larger>
         <IconButton>
           <EditIcon />
         </IconButton>
