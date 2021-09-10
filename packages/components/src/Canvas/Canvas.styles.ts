@@ -7,18 +7,30 @@ import {
   PageNodeAxis,
   PageNodeType,
 } from '@pagio/builder';
+import { baseFontStyle } from '../Typography';
 
-export const CanvasRoot = styled.main<DropTargetProps>`
+export const CanvasRoot = styled.main`
   display: flex;
   align-items: flex-start;
-  background-color: ${({ theme }) => theme.color.canvasBgColor || 'f5f5f5'};
+  justify-content: center;
   width: 100%;
-  min-height: 100vh;
+  background-color: ${({ theme }) => theme.color.canvasBgColor};
+`;
 
-  ${({ dragOver, id }) =>
+export const Page = styled.div<DropTargetProps>`
+  border: 1px dashed ${({ theme }) => theme.color.gray3};
+  background: ${({ theme }) => theme.color.white};
+  width: 100%;
+  max-width: 1200px;
+  min-height: 100vh;
+  margin: 8rem 6rem 12rem 6rem;
+  padding: ${({ theme }) => theme.spacing.xs};
+  padding-bottom: 12rem;
+
+  ${({ dragOver, id, theme }) =>
     dragOver && dragOver.targetId === id
       ? `
-        background-color: aquamarine;
+        background-color: ${theme.color.white};
       `
       : ''}
 `;
@@ -29,25 +41,29 @@ export const RenderedNodeRoot = styled.div<{
   dragOver?: DragOverPayload;
 }>`
   position: relative;
-
-  background-color: gainsboro;
-  border: 1px solid grey;
-  padding: 1rem;
+  border: 1px solid ${({ theme }) => theme.color.gray3};
+  padding: ${({ theme }) => theme.spacing.xs};
   min-height: 1.5rem;
 
-  &:hover:after {
-    content: '${(props) => `${props['data-page-node-type']}-${props.id}`}';
-    position: absolute;
-    top: 0;
-    left: 0;
-    font-size: 0.75em;
-    font-style: italic;
-    padding: 0.2em;
-    background-color: aquamarine;
-    color: royalblue;
+  :hover {
+    border-color: ${({ theme }) => theme.color.secondary};
+
+    :not([data-page-node-type='${PageNodeType.Track}']):after {
+      content: '${(props) => `${props['data-page-node-type'].toUpperCase()}-${props.id}`}';
+      position: absolute;
+      bottom: 100%;
+      left: -1px;
+      padding: 1em 1.8em;
+      background-color: ${({ theme }) => theme.color.secondary};
+      color: ${({ theme }) => theme.color.white};
+
+      ${baseFontStyle}
+      font-size: 8px;
+      line-height: 9px;
+    }
   }
 
-  ${({ dragOver, id }) =>
+  ${({ dragOver, id, theme }) =>
     dragOver && dragOver.targetId === id
       ? `
     &:before {
@@ -55,7 +71,7 @@ export const RenderedNodeRoot = styled.div<{
       position: absolute;
       min-width: 5px;
       min-height: 5px;
-      background-color: lightblue;
+      background-color: ${theme.color.secondary};
       ${
         [InsertionPoint.Top, InsertionPoint.Bottom].includes(dragOver.insertionPoint)
           ? `
@@ -72,22 +88,19 @@ export const RenderedNodeRoot = styled.div<{
   `
       : ''}
 
-  ${(props) =>
+  ${({ theme, ...props }) =>
     props['data-page-node-type'] === PageNodeType.Track
       ? `
     display: grid;
     justify-content: normal;
-    gap: 1rem;
+    gap: ${theme.spacing.xs};
     flex: 1;
-
-    border: 1px dashed grey;
+    border-style: dashed;
     grid-auto-flow: ${props.axis === PageNodeAxis.Row ? 'column' : 'row'};
   `
-      : `
-    
-  `}
+      : ''}
 `;
 
 export const DefaultComponent = styled.div<CatalogComponentProps>`
-  height: 200px;
+  height: 10rem;
 `;

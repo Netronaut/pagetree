@@ -2,12 +2,13 @@ import styled from 'styled-components';
 import { Default } from '../Typography';
 
 export const CatalogRoot = styled.div<{ hide: boolean; expanded: boolean }>`
-  position: fixed;
   display: flex;
   flex-direction: column;
   border-radius: 4px;
   background-color: ${({ theme }) => theme.color.white};
   box-shadow: 0px 4px 8px 0px #13592220;
+  position: fixed;
+  z-index: ${({ theme }) => theme.zIndex.interface};
 
   user-select: none;
 

@@ -30,3 +30,7 @@ export const spacing = {
   button: `${xs} ${xl}`,
   input: `${xs}`,
 };
+
+export const zIndex = {
+  interface: 10,
+};

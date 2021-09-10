@@ -7,7 +7,7 @@ export const HeaderRoot = styled.header`
   grid-template-columns: auto auto 1fr auto auto;
   grid-column-gap: ${({ theme }) => theme.spacing.xxs};
   position: fixed;
-  z-index: 10;
+  z-index: ${({ theme }) => theme.zIndex.interface};
 
   ${({ theme }) => `
     left: ${theme.spacing.md};
