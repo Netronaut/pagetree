@@ -32,15 +32,17 @@ export const RenderedNodeRoot = styled.div<{
   min-height: 1.5rem;
 
   &:hover:after {
-    content: '${(props) => `${props['data-page-node-type']}-${props.id}`}';
+    content: '${(props) => `${props['data-page-node-type'].toUpperCase()}-${props.id}`}';
     position: absolute;
-    top: 0;
+    top: calc(-1em * 2 + -9px);
     left: 0;
-    font-size: 0.75em;
-    font-style: italic;
-    padding: 0.2em;
-    background-color: aquamarine;
-    color: royalblue;
+    padding: 1em 1.8em;
+    background-color: white;
+    font-family: Roboto;
+    font-size: 8px;
+    line-height: 9px;
+    /* secondary */
+    color: #5f9efc;
   }
 
   ${({ dragOver, id }) =>
