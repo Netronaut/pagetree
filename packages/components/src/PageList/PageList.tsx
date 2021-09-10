@@ -3,10 +3,10 @@ import { Button } from '../Button';
 import { IconButton, SearchIcon, StarIcon } from '../icons';
 import { Input } from '../Input';
 import { Tooltip } from '../Tooltip';
-import { Larger } from '../Typography';
+import { LargerMedium } from '../Typography';
 import { PageItem } from './PageItem';
 import { PageListHeader } from './PageListHeader';
-import { ListHead, Table } from './PageList.styles';
+import { ListHead, ListHeadTitle, Table } from './PageList.styles';
 import { PageEntity } from './PageList.types';
 
 export interface PageListProps {
@@ -34,14 +34,14 @@ export const PageList = ({
   return (
     <>
       <ListHead>
-        <Larger as="h2" flex>
-          <span style={{ marginRight: '.5em' }}>All Pages</span>
+        <ListHeadTitle>
+          <LargerMedium>All Pages</LargerMedium>
           <Tooltip content="Show starred pages only">
             <IconButton onClick={() => setFilterStarred(!filterStarred)}>
               <StarIcon fill={filterStarred} />
             </IconButton>
           </Tooltip>
-        </Larger>
+        </ListHeadTitle>
         <Input
           value={searchValue}
           onChange={(event) => setSearchValue(event.currentTarget.value)}

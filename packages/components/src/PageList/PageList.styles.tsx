@@ -7,6 +7,13 @@ export const ListHead = styled.div`
   grid-template-columns: auto 1fr auto;
 `;
 
+export const ListHeadTitle = styled.div`
+  display: grid;
+  gap: ${({ theme }) => theme.spacing.xxs};
+  grid-auto-flow: column;
+  align-items: center;
+`;
+
 export const Table = styled.table`
   text-align: left;
   width: 100%;
