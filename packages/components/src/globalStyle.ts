@@ -10,6 +10,12 @@ export const GlobalStyle = createGlobalStyle`
     font-size: 16px;
   }
 
+  #root {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+  }
+
   div, input, header, section, main {
     box-sizing: border-box;
   }
