@@ -1,5 +1,5 @@
 import React, { ReactElement, ReactNode } from 'react';
-import { TooltipCapture, TooltipTip } from './Tooltip.styles';
+import { TooltipRoot, TooltipTip } from './Tooltip.styles';
 
 export interface TooltipProps {
   children: ReactNode;
@@ -13,8 +13,8 @@ export const Tooltip = ({
   content,
   ...props
 }: TooltipProps): ReactElement => (
-  <TooltipCapture {...props}>
+  <TooltipRoot {...props}>
     {children}
     <TooltipTip position={position}>{content}</TooltipTip>
-  </TooltipCapture>
+  </TooltipRoot>
 );
