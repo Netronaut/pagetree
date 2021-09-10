@@ -15,6 +15,7 @@ export interface PageListProps {
   pages: PageEntity[];
   onAdd: () => void;
   onEdit: (page: PageEntity) => void;
+  onUpdate: (page: PageEntity) => void;
   onRemove: (page: PageEntity) => void;
   onSelect: (page: PageEntity) => void;
 }
@@ -23,6 +24,7 @@ export const PageList = ({
   pages,
   onAdd,
   onEdit,
+  onUpdate,
   onRemove,
   onSelect,
 }: PageListProps): ReactElement => {
@@ -54,23 +56,25 @@ export const PageList = ({
           <PageListHeader />
         </thead>
         <tbody>
-          {pages.length &&
-            pages
-              .filter(
-                ({ title }) =>
-                  searchValue === '' ||
-                  title.toLocaleLowerCase().includes(searchValue.toLocaleLowerCase()),
-              )
-              .filter(({ starred }) => !filterStarred || (filterStarred && starred))
-              .map((page) => (
-                <PageItem
-                  key={page.id}
-                  page={page}
-                  onSelect={onSelect}
-                  onEdit={onEdit}
-                  onRemove={onRemove}
-                />
-              ))}
+          {pages.length
+            ? pages
+                .filter(
+                  ({ title }) =>
+                    searchValue === '' ||
+                    title.toLocaleLowerCase().includes(searchValue.toLocaleLowerCase()),
+                )
+                .filter(({ starred }) => !filterStarred || (filterStarred && starred))
+                .map((page) => (
+                  <PageItem
+                    key={page.id}
+                    page={page}
+                    onSelect={onSelect}
+                    onEdit={onEdit}
+                    onUpdate={onUpdate}
+                    onRemove={onRemove}
+                  />
+                ))
+            : null}
         </tbody>
       </Table>
     </>

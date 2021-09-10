@@ -1,4 +1,4 @@
-import React, { ReactElement, useState } from 'react';
+import React, { ReactElement } from 'react';
 import { DeleteIcon, StarIcon, EditIcon, IconButton } from '../icons';
 import { Tooltip } from '../Tooltip';
 import { Larger, Smaller } from '../Typography';
@@ -7,26 +7,28 @@ import { PageEntity } from './PageList.types';
 
 interface PageItemProps {
   page: PageEntity;
-  onEdit: (page: PageEntity) => void;
-  onRemove: (page: PageEntity) => void;
-  onSelect: (page: PageEntity) => void;
+  onEdit?: (page: PageEntity) => void;
+  onUpdate?: (page: PageEntity) => void;
+  onRemove?: (page: PageEntity) => void;
+  onSelect?: (page: PageEntity) => void;
 }
 
-export const PageItem = ({ page, onSelect, onEdit, onRemove }: PageItemProps): ReactElement => {
+export const PageItem = ({
+  page,
+  onSelect = () => undefined,
+  onEdit = () => undefined,
+  onUpdate = () => undefined,
+  onRemove = () => undefined,
+}: PageItemProps): ReactElement => {
   const { title, version } = page;
-  const [quickActionsVisible, setQuickActionsVisible] = useState(false);
   return (
-    <tr
-      onMouseOver={() => setQuickActionsVisible(true)}
-      onMouseOut={() => setQuickActionsVisible(false)}
-      onClick={() => onSelect(page)}
-    >
+    <tr onClick={() => onSelect(page)}>
       <td>
         <Tooltip content="Pin page">
           <IconButton
             onClick={(event) => {
               event.stopPropagation();
-              onEdit({ ...page, starred: !page.starred });
+              onUpdate({ ...page, starred: !page.starred });
             }}
           >
             <StarIcon fill={page.starred} />
@@ -37,10 +39,7 @@ export const PageItem = ({ page, onSelect, onEdit, onRemove }: PageItemProps): R
         <Larger>{title}</Larger>
       </td>
       <td>
-        <QuickActionGrid
-          visible={quickActionsVisible}
-          onMouseOver={() => setQuickActionsVisible(true)}
-        >
+        <QuickActionGrid>
           <Tooltip content={<span>Edit page</span>}>
             <IconButton
               onClick={(event) => {
