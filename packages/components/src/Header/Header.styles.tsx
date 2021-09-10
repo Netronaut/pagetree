@@ -25,6 +25,14 @@ export const HeaderRoot = styled.header`
   }
 `;
 
+export const HeaderIcon = styled.div`
+  display: flex;
+  width: 48px;
+  height: 48px;
+  justify-content: center;
+  align-items: center;
+`;
+
 export const HeaderGroup = styled.div<{ padding?: string; columnNumber?: number }>`
   display: flex;
   background: ${({ theme }) => theme.color.white};

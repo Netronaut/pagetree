@@ -1,4 +1,5 @@
 import { Meta, Story } from '@storybook/addon-docs';
+import { BrowserRouter } from 'react-router-dom';
 import { Header } from './Header';
 
 <Meta title="Header" component={Header} />
@@ -6,7 +7,11 @@ import { Header } from './Header';
 # Header
 
 <Canvas>
-  <Story name="Header">
-    <Header logLength={3} />
+  <Story name="Header" args={{ page: { title: 'This is a test', starred: true }, link: '/' }}>
+    {(args) => (
+      <BrowserRouter>
+        <Header {...args} />
+      </BrowserRouter>
+    )}
   </Story>
 </Canvas>

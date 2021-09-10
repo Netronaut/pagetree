@@ -1,5 +1,6 @@
 import React, { ReactElement } from 'react';
-import { HeaderGroup, HeaderRoot, TextGroup } from './Header.styles';
+import { HeaderIconLink, HeaderGroup, HeaderRoot, TextGroup } from './Header.styles';
+import { Link } from 'react-router-dom';
 import {
   BrandIcon,
   EditIcon,
@@ -15,12 +16,28 @@ import { Larger } from '../Typography';
 
 const numberOfChanges = 0;
 
-export const Header = (): ReactElement => (
+interface HeaderProps {
+  page: PageEntity;
+  onUpdate?: (page: PageEntity) => void;
+  link?: string;
+}
+
+export const Header = ({ page, onUpdate = () => undefined, link }: HeaderProps): ReactElement => (
   <HeaderRoot>
     <HeaderGroup columnNumber={1}>
-      <IconButton>
-        <BrandIcon fill />
-      </IconButton>
+      {link ? (
+        <Link to={link}>
+          <Tooltip content="Back to pages" position="bottom">
+            <HeaderIcon>
+              <BrandIcon fill />
+            </HeaderIcon>
+          </Tooltip>
+        </Link>
+      ) : (
+        <HeaderIcon>
+          <BrandIcon fill />
+        </HeaderIcon>
+      )}
     </HeaderGroup>
 
     <HeaderGroup columnNumber={2}>
