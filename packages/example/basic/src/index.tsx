@@ -2,7 +2,8 @@ import React, { useState } from 'react';
 import ReactDOM from 'react-dom';
 import { ThemeProvider } from 'styled-components';
 import { PageTreeProvider, PageNode, PageTreeStateContext } from '@pagio/builder';
-import { Canvas, Catalog, GlobalStyle, Header, theme } from '@pagio/components';
+import { Canvas, Catalog, GlobalStyle, Header, PageEntity, theme } from '@pagio/components';
+
 import { components } from './catalog';
 
 const App = () => {
@@ -24,7 +25,7 @@ const App = () => {
     <ThemeProvider theme={theme}>
       <GlobalStyle />
       <PageTreeProvider onUpdate={handleUpdate} pageTree={pageTree} components={components}>
-        <Header />
+        <Header page={{ title: 'A test page', path: '', starred: false }} />
         <Canvas />
         <PageTreeStateContext.Consumer>
           {({ dragOver }) => <Catalog hide={dragOver !== undefined} />}
