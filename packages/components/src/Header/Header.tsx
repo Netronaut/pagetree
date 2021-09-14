@@ -1,5 +1,4 @@
 import React, { ReactElement } from 'react';
-import { HeaderIconLink, HeaderGroup, HeaderRoot, TextGroup } from './Header.styles';
 import { Link } from 'react-router-dom';
 import {
   BrandIcon,
@@ -13,7 +12,8 @@ import {
 } from '../icons';
 import { Button } from '../Button';
 import { Larger } from '../Typography';
-import { PageEntity } from '..';
+import { PageEntity, Tooltip } from '..';
+import { HeaderIcon, HeaderGroup, HeaderRoot, TextGroup } from './Header.styles';
 
 const numberOfChanges = 0;
 
@@ -42,18 +42,22 @@ export const Header = ({ page, onUpdate = () => undefined, link }: HeaderProps):
     </HeaderGroup>
 
     <HeaderGroup columnNumber={2}>
-      <IconButton onClick={() => onUpdate({ ...page, starred: !page.starred })}>
-        <StarIcon fill={page.starred} />
-      </IconButton>
+      <Tooltip content="Star this page" position="bottom">
+        <IconButton onClick={() => onUpdate({ ...page, starred: !page.starred })}>
+          <StarIcon fill={page.starred} />
+        </IconButton>
+      </Tooltip>
       <TextGroup>
         <Larger>{page.title}</Larger>
         <IconButton>
           <EditIcon />
         </IconButton>
       </TextGroup>
-      <IconButton>
-        <ShareIcon />
-      </IconButton>
+      <Tooltip content="Open preview" position="bottom">
+        <IconButton>
+          <ShareIcon />
+        </IconButton>
+      </Tooltip>
     </HeaderGroup>
 
     <HeaderGroup columnNumber={4} padding="xxs">
