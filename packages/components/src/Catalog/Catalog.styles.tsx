@@ -1,7 +1,11 @@
 import styled from 'styled-components';
 import { Default } from '../Typography';
 
-export const CatalogRoot = styled.div<{ hide: boolean; expanded: boolean }>`
+export const CatalogRoot = styled.div<{
+  hide: boolean;
+  expanded: boolean;
+  isOpenChangelog: boolean;
+}>`
   display: flex;
   flex-direction: column;
   border-radius: 4px;
@@ -12,10 +16,14 @@ export const CatalogRoot = styled.div<{ hide: boolean; expanded: boolean }>`
 
   user-select: none;
 
-  ${({ hide, expanded, theme }) => `
+  ${({ hide, expanded, theme, isOpenChangelog }) => `
     padding: ${theme.spacing.xs} ${theme.spacing.xs};
     background: ${theme.color.white};
-    right: calc(${theme.spacing.md} + ${theme.spacing.sidebarWidth});
+    right: ${
+      isOpenChangelog
+        ? `calc(${theme.spacing.md} + ${theme.spacing.sidebarWidth})`
+        : theme.spacing.md
+    };
     bottom: ${theme.spacing.md};
     
     ${hide && `display: none;`}

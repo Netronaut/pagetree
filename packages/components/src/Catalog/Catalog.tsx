@@ -16,9 +16,14 @@ import {
 export interface CatalogProps {
   hide?: boolean;
   expanded?: boolean;
+  isOpenChangelog: boolean;
 }
 
-export const Catalog = ({ hide = false, ...props }: CatalogProps): ReactElement => {
+export const Catalog = ({
+  hide = false,
+  isOpenChangelog,
+  ...props
+}: CatalogProps): ReactElement => {
   const [searchValue, setSearchValue] = useState('');
   const [selectedTags, setSelectedTags] = useState<Array<string>>([]);
   const [expanded, setExpanded] = useState<boolean>(props.expanded || false);
@@ -49,7 +54,7 @@ export const Catalog = ({ hide = false, ...props }: CatalogProps): ReactElement 
     );
 
   return (
-    <CatalogRoot hide={hide} expanded={expanded}>
+    <CatalogRoot hide={hide} expanded={expanded} isOpenChangelog={isOpenChangelog}>
       <CatalogHeader expanded={expanded}>
         {expanded && (
           <>

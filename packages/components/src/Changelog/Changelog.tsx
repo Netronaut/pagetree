@@ -11,8 +11,12 @@ import {
   TextCapitalized,
 } from './Changelog.styles';
 
-export const Changelog = (): ReactElement => (
-  <Sidebar>
+interface ChangelogProps {
+  isOpenChangelog: boolean;
+}
+
+export const Changelog = ({ isOpenChangelog }: ChangelogProps): ReactElement => (
+  <Sidebar isOpenChangelog={isOpenChangelog}>
     <LogList>
       <LogItem>
         <SmallerBold>Version 11, 13 changes</SmallerBold>
