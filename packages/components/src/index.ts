@@ -2,6 +2,7 @@ export * from './Button';
 export * from './Canvas';
 export * from './Catalog';
 export * from './Header';
+export * from './Changelog';
 export * from './icons';
 export * from './Input';
 export * from './Modal';

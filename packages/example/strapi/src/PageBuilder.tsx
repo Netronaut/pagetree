@@ -3,7 +3,15 @@ import { useParams } from 'react-router';
 import { ThemeProvider } from 'styled-components';
 import { PageNode, PageTreeProvider, PageTreeStateContext } from '@pagio/builder';
 import diff from 'changeset';
-import { Canvas, Catalog, GlobalStyle, Header, PageEntity, theme } from '@pagio/components';
+import {
+  Canvas,
+  Catalog,
+  GlobalStyle,
+  Header,
+  Changelog,
+  PageEntity,
+  theme,
+} from '@pagio/components';
 import { getPage, savePage } from './api';
 import { components } from './catalog';
 
@@ -54,6 +62,7 @@ export const PageBuilder = (): ReactElement | null => {
         <PageTreeStateContext.Consumer>
           {({ dragOver }) => <Catalog hide={dragOver !== undefined} />}
         </PageTreeStateContext.Consumer>
+        <Changelog />
       </PageTreeProvider>
     </ThemeProvider>
   );

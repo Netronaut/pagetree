@@ -11,7 +11,7 @@ export const HeaderRoot = styled.header`
 
   ${({ theme }) => `
     left: ${theme.spacing.md};
-    right: ${theme.spacing.md};
+    right: calc(${theme.spacing.md} + ${theme.spacing.sidebarWidth});
     top: ${theme.spacing.md};
   `}
 
