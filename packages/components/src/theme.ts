@@ -19,7 +19,7 @@ const lg = '1.75rem';
 const xl = '2.25rem';
 const xxl = '3.5rem';
 
-export const spacing = {
+export const spacing: Record<string, string> = {
   xxs,
   xs,
   sm,
@@ -29,6 +29,8 @@ export const spacing = {
   xxl,
   button: `${xs} ${xl}`,
   input: `${xs}`,
+
+  sidebarWidth: '300px',
 };
 
 export const zIndex = {

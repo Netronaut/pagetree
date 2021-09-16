@@ -12,16 +12,21 @@ export const GlobalStyle = createGlobalStyle`
 
   #root {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     align-items: start;
   }
 
-  div, input, header, section, main {
+  div, input, header, section, main, aside {
     box-sizing: border-box;
   }
 
   a {
     color: inherit;
     text-decoration: none;
+  }
+
+  ul {
+    list-style: none;
+    padding: 0;
   }
 `;
