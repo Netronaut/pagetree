@@ -14,7 +14,8 @@ export const TextGray = styled(Text)`
   font-weight: 500;
 `;
 
-export const Sidebar = styled.aside`
+export const Sidebar = styled.aside<{ isOpenChangelog: boolean }>`
+  display: ${({ isOpenChangelog }) => (isOpenChangelog ? 'block' : 'none')};
   height: 100%;
   min-width: ${({ theme }) => theme.spacing.sidebarWidth};
   background: ${({ theme }) => theme.color.white};

@@ -18,6 +18,8 @@ import { components } from './catalog';
 export const PageBuilder = (): ReactElement | null => {
   const { pageId } = useParams<{ pageId: string }>();
   const [page, setPage] = useState<PageEntity | null>(null);
+  const [isOpenChangelog, setIsOpen] = useState(false);
+  const handleOpenSidebar = () => setIsOpen(!isOpenChangelog);
 
   useEffect(() => {
     getPage(pageId).then(setPage);
@@ -57,12 +59,20 @@ export const PageBuilder = (): ReactElement | null => {
         pageTree={page.pageContent ? new PageNode(page.pageContent) : undefined}
         components={components}
       >
-        <Header page={page} onUpdate={onUpdatePage} link="/" />
+        <Header
+          page={page}
+          onUpdate={onUpdatePage}
+          link="/"
+          handleOpenSidebar={handleOpenSidebar}
+          isOpenChangelog={isOpenChangelog}
+        />
         <Canvas />
         <PageTreeStateContext.Consumer>
-          {({ dragOver }) => <Catalog hide={dragOver !== undefined} />}
+          {({ dragOver }) => (
+            <Catalog hide={dragOver !== undefined} isOpenChangelog={isOpenChangelog} />
+          )}
         </PageTreeStateContext.Consumer>
-        <Changelog />
+        <Changelog isOpenChangelog={isOpenChangelog} />
       </PageTreeProvider>
     </ThemeProvider>
   );
