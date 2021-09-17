@@ -22,7 +22,7 @@ export const Changelog = ({ isOpenChangelog }: ChangelogProps): ReactElement => 
         <SmallerBold>Version 11, 13 changes</SmallerBold>
         <TextCapitalized>Published: Mon, 07 Jun 2021 14:36:06</TextCapitalized>
       </LogItem>
-      <LogItem>
+      <LogItem selected>
         <SmallerBold>Curren Version</SmallerBold>
         <TextCapitalized>Published: Mon, 07 Jun 2021 14:36:06</TextCapitalized>
         <SubList>
