@@ -42,7 +42,7 @@ export const SubListItem = styled.li`
   }
 `;
 
-export const LogItem = styled.li`
+export const LogItem = styled.li<{ selected?: boolean }>`
   position: relative;
   display: flex;
   flex-direction: column;
@@ -56,6 +56,8 @@ export const LogItem = styled.li`
     width: 12px;
     height: 12px;
     background-color: ${({ theme }) => theme.color.secondary};
+    background-color: ${({ selected, theme }) =>
+      selected ? theme.color.secondary : theme.color.gray3};
     border-radius: 50%;
     border: 1px solid ${({ theme }) => theme.color.white};
   }
