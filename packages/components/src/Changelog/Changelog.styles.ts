@@ -26,28 +26,13 @@ export const LogList = styled.ul`
   border-left: 2px solid ${({ theme }) => theme.color.gray3};
 `;
 
-export const SubList = styled.ul`
-  padding-left: 0.6em;
-  margin-top: 0.9em;
-  margin-bottom: 1.1em;
-`;
-
-export const SubListItem = styled.li`
-  margin-bottom: 0.5em;
-  display: grid;
-  grid-template: 1fr/ 1fr 3fr;
-  grid-gap: 6px;
-  :last-child {
-    margin-bottom: 0;
-  }
-`;
-
-export const LogItem = styled.li<{ selected?: boolean }>`
+export const LogItemRoot = styled.li<{ selected?: boolean }>`
   position: relative;
   display: flex;
   flex-direction: column;
   padding-left: 1.2em;
   margin-bottom: 1.3em;
+  cursor: pointer;
   :before {
     content: '';
     position: absolute;
@@ -78,5 +63,21 @@ export const LogItem = styled.li<{ selected?: boolean }>`
     width: 8px;
     height: 100%;
     background-color: ${({ theme }) => theme.color.white};
+  }
+`;
+
+export const SubList = styled.ul`
+  padding-left: 0.6em;
+  margin-top: 0.9em;
+  margin-bottom: 1.1em;
+`;
+
+export const SubListItem = styled.li`
+  margin-bottom: 0.5em;
+  display: grid;
+  grid-template: 1fr/ 1fr 3fr;
+  grid-gap: 6px;
+  :last-child {
+    margin-bottom: 0;
   }
 `;
