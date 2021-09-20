@@ -1,17 +1,21 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 export interface DefaultTypographyProps {
   flex?: boolean;
   color?: string;
 }
 
-export const Default = styled.span<DefaultTypographyProps>`
-  ${({ flex }) => (flex ? 'display: flex;' : '')}
-  color: ${({ color }) => (color ? color : 'inherit')};
+export const baseFontStyle = css`
   font-family: Roboto, sans-serif;
   font-size: 16px;
   font-weight: 400;
   line-height: 1.2;
+`;
+
+export const Default = styled.span<DefaultTypographyProps>`
+  ${baseFontStyle}
+  ${({ flex }) => (flex ? 'display: flex;' : '')}
+  color: ${({ color }) => (color ? color : 'inherit')};
 `;
 
 export const Larger = styled(Default)`

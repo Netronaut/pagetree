@@ -2,10 +2,19 @@ import styled from 'styled-components';
 import { Button } from '../Button';
 import { IconButton } from '../icons';
 
-export const HeaderRoot = styled.section`
+export const HeaderRoot = styled.header`
   display: grid;
   grid-template-columns: auto auto 1fr auto auto;
   grid-column-gap: ${({ theme }) => theme.spacing.xxs};
+  position: fixed;
+  z-index: ${({ theme }) => theme.zIndex.interface};
+
+  ${({ theme }) => `
+    left: ${theme.spacing.md};
+    right: ${theme.spacing.md};
+    top: ${theme.spacing.md};
+  `}
+
   ${IconButton} {
     padding: ${({ theme }) => theme.spacing.xs};
     border-right: 1px solid ${({ theme }) => theme.color.gray4};
@@ -14,6 +23,14 @@ export const HeaderRoot = styled.section`
       border-right: none;
     }
   }
+`;
+
+export const HeaderIcon = styled.div`
+  display: flex;
+  width: 48px;
+  height: 48px;
+  justify-content: center;
+  align-items: center;
 `;
 
 export const HeaderGroup = styled.div<{ padding?: string; columnNumber?: number }>`

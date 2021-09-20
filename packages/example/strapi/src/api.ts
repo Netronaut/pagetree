@@ -25,4 +25,4 @@ export const savePage = (page: PageEntity): Promise<PageEntity> => {
 };
 
 export const removePage = (id: string): Promise<PageEntity> =>
-  fetch(`API_PATH/${id}`, { method: 'delete', headers }).then((response) => response.json());
+  fetch(`${API_PATH}/${id}`, { method: 'delete', headers }).then((response) => response.json());

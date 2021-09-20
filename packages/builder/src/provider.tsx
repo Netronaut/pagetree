@@ -7,9 +7,8 @@ import React, {
   useReducer,
 } from 'react';
 import { PageTreeAction, reducer } from './reducer';
-import { PageTreeState } from './types';
+import { CatalogComponentDescription, PageTreeState } from './types';
 import { PageNode } from './pageTree';
-import { CatalogComponentDescription } from './components/Catalog';
 
 export const PageTreeDispatchContext = createContext<Dispatch<PageTreeAction>>(() => undefined);
 export const PageTreeStateContext = createContext<PageTreeState>({});
