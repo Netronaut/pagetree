@@ -2,8 +2,6 @@ import styled from 'styled-components';
 import { Smaller } from '../Typography';
 
 export const TooltipTip = styled(Smaller)<{ position: 'top' | 'bottom' | 'left' | 'right' }>`
-  --tooltip-background: ${({ theme }) => theme.color.gray1};
-  --tooltip-color: ${({ theme }) => theme.color.white};
   position: absolute;
   display: none;
   border-radius: 2px;
@@ -13,8 +11,8 @@ export const TooltipTip = styled(Smaller)<{ position: 'top' | 'bottom' | 'left' 
   z-index: 100;
   white-space: nowrap;
   text-align: center;
-  background: var(--tooltip-background);
-  color: var(--tooltip-color);
+  background: ${({ theme }) => theme.color.gray1};
+  color: ${({ theme }) => theme.color.white};
 
   &:before {
     content: '';
@@ -28,13 +26,13 @@ export const TooltipTip = styled(Smaller)<{ position: 'top' | 'bottom' | 'left' 
     pointer-events: none;
   }
 
-  ${({ position }) => {
+  ${({ position, theme }) => {
     if (position === 'top')
       return `
         top: calc(30px * -1 - 5px);
         :before {
           top: 100%;
-          border-top-color: var(--tooltip-background);
+          border-top-color: ${theme.color.gray1};
         }
     `;
     if (position === 'right')
@@ -46,7 +44,7 @@ export const TooltipTip = styled(Smaller)<{ position: 'top' | 'bottom' | 'left' 
           left: calc(6px * -1);
           top: 50%;
           transform: translateX(0) translateY(-50%);
-          border-right-color: var(--tooltip-background);
+          border-right-color: ${theme.color.gray1};
         }
     `;
     if (position === 'bottom')
@@ -54,7 +52,7 @@ export const TooltipTip = styled(Smaller)<{ position: 'top' | 'bottom' | 'left' 
         bottom: calc(30px * -1);
         :before {
           bottom: 100%;
-          border-bottom-color: var(--tooltip-background);
+          border-bottom-color: ${theme.color.gray1};
         }
     `;
     if (position === 'left')
@@ -68,13 +66,13 @@ export const TooltipTip = styled(Smaller)<{ position: 'top' | 'bottom' | 'left' 
           right: calc(6px * -2);
           top: 50%;
           transform: translateX(0) translateY(-50%);
-          border-left-color: var(--tooltip-background);
+          border-left-color: ${theme.color.gray1};
         }
     `;
   }}
 `;
 
-export const TooltipCapture = styled.div`
+export const TooltipRoot = styled.span`
   display: flex;
   width: fit-content;
   position: relative;
