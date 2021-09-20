@@ -15,6 +15,9 @@ export const TextGray = styled(Text)`
 `;
 
 export const Sidebar = styled.aside<{ isOpenChangelog: boolean }>`
+  position: fixed;
+  right: 0;
+  top: 0;
   display: ${({ isOpenChangelog }) => (isOpenChangelog ? 'block' : 'none')};
   height: 100%;
   min-width: ${({ theme }) => theme.spacing.sidebarWidth};

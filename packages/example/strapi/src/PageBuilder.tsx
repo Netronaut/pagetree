@@ -9,6 +9,7 @@ import {
   GlobalStyle,
   Header,
   Changelog,
+  FixedContainer,
   PageEntity,
   theme,
 } from '@pagio/components';
@@ -59,20 +60,22 @@ export const PageBuilder = (): ReactElement | null => {
         pageTree={page.pageContent ? new PageNode(page.pageContent) : undefined}
         components={components}
       >
-        <Header
-          page={page}
-          onUpdate={onUpdatePage}
-          link="/"
-          handleOpenSidebar={handleOpenSidebar}
-          isOpenChangelog={isOpenChangelog}
-        />
         <Canvas />
-        <PageTreeStateContext.Consumer>
-          {({ dragOver }) => (
-            <Catalog hide={dragOver !== undefined} isOpenChangelog={isOpenChangelog} />
-          )}
-        </PageTreeStateContext.Consumer>
-        <Changelog isOpenChangelog={isOpenChangelog} />
+        <FixedContainer>
+          <PageTreeStateContext.Consumer>
+            {({ dragOver }) => (
+              <Catalog hide={dragOver !== undefined} isOpenChangelog={isOpenChangelog} />
+            )}
+          </PageTreeStateContext.Consumer>
+          <Header
+            page={page}
+            onUpdate={onUpdatePage}
+            link="/"
+            handleOpenSidebar={handleOpenSidebar}
+            isOpenChangelog={isOpenChangelog}
+          />
+          <Changelog isOpenChangelog={isOpenChangelog} />
+        </FixedContainer>
       </PageTreeProvider>
     </ThemeProvider>
   );
