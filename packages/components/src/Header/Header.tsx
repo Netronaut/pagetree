@@ -21,18 +21,18 @@ interface HeaderProps {
   page: PageEntity;
   onUpdate?: (page: PageEntity) => void;
   link?: string;
-  handleOpenSidebar: () => void;
-  isOpenChangelog: boolean;
+  onToggleChangelog: () => void;
+  isChangelogOpen: boolean;
 }
 
 export const Header = ({
   page,
   onUpdate = () => undefined,
   link,
-  handleOpenSidebar,
-  isOpenChangelog,
+  onToggleChangelog,
+  isChangelogOpen,
 }: HeaderProps): ReactElement => (
-  <HeaderRoot isOpenChangelog={isOpenChangelog}>
+  <HeaderRoot>
     <HeaderGroup columnNumber={1}>
       {link ? (
         <Link to={link}>
@@ -73,9 +73,9 @@ export const Header = ({
     </HeaderGroup>
 
     <HeaderGroup columnNumber={5}>
-      <IconButton onClick={handleOpenSidebar}>
+      <IconButton onClick={onToggleChangelog}>
         <Badge value={numberOfChanges}>
-          <LogIcon />
+          <LogIcon stroke={isChangelogOpen} />
         </Badge>
       </IconButton>
       <IconButton>

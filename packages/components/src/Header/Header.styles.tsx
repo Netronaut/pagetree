@@ -2,20 +2,16 @@ import styled from 'styled-components';
 import { Button } from '../Button';
 import { IconButton } from '../icons';
 
-export const HeaderRoot = styled.header<{ isOpenChangelog: boolean }>`
+export const HeaderRoot = styled.header`
   display: grid;
   grid-template-columns: auto auto 1fr auto auto;
   grid-column-gap: ${({ theme }) => theme.spacing.xxs};
-  position: fixed;
+  position: absolute;
   z-index: ${({ theme }) => theme.zIndex.interface};
 
-  ${({ theme, isOpenChangelog }) => `
+  ${({ theme }) => `
     left: ${theme.spacing.md};
-    right: ${
-      isOpenChangelog
-        ? `calc(${theme.spacing.md} + ${theme.spacing.sidebarWidth})`
-        : theme.spacing.md
-    };
+    right: ${theme.spacing.md};
     top: ${theme.spacing.md};
   `}
 
