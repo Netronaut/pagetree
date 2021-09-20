@@ -1,7 +1,6 @@
-import { CatalogComponentDescription } from '@pagetree/builder';
-import { Headline } from './headline';
-import { ArticleTeaser } from './article-teaser';
-import { TestComponent } from './test-component';
+import { CatalogComponentDescription } from '@pagio/builder';
+import { Headline } from './Headline';
+import { ArticleTeaser } from './ArticleTeaser';
 
 export const components = [
   {
@@ -13,10 +12,5 @@ export const components = [
     type: 'headline',
     label: 'Headline',
     component: Headline,
-  },
-  {
-    type: 'test-component',
-    label: 'Test Component',
-    component: TestComponent,
   },
 ] as Array<CatalogComponentDescription>;
