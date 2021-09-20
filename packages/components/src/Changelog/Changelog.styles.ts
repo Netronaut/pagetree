@@ -14,11 +14,11 @@ export const TextGray = styled(Text)`
   font-weight: 500;
 `;
 
-export const Sidebar = styled.aside<{ isOpenChangelog: boolean }>`
+export const Sidebar = styled.aside<{ isChangelogOpen: boolean }>`
   position: fixed;
   right: 0;
   top: 0;
-  display: ${({ isOpenChangelog }) => (isOpenChangelog ? 'block' : 'none')};
+  display: ${({ isChangelogOpen }) => (isChangelogOpen ? 'block' : 'none')};
   height: 100%;
   min-width: ${({ theme }) => theme.spacing.sidebarWidth};
   background: ${({ theme }) => theme.color.white};

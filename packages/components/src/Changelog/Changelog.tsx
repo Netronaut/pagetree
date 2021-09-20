@@ -5,13 +5,13 @@ import { LogItem } from './LogItem';
 import { mockData } from './mocks';
 
 interface ChangelogProps {
-  isOpenChangelog: boolean;
+  isChangelogOpen: boolean;
 }
 
-export const Changelog = ({ isOpenChangelog }: ChangelogProps): ReactElement => {
+export const Changelog = ({ isChangelogOpen }: ChangelogProps): ReactElement => {
   const [currentVersionId] = useState<number | null>(mockData[1].id);
   return (
-    <Sidebar isOpenChangelog={isOpenChangelog}>
+    <Sidebar isChangelogOpen={isChangelogOpen}>
       <LogList>
         {mockData.map((logItem) => (
           <LogItem key={logItem.id} logItem={logItem} selected={currentVersionId === logItem.id} />

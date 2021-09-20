@@ -4,27 +4,23 @@ import { Default } from '../Typography';
 export const CatalogRoot = styled.div<{
   hide: boolean;
   expanded: boolean;
-  isOpenChangelog: boolean;
 }>`
+  --elementHeight: 48px;
   display: flex;
   flex-direction: column;
   border-radius: 4px;
   background-color: ${({ theme }) => theme.color.white};
   box-shadow: 0px 4px 8px 0px #13592220;
-  position: fixed;
+  position: absolute;
   z-index: ${({ theme }) => theme.zIndex.interface};
 
   user-select: none;
 
-  ${({ hide, expanded, theme, isOpenChangelog }) => `
+  ${({ hide, expanded, theme }) => `
     padding: ${theme.spacing.xs} ${theme.spacing.xs};
     background: ${theme.color.white};
-    right: ${
-      isOpenChangelog
-        ? `calc(${theme.spacing.md} + ${theme.spacing.sidebarWidth})`
-        : theme.spacing.md
-    };
-    bottom: ${theme.spacing.md};
+    right: ${theme.spacing.md};
+    top: calc(100vh - var(--elementHeight) - ${theme.spacing.md});
     
     ${hide && `display: none;`}
 
