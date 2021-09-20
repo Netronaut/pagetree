@@ -6,6 +6,7 @@ export const CatalogRoot = styled.div<{
   expanded: boolean;
 }>`
   --elementHeight: 48px;
+  --expandedElementHeight: 228px;
   display: flex;
   flex-direction: column;
   border-radius: 4px;
@@ -23,12 +24,13 @@ export const CatalogRoot = styled.div<{
     top: calc(100vh - var(--elementHeight) - ${theme.spacing.md});
     
     ${hide && `display: none;`}
-
+    
     ${
       expanded &&
       `
       cursor: pointer;
       left: ${theme.spacing.md};
+      top: calc(100vh - var(--expandedElementHeight) - ${theme.spacing.md});
       padding: ${theme.spacing.sm};
     `
     }
