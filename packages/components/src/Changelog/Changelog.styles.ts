@@ -23,6 +23,16 @@ export const Sidebar = styled.aside<{ isChangelogOpen: boolean }>`
   min-width: ${({ theme }) => theme.spacing.sidebarWidth};
   background: ${({ theme }) => theme.color.white};
   padding: 76px 22px 1em;
+  overflow-y: auto;
+
+  ::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: ${({ theme }) => theme.color.secondary};
+    border-radius: 3px;
+  }
 `;
 
 export const LogList = styled.ul`
