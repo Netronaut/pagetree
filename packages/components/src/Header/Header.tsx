@@ -1,5 +1,5 @@
 import React, { ReactElement } from 'react';
-import { HeaderGroup, HeaderRoot, TextGroup } from './Header.styles';
+import { Link } from 'react-router-dom';
 import {
   BrandIcon,
   EditIcon,
@@ -12,32 +12,52 @@ import {
 } from '../icons';
 import { Button } from '../Button';
 import { Larger } from '../Typography';
+import { PageEntity, Tooltip } from '..';
+import { HeaderIcon, HeaderGroup, HeaderRoot, TextGroup } from './Header.styles';
 
-interface Props {
-  logLength: number;
+const numberOfChanges = 0;
+
+interface HeaderProps {
+  page: PageEntity;
+  onUpdate?: (page: PageEntity) => void;
+  link?: string;
 }
 
-export const Header = ({ logLength }: Props): ReactElement => (
+export const Header = ({ page, onUpdate = () => undefined, link }: HeaderProps): ReactElement => (
   <HeaderRoot>
     <HeaderGroup columnNumber={1}>
-      <IconButton>
-        <BrandIcon fill />
-      </IconButton>
+      {link ? (
+        <Link to={link}>
+          <Tooltip content="Back to pages" position="bottom">
+            <HeaderIcon>
+              <BrandIcon fill />
+            </HeaderIcon>
+          </Tooltip>
+        </Link>
+      ) : (
+        <HeaderIcon>
+          <BrandIcon fill />
+        </HeaderIcon>
+      )}
     </HeaderGroup>
 
     <HeaderGroup columnNumber={2}>
-      <IconButton>
-        <StarIcon />
-      </IconButton>
+      <Tooltip content="Star this page" position="bottom">
+        <IconButton onClick={() => onUpdate({ ...page, starred: !page.starred })}>
+          <StarIcon fill={page.starred} />
+        </IconButton>
+      </Tooltip>
       <TextGroup>
-        <Larger>Gute Zeiten Schlechte Zeiten | Alle Videos</Larger>
+        <Larger>{page.title}</Larger>
         <IconButton>
           <EditIcon />
         </IconButton>
       </TextGroup>
-      <IconButton>
-        <ShareIcon />
-      </IconButton>
+      <Tooltip content="Open preview" position="bottom">
+        <IconButton>
+          <ShareIcon />
+        </IconButton>
+      </Tooltip>
     </HeaderGroup>
 
     <HeaderGroup columnNumber={4} padding="xxs">
@@ -46,7 +66,7 @@ export const Header = ({ logLength }: Props): ReactElement => (
 
     <HeaderGroup columnNumber={5}>
       <IconButton>
-        <Badge value={logLength}>
+        <Badge value={numberOfChanges}>
           <LogIcon />
         </Badge>
       </IconButton>

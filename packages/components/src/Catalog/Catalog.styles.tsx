@@ -1,21 +1,24 @@
 import styled from 'styled-components';
 import { Default } from '../Typography';
 
-export const CatalogRoot = styled.div<{ expanded: boolean }>`
-  position: fixed;
+export const CatalogRoot = styled.div<{ hide: boolean; expanded: boolean }>`
   display: flex;
   flex-direction: column;
   border-radius: 4px;
   background-color: ${({ theme }) => theme.color.white};
   box-shadow: 0px 4px 8px 0px #13592220;
+  position: fixed;
+  z-index: ${({ theme }) => theme.zIndex.interface};
 
   user-select: none;
 
-  ${({ expanded, theme }) => `
+  ${({ hide, expanded, theme }) => `
     padding: ${theme.spacing.xs} ${theme.spacing.xs};
     background: ${theme.color.white};
     right: ${theme.spacing.md};
-    bottom: ${theme.spacing.lg};
+    bottom: ${theme.spacing.md};
+    
+    ${hide && `display: none;`}
 
     ${
       expanded &&
@@ -58,12 +61,12 @@ export const CatalogBody = styled.div`
   }
 `;
 
-export const CatalogTags = styled.div<{ expanded: boolean }>`
+export const CatalogTags = styled.div`
   display: grid;
   grid-auto-flow: column;
   gap: ${({ theme }) => theme.spacing.xxs};
   overflow: hidden;
-  justify-self: start;
+  justify-content: start;
 `;
 
 export const CatalogItem = styled(Default).attrs(() => ({ as: 'div' }))`

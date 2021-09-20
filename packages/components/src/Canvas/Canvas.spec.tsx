@@ -1,8 +1,10 @@
 import React from 'react';
 import { render, fireEvent } from '@testing-library/react';
-import { PageTreeProvider } from '../../provider';
-import { PageNode, PageNodeType } from '../../pageTree';
-import { Canvas, Catalog } from '../../components';
+import { PageNode, PageNodeType, PageTreeProvider } from '@pagio/builder';
+import { Catalog } from '../Catalog';
+import * as theme from '../theme';
+import { Canvas } from './Canvas';
+import { ThemeProvider } from 'styled-components';
 
 describe('Canvas', () => {
   const components = [{ type: 'article-teaser', label: 'Article Teaser' }];
@@ -14,9 +16,11 @@ describe('Canvas', () => {
 
   it('should render an empty page tree', () => {
     const { container } = render(
-      <PageTreeProvider components={components}>
-        <Canvas />
-      </PageTreeProvider>,
+      <ThemeProvider theme={theme}>
+        <PageTreeProvider components={components}>
+          <Canvas />
+        </PageTreeProvider>
+      </ThemeProvider>,
     );
 
     expect(container.querySelectorAll('[data-pagetree-root]')).toHaveLength(1);
@@ -25,10 +29,12 @@ describe('Canvas', () => {
 
   it('should add a new component to an empty page tree', () => {
     const { container } = render(
-      <PageTreeProvider components={components}>
-        <Canvas />
-        <Catalog />
-      </PageTreeProvider>,
+      <ThemeProvider theme={theme}>
+        <PageTreeProvider components={components}>
+          <Canvas />
+          <Catalog expanded={true} />
+        </PageTreeProvider>
+      </ThemeProvider>,
     );
 
     expect(
@@ -48,10 +54,12 @@ describe('Canvas', () => {
     pageTree.append(new PageNode({ type: 'article-teaser' }));
 
     const { container } = render(
-      <PageTreeProvider components={components} pageTree={pageTree}>
-        <Canvas />
-        <Catalog />
-      </PageTreeProvider>,
+      <ThemeProvider theme={theme}>
+        <PageTreeProvider components={components} pageTree={pageTree}>
+          <Canvas />
+          <Catalog expanded={true} />
+        </PageTreeProvider>
+      </ThemeProvider>,
     );
 
     fireEvent.dragStart(container.querySelector('[data-component-description]') as Element);
@@ -69,10 +77,12 @@ describe('Canvas', () => {
     pageTree.append(new PageNode({ type: 'article-teaser', uuid: targetId }));
 
     const { container } = render(
-      <PageTreeProvider components={components} pageTree={pageTree}>
-        <Canvas />
-        <Catalog />
-      </PageTreeProvider>,
+      <ThemeProvider theme={theme}>
+        <PageTreeProvider components={components} pageTree={pageTree}>
+          <Canvas />
+          <Catalog expanded={true} />
+        </PageTreeProvider>
+      </ThemeProvider>,
     );
 
     fireEvent.dragStart(container.querySelector('[data-component-description]') as Element);
@@ -98,10 +108,12 @@ describe('Canvas', () => {
       );
 
     const { container } = render(
-      <PageTreeProvider components={components} pageTree={pageTree}>
-        <Canvas />
-        <Catalog />
-      </PageTreeProvider>,
+      <ThemeProvider theme={theme}>
+        <PageTreeProvider components={components} pageTree={pageTree}>
+          <Canvas />
+          <Catalog expanded={true} />
+        </PageTreeProvider>
+      </ThemeProvider>,
     );
 
     expect(
@@ -130,10 +142,12 @@ describe('Canvas', () => {
     });
 
     const { container } = render(
-      <PageTreeProvider components={components} pageTree={pageTree}>
-        <Canvas />
-        <Catalog />
-      </PageTreeProvider>,
+      <ThemeProvider theme={theme}>
+        <PageTreeProvider components={components} pageTree={pageTree}>
+          <Canvas />
+          <Catalog expanded={true} />
+        </PageTreeProvider>
+      </ThemeProvider>,
     );
 
     expect(

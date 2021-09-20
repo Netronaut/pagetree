@@ -2,15 +2,12 @@ import styled from 'styled-components';
 import { IconButton } from '../icons';
 
 export const ModalBg = styled.div`
-  position: absolute;
+  position: fixed;
   top: 0;
   bottom: 0;
   left: 0;
   right: 0;
-  background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.15) 100%);
-  transition: opacity 0.2s ease, background 0.2s ease;
-  opacity: 0.5;
-  filter: blur(8px);
+  backdrop-filter: blur(8px);
 `;
 
 export const ModalContainer = styled.div`

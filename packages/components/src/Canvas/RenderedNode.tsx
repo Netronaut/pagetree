@@ -1,9 +1,13 @@
 import React, { ReactElement, useContext, useMemo } from 'react';
-import { useDrag, useDrop } from '../../dragAndDrop';
-import { PageNode, PageNodeType } from '../../pageTree';
-import { PageTreeStateContext } from '../../provider';
-import { CatalogComponentDescription, DefaultComponent } from '../Catalog';
-import { RenderedNodeRoot } from './Canvas.styles';
+import {
+  CatalogComponentDescription,
+  PageNode,
+  PageNodeType,
+  PageTreeStateContext,
+  useDrag,
+  useDrop,
+} from '@pagio/builder';
+import { DefaultComponent, RenderedNodeRoot } from './Canvas.styles';
 
 interface NodeProps {
   node: PageNode;
