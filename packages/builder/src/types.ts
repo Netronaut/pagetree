@@ -13,6 +13,17 @@ export type CatalogComponentDescription = CatalogComponentProps & {
   builderComponent?: FunctionComponent<CatalogComponentProps>;
 };
 
+export interface logItem {
+  id: number;
+  title: string;
+  publishedDate: string;
+  details: {
+    id: number;
+    data: string;
+    changes: number;
+  }[];
+}
+
 export enum PageNodeAxis {
   Row = 'row',
   Column = 'column',

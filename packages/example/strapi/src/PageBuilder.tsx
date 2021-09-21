@@ -16,6 +16,8 @@ import {
 import { getPage, savePage } from './api';
 import { components } from './catalog';
 
+import { mockData } from '../../../components/src/Changelog/mocks';
+
 export const PageBuilder = (): ReactElement | null => {
   const { pageId } = useParams<{ pageId: string }>();
   const [page, setPage] = useState<PageEntity | null>(null);
@@ -72,7 +74,7 @@ export const PageBuilder = (): ReactElement | null => {
             onToggleChangelog={onToggleChangelog}
             isChangelogOpen={isChangelogOpen}
           />
-          <Changelog isChangelogOpen={isChangelogOpen} />
+          <Changelog logItems={mockData} isChangelogOpen={isChangelogOpen} />
         </FixedContainer>
       </PageTreeProvider>
     </ThemeProvider>
