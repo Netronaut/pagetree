@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { Button } from '..';
 import { Default } from '../Typography';
 
 export const Text = styled(Default)`
@@ -20,7 +21,7 @@ export const Sidebar = styled.aside<{ isChangelogOpen: boolean }>`
   top: 0;
   display: ${({ isChangelogOpen }) => (isChangelogOpen ? 'block' : 'none')};
   height: 100%;
-  min-width: ${({ theme }) => theme.spacing.sidebarWidth};
+  width: ${({ theme }) => theme.spacing.sidebarWidth};
   background: ${({ theme }) => theme.color.white};
   padding: 76px 22px 1em;
   overflow-y: auto;
@@ -39,13 +40,30 @@ export const LogList = styled.ul`
   border-left: 2px solid ${({ theme }) => theme.color.gray3};
 `;
 
+export const RevertButton = styled(Button)`
+  min-width: 80px;
+  background: ${({ theme }) => theme.color.gray3};
+  line-height: 25px;
+`;
+
+export const RevertButtonContainer = styled.div`
+  visibility: hidden;
+  position: absolute;
+  right: 0;
+`;
+
 export const LogItemRoot = styled.li<{ selected?: boolean }>`
   position: relative;
   display: flex;
   flex-direction: column;
-  padding-left: 1.2em;
   margin-bottom: 1.3em;
+  padding: 0 95px 0 1.2em;
   cursor: pointer;
+  :hover {
+    ${RevertButtonContainer} {
+      visibility: visible;
+    }
+  }
   :before {
     content: '';
     position: absolute;

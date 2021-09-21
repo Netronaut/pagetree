@@ -7,6 +7,8 @@ import {
   Text,
   TextGray,
   TextCapitalized,
+  RevertButton,
+  RevertButtonContainer,
 } from './Changelog.styles';
 
 interface LogItemProps {
@@ -40,6 +42,15 @@ export const LogItem = ({ logItem, selected }: LogItemProps): ReactElement => {
           ))}
         </SubList>
       )}
+      <RevertButtonContainer>
+        <RevertButton
+          onClick={(e) => {
+            e.stopPropagation();
+          }}
+        >
+          <SmallerBold>REVERT</SmallerBold>
+        </RevertButton>
+      </RevertButtonContainer>
     </LogItemRoot>
   );
 };
