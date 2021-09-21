@@ -1,19 +1,19 @@
+import { logItem } from '@pagio/builder';
 import React, { ReactElement, useState } from 'react';
 import { Sidebar, LogList } from './Changelog.styles';
 import { LogItem } from './LogItem';
 
-import { mockData } from './mocks';
-
 interface ChangelogProps {
   isChangelogOpen: boolean;
+  logItems: logItem[];
 }
 
-export const Changelog = ({ isChangelogOpen }: ChangelogProps): ReactElement => {
-  const [currentVersionId] = useState<number | null>(mockData[1].id);
+export const Changelog = ({ isChangelogOpen, logItems }: ChangelogProps): ReactElement => {
+  const [currentVersionId] = useState<number | null>(logItems[1].id);
   return (
     <Sidebar isChangelogOpen={isChangelogOpen}>
       <LogList>
-        {mockData.map((logItem) => (
+        {logItems.map((logItem) => (
           <LogItem key={logItem.id} logItem={logItem} selected={currentVersionId === logItem.id} />
         ))}
       </LogList>
