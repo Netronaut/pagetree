@@ -2,8 +2,8 @@ import React, { ReactElement, useState } from 'react';
 import { SmallerBold } from '../Typography';
 import {
   LogItemRoot,
-  SubList,
-  SubListItem,
+  LogItemDetail,
+  LogItemDetailItem,
   Text,
   TextGray,
   TextCapitalized,
@@ -33,14 +33,14 @@ export const LogItem = ({ logItem, selected }: LogItemProps): ReactElement => {
       <SmallerBold>{logItem.title}</SmallerBold>
       <TextCapitalized>{logItem.publishedDate}</TextCapitalized>
       {openedSubList && (
-        <SubList>
+        <LogItemDetail>
           {logItem.details.map((detail) => (
-            <SubListItem key={detail.id}>
+            <LogItemDetailItem key={detail.id}>
               <TextGray>{detail.data}</TextGray>
               <Text>{detail.changes} changes</Text>
-            </SubListItem>
+            </LogItemDetailItem>
           ))}
-        </SubList>
+        </LogItemDetail>
       )}
       <RevertButtonContainer>
         <RevertButton

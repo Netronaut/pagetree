@@ -35,8 +35,8 @@ export const LogItemRoot = styled.li<{ selected?: boolean }>`
   position: relative;
   display: flex;
   flex-direction: column;
-  margin-bottom: 1.3em;
-  padding: 0 95px 0 1.2em;
+  margin-bottom: ${({ theme }) => theme.spacing.md};
+  padding: 0 95px 0 ${({ theme }) => theme.spacing.sm};
   cursor: pointer;
   :hover {
     ${RevertButtonContainer} {
@@ -76,13 +76,13 @@ export const LogItemRoot = styled.li<{ selected?: boolean }>`
   }
 `;
 
-export const SubList = styled.ul`
+export const LogItemDetail = styled.ul`
   padding-left: 0.6em;
   margin-top: 0.9em;
   margin-bottom: 1.1em;
 `;
 
-export const SubListItem = styled.li`
+export const LogItemDetailItem = styled.li`
   margin-bottom: 0.5em;
   display: grid;
   grid-template: 1fr/ 1fr 3fr;
