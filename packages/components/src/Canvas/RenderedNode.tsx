@@ -1,4 +1,4 @@
-import React, { ReactElement, useContext, useMemo } from 'react';
+import React, { ReactElement, useContext, useMemo, useState } from 'react';
 import {
   CatalogComponentDescription,
   PageNode,
@@ -23,6 +23,10 @@ export const RenderedNode = ({ node }: NodeProps): ReactElement | null => {
 
   const Component = component?.builderComponent || DefaultComponent;
 
+  const [isMouseOver, setIsMouseOver] = useState(false);
+  const handleMouseOver = () => setIsMouseOver(true);
+  const handleonMouseLeave = () => setIsMouseOver(false);
+
   return (
     <RenderedNodeRoot
       id={node.uuid}
@@ -30,6 +34,9 @@ export const RenderedNode = ({ node }: NodeProps): ReactElement | null => {
       axis={node.axis}
       {...useDrag()}
       {...useDrop()}
+      onMouseOver={handleMouseOver}
+      onMouseLeave={handleonMouseLeave}
+      isMouseOver={node.type !== PageNodeType.Track && isMouseOver}
     >
       {node.type === PageNodeType.Track
         ? node.childNodes &&

@@ -39,6 +39,7 @@ export const RenderedNodeRoot = styled.div<{
   ['data-page-node-type']: string;
   axis?: PageNodeAxis;
   dragOver?: DragOverPayload;
+  isMouseOver: boolean;
 }>`
   position: relative;
   border: 1px solid ${({ theme }) => theme.color.gray3};
@@ -46,7 +47,7 @@ export const RenderedNodeRoot = styled.div<{
   min-height: 1.5rem;
 
   :hover {
-    border-color: ${({ theme }) => theme.color.secondary};
+    border-color: ${({ theme, isMouseOver }) => isMouseOver && theme.color.secondary};
 
     :not([data-page-node-type='${PageNodeType.Track}']):after {
       content: '${(props) => `${props['data-page-node-type'].toUpperCase()}-${props.id}`}';
@@ -66,7 +67,8 @@ export const RenderedNodeRoot = styled.div<{
   ${({ dragOver, id, theme }) =>
     dragOver && dragOver.targetId === id
       ? `
-    &:before {
+      
+      &:before {
       content: '';
       position: absolute;
       min-width: 5px;
