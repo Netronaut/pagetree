@@ -11,6 +11,7 @@ import {
   Changelog,
   FixedContainer,
   PageEntity,
+  Sidebar,
   theme,
 } from '@pagio/components';
 import { getPage, savePage } from './api';
@@ -21,8 +22,8 @@ import { mockData } from '../../../components/src/Changelog/mocks';
 export const PageBuilder = (): ReactElement | null => {
   const { pageId } = useParams<{ pageId: string }>();
   const [page, setPage] = useState<PageEntity | null>(null);
-  const [isChangelogOpen, setIsOpen] = useState(false);
-  const onToggleChangelog = () => setIsOpen(!isChangelogOpen);
+  const [sidebarOpen, setSidebarOpen] = useState(false);
+  const onToggleChangelog = () => setSidebarOpen(!sidebarOpen);
 
   useEffect(() => {
     getPage(pageId).then(setPage);
@@ -63,7 +64,7 @@ export const PageBuilder = (): ReactElement | null => {
         components={components}
       >
         <Canvas />
-        <FixedContainer isChangelogOpen={isChangelogOpen}>
+        <FixedContainer sidebarOpen={sidebarOpen}>
           <PageTreeStateContext.Consumer>
             {({ dragOver }) => <Catalog hide={dragOver !== undefined} />}
           </PageTreeStateContext.Consumer>
@@ -72,9 +73,9 @@ export const PageBuilder = (): ReactElement | null => {
             onUpdate={onUpdatePage}
             link="/"
             onToggleChangelog={onToggleChangelog}
-            isChangelogOpen={isChangelogOpen}
+            sidebarOpen={sidebarOpen}
           />
-          <Changelog logItems={mockData} isChangelogOpen={isChangelogOpen} />
+          <Sidebar open={sidebarOpen}>{sidebarOpen && <Changelog logItems={mockData} />}</Sidebar>
         </FixedContainer>
       </PageTreeProvider>
     </ThemeProvider>

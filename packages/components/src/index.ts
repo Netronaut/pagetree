@@ -8,6 +8,7 @@ export * from './icons';
 export * from './Input';
 export * from './Modal';
 export * from './PageList';
+export * from './Sidebar';
 export * from './Tag';
 export * from './Tooltip';
 export * from './Typography';
