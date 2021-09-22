@@ -6,7 +6,7 @@ export const Text = styled(Default)`
   font-size: 10px;
 `;
 export const TextCapitalized = styled(Default)`
-  margin-top: 0.5em;
+  margin-top: ${({ theme }) => theme.spacing.xxs};
   text-transform: uppercase;
   font-size: 8px;
 `;
@@ -77,16 +77,16 @@ export const LogItemRoot = styled.li<{ selected?: boolean }>`
 `;
 
 export const LogItemDetail = styled.ul`
-  padding-left: 0.6em;
-  margin-top: 0.9em;
-  margin-bottom: 1.1em;
+  padding-left: ${({ theme }) => theme.spacing.xs};
+  margin-top: ${({ theme }) => theme.spacing.xs};
+  margin-bottom: ${({ theme }) => theme.spacing.sm};
 `;
 
 export const LogItemDetailItem = styled.li`
-  margin-bottom: 0.5em;
+  margin-bottom: ${({ theme }) => theme.spacing.xxs};
   display: grid;
   grid-template: 1fr/ 1fr 3fr;
-  grid-gap: 6px;
+  grid-gap: ${({ theme }) => theme.spacing.xs};
   :last-child {
     margin-bottom: 0;
   }
