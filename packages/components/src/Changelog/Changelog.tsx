@@ -1,6 +1,7 @@
 import { logItem } from '@pagio/builder';
 import React, { ReactElement, useState } from 'react';
-import { Sidebar, LogList } from './Changelog.styles';
+import { Sidebar } from '../Sidebar';
+import { LogList } from './Changelog.styles';
 import { LogItem } from './LogItem';
 
 interface ChangelogProps {
@@ -11,7 +12,7 @@ interface ChangelogProps {
 export const Changelog = ({ isChangelogOpen, logItems }: ChangelogProps): ReactElement => {
   const [currentVersionId] = useState<number | null>(logItems[1].id);
   return (
-    <Sidebar isChangelogOpen={isChangelogOpen}>
+    <Sidebar open={isChangelogOpen}>
       <LogList>
         {logItems.map((logItem) => (
           <LogItem key={logItem.id} logItem={logItem} selected={currentVersionId === logItem.id} />
