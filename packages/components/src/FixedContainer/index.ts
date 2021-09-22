@@ -1,1 +1,1 @@
-export * from './FixedContainer.styled';
+export * from './FixedContainer.styles';
