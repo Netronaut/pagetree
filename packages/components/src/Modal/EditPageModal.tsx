@@ -6,7 +6,7 @@ import { Button } from '../Button';
 import { LargerMedium, SmallerBold, Smaller } from '../Typography';
 import { color } from '../theme';
 import { Input } from '../Input';
-import { PageEntity } from '../PageList';
+import { PageEntity } from '../types';
 import { useTapOutside } from './useTapOutside';
 import { ModalContainer, CloseButton, ModalLabel, ModalBg } from './Modal.styles';
 

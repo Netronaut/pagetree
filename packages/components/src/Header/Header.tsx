@@ -12,8 +12,9 @@ import {
 } from '../icons';
 import { Button } from '../Button';
 import { Larger } from '../Typography';
-import { PageEntity, Tooltip } from '..';
+import { Tooltip } from '..';
 import { HeaderIcon, HeaderGroup, HeaderRoot, TextGroup } from './Header.styles';
+import { PageEntity } from '../types';
 
 const numberOfChanges = 0;
 
