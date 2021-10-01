@@ -70,7 +70,19 @@ export const Header = ({
     </HeaderGroup>
 
     <HeaderGroup columnNumber={4} padding="xxs">
-      <Button primary>publish</Button>
+      <Button
+        primary
+        onClick={() => {
+          const updatedHistory = page.history?.slice();
+          updatedHistory?.push({
+            version: page.version,
+            date: new Date().toISOString(),
+          });
+          onUpdate({ ...page, history: updatedHistory, version: String(Number(page.version) + 1) });
+        }}
+      >
+        publish
+      </Button>
     </HeaderGroup>
 
     <HeaderGroup columnNumber={5}>
