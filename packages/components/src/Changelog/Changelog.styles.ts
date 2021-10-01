@@ -19,12 +19,6 @@ export const LogList = styled.ul`
   border-left: 2px solid ${({ theme }) => theme.color.gray3};
 `;
 
-export const RevertButton = styled(Button)`
-  min-width: 80px;
-  background: ${({ theme }) => theme.color.gray3};
-  line-height: 25px;
-`;
-
 export const RevertButtonContainer = styled.div`
   visibility: hidden;
   position: absolute;

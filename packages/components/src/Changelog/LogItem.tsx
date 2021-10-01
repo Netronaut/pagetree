@@ -1,4 +1,6 @@
 import React, { ReactElement, useState } from 'react';
+import { Button } from '../Button';
+import { PageHistory } from '../types';
 import { SmallerBold } from '../Typography';
 import {
   LogItemRoot,
@@ -7,7 +9,6 @@ import {
   Text,
   TextGray,
   TextCapitalized,
-  RevertButton,
   RevertButtonContainer,
 } from './Changelog.styles';
 
@@ -34,13 +35,13 @@ export const LogItem = ({ history, selected }: LogItemProps): ReactElement => {
         </LogItemDetail>
       )}
       <RevertButtonContainer>
-        <RevertButton
+        <Button
           onClick={(e) => {
             e.stopPropagation();
           }}
         >
-          <SmallerBold>REVERT</SmallerBold>
-        </RevertButton>
+          Revert
+        </Button>
       </RevertButtonContainer>
     </LogItemRoot>
   );
