@@ -33,7 +33,7 @@ export const PageBuilder = (): ReactElement | null => {
 
     nextPage.history = (nextPage.history || []).concat({
       date: new Date().toISOString(),
-      change: diff(previousPage.pageContent, nextPage.pageContent),
+      changes: diff(previousPage.pageContent, nextPage.pageContent),
     });
 
     // eslint-disable-next-line no-console
