@@ -12,32 +12,23 @@ import {
 } from './Changelog.styles';
 
 interface LogItemProps {
-  logItem: {
-    id: number;
-    title: string;
-    publishedDate: string;
-    details: {
-      id: number;
-      data: string;
-      changes: number;
-    }[];
-  };
+  history: PageHistory;
   selected: boolean;
 }
 
-export const LogItem = ({ logItem, selected }: LogItemProps): ReactElement => {
+export const LogItem = ({ history, selected }: LogItemProps): ReactElement => {
   const [openedSubList, setOpenedSubList] = useState(selected || false);
 
   return (
     <LogItemRoot onClick={() => setOpenedSubList(!openedSubList)} selected={selected}>
-      <SmallerBold>{logItem.title}</SmallerBold>
-      <TextCapitalized>{logItem.publishedDate}</TextCapitalized>
+      <SmallerBold>{history[0].version}</SmallerBold>
+      <TextCapitalized>{history[0].date}</TextCapitalized>
       {openedSubList && (
         <LogItemDetail>
-          {logItem.details.map((detail) => (
-            <LogItemDetailItem key={detail.id}>
-              <TextGray>{detail.data}</TextGray>
-              <Text>{detail.changes} changes</Text>
+          {history.slice(1).map(({ date, changes }, i) => (
+            <LogItemDetailItem key={i}>
+              <TextGray>{date}</TextGray>
+              <Text>{changes?.length} changes</Text>
             </LogItemDetailItem>
           ))}
         </LogItemDetail>

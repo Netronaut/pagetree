@@ -1,7 +1,7 @@
 import { Meta, Story, Canvas } from '@storybook/addon-docs';
 import { Changelog } from './Changelog.tsx';
 
-import { mockData } from './mocks';
+import mockPage from './__mocks__/page.json';
 
 <Meta title="Changelog" component={Changelog} />
 
@@ -12,11 +12,11 @@ import { mockData } from './mocks';
     name="Changelog open"
     args={{
       isChangelogOpen: true,
-      logItems: mockData,
+      page: mockPage,
     }}
   >
-  {({ logItems, isChangelogOpen }) => (
-    <Changelog logItems={logItems} isChangelogOpen={isChangelogOpen} />
+  {({ page, isChangelogOpen }) => (
+    <Changelog page={page} isChangelogOpen={isChangelogOpen} />
   )}
   </Story>
 </Canvas>

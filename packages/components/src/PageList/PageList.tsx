@@ -7,7 +7,7 @@ import { LargerMedium } from '../Typography';
 import { PageItem } from './PageItem';
 import { PageListHeader } from './PageListHeader';
 import { ListHead, ListHeadTitle, Table } from './PageList.styles';
-import { PageEntity } from './PageList.types';
+import { PageEntity } from '../types';
 
 export interface PageListProps {
   pages: PageEntity[];

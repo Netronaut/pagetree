@@ -3,7 +3,7 @@ import { DeleteIcon, StarIcon, EditIcon, IconButton } from '../icons';
 import { Tooltip } from '../Tooltip';
 import { Larger, Smaller } from '../Typography';
 import { QuickActionGrid } from './PageList.styles';
-import { PageEntity } from './PageList.types';
+import { PageEntity } from '../types';
 
 interface PageItemProps {
   page: PageEntity;

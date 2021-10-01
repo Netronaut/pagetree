@@ -73,16 +73,3 @@ export interface OnDropPayload {
 export interface DropTargetProps {
   dragOver?: DragOverPayload;
 }
-
-export type PageHistory = Array<PageHistoryItem>;
-
-export interface PageHistoryItem {
-  date: string;
-  change: Array<PageChange>;
-}
-
-export interface PageChange {
-  type: 'put' | 'del';
-  key: Array<string>;
-  value: string | CatalogComponentProps;
-}
