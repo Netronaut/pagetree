@@ -44,9 +44,9 @@ export const PageBuilder = (): ReactElement | null => {
     onUpdatePage(nextPage);
   };
 
-  const onUpdatePage = (page: PageEntity) => {
-    savePage(page);
-    setPage(page);
+  const onUpdatePage = (updatedPage: PageEntity) => {
+    savePage(updatedPage);
+    setPage(updatedPage);
   };
 
   if (!page) {
