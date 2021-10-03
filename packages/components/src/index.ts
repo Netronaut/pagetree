@@ -14,3 +14,4 @@ export * from './Tooltip';
 export * from './Typography';
 export * as theme from './theme';
 export * from './globalStyle';
+export * from './types';
