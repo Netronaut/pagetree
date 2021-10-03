@@ -79,7 +79,7 @@ export const LogItemDetail = styled.ul`
 export const LogItemDetailItem = styled.li`
   margin-bottom: ${({ theme }) => theme.spacing.xxs};
   display: grid;
-  grid-template: 1fr/ 1fr 3fr;
+  grid-template: 1fr / minmax(45px, 1fr) 3fr;
   grid-gap: ${({ theme }) => theme.spacing.xs};
   :last-child {
     margin-bottom: 0;
