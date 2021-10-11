@@ -20,21 +20,26 @@ interface LogItemProps {
 
 export const LogItem = ({ history, selected }: LogItemProps): ReactElement => {
   const [openedSubList, setOpenedSubList] = useState(selected || false);
-  const { version } = history[0];
-  const historyItem = version ? history[0] : history[history.length - 1];
+  const version = history[0] && history[0].version;
+  const historyItem = history.length > 0 && version ? history[0] : history[history.length - 1];
 
   return (
     <LogItemRoot onClick={() => setOpenedSubList(!openedSubList)} selected={selected}>
       <SmallerBold>{version || 'unversioned'}</SmallerBold>
-      <TextCapitalized>{formatDate(historyItem.date, 'DDD, dd MMM yyyy hh:mm:ss')}</TextCapitalized>
+      {historyItem && (
+        <TextCapitalized>
+          {formatDate(historyItem.date, 'DDD, dd MMM yyyy hh:mm:ss')}
+        </TextCapitalized>
+      )}
       {openedSubList && (
         <LogItemDetail>
-          {history.slice(version ? 1 : 0).map(({ date, changes }, i) => (
-            <LogItemDetailItem key={i}>
-              <TextGray>{formatDate(date, 'dd.mm.yy')}</TextGray>
-              <Text>{changes?.length} changes</Text>
-            </LogItemDetailItem>
-          ))}
+          {history.length > 0 &&
+            history.slice(version ? 1 : 0).map(({ date, changes }, i) => (
+              <LogItemDetailItem key={i}>
+                <TextGray>{formatDate(date, 'dd.mm.yy')}</TextGray>
+                <Text>{changes?.length} changes</Text>
+              </LogItemDetailItem>
+            ))}
         </LogItemDetail>
       )}
       <RevertButtonContainer>
