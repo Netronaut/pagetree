@@ -25,7 +25,7 @@ export const LogItem = ({ history, selected }: LogItemProps): ReactElement => {
 
   return (
     <LogItemRoot onClick={() => setOpenedSubList(!openedSubList)} selected={selected}>
-      <SmallerBold>{version || 'unversioned'}</SmallerBold>
+      <SmallerBold>{version ? `Version ${version}` : 'unversioned'}</SmallerBold>
       {historyItem && (
         <TextCapitalized>
           {formatDate(historyItem.date, 'DDD, dd MMM yyyy hh:mm:ss')}

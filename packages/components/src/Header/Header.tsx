@@ -74,11 +74,12 @@ export const Header = ({
         primary
         onClick={() => {
           const updatedHistory = page.history?.slice();
+          const updatedVersion = String(Number(page.version) + 1 || 1);
           updatedHistory?.push({
-            version: page.version,
+            version: updatedVersion,
             date: new Date().toISOString(),
           });
-          onUpdate({ ...page, history: updatedHistory, version: String(Number(page.version) + 1) });
+          onUpdate({ ...page, history: updatedHistory, version: updatedVersion });
         }}
       >
         publish

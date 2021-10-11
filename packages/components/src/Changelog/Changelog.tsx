@@ -1,4 +1,4 @@
-import React, { ReactElement, useMemo, useState } from 'react';
+import React, { ReactElement, useMemo } from 'react';
 import { PageEntity, PageHistory } from '../types';
 import { LogList } from './Changelog.styles';
 import { LogItem } from './LogItem';
@@ -16,12 +16,12 @@ export const Changelog = ({ page }: ChangelogProps): ReactElement => {
     return {};
   }, [page.history]) as VersionedPageHistory;
 
-  const [currentVersionId] = useState<string>(Object.keys(changesByVersion)[0] || '');
   return (
     <LogList>
-      {Object.values(changesByVersion).map((history, i) => (
-        <LogItem key={i} history={history} selected={currentVersionId === history[0].version} />
-      ))}
+      {Object.values(changesByVersion).map((history, i) => {
+        const machedVersion = history?.find((item) => item.version == page?.version)?.version;
+        return <LogItem key={i} history={history} selected={Boolean(machedVersion)} />;
+      })}
     </LogList>
   );
 };
