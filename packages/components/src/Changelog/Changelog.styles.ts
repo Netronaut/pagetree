@@ -15,8 +15,8 @@ export const TextGray = styled(Text)`
   font-weight: 500;
 `;
 
-export const LogList = styled.ul`
-  border-left: 2px solid ${({ theme }) => theme.color.gray3};
+export const LogList = styled.ul<{ single?: boolean }>`
+  border-left: 2px solid ${({ theme, single }) => (single ? 'transparent' : theme.color.gray3)};
 `;
 
 export const RevertButtonContainer = styled.div`
@@ -25,7 +25,7 @@ export const RevertButtonContainer = styled.div`
   right: 0;
 `;
 
-export const LogItemRoot = styled.li<{ selected?: boolean }>`
+export const LogItemRoot = styled.li<{ selected?: boolean; single?: boolean }>`
   position: relative;
   display: flex;
   flex-direction: column;
@@ -50,24 +50,28 @@ export const LogItemRoot = styled.li<{ selected?: boolean }>`
     border-radius: 50%;
     border: 1px solid ${({ theme }) => theme.color.white};
   }
-  :first-child:after {
-    content: '';
-    position: absolute;
-    left: -5px;
-    top: 0;
-    width: 8px;
-    height: 2px;
-    background: ${({ theme }) => theme.color.white};
-  }
-  :last-child:after {
-    content: '';
-    position: absolute;
-    left: -5px;
-    bottom: -15px;
-    width: 8px;
-    height: 100%;
-    background-color: ${({ theme }) => theme.color.white};
-  }
+  ${({ theme, single }) =>
+    !single &&
+    `
+    :first-child:after {
+      content: '';
+      position: absolute;
+      left: -5px;
+      top: 0;
+      width: 8px;
+      height: 2px;
+      background: ${theme.color.white};
+    }
+    :last-child:after {
+      content: '';
+      position: absolute;
+      left: -5px;
+      bottom: -15px;
+      width: 8px;
+      height: 100%;
+      background-color: ${theme.color.white};
+    }
+  `}
 `;
 
 export const LogItemDetail = styled.ul`

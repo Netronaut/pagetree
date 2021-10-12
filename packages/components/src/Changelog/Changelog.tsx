@@ -16,11 +16,20 @@ export const Changelog = ({ page }: ChangelogProps): ReactElement => {
     return {};
   }, [page.history]) as VersionedPageHistory;
 
+  const singleItem = Object.keys(changesByVersion).length === 1;
+
   return (
-    <LogList>
+    <LogList single={singleItem}>
       {Object.values(changesByVersion).map((history, i) => {
         const machedVersion = history?.find((item) => item.version == page?.version)?.version;
-        return <LogItem key={i} history={history} selected={Boolean(machedVersion)} />;
+        return (
+          <LogItem
+            key={i}
+            history={history}
+            selected={Boolean(machedVersion)}
+            single={singleItem}
+          />
+        );
       })}
     </LogList>
   );

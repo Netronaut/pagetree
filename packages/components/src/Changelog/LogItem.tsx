@@ -16,15 +16,20 @@ import { formatDate } from './formatDate';
 interface LogItemProps {
   history: PageHistory;
   selected: boolean;
+  single: boolean;
 }
 
-export const LogItem = ({ history, selected }: LogItemProps): ReactElement => {
+export const LogItem = ({ history, selected, single }: LogItemProps): ReactElement => {
   const [openedSubList, setOpenedSubList] = useState(selected || false);
   const version = history[0] && history[0].version;
   const historyItem = history.length > 0 && version ? history[0] : history[history.length - 1];
 
   return (
-    <LogItemRoot onClick={() => setOpenedSubList(!openedSubList)} selected={selected}>
+    <LogItemRoot
+      onClick={() => setOpenedSubList(!openedSubList)}
+      selected={selected}
+      single={single}
+    >
       <SmallerBold>{version ? `Version ${version}` : 'unversioned'}</SmallerBold>
       {historyItem && (
         <TextCapitalized>
