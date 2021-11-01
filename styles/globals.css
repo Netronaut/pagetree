@@ -1,0 +1,15 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+h1 {
+  @apply text-4xl mt-10 mb-7 pb-3 border-b;
+}
+
+h2 {
+  @apply text-2xl my-6;
+}
+
+p {
+  @apply text-base my-4;
+}
