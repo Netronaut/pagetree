@@ -34,7 +34,7 @@ export async function getStaticProps({ params }) {
 
 export async function getStaticPaths() {
   return {
-    paths: [{ params: { docbook: false } }],
+    paths: [{ params: { docbook: ['index'] } }],
     fallback: false,
   };
 }
