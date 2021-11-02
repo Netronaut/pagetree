@@ -10,7 +10,7 @@ jobs:
 
     env:
       NEXT_PUBLIC_BASE_PATH: /pagio
-      NEXT_PUBLIC_ASSET_PREFIX: https://netronaut.github.io/pagio/
+      NEXT_PUBLIC_ASSET_PREFIX: https://www.pagetreejs.org/
 
     strategy:
       matrix:
