@@ -5,10 +5,10 @@ RUN mkdir /srv/app
 WORKDIR /srv/app
 
 COPY package.json .
-COPY pagio-builder-0.1.0.tgz .
+COPY pagetree-builder-0.1.0.tgz .
 
-# should ignore all node_module/** (but not node_module/@pagio) in .dockerignore
-# we actually need this so the local instance of the @pagio/builder library
+# should ignore all node_module/** (but not node_module/@pagetree) in .dockerignore
+# we actually need this so the local instance of the @pagetree/builder library
 # can be installed into this docker image
 COPY node_modules/ node_modules/
 

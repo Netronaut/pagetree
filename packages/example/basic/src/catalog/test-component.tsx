@@ -1,5 +1,5 @@
 import React, { ReactElement } from 'react';
-import { CatalogComponentProps } from '@pagio/builder';
+import { CatalogComponentProps } from '@pagetree/builder';
 import styled from 'styled-components';
 
 const TestComponentRoot = styled.div`

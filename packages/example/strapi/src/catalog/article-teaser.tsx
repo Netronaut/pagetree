@@ -1,7 +1,7 @@
 import * as React from 'react';
 import styled from 'styled-components';
 
-import { createCatalogComponent, ProductionComponentProps } from '@pagio/builder';
+import { createCatalogComponent, ProductionComponentProps } from '@pagetree/builder';
 
 const Container = styled.div`
   box-sizing: border-box;

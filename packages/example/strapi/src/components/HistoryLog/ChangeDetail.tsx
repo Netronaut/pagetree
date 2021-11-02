@@ -1,5 +1,5 @@
 import React, { useState, ReactElement } from 'react';
-import { ArrowIcon, PageHistoryItem } from '@pagio/builder';
+import { ArrowIcon, PageHistoryItem } from '@pagetree/builder';
 import { ChangeDetailContainer, DetailsList } from './HistoryLog.styles';
 
 interface ChangeDetailProps {

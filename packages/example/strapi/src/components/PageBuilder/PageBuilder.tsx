@@ -9,7 +9,7 @@ import {
   PageTreeProvider,
   PageTreeStateContext,
   RemoveDropArea,
-} from '@pagio/builder';
+} from '@pagetree/builder';
 import { apiUrls } from '../../apiUrls';
 import { components } from '../../catalog';
 import { PageEntity } from '../../types';

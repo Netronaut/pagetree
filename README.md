@@ -1,16 +1,16 @@
 <h1>
-  <img src="./pagio.svg" alt="pagio brand icon" style="height: 1em;" />
-  Pagio &ndash; page building library
+  <img src="./pagetree.svg" alt="pagetree brand icon" style="height: 1em;" />
+  Pagetree &ndash; page building library
 </h1>
 
-pagio is a drag & drop library that lets you build your own page building application. pagio is meant for developers who want to render large numbers of pages, using
+pagetree is a drag & drop library that lets you build your own page building application. pagetree is meant for developers who want to render large numbers of pages, using
 
 * their own components
 * their own rendering strategy (SSR?)
 
-At the core, pagio is simply a Javascript Object tree, which is manipulated with a little React app. pagio can be embedded in any (React) application.
+At the core, pagetree is simply a Javascript Object tree, which is manipulated with a little React app. pagetree can be embedded in any (React) application.
 
-pagio comes with very few direct dependencies:
+pagetree comes with very few direct dependencies:
 
 * react
 * styled-components
@@ -18,9 +18,9 @@ pagio comes with very few direct dependencies:
 
 That said, there is a range of [examples](./packages/example) and integrations readily available to get started immediately. Just use one of the examples to start building right away!
 
-## The idea behing pagio
+## The idea behing pagetree
 
-The main idea behind pagio is a page building tool that lets you to decide how your components are constructed and how your pages are rendered.
+The main idea behind pagetree is a page building tool that lets you to decide how your components are constructed and how your pages are rendered.
 
 It simply creates a Javascript Object, representing a page tree. In the page tree, you find references to your components, the place where they should go and which properties they should have.
 
@@ -48,7 +48,7 @@ Now build the project and run the first basic example:
 
 ```bash
 npm run build
-npm start -w @pagio/example-basic
+npm start -w @pagetree/example-basic
 ```
 
 This builds the core library (packages/builder) and starts the first example in [packages/example/basic](packages/example/basic).
@@ -70,10 +70,10 @@ npm run storybook
 Examples:
 
 ```bash
-# @pagio/example-basic
-npm start -w @pagio/example-basic
+# @pagetree/example-basic
+npm start -w @pagetree/example-basic
 
-# @pagio/example-strapi
-npm run strapi -w @pagio/example-strapi
-npm start -w @pagio/example-strapi
+# @pagetree/example-strapi
+npm run strapi -w @pagetree/example-strapi
+npm start -w @pagetree/example-strapi
 ```

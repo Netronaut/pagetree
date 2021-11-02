@@ -13,7 +13,7 @@ export const Header = ({ preview, setPreview }: HeaderProps): ReactElement => (
   <HeadRoot>
     <Logo>
       <BrandLogo />
-      <span>Pagio</span>
+      <span>Pagetree</span>
     </Logo>
     <HeadContent>
       <Label htmlFor="toggle-button">Preview mode</Label>

@@ -1,5 +1,5 @@
 import React, { ReactElement, useState, useMemo } from 'react';
-import { CatalogComponentDescription, useDrag } from '@pagio/builder';
+import { CatalogComponentDescription, useDrag } from '@pagetree/builder';
 import { Tag } from '../Tag';
 import { CloseIcon, SearchIcon } from '../icons';
 import { Default } from '../Typography';

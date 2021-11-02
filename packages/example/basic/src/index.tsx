@@ -7,7 +7,7 @@ import {
   Catalog,
   RemoveDropArea,
   PageTreeStateContext,
-} from '@pagio/builder';
+} from '@pagetree/builder';
 import { components } from './catalog';
 import { Header } from './components';
 import { GlobalStyle } from './globalStyle';

@@ -1,4 +1,4 @@
-import { CatalogComponentDescription } from '@pagio/builder';
+import { CatalogComponentDescription } from '@pagetree/builder';
 
 export const components = [
   {

@@ -1,4 +1,4 @@
-import { CatalogComponentDescription } from '@pagio/builder';
+import { CatalogComponentDescription } from '@pagetree/builder';
 import { Headline } from './headline';
 import { ArticleTeaser } from './article-teaser';
 import { TestComponent } from './test-component';

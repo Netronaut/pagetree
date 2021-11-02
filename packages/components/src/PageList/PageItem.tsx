@@ -1,5 +1,5 @@
 import React, { ReactElement, useState } from 'react';
-import { PageEntity } from '@pagio/example-strapi/src/types';
+import { PageEntity } from '@pagetree/example-strapi/src/types';
 import { DeleteIcon, StarIcon, EditIcon, IconButton } from '../icons';
 import { Tooltip } from '../Tooltip';
 import { Larger, Smaller } from '../Typography';

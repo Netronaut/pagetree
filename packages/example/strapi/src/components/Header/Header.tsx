@@ -14,7 +14,7 @@ export const Header = ({ preview, setPreview }: HeaderProps): ReactElement => (
     <Link to="/">
       <Logo>
         <BrandLogo />
-        <span>Pagio</span>
+        <span>Pagetree</span>
       </Logo>
     </Link>
     {setPreview && (
