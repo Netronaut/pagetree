@@ -1,4 +1,4 @@
-import { PageEntity } from '@pagio/components';
+import { PageEntity } from '@pagetree/components';
 
 const API_PATH = '/api/pages';
 

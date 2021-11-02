@@ -1,5 +1,5 @@
 import React, { ReactElement, useState, useEffect } from 'react';
-import { BrandIcon, EditPageModal, PageEntity, PageList } from '@pagio/components';
+import { BrandIcon, EditPageModal, PageEntity, PageList } from '@pagetree/components';
 import { getPages, removePage, savePage } from './api';
 import { DashboardRoot } from './Dashboard.styles';
 import { useHistory } from 'react-router';

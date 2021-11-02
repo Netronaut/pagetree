@@ -1,4 +1,4 @@
-import { useDropRemove } from '@pagio/builder';
+import { useDropRemove } from '@pagetree/builder';
 import React, { ReactElement } from 'react';
 import { DeleteIcon } from '../icons';
 import { Default } from '../Typography';

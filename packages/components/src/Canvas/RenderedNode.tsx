@@ -6,7 +6,7 @@ import {
   PageTreeStateContext,
   useDrag,
   useDrop,
-} from '@pagio/builder';
+} from '@pagetree/builder';
 import { DefaultComponent, RenderedNodeRoot } from './Canvas.styles';
 
 interface NodeProps {

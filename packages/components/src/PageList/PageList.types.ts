@@ -1,4 +1,4 @@
-import { PageHistory, PageNodeOptions } from '@pagio/builder';
+import { PageHistory, PageNodeOptions } from '@pagetree/builder';
 
 export interface PageEntity {
   id?: number;

@@ -1,4 +1,4 @@
-import { BrandIcon } from '@pagio/components';
+import { BrandIcon } from '@pagetree/components';
 import styled from 'styled-components';
 
 export const DashboardRoot = styled.main`

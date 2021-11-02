@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom';
 import { ThemeProvider } from 'styled-components';
-import { theme, GlobalStyle } from '@pagio/components';
+import { theme, GlobalStyle } from '@pagetree/components';
 import { PageBuilder } from './PageBuilder';
 import { Dashboard } from './Dashboard';
 

@@ -6,7 +6,7 @@ import {
   InsertionPoint,
   PageNodeAxis,
   PageNodeType,
-} from '@pagio/builder';
+} from '@pagetree/builder';
 import { baseFontStyle } from '../Typography';
 
 export const CanvasRoot = styled.main`
