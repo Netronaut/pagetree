@@ -2,7 +2,7 @@
   "name": "@pagetree/pagetree",
   "description": "A simple yet versatile page tree drag&drop library.",
   "author": "@jhohlfeld",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "license": "MIT",
   "repository": {
     "type": "git",
