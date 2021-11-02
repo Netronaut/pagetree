@@ -12,8 +12,9 @@ import {
 } from '../icons';
 import { Button } from '../Button';
 import { Larger } from '../Typography';
-import { PageEntity, Tooltip } from '..';
+import { Tooltip } from '..';
 import { HeaderIcon, HeaderGroup, HeaderRoot, TextGroup } from './Header.styles';
+import { PageEntity } from '../types';
 
 const numberOfChanges = 0;
 
@@ -21,9 +22,17 @@ interface HeaderProps {
   page: PageEntity;
   onUpdate?: (page: PageEntity) => void;
   link?: string;
+  onToggleChangelog: () => void;
+  sidebarOpen: boolean;
 }
 
-export const Header = ({ page, onUpdate = () => undefined, link }: HeaderProps): ReactElement => (
+export const Header = ({
+  page,
+  onUpdate = () => undefined,
+  link,
+  onToggleChangelog,
+  sidebarOpen,
+}: HeaderProps): ReactElement => (
   <HeaderRoot>
     <HeaderGroup columnNumber={1}>
       {link ? (
@@ -61,13 +70,26 @@ export const Header = ({ page, onUpdate = () => undefined, link }: HeaderProps):
     </HeaderGroup>
 
     <HeaderGroup columnNumber={4} padding="xxs">
-      <Button primary>publish</Button>
+      <Button
+        primary
+        onClick={() => {
+          const updatedHistory = page.history?.slice();
+          const updatedVersion = String(Number(page.version) + 1 || 1);
+          updatedHistory?.push({
+            version: updatedVersion,
+            date: new Date().toISOString(),
+          });
+          onUpdate({ ...page, history: updatedHistory, version: updatedVersion });
+        }}
+      >
+        publish
+      </Button>
     </HeaderGroup>
 
     <HeaderGroup columnNumber={5}>
-      <IconButton>
+      <IconButton onClick={onToggleChangelog}>
         <Badge value={numberOfChanges}>
-          <LogIcon />
+          <LogIcon stroke={sidebarOpen} />
         </Badge>
       </IconButton>
       <IconButton>

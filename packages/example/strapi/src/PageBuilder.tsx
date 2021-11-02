@@ -3,13 +3,25 @@ import { useParams } from 'react-router';
 import { ThemeProvider } from 'styled-components';
 import { PageNode, PageTreeProvider, PageTreeStateContext } from '@pagio/builder';
 import diff from 'changeset';
-import { Canvas, Catalog, GlobalStyle, Header, PageEntity, theme } from '@pagio/components';
+import {
+  Canvas,
+  Catalog,
+  GlobalStyle,
+  Header,
+  Changelog,
+  FixedContainer,
+  PageEntity,
+  Sidebar,
+  theme,
+} from '@pagio/components';
 import { getPage, savePage } from './api';
 import { components } from './catalog';
 
 export const PageBuilder = (): ReactElement | null => {
   const { pageId } = useParams<{ pageId: string }>();
   const [page, setPage] = useState<PageEntity | null>(null);
+  const [sidebarOpen, setSidebarOpen] = useState(false);
+  const onToggleChangelog = () => setSidebarOpen(!sidebarOpen);
 
   useEffect(() => {
     getPage(pageId).then(setPage);
@@ -21,7 +33,7 @@ export const PageBuilder = (): ReactElement | null => {
 
     nextPage.history = (nextPage.history || []).concat({
       date: new Date().toISOString(),
-      change: diff(previousPage.pageContent, nextPage.pageContent),
+      changes: diff(previousPage.pageContent, nextPage.pageContent),
     });
 
     // eslint-disable-next-line no-console
@@ -32,9 +44,9 @@ export const PageBuilder = (): ReactElement | null => {
     onUpdatePage(nextPage);
   };
 
-  const onUpdatePage = (page: PageEntity) => {
-    savePage(page);
-    setPage(page);
+  const onUpdatePage = (updatedPage: PageEntity) => {
+    savePage(updatedPage);
+    setPage(updatedPage);
   };
 
   if (!page) {
@@ -49,11 +61,20 @@ export const PageBuilder = (): ReactElement | null => {
         pageTree={page.pageContent ? new PageNode(page.pageContent) : undefined}
         components={components}
       >
-        <Header page={page} onUpdate={onUpdatePage} link="/" />
         <Canvas />
-        <PageTreeStateContext.Consumer>
-          {({ dragOver }) => <Catalog hide={dragOver !== undefined} />}
-        </PageTreeStateContext.Consumer>
+        <FixedContainer sidebarOpen={sidebarOpen}>
+          <PageTreeStateContext.Consumer>
+            {({ dragOver }) => <Catalog hide={dragOver !== undefined} />}
+          </PageTreeStateContext.Consumer>
+          <Header
+            page={page}
+            onUpdate={onUpdatePage}
+            link="/"
+            onToggleChangelog={onToggleChangelog}
+            sidebarOpen={sidebarOpen}
+          />
+          <Sidebar open={sidebarOpen}>{sidebarOpen && <Changelog page={page} />}</Sidebar>
+        </FixedContainer>
       </PageTreeProvider>
     </ThemeProvider>
   );

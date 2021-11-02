@@ -1,13 +1,18 @@
 import styled from 'styled-components';
 import { Default } from '../Typography';
 
-export const CatalogRoot = styled.div<{ hide: boolean; expanded: boolean }>`
+export const CatalogRoot = styled.div<{
+  hide: boolean;
+  expanded: boolean;
+}>`
+  --elementHeight: 48px;
+  --expandedElementHeight: 228px;
   display: flex;
   flex-direction: column;
   border-radius: 4px;
   background-color: ${({ theme }) => theme.color.white};
   box-shadow: 0px 4px 8px 0px #13592220;
-  position: fixed;
+  position: absolute;
   z-index: ${({ theme }) => theme.zIndex.interface};
 
   user-select: none;
@@ -16,15 +21,16 @@ export const CatalogRoot = styled.div<{ hide: boolean; expanded: boolean }>`
     padding: ${theme.spacing.xs} ${theme.spacing.xs};
     background: ${theme.color.white};
     right: ${theme.spacing.md};
-    bottom: ${theme.spacing.md};
+    top: calc(100vh - var(--elementHeight) - ${theme.spacing.md});
     
     ${hide && `display: none;`}
-
+    
     ${
       expanded &&
       `
       cursor: pointer;
       left: ${theme.spacing.md};
+      top: calc(100vh - var(--expandedElementHeight) - ${theme.spacing.md});
       padding: ${theme.spacing.sm};
     `
     }

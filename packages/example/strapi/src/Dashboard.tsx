@@ -15,7 +15,7 @@ export const Dashboard = (): ReactElement => {
   }, []);
 
   const handleSave = async (page: PageEntity) => {
-    const data = await savePage({ version: '1', starred: false, ...page });
+    const data = await savePage({ version: '0', starred: false, ...page });
 
     if (page.id) {
       setPages(pages.map((page) => (page.id === data.id ? data : page)));
