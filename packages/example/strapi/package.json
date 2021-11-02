@@ -1,16 +1,16 @@
 {
-  "name": "@pagio/example-strapi",
+  "name": "@pagetree/example-strapi",
   "version": "0.2.0",
   "main": "index.js",
   "private": true,
   "scripts": {
     "start": "PORT=3000 webpack serve --mode=development",
     "install:quickstart": "npm install $(npm pack ../../ | tail -1)",
-    "install:dev": "npm link @pagio/builder",
+    "install:dev": "npm link @pagetree/builder",
     "strapi": "docker compose up strapi -d"
   },
   "dependencies": {
-    "@pagio/builder": "^0.2.0",
+    "@pagetree/builder": "^0.2.0",
     "axios": "^0.21.1",
     "core-js": "^3.15.2",
     "react": "^17.0.2",
