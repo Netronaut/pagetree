@@ -4,6 +4,20 @@
   "author": "@jhohlfeld",
   "version": "0.2.0",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Netronaut/pagetree.git"
+  },
+  "keywords": [
+    "react",
+    "library",
+    "drag-and-drop",
+    "pagebuilder"
+  ],
+  "bugs": {
+    "url": "https://github.com/Netronaut/pagetree/issues"
+  },
+  "homepage": "https://netronaut.github.io/pagetree/",
   "engines": {
     "node": ">=12"
   },
