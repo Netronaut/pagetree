@@ -1,7 +1,7 @@
 export const color: Record<string, string> = {
-  secondary: '#5f9efc',
+  primary: '#1DE9B6',
+  secondary: '#303F9F',
   red: '#db3838',
-  primary: '#24c217',
   white: '#ffffff',
   gray1: '#333333',
   gray2: '#676767',

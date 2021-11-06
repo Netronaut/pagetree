@@ -1,22 +1,27 @@
 import { Meta, Story } from '@storybook/addon-docs';
-import { BrandIcon } from './BrandIcon'
-import { DeleteIcon } from './DeleteIcon'
-import { EditIcon } from './EditIcon'
-import { SearchIcon } from './SearchIcon'
-import { ShareIcon } from './ShareIcon'
-import { StarIcon } from './StarIcon'
-import { CloseIcon } from './CloseIcon'
-import { IconButton } from './IconButton'
-import { ClipboardIcon } from './ClipboardIcon';
-import { LogIcon } from './LogIcon';
 import { Badge } from './Badge';
+import { BrandIcon } from './BrandIcon'
+import { BrandIconText } from './BrandIconText'
+import { CloseIconOutline } from './CloseIconOutline'
+import { EditIconOutline } from './EditIconOutline'
+import { HeaderIconButton } from './HeaderIconButton'
+import { IconButton } from './IconButton'
+import { InspectorIconOutline } from './InspectorIconOutline';
+import { LinkIconOutline } from './LinkIconOutline';
+import { LogIconOutline } from './LogIconOutline';
+import { MobileIconOutline } from './MobileIconOutline';
+import { PlusIconOutline } from './PlusIconOutline';
+import { PreviewIconOutline } from './PreviewIconOutline'
+import { SearchIconOutline } from './SearchIconOutline'
+import { StarIconOutline } from './StarIconOutline'
+import { TrashIconOutline } from './TrashIconOutline'
 
 export const Grid = (Story) => <div style={{ display: 'grid', gap: '1rem', 'justifyItems': 'start'}}><Story /></div>
 
 <Meta title="Icons" decorators={[Grid]} />
 
 export const  args={
-  fill: false,
+  fill: 'none',
   stroke: false,
   width: 24,
   height: 24,
@@ -28,29 +33,41 @@ export const  args={
   <Story name="Icons" args={args}>
     {(args) => (
       <>
-        <BrandIcon {...args} />
-        <DeleteIcon {...args} />
-        <EditIcon {...args} />
-        <SearchIcon {...args} />
-        <CloseIcon {...args} />
-        <ShareIcon {...args} />
-        <StarIcon {...args} />
-        <ClipboardIcon {...args} />
-        <LogIcon {...args} />
+        <CloseIconOutline {...args} />
+        <EditIconOutline {...args} />
+        <InspectorIconOutline {...args} />
+        <LinkIconOutline {...args} />
+        <LogIconOutline {...args} />
+        <MobileIconOutline {...args} />
+        <PlusIconOutline {...args} />
+        <PreviewIconOutline {...args} />
+        <SearchIconOutline {...args} />
+        <StarIconOutline {...args} />
+        <TrashIconOutline {...args} />
       </>
     )}
   </Story>
+  
+  <Story name="BrandIcon">
+    <HeaderIconButton>
+      <BrandIcon />
+    </HeaderIconButton>
+    <BrandIconText />
+  </Story>
+  
   <Story name="Icons with IconButton" args={args}>
     {(args) => [
-      BrandIcon,
-      DeleteIcon,
-      EditIcon,
-      SearchIcon,
-      CloseIcon,
-      ShareIcon,
-      StarIcon,
-      ClipboardIcon,
-      LogIcon,
+      CloseIconOutline,
+      EditIconOutline,
+      InspectorIconOutline,
+      LinkIconOutline,
+      LogIconOutline,
+      MobileIconOutline,
+      PlusIconOutline,
+      PreviewIconOutline,
+      SearchIconOutline,
+      StarIconOutline,
+      TrashIconOutline
     ].map((Icon, index) => (
       <IconButton key={index}>
         <Icon {...args} />
@@ -60,16 +77,16 @@ export const  args={
   <Story name="Icons with Badge">
     <>
       <Badge value={3}>
-        <LogIcon/>
+        <LogIconOutline/>
       </Badge>
       <Badge value={256}>
-        <SearchIcon/>
+        <SearchIconOutline/>
       </Badge>
       <Badge value={0}>
-        <ClipboardIcon/>
+        <TrashIconOutline/>
       </Badge>
       <Badge>
-        <EditIcon/>
+        <EditIconOutline/>
       </Badge>
     </>
   </Story>

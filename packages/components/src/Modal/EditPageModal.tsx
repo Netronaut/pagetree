@@ -1,7 +1,7 @@
 import React, { ChangeEvent, ReactElement, useRef, useState, KeyboardEvent } from 'react';
 import omit from 'lodash.omit';
 import isEmpty from 'lodash.isempty';
-import { CloseIcon } from '../icons';
+import { CloseIconOutline } from '../icons';
 import { Button } from '../Button';
 import { LargerMedium, SmallerBold, Smaller } from '../Typography';
 import { color } from '../theme';
@@ -58,7 +58,7 @@ export const EditPageModal = ({ onClose, onSave, page }: EditPageModalProps): Re
 
       <ModalContainer ref={wrapperRef}>
         <CloseButton onClick={onClose}>
-          <CloseIcon />
+          <CloseIconOutline />
         </CloseButton>
         <LargerMedium>Edit Page</LargerMedium>
         <ModalLabel>

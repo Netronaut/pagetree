@@ -2,18 +2,19 @@ import React, { ReactElement } from 'react';
 import { Link } from 'react-router-dom';
 import {
   BrandIcon,
-  EditIcon,
-  ShareIcon,
-  StarIcon,
-  ClipboardIcon,
-  LogIcon,
+  EditIconOutline,
+  StarIconOutline,
+  PreviewIconOutline,
+  LogIconOutline,
+  HeaderIconButton,
+  InspectorIconOutline,
   IconButton,
   Badge,
 } from '../icons';
 import { Button } from '../Button';
 import { Larger } from '../Typography';
 import { PageEntity, Tooltip } from '..';
-import { HeaderIcon, HeaderGroup, HeaderRoot, TextGroup } from './Header.styles';
+import { HeaderGroup, HeaderRoot, TextGroup } from './Header.styles';
 
 const numberOfChanges = 0;
 
@@ -29,33 +30,36 @@ export const Header = ({ page, onUpdate = () => undefined, link }: HeaderProps):
       {link ? (
         <Link to={link}>
           <Tooltip content="Back to pages" position="bottom">
-            <HeaderIcon>
-              <BrandIcon fill />
-            </HeaderIcon>
+            <HeaderIconButton>
+              <BrandIcon />
+            </HeaderIconButton>
           </Tooltip>
         </Link>
       ) : (
-        <HeaderIcon>
-          <BrandIcon fill />
-        </HeaderIcon>
+        <HeaderIconButton>
+          <BrandIcon />
+        </HeaderIconButton>
       )}
     </HeaderGroup>
 
     <HeaderGroup columnNumber={2}>
       <Tooltip content="Star this page" position="bottom">
-        <IconButton onClick={() => onUpdate({ ...page, starred: !page.starred })}>
-          <StarIcon fill={page.starred} />
+        <IconButton
+          onClick={() => onUpdate({ ...page, starred: !page.starred })}
+          active={page.starred}
+        >
+          <StarIconOutline />
         </IconButton>
       </Tooltip>
       <TextGroup>
         <Larger>{page.title}</Larger>
         <IconButton>
-          <EditIcon />
+          <EditIconOutline />
         </IconButton>
       </TextGroup>
-      <Tooltip content="Open preview" position="bottom">
+      <Tooltip content="Preview" position="bottom">
         <IconButton>
-          <ShareIcon />
+          <PreviewIconOutline />
         </IconButton>
       </Tooltip>
     </HeaderGroup>
@@ -67,11 +71,11 @@ export const Header = ({ page, onUpdate = () => undefined, link }: HeaderProps):
     <HeaderGroup columnNumber={5}>
       <IconButton>
         <Badge value={numberOfChanges}>
-          <LogIcon />
+          <LogIconOutline />
         </Badge>
       </IconButton>
       <IconButton>
-        <ClipboardIcon />
+        <InspectorIconOutline />
       </IconButton>
     </HeaderGroup>
   </HeaderRoot>

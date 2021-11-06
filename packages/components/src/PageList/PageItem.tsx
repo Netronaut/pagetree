@@ -1,5 +1,5 @@
 import React, { ReactElement } from 'react';
-import { DeleteIcon, StarIcon, EditIcon, IconButton } from '../icons';
+import { EditIconOutline, TrashIconOutline, StarIconOutline, IconButton } from '../icons';
 import { Tooltip } from '../Tooltip';
 import { Larger, Smaller } from '../Typography';
 import { QuickActionGrid } from './PageList.styles';
@@ -30,8 +30,9 @@ export const PageItem = ({
               event.stopPropagation();
               onUpdate({ ...page, starred: !page.starred });
             }}
+            active={page.starred}
           >
-            <StarIcon fill={page.starred} />
+            <StarIconOutline />
           </IconButton>
         </Tooltip>
       </td>
@@ -47,7 +48,7 @@ export const PageItem = ({
                 onEdit(page);
               }}
             >
-              <EditIcon />
+              <EditIconOutline />
             </IconButton>
           </Tooltip>
           <Tooltip content={<span>Remove page</span>}>
@@ -57,7 +58,7 @@ export const PageItem = ({
                 onRemove(page);
               }}
             >
-              <DeleteIcon />
+              <TrashIconOutline />
             </IconButton>
           </Tooltip>
         </QuickActionGrid>

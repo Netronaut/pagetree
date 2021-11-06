@@ -1,7 +1,7 @@
 import React, { ReactElement, useState, useMemo, useContext } from 'react';
 import { CatalogComponentDescription, PageTreeStateContext, useDrag } from '@pagetree/core';
 import { Tag } from '../Tag';
-import { CloseIcon, SearchIcon } from '../icons';
+import { CloseIconOutline, SearchIconOutline } from '../icons';
 import { Default } from '../Typography';
 import { Input } from '../Input';
 import {
@@ -57,7 +57,7 @@ export const Catalog = ({ hide = false, ...props }: CatalogProps): ReactElement 
               placeholder="Search for component name or title"
               value={searchValue}
               onChange={(event) => setSearchValue(event.currentTarget.value)}
-              icon={<SearchIcon />}
+              icon={<SearchIconOutline />}
             />
             <CatalogTags>
               {tags.map((tag, index) => (
@@ -74,7 +74,7 @@ export const Catalog = ({ hide = false, ...props }: CatalogProps): ReactElement 
         )}
         <CatalogOpenCloseButton expanded={expanded} onClick={() => setExpanded(!expanded)}>
           <Default>Add Components</Default>
-          <CloseIcon />
+          <CloseIconOutline />
         </CatalogOpenCloseButton>
       </CatalogHeader>
       {expanded && (

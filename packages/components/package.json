@@ -10,6 +10,7 @@
   "scripts": {
     "clean": "tsc --build --clean tsconfig.json",
     "build": "tsc --build tsconfig.json",
+    "build:icons": "node build-icons.mjs",
     "dev": "tsc --build tsconfig.json -w"
   },
   "peerDependencies": {
@@ -17,6 +18,10 @@
   },
   "devDependencies": {
     "@storybook/addon-docs": "^6.3.8",
+    "@svgr/core": "^5.5.0",
+    "@svgr/plugin-jsx": "^5.5.0",
+    "@svgr/plugin-prettier": "^5.5.0",
+    "@svgr/plugin-svgo": "^5.5.0",
     "@types/lodash.isempty": "^4.4.6",
     "@types/lodash.omit": "^4.5.6",
     "@types/react-router": "^5.1.16",

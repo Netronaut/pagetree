@@ -1,6 +1,6 @@
 import React, { ReactElement, useState } from 'react';
 import { Button } from '../Button';
-import { IconButton, SearchIcon, StarIcon } from '../icons';
+import { IconButton, SearchIconOutline, StarIconOutline } from '../icons';
 import { Input } from '../Input';
 import { Tooltip } from '../Tooltip';
 import { LargerMedium } from '../Typography';
@@ -35,15 +35,15 @@ export const PageList = ({
         <ListHeadTitle>
           <LargerMedium>All Pages</LargerMedium>
           <Tooltip content="Show starred pages only">
-            <IconButton onClick={() => setFilterStarred(!filterStarred)}>
-              <StarIcon fill={filterStarred} />
+            <IconButton onClick={() => setFilterStarred(!filterStarred)} active={filterStarred}>
+              <StarIconOutline />
             </IconButton>
           </Tooltip>
         </ListHeadTitle>
         <Input
           value={searchValue}
           onChange={(event) => setSearchValue(event.currentTarget.value)}
-          icon={<SearchIcon />}
+          icon={<SearchIconOutline />}
         />
         <Button primary onClick={onAdd}>
           Add page

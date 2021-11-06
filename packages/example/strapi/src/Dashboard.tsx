@@ -1,5 +1,5 @@
 import React, { ReactElement, useState, useEffect } from 'react';
-import { BrandIcon, EditPageModal, PageEntity, PageList } from '@pagetree/components';
+import { BrandIconText, EditPageModal, PageEntity, PageList } from '@pagetree/components';
 import { getPages, removePage, savePage } from './api';
 import { DashboardRoot } from './Dashboard.styles';
 import { useHistory } from 'react-router';
@@ -33,7 +33,7 @@ export const Dashboard = (): ReactElement => {
 
   return (
     <DashboardRoot>
-      <BrandIcon width="48" height="48" fill />
+      <BrandIconText />
 
       <PageList
         pages={pages}
