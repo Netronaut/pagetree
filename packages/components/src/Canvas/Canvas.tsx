@@ -1,7 +1,7 @@
 import React, { ReactElement, useContext } from 'react';
 import { CanvasRoot, Page } from './Canvas.styles';
 import { RenderedNode } from './RenderedNode';
-import { PageTreeStateContext, useDrop } from '@pagetree/builder';
+import { PageTreeStateContext, useDrop } from '@pagetree/core';
 
 export const Canvas = (): ReactElement | null => {
   const { pageTree } = useContext(PageTreeStateContext);

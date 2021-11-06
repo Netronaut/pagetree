@@ -1,6 +1,6 @@
 import React from 'react';
 import { render, fireEvent } from '@testing-library/react';
-import { PageNode, PageNodeType, PageTreeProvider } from '@pagetree/builder';
+import { PageNode, PageNodeType, PageTreeProvider } from '@pagetree/core';
 import { Catalog } from '../Catalog';
 import * as theme from '../theme';
 import { Canvas } from './Canvas';

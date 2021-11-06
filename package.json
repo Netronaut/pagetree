@@ -1,6 +1,6 @@
 {
   "name": "@pagetree/pagetree",
-  "description": "A simple yet versatile page tree drag&drop library.",
+  "description": "A simple yet versatile page tree drag & drop library.",
   "author": "@jhohlfeld",
   "version": "0.2.1",
   "license": "MIT",
@@ -23,13 +23,13 @@
   },
   "type": "commonjs",
   "workspaces": [
-    "./packages/builder",
+    "./packages/core",
     "./packages/components",
     "./packages/example/*"
   ],
   "scripts": {
-    "build": "tsc -b packages/builder packages/components",
-    "dev": "tsc -b -w packages/builder packages/components",
+    "build": "tsc -b packages/core packages/components",
+    "dev": "tsc -b -w packages/core packages/components",
     "lint": "eslint 'packages/**/*.ts{,x}'",
     "test": "jest",
     "storybook": "start-storybook -p 6006",

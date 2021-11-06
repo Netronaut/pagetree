@@ -1,5 +1,5 @@
 import React, { ReactElement } from 'react';
-import { CatalogComponentProps } from '@pagetree/builder';
+import { CatalogComponentProps } from '@pagetree/core';
 import styled from 'styled-components';
 
 const Label = styled.h2`

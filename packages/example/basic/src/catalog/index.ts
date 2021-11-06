@@ -1,4 +1,4 @@
-import { CatalogComponentDescription } from '@pagetree/builder';
+import { CatalogComponentDescription } from '@pagetree/core';
 import { Headline } from './Headline';
 import { ArticleTeaser } from './ArticleTeaser';
 

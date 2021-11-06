@@ -8,7 +8,7 @@ COPY package.json .
 COPY pagetree-builder-0.1.0.tgz .
 
 # should ignore all node_module/** (but not node_module/@pagetree) in .dockerignore
-# we actually need this so the local instance of the @pagetree/builder library
+# we actually need this so the local instance of the @pagetree/core library
 # can be installed into this docker image
 COPY node_modules/ node_modules/
 

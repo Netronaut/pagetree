@@ -51,7 +51,7 @@ npm run build
 npm start -w @pagetree/example-basic
 ```
 
-This builds the core library (packages/builder) and starts the first example in [packages/example/basic](packages/example/basic).
+This builds the core library (packages/core) and starts the first example in [packages/example/basic](packages/example/basic).
 
 To start developing, run `npm run dev` or `npm test`, to work with the ui components, run `npm run storybook`.
 

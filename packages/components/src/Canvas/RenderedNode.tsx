@@ -6,7 +6,7 @@ import {
   PageTreeStateContext,
   useDrag,
   useDrop,
-} from '@pagetree/builder';
+} from '@pagetree/core';
 import { DefaultComponent, RenderedNodeRoot } from './Canvas.styles';
 
 interface NodeProps {

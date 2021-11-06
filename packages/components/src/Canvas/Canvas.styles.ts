@@ -6,7 +6,7 @@ import {
   InsertionPoint,
   PageNodeAxis,
   PageNodeType,
-} from '@pagetree/builder';
+} from '@pagetree/core';
 import { baseFontStyle } from '../Typography';
 
 export const CanvasRoot = styled.main`

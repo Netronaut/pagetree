@@ -5,6 +5,6 @@
     "outDir": "./dist",
     "rootDir": "./src"
   },
-  "include": ["./src"],
-  "references": [{ "path": "../builder" }]
+  "include": ["./src", "./typings.d.ts"],
+  "references": [{ "path": "../core" }]
 }

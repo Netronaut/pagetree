@@ -1,4 +1,4 @@
-import { useDropRemove } from '@pagetree/builder';
+import { useDropRemove } from '@pagetree/core';
 import React, { ReactElement } from 'react';
 import { DeleteIcon } from '../icons';
 import { Default } from '../Typography';

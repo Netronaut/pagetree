@@ -6,11 +6,11 @@
   "scripts": {
     "start": "PORT=3000 webpack serve --mode=development",
     "install:quickstart": "npm install $(npm pack ../../ | tail -1)",
-    "install:dev": "npm link @pagetree/builder",
+    "install:dev": "npm link @pagetree/core",
     "strapi": "docker compose up strapi -d"
   },
   "dependencies": {
-    "@pagetree/builder": "^0.2.0",
+    "@pagetree/core": "^0.2.0",
     "@pagetree/components": "^0.2.0",
     "changeset": "^0.2.6",
     "core-js": "^3.15.2",

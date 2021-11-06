@@ -1,5 +1,5 @@
 {
-  "name": "@pagetree/builder",
+  "name": "@pagetree/core",
   "author": "@jhohlfeld",
   "version": "0.2.0",
   "license": "MIT",
@@ -18,6 +18,8 @@
   },
   "devDependencies": {
     "@babel/core": "^7.15.5",
+    "@svgr/core": "^5.5.0",
+    "@svgr/webpack": "^5.5.0",
     "@types/md5": "^2.3.1",
     "@types/react": "^17.0.20",
     "@types/react-dom": "^17.0.9",

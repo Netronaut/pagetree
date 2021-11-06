@@ -1,5 +1,5 @@
 import React, { ReactElement, useState, useMemo, useContext } from 'react';
-import { CatalogComponentDescription, PageTreeStateContext, useDrag } from '@pagetree/builder';
+import { CatalogComponentDescription, PageTreeStateContext, useDrag } from '@pagetree/core';
 import { Tag } from '../Tag';
 import { CloseIcon, SearchIcon } from '../icons';
 import { Default } from '../Typography';

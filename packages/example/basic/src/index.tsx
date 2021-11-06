@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import ReactDOM from 'react-dom';
 import { ThemeProvider } from 'styled-components';
-import { PageTreeProvider, PageNode, PageTreeStateContext } from '@pagetree/builder';
+import { PageTreeProvider, PageNode, PageTreeStateContext } from '@pagetree/core';
 import { Canvas, Catalog, DropToRemove, GlobalStyle, Header, theme } from '@pagetree/components';
 
 import { components } from './catalog';

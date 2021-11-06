@@ -1,7 +1,7 @@
 import React, { ReactElement, useEffect, useState } from 'react';
 import { useParams } from 'react-router';
 import { ThemeProvider } from 'styled-components';
-import { PageNode, PageTreeProvider, PageTreeStateContext } from '@pagetree/builder';
+import { PageNode, PageTreeProvider, PageTreeStateContext } from '@pagetree/core';
 import diff from 'changeset';
 import { Canvas, Catalog, GlobalStyle, Header, PageEntity, theme } from '@pagetree/components';
 import { getPage, savePage } from './api';

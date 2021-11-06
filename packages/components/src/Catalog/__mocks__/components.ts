@@ -1,4 +1,4 @@
-import { CatalogComponentDescription } from '@pagetree/builder';
+import { CatalogComponentDescription } from '@pagetree/core';
 
 export const components = [
   {

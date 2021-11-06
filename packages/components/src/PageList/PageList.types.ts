@@ -1,4 +1,4 @@
-import { PageHistory, PageNodeOptions } from '@pagetree/builder';
+import { PageHistory, PageNodeOptions } from '@pagetree/core';
 
 export interface PageEntity {
   id?: number;
