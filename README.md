@@ -1,5 +1,5 @@
 <h1>
-  <img src="./pagetree.svg" alt="pagetree brand icon" style="height: 1em;" />
+  <img src="./pagetree.svg" alt="pagetree brand icon" />
   Pagetree &ndash; page building library
 </h1>
 
