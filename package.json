@@ -21,7 +21,6 @@
   "engines": {
     "node": ">=12"
   },
-  "type": "commonjs",
   "workspaces": [
     "./packages/builder",
     "./packages/components",
@@ -41,11 +40,14 @@
     "styled-components": ">=5"
   },
   "devDependencies": {
-    "@babel/core": "^7.15.5",
-    "@storybook/addon-actions": "^6.3.8",
-    "@storybook/addon-essentials": "^6.3.8",
-    "@storybook/addon-links": "^6.3.8",
-    "@storybook/react": "^6.3.8",
+    "@storybook/addon-actions": "^6.4.20",
+    "@storybook/addon-essentials": "^6.4.20",
+    "@storybook/addon-interactions": "^6.4.20",
+    "@storybook/addon-links": "^6.4.20",
+    "@storybook/builder-webpack5": "^6.4.20",
+    "@storybook/manager-webpack5": "^6.4.20",
+    "@storybook/react": "^6.4.20",
+    "@storybook/testing-library": "^0.0.9",
     "@testing-library/react": "^12.0.0",
     "@types/jest": "^27.0.1",
     "@types/md5": "^2.3.1",
@@ -54,12 +56,12 @@
     "@types/styled-components": "^5.1.14",
     "@typescript-eslint/eslint-plugin": "^4.30.0",
     "@typescript-eslint/parser": "^4.30.0",
-    "babel-loader": "^8.2.2",
     "eslint": "^7.32.0",
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-prettier": "^4.0.0",
     "jest": "^27.1.0",
     "prettier": "^2.3.2",
+    "storybook-addon-swc": "^1.1.7",
     "ts-jest": "^27.0.5",
     "tsdef": "^0.0.14",
     "tslib": "^2.3.1",
