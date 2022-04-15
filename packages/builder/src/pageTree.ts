@@ -13,16 +13,8 @@ export interface PageNodeProps {
   [key: string]: PageNodePropsValue;
 }
 
-export interface PageNodeOptions {
-  uuid: string;
-  type: string;
-  props: PageNodeProps;
-  axis?: PageNodeAxis;
-  childNodes?: Array<PageNodeOptions>;
-}
-
-export interface PartialPageNodeOptions extends Partial<Omit<PageNodeOptions, 'childNodes'>> {
-  childNodes?: Partial<Array<PartialPageNodeOptions>>;
+export interface PartialPageNode extends Partial<Omit<PageNode, 'childNodes'>> {
+  childNodes?: Partial<Array<PartialPageNode>>;
 }
 
 export class PageNode {
@@ -32,10 +24,10 @@ export class PageNode {
   axis?: PageNodeAxis;
 
   hash?: string;
-  parentNode: PageNode | null = null;
-  childNodes: Array<PageNode> | null = null;
+  parentNode?: PageNode;
+  childNodes?: Array<PageNode>;
 
-  constructor(options: PartialPageNodeOptions) {
+  constructor(options: PartialPageNode) {
     if (!options.type && !options.childNodes && !options.axis) {
       throw Error('Either type or childNodes|axis must be set');
     }
@@ -46,10 +38,7 @@ export class PageNode {
     if (options.childNodes || options.axis) {
       this.childNodes = [];
       this.axis = options.axis || PageNodeAxis.Column;
-      options.childNodes &&
-        options.childNodes.forEach(
-          (childNode) => childNode && this.append(new PageNode(childNode)),
-        );
+      options.childNodes?.forEach((childNode) => childNode && this.append(new PageNode(childNode)));
     }
   }
 
@@ -190,8 +179,8 @@ export class PageNode {
     return this;
   }
 
-  valueOf(): PageNodeOptions {
-    const value: PageNodeOptions = {
+  valueOf(): PartialPageNode {
+    const value: PartialPageNode = {
       uuid: this.uuid,
       type: this.type,
       props: this.props,
