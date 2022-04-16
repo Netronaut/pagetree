@@ -9,19 +9,27 @@ import { components } from './catalog';
 
 export const PageBuilder = (): ReactElement | null => {
   const { pageId } = useParams<{ pageId: string }>();
-  const [page, setPage] = useState<PageEntity | null>(null);
+  const [page, setPage] = useState<PageEntity>();
+
+  const onUpdatePage = (page: PageEntity) => {
+    savePage(page);
+    setPage(page);
+  };
 
   useEffect(() => {
     getPage(pageId).then(setPage);
   }, [pageId]);
 
+  if (!page) {
+    return null;
+  }
+
   const onUpdatePageTree = (pageTree: PageNode) => {
-    const previousPage = page as PageEntity;
-    const nextPage = { ...previousPage, pageContent: pageTree.valueOf() };
+    const nextPage = { ...page, pageContent: pageTree.valueOf() };
 
     nextPage.history = (nextPage.history || []).concat({
       date: new Date().toISOString(),
-      change: diff(previousPage.pageContent, nextPage.pageContent),
+      change: diff(page.pageContent, nextPage.pageContent),
     });
 
     // eslint-disable-next-line no-console
@@ -31,15 +39,6 @@ export const PageBuilder = (): ReactElement | null => {
 
     onUpdatePage(nextPage);
   };
-
-  const onUpdatePage = (page: PageEntity) => {
-    savePage(page);
-    setPage(page);
-  };
-
-  if (!page) {
-    return null;
-  }
 
   return (
     <ThemeProvider theme={theme}>

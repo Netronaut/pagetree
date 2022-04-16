@@ -4,25 +4,46 @@ const API_PATH = '/api/pages';
 
 export const headers = { 'Content-Type': 'application/json' };
 
-export const getPages = (): Promise<Array<PageEntity>> =>
-  fetch(API_PATH, { headers }).then((response) => response.json());
+interface ApiPayload {
+  id: number;
+  attributes: PageEntity;
+}
+function toPageEntity(payload: ApiPayload): PageEntity {
+  const { id, attributes } = payload;
+  return { ...attributes, id };
+}
 
-export const getPage = (id: string): Promise<PageEntity> =>
-  fetch(`${API_PATH}/${id}`, { headers }).then((response) => response.json());
+export async function getPages(): Promise<Array<PageEntity>> {
+  const response = await fetch(API_PATH, { headers });
+  const { data } = await response.json();
+  return data.map(toPageEntity);
+}
 
-export const savePage = (page: PageEntity): Promise<PageEntity> => {
+export async function getPage(id: string): Promise<PageEntity> {
+  const response = await fetch(`${API_PATH}/${id}`, { headers });
+  const { data } = await response.json();
+  return toPageEntity(data);
+}
+
+export async function savePage(page: PageEntity): Promise<PageEntity> {
   const url = [API_PATH];
 
   if (page.id) {
     url.push(String(page.id));
   }
 
-  return fetch(url.join('/'), {
+  const response = await fetch(url.join('/'), {
     method: page.id ? 'put' : 'post',
     headers,
-    body: JSON.stringify(page),
-  }).then((response) => response.json());
-};
+    body: JSON.stringify({ data: page }),
+  });
 
-export const removePage = (id: string): Promise<PageEntity> =>
-  fetch(`${API_PATH}/${id}`, { method: 'delete', headers }).then((response) => response.json());
+  const { data } = await response.json();
+  return toPageEntity(data);
+}
+
+export async function removePage(id: string): Promise<PageEntity> {
+  const response = await fetch(`${API_PATH}/${id}`, { method: 'delete', headers });
+  const { data } = await response.json();
+  return toPageEntity(data);
+}

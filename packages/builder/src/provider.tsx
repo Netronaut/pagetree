@@ -23,7 +23,7 @@ interface PageTreeProviderProps {
 
 export const PageTreeProvider = ({
   children,
-  onUpdate = () => undefined,
+  onUpdate,
   preview = false,
   components,
   pageTree,
@@ -35,7 +35,7 @@ export const PageTreeProvider = ({
   });
 
   useEffect(() => {
-    state.pageTree?.hash && onUpdate(state.pageTree as PageNode);
+    state.pageTree?.hash && onUpdate && onUpdate(state.pageTree);
   }, [state.pageTree?.hash]);
 
   return (

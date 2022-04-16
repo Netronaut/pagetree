@@ -136,8 +136,8 @@ describe('Canvas', () => {
 
     pageTree = new PageNode({
       childNodes: [
-        { uuid: targetId, type: 'article-teaser' },
-        { uuid: secondId, type: 'article-teaser' },
+        new PageNode({ uuid: targetId, type: 'article-teaser' }),
+        new PageNode({ uuid: secondId, type: 'article-teaser' }),
       ],
     });
 

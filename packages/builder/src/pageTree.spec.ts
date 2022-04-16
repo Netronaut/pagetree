@@ -164,11 +164,11 @@ describe('pageTree', () => {
             { type: 'headline' },
             {
               childNodes: [
-                { type: 'article-teaser' },
-                {
+                new PageNode({ type: 'article-teaser' }),
+                new PageNode({
                   type: 'article-teaser',
                   uuid: sourceId,
-                },
+                }),
               ],
             },
           ],
@@ -225,9 +225,9 @@ describe('pageTree', () => {
           type: PageNodeType.Track,
           axis: PageNodeAxis.Row,
           childNodes: [
-            {
+            new PageNode({
               type: 'article-teaser',
-            },
+            }),
           ],
         },
       ],
@@ -246,7 +246,10 @@ describe('pageTree', () => {
         { type: 'headline' },
         {
           axis: PageNodeAxis.Column,
-          childNodes: [{ type: 'article-teaser' }, { type: 'article-teaser' }],
+          childNodes: [
+            new PageNode({ type: 'article-teaser' }),
+            new PageNode({ type: 'article-teaser' }),
+          ],
         },
       ],
     });

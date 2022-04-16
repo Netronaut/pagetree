@@ -11,7 +11,7 @@ import { useTapOutside } from './useTapOutside';
 import { ModalContainer, CloseButton, ModalLabel, ModalBg } from './Modal.styles';
 
 interface EditPageModalProps {
-  page: Partial<PageEntity>;
+  page: PageEntity;
   onClose: () => void;
   onSave: (page: PageEntity) => void;
 }
@@ -25,7 +25,7 @@ const validate = (name: string, value: string): string | undefined => {
 type EditPageModalErrors = Record<string, string | undefined>;
 
 export const EditPageModal = ({ onClose, onSave, page }: EditPageModalProps): ReactElement => {
-  const [formState, setFormState] = useState<Partial<PageEntity>>({ ...page });
+  const [formState, setFormState] = useState<PageEntity>({ ...page });
   const [errors, setErrors] = useState<EditPageModalErrors>({});
 
   const wrapperRef = useRef(null);

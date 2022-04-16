@@ -13,11 +13,22 @@ export interface PageNodeProps {
   [key: string]: PageNodePropsValue;
 }
 
-export interface PartialPageNode extends Partial<Omit<PageNode, 'childNodes'>> {
-  childNodes?: Partial<Array<PartialPageNode>>;
+export interface SerializedPageNode {
+  uuid: string;
+  type: string;
+  props: PageNodeProps;
+  axis?: PageNodeAxis;
+
+  hash?: string;
+  parentNode?: PageNode;
+  childNodes?: Array<SerializedPageNode>;
 }
 
-export class PageNode {
+export interface PartialPageNode extends Partial<Omit<SerializedPageNode, 'childNodes'>> {
+  childNodes?: Array<Partial<SerializedPageNode>>;
+}
+
+export class PageNode implements SerializedPageNode {
   uuid: string;
   type: string;
   props: PageNodeProps;
@@ -179,8 +190,8 @@ export class PageNode {
     return this;
   }
 
-  valueOf(): PartialPageNode {
-    const value: PartialPageNode = {
+  valueOf(): SerializedPageNode {
+    const value: SerializedPageNode = {
       uuid: this.uuid,
       type: this.type,
       props: this.props,

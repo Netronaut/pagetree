@@ -6,7 +6,7 @@ import { useHistory } from 'react-router';
 
 export const Dashboard = (): ReactElement => {
   const [pages, setPages] = useState<Array<PageEntity>>([]);
-  const [editPage, setEditPage] = useState<Partial<PageEntity> | null>(null);
+  const [editPage, setEditPage] = useState<PageEntity | null>(null);
 
   const history = useHistory();
 
@@ -37,7 +37,7 @@ export const Dashboard = (): ReactElement => {
 
       <PageList
         pages={pages}
-        onAdd={() => setEditPage({})}
+        onAdd={() => setEditPage({ path: '', title: '' })}
         onEdit={setEditPage}
         onUpdate={handleSave}
         onRemove={handleRemove}
