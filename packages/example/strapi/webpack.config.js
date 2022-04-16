@@ -1,14 +1,14 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
-const { HOST, PORT, STRAPI_HOST, STRAPI_PORT } = process.env;
+const { HOST, PORT, STRAPI_HOST, STRAPI_PORT, STRAPI_API_TOKEN } = process.env;
 
 module.exports = {
   entry: path.join(__dirname, 'src', 'index.tsx'),
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: 'index.bundle.js',
-    publicPath: '/'
+    publicPath: '/',
   },
   resolve: {
     extensions: ['.ts', '.tsx', '.js', '.json'],
@@ -38,7 +38,9 @@ module.exports = {
     proxy: {
       '/api': {
         target: `http://${STRAPI_HOST || 'localhost'}:${STRAPI_PORT || 1337}`,
-        pathRewrite: { '^/api': '' },
+        onProxyReq: (proxyReq, req, res) => {
+          proxyReq.setHeader('Authorization', `Bearer ${STRAPI_API_TOKEN}`);
+        },
       },
     },
     historyApiFallback: true,

@@ -2,12 +2,12 @@
   "kind": "collectionType",
   "collectionName": "pages",
   "info": {
-    "name": "Page",
+    "singularName": "page",
+    "pluralName": "pages",
+    "displayName": "Page",
     "description": ""
   },
   "options": {
-    "increments": true,
-    "timestamps": true,
     "draftAndPublish": true
   },
   "pluginOptions": {},
@@ -20,6 +20,9 @@
     },
     "starred": {
       "type": "boolean"
+    },
+    "version": {
+      "type": "string"
     },
     "pageContent": {
       "type": "json"

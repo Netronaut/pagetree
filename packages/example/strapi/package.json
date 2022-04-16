@@ -4,14 +4,11 @@
   "main": "index.js",
   "private": true,
   "scripts": {
-    "start": "PORT=3000 webpack serve --mode=development",
-    "install:quickstart": "npm install $(npm pack ../../ | tail -1)",
-    "install:dev": "npm link @pagetree/builder",
-    "strapi": "docker compose up strapi -d"
+    "start": "env $(cat .env | xargs) webpack serve --mode=development",
+    "strapi": "docker compose up strapi -d",
+    "strapi:backup": "docker compose exec strapi sh -c 'sqlite .tmp/data.db \".dump\"' > strapi/seed.sql"
   },
   "dependencies": {
-    "@pagetree/builder": "^0.2.0",
-    "@pagetree/components": "^0.2.0",
     "changeset": "^0.2.6",
     "core-js": "^3.15.2",
     "react": "^17.0.2",

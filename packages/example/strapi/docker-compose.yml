@@ -2,13 +2,9 @@ version: '3'
 services:
   strapi:
     build: ./strapi
+    volumes:
+      - './strapi/src:/srv/app/src'
     ports:
       - 1337:1337
-  app:
-    build: .
-    ports:
-      - 3000:3000
-    environment:
-      HOST: 0.0.0.0
-      STRAPI_HOST: strapi
-      STRAPI_PORT: 1337
+    env_file:
+      - .env

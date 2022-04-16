@@ -1,0 +1,10 @@
+{
+  "name": "@netronaut/strapi",
+  "private": true,
+  "version": "4.1.7",
+  "description": "Base dockerfile for strapi",
+  "dependencies": {
+    "@strapi/strapi": "4.1.7"
+  },
+  "license": "MIT"
+}
