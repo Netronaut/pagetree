@@ -1,0 +1,17 @@
+{
+  "name": "@types/changeset",
+  "version": "0.2.6",
+  "description": "Typings for changeset",
+  "types": "changeset.d.ts",
+  "author": "Jakob Hohlfeld <jakob.hohlfeld@netronaut.de>",
+  "license": "MIT",
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^4.30.0",
+    "@typescript-eslint/parser": "^4.30.0",
+    "eslint": "^7.32.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-prettier": "^4.0.0",
+    "prettier": "^2.3.2",
+    "typescript": "^3.0.3"
+  }
+}

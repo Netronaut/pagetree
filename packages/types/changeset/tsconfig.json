@@ -1,0 +1,12 @@
+{
+  "compilerOptions": {
+    "target": "es5",
+    "module": "commonjs",
+    "noEmit": true,
+    "strict": true,
+    "baseUrl": ".",
+    "paths": {
+      "changeset": ["changeset.d.ts"]
+    }
+  }
+}

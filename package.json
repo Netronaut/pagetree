@@ -24,7 +24,8 @@
   "workspaces": [
     "./packages/builder",
     "./packages/components",
-    "./packages/example/*"
+    "./packages/example/*",
+    "./packages/types/*"
   ],
   "scripts": {
     "build": "tsc -b packages/builder packages/components",

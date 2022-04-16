@@ -1,0 +1,25 @@
+{
+  "env": {
+    "browser": true,
+    "es2021": true,
+    "node": true,
+    "jest": true
+  },
+  "parser": "@typescript-eslint/parser",
+  "plugins": [
+    "@typescript-eslint",
+    "prettier"
+  ],
+  "extends": [
+    "eslint:recommended",
+    "plugin:@typescript-eslint/eslint-recommended",
+    "plugin:@typescript-eslint/recommended",
+    "prettier"
+  ],
+  "rules": {
+    "no-console": "warn",
+    "prettier/prettier": "error",
+    "@typescript-eslint/no-unused-vars": "error",
+    "@typescript-eslint/no-explicit-any": "error"
+  }
+}
