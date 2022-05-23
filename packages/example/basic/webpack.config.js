@@ -10,7 +10,7 @@ module.exports = {
   resolve: {
     extensions: ['.ts', '.tsx', '.js', '.json'],
     alias: {
-      react: path.resolve('node_modules', 'react'),
+      react: path.resolve('../../../node_modules', 'react'),
       'styled-components': path.resolve('../../../node_modules', 'styled-components'),
     },
   },
