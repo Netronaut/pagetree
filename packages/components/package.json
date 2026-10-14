@@ -16,7 +16,7 @@
     "react": ">=17||>=16.8"
   },
   "devDependencies": {
-    "@storybook/addon-docs": "^6.3.8",
+    "@storybook/addon-docs": "^6.5.16",
     "@types/lodash.isempty": "^4.4.6",
     "@types/lodash.omit": "^4.5.6",
     "@types/react-router": "^5.1.16",
