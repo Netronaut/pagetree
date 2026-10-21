@@ -4,7 +4,7 @@
   "version": "4.1.7",
   "description": "Base dockerfile for strapi",
   "dependencies": {
-    "@strapi/strapi": "4.1.7"
+    "@strapi/strapi": "5.58.0"
   },
   "license": "MIT"
 }
